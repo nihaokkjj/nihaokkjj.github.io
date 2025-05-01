@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">Hexo</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/05/01/sort,%20basic%20algorithms/%E5%8C%BA%E9%97%B4%E5%92%8C/" title="Untitled">Untitled</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-05-01T06:19:32.538Z" title="Created 2025-05-01 06:19:32">2025-05-01</time></span></div><div class="content">![[Pasted image 20241102194718.png]]在数列排序后， 不存在后面的左端点小于前面的左端点的情况所以针对第一种情况，ed &lt;&#x3D; a.first，末尾的取值为max (ed, a.second)针对第二种情况， ed &gt; a.first, 则把上一个已经结束的区间记录下来， 并更新新的区间 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;using namespace std ;typedef pair&lt;int,int&gt; pii ;vector&lt;pii&gt; nums,res ;int main()&#123;    int st=-2e9,ed=-2e9 ;                          ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/05/01/sort,%20basic%20algorithms/%E5%B7%AE%E5%88%86%E4%B8%8E%E5%B7%AE%E5%88%86%E7%9F%A9%E9%98%B5/" title="Untitled">Untitled</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-05-01T06:19:32.538Z" title="Created 2025-05-01 06:19:32">2025-05-01</time></span></div><div class="content">应用前缀和的思想在（x1， y1）出加上c，然后（x1， y2 + 1） - c ， （x2 + 1， y1） - c 和 （x2 + 1， y2 + 1）+c， 加上重复部分![[Pasted image 20241030090742.png]] 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include&lt;iostream&gt;#include&lt;cstdio&gt;using namespace std;const int N = 1e3 + 10;int a[N][N], b[N][N];void insert(int x1, int y1, int x2, int y2, int c)&#123;    b[x1][y1] += c; // （x1， y1）以后的部分加c    b[x2 + 1][y1] -= c;//（x1， y2 + 1） 后面的部分恢复原数    b[x1][y2 + 1] -= c;...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/05/01/sort,%20basic%20algorithms/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E4%B8%8E%E9%80%86%E5%BA%8F%E5%AF%B9/" title="Untitled">Untitled</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-05-01T06:19:32.538Z" title="Created 2025-05-01 06:19:32">2025-05-01</time></span></div><div class="content">归并排序思路把数组不断分割， 直至每个数组只有一个， 把每一个小数组进行排序， 再把该数组与其他数组一起排序 代码123456789101112131415161718192021void merge_sort(int q[], int l, int r)&#123;    //递归的终止情况    if(l &gt;= r) return;    //第一步：分成子问题    int mid = l + r &gt;&gt; 1;    //第二步：递归处理子问题    merge_sort(q, l, mid ), merge_sort(q, mid + 1, r);    //第三步：合并子问题    int k = 0, i = l, j = mid + 1, tmp[r - l + 1];    while(i &lt;= mid &amp;&amp; j &lt;= r)        if(q[i] &lt;= q[j]) tmp[k++] = q[i++];        else tmp[k++] = q[j++];    while(i &lt;= mid)...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/05/01/sort,%20basic%20algorithms/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" title="Untitled">Untitled</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-05-01T06:19:32.538Z" title="Created 2025-05-01 06:19:32">2025-05-01</time></span></div><div class="content">思路若l &#x3D;&#x3D; r 及只有一个数，直接返回 以x为分界线， 小于x 的全部放在左边， 其余放在右边，在把左边的进行排序， 右边的进行排序不断划分， 直至只剩一个数 代码 1234567891011121314151617181920void quick_sort(int q[], int l, int r)&#123;    //递归的终止情况    if(l &gt;= r) return;    //第一步：分成子问题    int i = l - 1, j = r + 1, x = q[l + r &gt;&gt; 1];    while(i &lt; j)    &#123;        do i++; while(q[i] &lt; x);        do j--; while(q[j] &gt; x);        if(i &lt; j) swap(q[i], q[j]);    &#125;    //第二步：递归处理子问题    quick_sort(q, l, j), quick_sort(q, j + 1, r);   ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/05/01/graph%20theory/Dijkstra%20%E7%AE%97%E6%B3%95/" title="Untitled">Untitled</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-05-01T06:19:32.537Z" title="Created 2025-05-01 06:19:32">2025-05-01</time></span></div><div class="content">Dijkstra 朴素版dijkstra适合稠密图思路集合S为已经确定最短路径的点集。  初始化距离一号结点的距离为零，其他结点的距离设为无穷大（看具体的题）。 循环n次，每一次将集合S之外距离最短X的点加入到S中去（这里的距离最短指的是距离1号点最近。点X的路径一定最短，基于贪心，严格证明待看）。然后用点X更新X邻接点的距离。时间复杂度分析寻找路径最短的点：O(n2)  加入集合S：O(n) 更新距离：O(m) 所以总的时间复杂度为O(n2) 具体问题稠密图用邻接矩阵存。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;iostream&gt;#include&lt;cstring&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;const int N = 510, M = 100010;int g[N][N], dist[N];bool...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/05/01/graph%20theory/Floyd%E6%B1%82%E6%9C%80%E7%9F%AD%E8%B7%AF/" title="Untitled">Untitled</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-05-01T06:19:32.537Z" title="Created 2025-05-01 06:19:32">2025-05-01</time></span></div><div class="content">Floyd算法 O(n^3)-动态规划 题目给定一个n个点m条边的有向图，图中可能存在重边和自环，边权可能为负数。 再给定k个询问，每个询问包含两个整数x和y，表示查询从点x到点y的最短距离，如果路径不存在，则输出“impossible”。 数据保证图中不存在负权回路。 输入格式第一行包含三个整数n，m，k 接下来m行，每行包含三个整数x，y，z，表示点x和点y之间存在一条有向边，边长为z。 接下来k行，每行包含两个整数x，y，表示询问点x到点y的最短距离。 输出格式共k行，每行输出一个整数，表示询问的结果，若询问两点间不存在路径，则输出“impossible”。 数据范围1≤n≤200,  1≤k≤n2,   1≤m≤20000图中涉及边长绝对值均不超过10000。 输入样例：3 3 21 2 12 3 21 3 12 11 3输出样例：impossible1代码： 1234567891011121314151617181920212223242526272829303132333435#include &lt;iostream&gt;using namespace...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/05/01/graph%20theory/Kruskal%E7%AE%97%E6%B3%95%E6%B1%82%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%95%B0/" title="Untitled">Untitled</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-05-01T06:19:32.537Z" title="Created 2025-05-01 06:19:32">2025-05-01</time></span></div><div class="content">算法思路： 将所有边按照权值的大小进行升序排序，然后从小到大一一判断。  如果这个边与之前选择的所有边不会组成回路，就选择这条边分；反之，舍去。  直到具有 n 个顶点的连通网筛选出来 n-1 条边为止。  筛选出来的边和所有的顶点构成此连通网的最小生成树。   判断是否会产生回路的方法为：使用并查集。  在初始状态下给各个个顶点在不同的集合中。、  遍历过程的每条边，判断这两个顶点的是否在一个集合中。  如果边上的这两个顶点在一个集合中，说明两个顶点已经连通，这条边不要。如果不在一个集合中，则要这条边。   举例举个例子，下图一个连通网，克鲁斯卡尔算法查找图 1 对应的最小生成树，需要经历以下几个步骤： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/05/01/graph%20theory/Prim%E7%AE%97%E6%B3%95/" title="Untitled">Untitled</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-05-01T06:19:32.537Z" title="Created 2025-05-01 06:19:32">2025-05-01</time></span></div><div class="content">题目 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;const int N = 510, INF = 0x3f3f3f3f;int n, m;int g[N][N];int dist[N];bool st[N];int prim()&#123;    memset(dist, 0x3f, sizeof dist);    int res = 0;    for (int i = 0; i &lt; n; i ++ )    &#123;        int t = -1;        for (int j = 1; j &lt;= n; j ++ )            if (!st[j] &amp;&amp;...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/05/01/graph%20theory/bellman-%20Ford%E7%AE%97%E6%B3%95/" title="Untitled">Untitled</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-05-01T06:19:32.537Z" title="Created 2025-05-01 06:19:32">2025-05-01</time></span></div><div class="content">123456789101112131415161718192021222324252627282930313233343536373839404142434445#include&lt;iostream&gt;#include&lt;cstring&gt;using namespace std;const int N = 510, M = 10010;struct Edge &#123;    int a;    int b;    int w;&#125; e[M];//把每个边保存下来即可int dist[N];int back[N];//备份数组防止串联int n, m, k;//k代表最短路径最多包涵k条边int bellman_ford() &#123;    memset(dist, 0x3f, sizeof dist);    dist[1] = 0;    for (int i = 0; i &lt; k; i++) &#123;//k次循环        memcpy(back, dist, sizeof dist);        for (int j =...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/01/mod/" title="Untitled">Untitled</a><time datetime="2025-05-01T13:59:06.000Z" title="Created 2025-05-01 13:59:06">2025-05-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/01/data%20structure/STL%E8%AF%A6%E8%A7%A3%E2%80%94set,%20unordered_set%E3%80%81unordered_map%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8%EF%BC%88%E5%93%88%E5%B8%8C%E5%B9%B3%E6%9B%BF%EF%BC%89/" title="Untitled">Untitled</a><time datetime="2025-05-01T13:59:06.000Z" title="Created 2025-05-01 13:59:06">2025-05-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/01/data%20structure/Trid%20%E6%A0%91%20%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%AF%B9/" title="Untitled">Untitled</a><time datetime="2025-05-01T13:59:06.000Z" title="Created 2025-05-01 13:59:06">2025-05-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/01/data%20structure/kmp%E7%AE%97%E6%B3%95/" title="Untitled">Untitled</a><time datetime="2025-05-01T13:59:06.000Z" title="Created 2025-05-01 13:59:06">2025-05-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/01/data%20structure/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" title="Untitled">Untitled</a><time datetime="2025-05-01T13:59:06.000Z" title="Created 2025-05-01 13:59:06">2025-05-01</time></div></div></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/05/">
+            <span class="card-archive-list-date">
+              May 2025
+            </span>
+            <span class="card-archive-list-count">49</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">49</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-05-01T06:19:46.465Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
