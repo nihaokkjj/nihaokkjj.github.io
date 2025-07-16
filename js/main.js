@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let flag = ''
-    const scrollTask = btf.throttle(() => {
+    const scrollTask = btf.throttle((e) => {
           const currentTop = window.scrollY || document.documentElement.scrollTop
           const isDown = scrollDirection(currentTop)
           if (currentTop > 56) {
