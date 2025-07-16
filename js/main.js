@@ -424,36 +424,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollTask = btf.throttle(() => {
       const currentTop = window.scrollY || document.documentElement.scrollTop
       const isDown = scrollDirection(currentTop)
-      if (currentTop > 56) {
-        if (flag === '') {
-          $header.classList.add('nav-fixed')
-          $rightside.classList.add('rightside-show')
-        }
-
-        if (isDown) {
-          if (flag !== 'down') {
-            $header.classList.remove('nav-visible')
-            isChatBtn && window.chatBtn.hide()
-            flag = 'down'
+          if (currentTop > 56) {
++           $header.classList.add('is-top-bar')
+            if (isDown) {
+              if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
+              if (isChatBtnShow && isChatShow === true) {
+                chatBtnHide()
+                isChatShow = false
+              }
+            } else {
+              if (!$header.classList.contains('nav-visible')) $header.classList.add('nav-visible')
+              if (isChatBtnHide && isChatShow === false) {
+                chatBtnShow()
+                isChatShow = true
+              }
+            }
+            $header.classList.add('nav-fixed')
+            if (window.getComputedStyle($rightside).getPropertyValue('opacity') === '0') {
+              $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
+            }
+          } else {
+            if (currentTop === 0) {
+-             $header.classList.remove('nav-fixed', 'nav-visible')
++             $header.classList.remove('is-top-bar')
+            }
+            $rightside.style.cssText = "opacity: ''; transform: ''"
           }
-        } else {
-          if (flag !== 'up') {
-            $header.classList.add('nav-visible')
-            isChatBtn && window.chatBtn.show()
-            flag = 'up'
-          }
-        }
-      } else {
-        flag = ''
-        if (currentTop === 0) {
-          $header.classList.remove('nav-fixed', 'nav-visible')
-        }
-        $rightside.classList.remove('rightside-show')
-      }
 
-      isShowPercent && rightsideScrollPercent(currentTop)
-      checkDocumentHeight()
-    }, 300)
+          if (document.body.scrollHeight <= innerHeight) {
+            $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
+          }
+    }, 200)
 
     btf.addEventListenerPjax(window, 'scroll', scrollTask, { passive: true })
   }
