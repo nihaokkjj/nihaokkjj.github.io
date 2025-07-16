@@ -393,35 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * 滾動處理
    */
-  const scrollFn = () => {
-    const $rightside = document.getElementById('rightside')
-    const innerHeight = window.innerHeight + 56
-    let initTop = 0
-    const $header = document.getElementById('page-header')
-    const isChatBtn = typeof chatBtn !== 'undefined'
-    const isShowPercent = GLOBAL_CONFIG.percent.rightside
-
-    // 檢查文檔高度是否小於視窗高度
-    const checkDocumentHeight = () => {
-      if (document.body.scrollHeight <= innerHeight) {
-        $rightside.classList.add('rightside-show')
-        return true
-      }
-      return false
-    }
-
-    // 如果文檔高度小於視窗高度,直接返回
-    if (checkDocumentHeight()) return
-
-    // find the scroll direction
-    const scrollDirection = currentTop => {
-      const result = currentTop > initTop // true is down & false is up
-      initTop = currentTop
-      return result
-    }
-
-    let flag = ''
-    const scrollTask =  window.scrollCollect = () => {
+   window.scrollCollect = () => {
         return btf.throttle(function (e) {
           const currentTop = window.scrollY || document.documentElement.scrollTop
           const isDown = scrollDirection(currentTop)
@@ -457,9 +429,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }, 200)()
       }
-
-    btf.addEventListenerPjax(window, 'scroll', scrollTask, { passive: true })
-  }
 
   /**
   * toc,anchor
