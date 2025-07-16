@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let flag = ''
-      window.scrollCollect = () => {
+    const scrollTask =  window.scrollCollect = () => {
         return btf.throttle(function (e) {
           const currentTop = window.scrollY || document.documentElement.scrollTop
           const isDown = scrollDirection(currentTop)
@@ -457,6 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }, 200)()
       }
+
     btf.addEventListenerPjax(window, 'scroll', scrollTask, { passive: true })
   }
 
