@@ -1,0 +1,18 @@
+/* 1. 定义旋转动画 */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg); /* 动画开始时，旋转0度 */
+    }
+    100% {
+        transform: rotate(360deg); /* 动画结束时，旋转360度，完成一圈 */
+    }
+}
+
+/* 2. 将动画应用到风车图标 */
+.windmill-icon {
+    display: inline-block; /* 确保图标可以应用旋转变换 */
+    animation: spin 2s linear infinite; /* 应用 spin 动画，持续2秒，匀速（linear），无限次重复 */
+    /* 您可能需要根据实际图标的大小和位置调整一些其他样式 */
+    vertical-align: middle; /* 垂直居中，如果需要的话 */
+     margin-right: 5px; /* 与文字保持距离 */
+}
