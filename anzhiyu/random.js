@@ -1,3 +1,3 @@
-var posts=["posts/undefined.html","posts/undefined.html","posts/undefined.html","posts/undefined.html","posts/undefined.html","posts/undefined.html","posts/undefined.html","posts/undefined.html","posts/undefined.html"];function toRandomPost(){
+var posts=["posts/2025/04/Fronted/01- HTML/undefined.html","posts/2025/04/Fronted/03- JavaScript基础/undefined.html","posts/2025/04/Fronted/02- CSS/undefined.html","posts/2025/04/Fronted/04- JavaScript高级/undefined.html","posts/2025/06/Fronted/node/undefined.html","posts/2025/07/Fronted/前端学习/undefined.html","posts/2025/04/Fronted/学习日记/undefined.html","posts/2025/07/blog/butterfly安装/undefined.html","posts/2025/07/blog/魔改之旅/undefined.html"];function toRandomPost(){
     pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
   };
