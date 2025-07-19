@@ -1,0 +1,716 @@
+<!DOCTYPE html><html lang="zn-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>MinVue | 荥晋</title><meta name="keywords" content="html"><meta name="author" content="匡思进"><meta name="copyright" content="匡思进"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="MinVue"><meta name="application-name" content="MinVue"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="MinVue"><meta property="og:url" content="https://kkksj.cn/posts/2025/04/Fronted/MinVue/4a7e677b.html"><meta property="og:site_name" content="荥晋"><meta property="og:description" content="html"><meta property="og:locale" content="zn-CN"><meta property="og:image" content="https://kkksj.cn/img/4.jpg"><meta property="article:author" content="匡思进"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://kkksj.cn/img/4.jpg"><meta name="description" content="html"><link rel="shortcut icon" href="/img/images.jpg"><link rel="canonical" href="https://kkksj.cn/posts/2025/04/Fronted/MinVue/4a7e677b.html"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"你好啊, 人类👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":2},
+  friends_vue_info: {"apiurl":null},
+  navMusic: true,
+  mainTone: {"mode":"api","api":"/img/images.jpg","cover_change":true},
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 匡思进","link":"链接: ","source":"来源: 荥晋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '荥晋',
+  title: 'MinVue',
+  postAI: '',
+  pageFillDescription: '前言在尝试读懂这篇文章之前请保证已经学习过面向对象基本知识基础基础并且有过一定的实践开发基础不然可能会有非常多的小问号如果不满足上述条件也可以试着读一读不必为其中不懂的内容感到焦虑后面都能学会的本文旨在教会读者实现一个精简版的很多的功能会被简化但是核心思想是相通的本文会尽可能通俗易懂避开的各种生僻特性我们先不说的事情让我们先通过一些场景了解一点前置知识和概念只需要知道大概是什么没必要咬文嚼字一个场景里的概念响应式数据依赖数据劫持和双向绑定看看这段代码我们希望这个关系恒成立变了但是却不会发生变化我们希望变化时能自动地变化而不是我们还需要手动赋值多此一举那么怎么实现呢这里有一种思路是设置一个角色专门监听的变化在察觉变化时能够通知发生变化这很容易做到为我们提供了一个监听的修改当修改时通知发生相应变化一开始变化后在中将普通数据变成响应式数据的过程就叫数据劫持而扮演的这个角色在下文中被称为数据劫持者回到中的操作是如何去修改视图的呢让我们再看看一个操作修改内容的例子获取当前内容修改内容重新赋值我们能不能将第步干掉重新赋值看上去太多此一举了结合上文和的关系相信大家应该是灵光一闪我们这里先抛出问题暂时不考虑其中具体的实现细节响应式数据指的是依赖变化时该数据会自动变化如上文的就是响应式数据则是其依赖响应式数据和其依赖总是能表达为是一种技术架构代表数据层代表视图层在这里则是代表的层次层会监听另外两层的变化在其中一个变化时使另外一个发生相应的变化即层将层和层进行了双向绑定且与互为依赖具体一点用户在输入框输入了层内存里与之关联的数据自动变为层通过代码修改内存的数据为层界面上与之关联的部分自动变为层通过建立架构实现了双向的响应式即双向绑定又一个场景里的概念观察者模式依赖收集这是伪代码一种简写只是意会并不实际有效是我虚构的一种语法表示使用变量里面的请记住上面这个写法下文还会提到上述片段中两个内使用了一个变量我们实现一下对变化的监听察觉到它发生变化的时机然后及时通知到两个的改变监听一旦变化就改变两个的值注意这里我们能进行通知是因为这个片段很简单我们能直接看到被使用的位置所以可以写像创建上文与的关系那样的代码但是如果我们的项目有无穷多处都依赖了那我们还能一个一个手动去实现每一个响应式数据吗所以我们面临一个问题怎么快速修改所有这里我们需要先学习业界大佬们总结的种设计模式之一观察者模式什么是观察者模式这个模式中一共有个角色发布者与观察者发布者好比一个主观察者就是的粉丝当发视频的时候粉丝就会第一时间收到通知让我们用代码表述一下我们的问题解决了怎么快速修改所有通过发布者通知所有观察者执行方法修改数据就实现了修改所有我们可以手动创建一个发布者但是新的问题是我们该怎么创建观察者让我们分析一下该怎么做就像是把大象放进冰箱一样凡事都只需要三步观察局势发现很多地方都使用了变量比如特殊标记这些的位置让被标记的变量成为观察者怎么标记呢那就是创造一种语法比如中的然后通过一些暴力巧妙的操作遍历所有找到其中格式满足的内容将其变成观察者即可同时我们会用巧妙的操作实现一种逻辑在观察者产生的时候它会主动关注发布者具体怎么操作我们后面再谈寻找被特殊标记的变量的过程就是依赖收集将标记变量转化为响应式的过程就是数据劫持至此我们实现了单向的响应式在的内容被修改时触发方法通知所有存在于片段里面的一起修改也就是完成了那双向绑定怎么实现呢有了上述的铺垫之后就非常简单了视图层层的变动主要是来自于用户的输入键盘输入鼠标点击等所以我们只需要监听一些用户操作事件就好比如当用户输入时让进行通知就行了代码示意如下用户在这里标签上进行输入省略一堆代码监听键盘输入一旦用户进行输入就让主把新的值告诉其他所有粉丝观察者再一个场景里的概念虚拟和算法让我们先来讲个故事某个疯狂星期四乐程的点外卖打开某团先点了一份黄金鸡块五分钟后觉得不够吃又点了一份吮指原味鸡再过了五分钟觉得有点渴于是又点了一杯肥宅快乐水这个故事给我们什么启发很明显这样多次操作下来需要支付多次配送费用显然不如一次性点完所有来得划算在中也是类似的引擎和处理的渲染引擎不在同一个进程下每当用去操作操作都需要开辟一个跨进程的通道这种操作开销不小看不懂没关系我们通俗一点说相当于和是不在同一个国家的要去处理相关的事情就得花大价钱买机票出国去做做完了又得买机票回来继续做自己的事情如果下次又有的事情要处理那么就又得买机票出国这种开销是昂贵的所以如果能先把要处理的统一记录下来之后一次性处理完就能节省许多不必要的开销而这种记录就是虚拟众所周知会被解析为树下图左侧对应就是右侧的树这个词严格来说指的是树其中每个节点就叫节点而元素专指标签但是口头上树节点这几个词经常混用并不做严格的区分我们为了更明确地表示区分在提到虚拟的语境下会把称为真实虚拟就是用代码表示上图右侧结构主要看标签那一块的表示就好了标签名标签的属性标签的内容的内容内容可以直接就是一个字符串所以后面需要区分是字符串还是标签之后每次先在自己家里把要做的改变记录好后面出国就能一次性把所有事情办完节省开销那么如何构建虚拟呢让我们一步一步考虑起初遍历所有真实产生上述结构当发送改变时比如新增删除了一些标签我们得先在虚拟记录这种改变这时候问题出现了我们怎么知道这种改变发生在虚拟的哪个位置又重新遍历所有真实节点产生新的结构吗这听上去开销也太大了甚至比我们使用虚拟前的情况还要大那这简直是得不偿失所以我们需要一些算法来优化一下也就是算法算法不是具体某个算法而是像一样是一类算法解决的问题是如何尽快找出两份内容中不同的部分准备开始在了解了上面所有概念之后我们最后来进行一点总结我们要做的是所以简称为吧在正式开始之前希望大家能先去体验一下真正的由于的语法模仿的是所以推荐大家选择进行体验因为语法发生了一些变化可能会给大家带来一些困扰但无论什么版本底层原理还是基本一致的体验到什么程度只需要看看大概长啥样自己再写一点响应式数据试一下就行了让我们梳理一下上面三个场景中提到的内容整体流程大概是这样的其中需要注意的是我们之前提到的观察者模式中没有实现反向通知的能力这点会在下文提及让我们准备一下文件结构其中和中的内容分别是如果一切顺利中出现的将被替换成和上文一样接下来涉及到面向对象的部分我们都用进行实现中本质是这意味着可以用实现并且这是更推荐的做法但是考虑到大家的面向对象基础更多来自于用实现应该更容易上手实现核心能力实现层核心非常简单主要是记录一下和即对应的真实节点后续我们将把整个项目挂载到上然后创建数据劫持者和模板编译者即可的简写作为项目挂载的根节点把整个都传给实现发布者比较简单基本和之前提到的部分一致不再过多赘述发布者实现数据劫持者考虑到大家的基础我们这里先简单说明一个的知识点指向本文的目的不是学习所以只做不严谨且粗略的介绍如果你已经弄懂了请跳过这个部分上文已经用到过不少了看到这里相信也也应该知道中的大部分时候的意思就是我自己我们上文也提到了本质是而且内部也有大部分情况下一个函数的指向这个函数的调用者来看看下面这个例子类的方法全局函数浏览器环境下因为这是的缩写类的方法中使用全局函数浏览器环境下因为还是为了让类的方法中使用的全局函数访问到类的我们需要这么改这里多开一个变量的确是不必要的这里这么做是为了强调这种处理方式另外数据劫持还需要注意一个事情就是可能出现下面这样树形的数据所以我们需要进行一个遍历处理这里我们采用递归实现好了现在让我们来实现数据劫持者劫持数据需要拿到该数据节点及其父级对象创建发布者当前节点是树递归当前节点是叶子节点则是其父级节点上文提到的知识点的指向开始劫持数据记住这个这个很重要实现反向通知的核心步骤具体怎么回事在实现时进一步说明防止死循环更新触发更新提防一首新的数据是树形结构递归一下实现观察者观察者也非常容易实现只需要在之前提到过的代码上加一点点内容实现反向通知即可观察者传说中的层即实例数据的键用来更新视图层层的方法这里是反向通知的关键操作绑定一个静态属性相当于在内部创建一个全局变量记录是哪个观察者触发的反向通知这里使用了将触发劫持者设置的方法反向通知邀请当前这个成为观察者也可以理解为主动成为观察者结束标记为空释放内存同样地没有更新就啥也不干更新视图实现让我们分析一下其中是一个什么操作在创建的时候会给添加一个静态属性记录一下当前是在创建哪个观察者静态属性可以理解为在上创建的一个全局变量然后使用这个观察者对应的值时会触发方法让观察者实例将刚刚记录的观察者添加进观察者队列看上去就像是观察者一创建就主动关注了发布者一样这里其实有个有意思的小知识点就顺口提一句的内容是原数据的引用而不是拷贝所以我们可以在引入的上绑定新的值然后在中访问到这些值实现模板编译者这个是五个角色中最难的一个部分了在开始写代码前我们仍然需要介绍一堆前置概念首先我们要复习一下的类型请记住也是有类型的常见的类型如下表所示类型说明编号图示参考元素每一个标签都是一个元素节点如属性等文本元素节点或属性节点中的文本内容注释注释比如文档也叫根节点即然后再让我们了解一下伪数组伪数组也叫类数组本质是对象只不过键是就像是下面这样什么场景下会出现伪数组比如的返回值函数的参数列表等都是伪数组如果要把伪数组变为数组可以使用方法获取当前节点的所有子节点可以以此进行前序遍历伪数组真数组那为什么要把伪数组转为真数组呢因为伪数组是对象不具有数组的某些方法比如和许多场景下使用起来不方便那设计者为什么要搞出伪数组这种东西据之父自己坦白当初只用了十天就搞完了现在看起来确实设计得太糙了最后我们需要简单认识一下正则表达式实现只会简单用到一点正则所以这里只给出种给大家了解一下概念不做过多深入正则表达式这个能够匹配形如的字符串表示要获取的部分这是用正则表达式去匹配字符串用字符串去匹配正则表达式这是替换匹配内容这是由于主题是而且正则又博大精深所以限于篇幅此处不做更多介绍了如果对此感兴趣可以学习该类型的内容暂不支持下载熟悉了以上内容后先来大体看看我们要做的东西内容比较多我们拆成了几个层次分开看首先我们需要一个大体的框架如下模板编译者开始编译真实伪数组转为真数组进而可以用数组的前序遍历整个树判断是什么类型的扔给不同的处理方法元素类型文本类型如果还有子节点递归获取下一层主要就是实现这俩函数处理元素类型处理文本类型怎么实现函数呢既然我们都说过正则匹配了那么也会用上吧处理元素类型正则表达式匹配形如的字符串将节点的所有属性处理为数组遍历数组处理每个属性比如就是就是如果包含形如的部分比如匹配的是就是创建观察者触发相关逻辑将替换为具体的值监听键盘输入完成双向绑定处理文本类型与上面的方法基本上一样的逻辑至此已经基本完成了可以打开页面体验一下成果了但也再额外给一点开放性挑战感兴趣可以做一做当值为布尔或可以类型转换为布尔时进行相应的渲染控制循环渲染其中是一个数组是其元素是其下标废弃实现性能优化我们不需要下述的性能优化方案因为我们有了超越虚拟性能的方案实现虚拟经过一番体验后就发现如果非常快速地输入中文的话可能会导致双向绑定出错这是因为目前我们是每输入一个字符都会触发一次真实的更改高频且大量的操作就可能超出浏览器处理数据的极限输入频率超过浏览器最大渲染频率出现数据和视图不一致的情况总结就是太卡了需要优化一下那么就像是我们上文提到的实现一下虚拟实现算法如果我们没有虚拟那么我们或许可以不使用算法实现更多场景我突然意识到这不仅是一次尝试更是一个开发真实可用的框架的好机会由于名字寓意太明显了抄袭痕迹太重所以正式版改名叫吧寓意非常丰富实现思路借鉴了等多个框架是各种东西糊成的一坨实现并不精致但是容易被塑造成各种形状朴素实用泥巴里面可以催生出很多东西以此为基础可以产生更多技术框架出淤泥而不染我的确是在自吹自擂在多种模块化规范下使用先简单介绍一下的模块化规范规范名称说明示例几乎是前端诞生以来就有了雏形但是一直到年左右才终于形成正式的规范像这样引入的就是包的伴生产物也是年左右形成的规范像这样的导入导出的则是包官方年推出的规范正统像这样导入导出的则是包和年前后出现现如今使用频率较低不在本次兼容的范围内不详我们将借助的能力实现一套代码转变为多种规范的包在这之前你一定听说过或者不使用这些是因为它们太重了我们这里只是需要简单地转变规范所以轻量小巧的就成了首选相信配置一套满足上述要求的文件不会困扰大家所以交由大家自行实现在打包完成后引入不同规范的包非常容易实现但是需要输入完整路径形如由于和的关系不一般所以只需要直接导入包名即可这是最难的一个部分需要有等打包构建工具这就埋下了一个伏笔我们需要构建一个脚手架还有我个人更倾向用这里为了更好地验证包发布的效果这里可以使用工具来模拟验证比虚拟更直接的内容更新办法相比虚拟其实有个更简单且还算高效的办法一键替换内容这样的实现将会减小代码体积并且在常规情况下的效率会高于虚拟模块化受到腾讯的微前端框架无界的启发我们想到了一种不一样的模块化方案先到根目录下中写入根组件然后这里是模块这是组件怎么引入模块呢从根组件开始解析模板编译的过程访问每个节点时通过字符串比较发现了非原生标签那么我们就推断这是一个组件要求用户手写组件注册据此便能够通过组件名称即找到对应的文件路径用等方式请求下来异步解析非常高效也为提供了能力直接替换原来的组件标签的即可注意替换之后该组件内部可能还有组件也遵循上述规则进行解析这样的设计我们便以一种非常简单的方式实现了单页面应用组件化设计它的特点是渲染顺序是先序更新粒度是一个组件所以我们不需要并且更好的数据劫持初步实现将换为这样我们就能够在不重写方法的前提下监听到数组的等操作了这是一个改动量非常大的工作但是很显然它的收益是相当可观的多级调用还需要支持对象多级调用思路就是通过点来分割即可性能优化对于已经被劫持过的数据我们要防止其被再次劫持以避免不必要的性能开销更好的观察者模式现在的观察者都是不具名的存在很多性能问题一处变量改变时除了通知其他变量更新之外还会通知变量更新比如中反复改变状态时会创建大量重复的观察者优化的方案也比较简单将的数组改为一个通过键名指定更新某一个变量丰富语法现在已经实现了插值语法循环等目前还打算实现以下语法系列这是中非常优秀的一个设计抄了组件参数传递父级组件中子级组件中会把这个组件标签上所有的属性搜刮下来然后自动放到中之后将作为一个关键字不允许用户自定义叫另外还有的操作这个则是中非常符合直觉的设计父组件中这是嵌入的内容子组件中结合等语法可以实现非常多骚操作而且这部分由于是用直接插入的所以还可以使用子组件中的变量监听即让用户手动监听数据这个比较简单将观察者的内部方法暴露出去即可实现生命周期对此我们还得仔细思考一下到底是实现还是生命周期直接在挂载的时候加个函数就行了更多生态实现官方文档实现框架的路由实现快速搭建项目产出利用快速构建优秀的作品组件样式库暂时使用开源的可以先考虑发布上线测试点内容插值语法常规的基础数据插值如特殊的基础数据插值如空字符串基本数学运算表达式三元表达式对于和插值语法不解析其余均正常常规的引用数据类型插值如其中支持级连续调用但是的并没有生效已修复特殊的引用数据类型插值如空对象函数表达式函数运算结果新建对象对于函数表达式竟然会直接获取到运算结果出乎意料更多插值方式如直接插入表达式插入函数调用插入连续调用暂不打算支持插入表达式和函数调用非常极端的插值方式如不填写任何变量填写不存在的变量填写特殊符号填写标签很好填写标签也是能够如预期的一样进行两个对象内有相同的属性名字在插值语法的括号两侧写入其他内容如会把两侧的其他内容覆盖掉已修复属性插值语法常规的属性插值如其中不恰当的插值如属性需要或等类型的数据但是插入函数对象等更多插值方式如插入表达式插入函数调用连续调用同上暂不打算支持直接插入表达式和函数调用错误的插值如填写不存在的变量特殊符号标签系列由于和暂未上线所以暂时满足属性插值语法的标准即可判定为通过满足属性插值语法中的要求循环满足属性插值语法中的要求插入非数组元素对于形如的值会无法解析但是之前在中直接写函数表达式的话是能够解析返回值的所以这里后续最好统一一下另外最好再支持一下下标组件化参数传递满足属性插值语法中的要求远程组件只是试试能不能不作为必要的测试标准传递多个参数组件多级嵌套一个父组件多个子组件传递连续调用的对象传递函数是比较符合预期的能够实现组件通信不过有个问题是直接在宏任务中访问是大概是还没有加载上只能够异步地调用函数传递同一个变量以及改个名字之后重复传递特殊的组件调用如父子相互引用兄弟引用自己调用自己自己调用自己只会进行一次递归会被阻止父子相互引用被浏览器阻止子组件引用父组件失败兼容性移动端设备其他浏览器暂时不用管',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2025-07-19 11:34:48',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://kksj.cn" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/images.jpg" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/nihaokkjj" title="去我的github里面瞅瞅吧"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/cute.webp" alt="去我的github里面瞅瞅吧"/><span class="back-menu-item-text">去我的github里面瞅瞅吧</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">荥晋</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/img/wchat.jpg" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/wchat.jpg"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/zhifubao.jpg" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/zhifubao.jpg"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Vue/" style="font-size: 1.05rem;">Vue<sup>1</sup></a><a href="/tags/blog/" style="font-size: 1.05rem;">blog<sup>2</sup></a><a href="/tags/minvue/" style="font-size: 1.05rem;">minvue<sup>1</sup></a><a href="/tags/node/" style="font-size: 1.05rem;">node<sup>1</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97/" style="font-size: 1.05rem;">前端三件套<sup>5</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 1.05rem;">前端学习路线<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">July 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">June 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/04/"><span class="card-archive-list-date">April 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">6</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0vue/" itemprop="url">进一步学习vue</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/minvue/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>minvue</span></a></span></div></div><h1 class="post-title" itemprop="name headline">MinVue</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2025-04-01T00:00:00.000Z" title="发表于 2025-04-01 00:00:00">2025-04-01</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-07-19T11:34:48.658Z" title="更新于 2025-07-19 11:34:48">2025-07-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为长沙"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>长沙</span></div></div></div><article class="post-content" id="article-container" itemscope itemtype="https://kkksj.cn/posts/2025/04/Fronted/MinVue/4a7e677b.html"><header><a class="post-meta-categories" href="/categories/%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0vue/" itemprop="url">进一步学习vue</a><a href="/tags/minvue/" tabindex="-1" itemprop="url">minvue</a><h1 id="CrawlerTitle" itemprop="name headline">MinVue</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">匡思进</span><time itemprop="dateCreated datePublished" datetime="2025-04-01T00:00:00.000Z" title="发表于 2025-04-01 00:00:00">2025-04-01</time><time itemprop="dateCreated datePublished" datetime="2025-07-19T11:34:48.658Z" title="更新于 2025-07-19 11:34:48">2025-07-19</time></header><p>Mini Vue<br>前言<br>在尝试读懂这篇文章之前，请保证已经学习过面向对象基本知识、HTML基础、JS基础，并且有过一定的实践开发基础，不然可能会有非常多的小问号。<br>如果不满足上述条件，也可以试着读一读，不必为其中不懂的内容感到焦虑，后面都能学会的。</p>
+<p>本文旨在教会读者实现一个精简版的Vue，很多Vue的功能会被简化，但是核心思想是相通的。<br>本文会尽可能通俗易懂、避开JS的各种生僻特性。<br>我们先不说Vue的事情，让我们先通过一些场景了解一点前置知识和概念——只需要知道大概是什么，没必要咬文嚼字：<br>一个场景里的概念：响应式数据、依赖、数据劫持、MVVM和双向绑定<br>看看这段代码：<br>JavaScript<br>&#x2F;&#x2F; 我们希望这个关系恒成立： y &#x3D; 2 * x + 1<br>let x &#x3D; 10<br>let y &#x3D; 2 * x + 1<br>x &#x3D; 20<br>&#x2F;&#x2F; x变了，但是y却不会发生变化<br>我们希望，x变化时y能自动地变化，而不是我们还需要手动赋值多此一举。<br>那么怎么实现呢？这里有一种思路是，设置一个角色专门监听x的变化，在察觉x变化时能够通知y发生变化。</p>
+<p>这很容易做到，JS为我们提供了一个API，Object.defineProperty：<br>JavaScript<br>const data &#x3D; {<br>  x: 10,<br>  y: 21<br>};</p>
+<p>&#x2F;&#x2F; 监听 data.x 的 修改<br>Object.defineProperty(data, ‘x’, {<br>  set(value) {<br>    data.y &#x3D; value * 2 + 1; &#x2F;&#x2F; 当 x 修改时，通知 y 发生相应变化<br>  }<br>});</p>
+<p>console.log(‘一开始:’, data.y); &#x2F;&#x2F; 21<br>data.x &#x3D; 100;<br>console.log(‘x变化后:’, data.y); &#x2F;&#x2F; 201</p>
+<p>在Vue中，将普通数据变成响应式数据的过程，就叫数据劫持。<br>而Object.defineProperty扮演的这个角色，在下文中被称为 数据劫持者（hijacker）</p>
+<p>回到web中，JS的DOM操作是如何去修改视图的呢？<br>让我们再看看一个DOM操作修改<input />内容的例子：<br>JavaScript<br>let value &#x3D; document.querySelector(‘input’).value; &#x2F;&#x2F; 1.获取input当前内容</p>
+<p>value &#x3D; Number(value) + 1; &#x2F;&#x2F; 2. 修改内容</p>
+<p>document.querySelector(‘input’).value &#x3D; value; &#x2F;&#x2F; 3.重新赋值<br>我们能不能将第3步干掉？重新赋值看上去太多此一举了！<br>结合上文x和y的关系，相信大家应该是灵光一闪。<br>我们这里先抛出问题，暂时不考虑其中具体的实现细节。<br>响应式数据指的是，依赖变化时，该数据会自动变化。如上文的y就是响应式数据，x则是其依赖，响应式数据和其依赖总是能表达为y&#x3D;F(x)。</p>
+<p>M-V-VM是一种技术架构，M代表数据层(Model)，V代表视图层(View)，VM(ViewModel)在这里则是Vue代表的层次。</p>
+<p>VM层会监听另外两层的变化，在其中一个变化时，使另外一个发生相应的变化，即VM层将V层和M层进行了双向绑定——V&#x3D;F1(M)且M&#x3D;F2(V),V与M互为依赖。<br>具体一点：<br>1.用户在输入框输入了123（V层），内存里与之关联的数据自动变为123（M层）<br>2.通过代码修改内存的数据为123（M层），界面上与之关联的部分自动变为123（V层）</p>
+<p>Vue通过建立MVVM架构实现了双向的响应式，即双向绑定。</p>
+<p>又一个场景里的概念：观察者模式、依赖收集<br>HTML<br>&#x2F;&#x2F; 这是伪代码，一种简写，只是意会，并不实际有效<br>&#x2F;&#x2F; value&#x3D;{v}是我虚构的一种语法，{v}表示使用JS变量里面的v<br>&#x2F;&#x2F; 请记住上面这个写法，下文还会提到 </p>
+<script>
+    let v = 1;
+</script>
+
+<div>
+    <input value={v} />
+    <input value={v} />
+</div>
+上述HTML片段中，两个<input />内使用了一个JS变量v。
+我们实现一下对v变化的监听，察觉到它发生变化的时机，然后及时通知到两个<input />的value改变：
+JavaScript
+// 监听v，一旦v变化，就改变两个input的值
+Object.defineProperty(window, 'v', () => {
+    set(value) {
+        const inputDoms = document.querySelectorAll('input')
+        inputDoms[0].value = value 
+        inputDoms[1].value = value
+    }    
+})
+注意，这里我们能进行通知，是因为这个片段很简单，我们能直接看到v被使用的位置，所以可以写像创建上文x与y的关系那样的代码。
+
+<p>但是，如果我们的项目有无穷多处都依赖了v, 那我们还能一个一个手动去实现每一个响应式数据吗？<br>所以我们面临一个问题：怎么快速修改所有v？</p>
+<p>这里我们需要先学习业界大佬们总结的23种设计模式之一，观察者模式<br>什么是观察者模式？<br>这个模式中一共有2个角色，发布者与观察者。<br>发布者好比一个UP主，观察者就是ta的粉丝，当UP发视频的时候，粉丝就会第一时间收到通知。<br>让我们用代码表述一下：</p>
+<p>我们的问题解决了——怎么快速修改所有v:<br>通过发布者通知所有观察者执行update方法修改数据，就实现了修改所有v。<br>我们可以手动创建一个发布者，但是新的问题是，我们该怎么创建观察者？<br>让我们分析一下该怎么做，就像是把大象放进冰箱一样，凡事都只需要三步：<br>1.观察局势，发现很多地方都使用了变量v，比如<input value={v}><br>2.特殊标记这些v的位置<br>3.让被标记的变量成为观察者</p>
+<p>怎么标记呢？那就是创造一种语法，比如<input value={v}>中的{v}<br>然后通过一些暴力巧妙的操作，遍历所有HTML，找到其中格式满足{xxx}的内容，将其变成观察者即可。<br>同时，我们会用巧妙的操作实现一种逻辑，在观察者产生的时候，它会主动关注发布者。<br>具体怎么操作，我们后面再谈。<br>寻找被特殊标记的变量的过程，就是依赖收集；将标记变量转化为响应式的过程，就是数据劫持；<br>至此，我们实现了单向的响应式，在publisher的内容被修改时触发publish方法通知所有存在于HTML片段里面的observer一起修改——也就是完成了V&#x3D;F1(M)。</p>
+<p>那双向绑定，M&#x3D;F2(V)怎么实现呢？<br>有了上述的铺垫之后就非常简单了！视图层(V层)的变动主要是来自于用户的输入（键盘输入、鼠标点击等），所以我们只需要监听一些用户操作事件就好，比如当用户输入时，让publisher进行通知就行了。<br>代码示意如下：<br>JavaScript</p>
+<div>
+    <input value={v} /> // 用户在这里标签上进行输入
+    <input value={v} />
+</div>    
+
+<script>
+    // ... 省略一堆代码
+    const inputDom1 = document.querySelector('input')
+    // 监听键盘输入
+    inputDom1.oninput = (e) => {
+        // 一旦用户进行输入，就让UP主（publisher）把新的值告诉其他所有粉丝（观察者）
+        publisher.publish(e.target.value)
+    }
+</script>
+
+<p>再一个场景里的概念：虚拟DOM和Diff算法<br>让我们先来讲个故事：<br>某个疯狂星期四，乐程的xxl点外卖。打开某团先点了一份黄金鸡块，五分钟后，觉得不够吃又点了一份吮指原味鸡，再过了五分钟，觉得有点渴于是又点了一杯肥宅快乐水…<br>这个故事给我们什么启发？<br>很明显，这样多次操作下来，需要支付多次配送费用，显然不如一次性点完所有来得划算</p>
+<p>在web中也是类似的：<br>JS引擎和处理HTML的渲染引擎不在同一个进程下，每当用JS去操作HTML（DOM操作），都需要开辟一个跨进程的通道，这种操作开销不小。<br>看不懂没关系，我们通俗一点说，<br>相当于，JS和HTML是不在同一个国家的，JS要去处理HTML相关的事情，就得花大价钱买机票出国去做，做完了又得买机票回来继续做自己的事情，如果下次又有HTML的事情要处理，那么就又得买机票出国…<br>这种开销是昂贵的。</p>
+<p>所以，如果JS能先把要处理的DOM统一记录下来，之后一次性处理完，就能节省许多不必要的开销。<br>而这种记录，就是虚拟DOM。</p>
+<p>众所周知，HTML会被解析为DOM树，下图左侧HTML对应就是右侧的DOM树：<br>DOM这个词严格来说指的是DOM树，其中每个节点就叫DOM节点，而DOM元素专指标签。<br>但是口头上，DOM、DOM树、DOM节点这几个词经常混用，并不做严格的区分…</p>
+<p>我们为了更明确地表示区分，在提到虚拟DOM的语境下，会把DOM称为真实DOM。<br>虚拟DOM就是用JS代码表示上图右侧结构(主要看a标签那一块的表示就好了)：<br>JavaScript<br>const visualDom &#x3D; {<br>    tag: ‘html’  &#x2F;&#x2F; 标签名<br>    props: {},   &#x2F;&#x2F; 标签的属性<br>    content: [   &#x2F;&#x2F; 标签的内容<br>        {<br>            tag: ‘head’,<br>            props: {},<br>            content: []<br>        },<br>        {<br>            tag: ‘body’,<br>            props: ‘’,<br>            content: [<br>                {<br>                    tag: ‘a’,<br>                    props: {<br>                        href: ‘xxx’<br>                    },<br>                    content: [<br>                        ‘a的内容’ &#x2F;&#x2F; 内容可以直接就是一个字符串,所以后面需要区分,是字符串还是标签<br>                    ]<br>                },<br>                ‘123’<br>            ]<br>        }<br>    ]<br>}<br>之后，每次JS先在自己家里把要做的改变记录好，后面出国就能一次性把所有事情办完，节省开销。</p>
+<p>那么如何构建虚拟DOM呢？让我们一步一步考虑：<br>1.起初，遍历所有真实DOM，产生上述结构。<br>2.当发送改变时，比如新增&#x2F;删除了一些标签，我们得先在虚拟DOM记录这种改变——这时候问题出现了！<br>我们怎么知道这种改变发生在虚拟DOM的哪个位置？又重新遍历所有真实DOM节点产生新的结构吗？这听上去开销也太大了，甚至比我们使用虚拟DOM前的情况还要大，那这简直是得不偿失。</p>
+<p>所以我们需要一些算法来优化一下，也就是Diff算法。<br>Diff算法不是具体某个算法，而是像DP一样，是一类算法，解决的问题是如何尽快找出两份内容中不同的部分。</p>
+<p>准备开始<br>在了解了上面所有概念之后，我们最后来进行一点总结。<br>我们要做的是My-Vue，所以简称为MUE吧</p>
+<p>在正式开始之前，希望大家能先去体验一下真正的Vue。<br>由于Mue的语法模仿的是Vue2, 所以推荐大家选择Vue2进行体验。<br>因为Vue3语法发生了一些变化，可能会给大家带来一些困扰。</p>
+<p>但无论什么版本，底层原理还是基本一致的。</p>
+<p>体验到什么程度？只需要看看大概长啥样，自己再写一点响应式数据试一下就行了。</p>
+<p>让我们梳理一下上面三个场景中提到的内容，整体流程大概是这样的：<br>其中需要注意的是，我们之前提到的观察者模式中，没有实现反向通知的能力，这点会在下文提及<br>让我们准备一下文件结构：</p>
+<p>其中index.html和main.js中的内容分别是：<br>JavaScript<br><!DOCTYPE html></p>
+<html>
+<head>
+  <title>Mue</title>
+</head>
+<body>
+  <div id="app">
+    <div>{msg}</div>
+    <input type="text" value="{msg}">
+  </div>
+</body>
+<script type="module" src="./main.js"></script>
+</html>
+如果一切顺利，html中出现的{msg}将被替换成Hello Mue
+JavaScript
+import Mue from '../mue-core/mue.js';
+
+<p>window.mue &#x3D; new Mue({<br>  el: ‘#app’,<br>  data: {<br>    msg: ‘Hello MUE!’<br>  },<br>});<br>和上文一样，接下来涉及到面向对象的部分，我们都用Class进行实现。<br>JS中，Class本质是Function，这意味着可以用Function实现——并且这是更推荐的做法。<br>但是考虑到大家的面向对象基础更多来自于Java，用Class实现应该更容易上手。<br>实现核心能力<br>实现：ViewModel层核心 Mue<br>非常简单，主要是记录一下el和data。<br>el即对应的真实DOM节点，后续我们将把整个项目挂载到el上。<br>然后创建数据劫持者Hijacker和模板编译者Compiler即可。<br>JavaScript<br>import Hijacker from ‘..&#x2F;mue-core&#x2F;hijacker.js’;<br>import Compiler from ‘.&#x2F;compiler.js’;<br>class Mue {<br>  constructor(options) {<br>    &#x2F;&#x2F; element的简写。作为项目挂载的根节点。<br>    this.el &#x3D; document.querySelector(options.el);<br>    this.data &#x3D; options.data;<br>    new Hijacker(this, ‘data’);<br>    new Compiler(this); &#x2F;&#x2F; 把整个mue都传给Compiler<br>  }<br>}</p>
+<p>export default Mue;</p>
+<p>实现：发布者 Publisher<br>比较简单，基本和之前提到的部分一致，不再过多赘述：<br>JavaScript<br>&#x2F;&#x2F; 发布者<br>class Publisher {<br>  constructor(data) {<br>    this.viewers &#x3D; [];<br>  }</p>
+<p>  addViewer(viewer) {<br>    this.viewers.push(viewer);<br>  }</p>
+<p>  publish() {<br>    this.viewers.forEach((viewer) &#x3D;&gt; {<br>      viewer.update();<br>    });<br>  }<br>}</p>
+<p>export default Publisher;</p>
+<p>实现：数据劫持者 Hijacker<br>考虑到大家的JS基础，我们这里先简单说明一个JS的知识点，this指向。<br>本文的目的不是学习this，所以只做不严谨且粗略的介绍。（如果你已经弄懂了this，请跳过这个部分）<br>上文已经用到过不少了，看到这里相信也也应该知道Class中的this大部分时候的意思就是”我自己”。<br>我们上文也提到了，Class本质是Function，而且Function内部也有this。<br>大部分情况下，一个函数的this指向这个函数的调用者。来看看下面这个例子：<br>JavaScript<br>&#x2F;&#x2F; case 1：类的方法<br>class A {<br>  testThis() {<br>    console.log(this);<br>  }<br>}<br>new A().testThis(); &#x2F;&#x2F; A</p>
+<p>&#x2F;&#x2F; case 2: 全局函数<br>function B() {<br>  console.log(this);<br>}<br>B(); &#x2F;&#x2F; (浏览器环境下)window。 因为这是window.B()的缩写</p>
+<p>&#x2F;&#x2F; case 3: 类的方法中使用全局函数<br>class C {<br>  testThis() {<br>    B();<br>  }<br>}<br>new C().testThis(); &#x2F;&#x2F; (浏览器环境下)window, 因为还是 window.B()</p>
+<p>&#x2F;&#x2F; case 4: 为了让 类的方法中使用的全局函数 访问到 类的this, 我们需要这么改：<br>function Dfunction(that) {<br>  console.log(that);<br>}<br>class Dclass {<br>  testThis() {<br>    const that &#x3D; this; &#x2F;&#x2F; 这里多开一个变量的确是不必要的，这里这么做是为了强调这种处理方式<br>    Dfunction(that);<br>  }<br>}<br>new Dclass().testThis(); &#x2F;&#x2F; Dclass</p>
+<p>另外，数据劫持还需要注意一个事情就是，可能出现下面这样树形的数据，所以我们需要进行一个遍历处理，这里我们采用递归实现。<br>JavaScript<br>const data &#x3D; {<br>    a: {<br>        aa:123,<br>        ab: {<br>            aba: ‘hhh’<br>        }<br>    }，<br>    b: ‘aaaaaaa’<br>}</p>
+<p>好了，现在让我们来实现Hijacker:<br>JavaScript<br>import Publisher from “.&#x2F;publisher.js”;<br>&#x2F;&#x2F; 数据劫持者<br>class Hijacker {<br>  constructor(mue, data) {<br>    this.hijack(mue, data);<br>  }</p>
+<p>  &#x2F;&#x2F; Object.defineProperty劫持数据需要拿到 该数据节点 及 其父级对象<br>  hijack(object, key) {<br>    &#x2F;&#x2F; 创建发布者<br>    const publisher &#x3D; new Publisher();<br>    let value &#x3D; object[key];</p>
+<pre><code>if (!value) &#123;
+  return;
+&#125; else if (typeof value === &#39;object&#39;) &#123; // 当前节点是树，递归;
+  Object.keys(value).forEach((key) =&gt; &#123;
+    this.hijack(value, key);
+  &#125;);
+&#125; else &#123; // 当前节点是叶子节点；object则是其父级节点
+  // 上文提到的知识点：JS的this指向
+  const that = this;  
+  // 开始劫持数据
+  Object.defineProperties(object, value, &#123;
+    // 记住这个get, 这个很重要
+    get() &#123;  // 实现反向通知的核心步骤，具体怎么回事在实现Viewer时进一步说明
+      if (Publisher.target) &#123; 
+        publisher.addViewer(Publisher.target);
+      &#125;
+      return value;
+    &#125;,
+    set(newValue) &#123;
+      if (value === newValue) &#123; // 防止死循环: 更新-&gt;触发publish-&gt;更新-&gt;...
+        return
+      &#125;
+      value = newValue;
+      that.hijack(object, newValue); // 提防一首新的数据是树形结构，递归一下
+      publisher.publish();
+    &#125;
+  &#125;);
+
+&#125;
+</code></pre>
+<p>  }<br>}</p>
+<p>export default Hijacker</p>
+<p>实现：观察者 Viewer<br>观察者也非常容易实现，只需要在之前提到过的代码上加一点点内容实现反向通知即可：<br>JavaScript<br>import Publisher from “.&#x2F;publisher.js”;<br>&#x2F;&#x2F; 观察者<br>class Viewer {<br>  constructor(mue, dataKey, updateHandler) {<br>    this.mue &#x3D; mue; &#x2F;&#x2F; 传说中的vm层，即mue实例<br>    this.dataKey &#x3D; dataKey; &#x2F;&#x2F; 数据的键<br>    this.updateHandler &#x3D; updateHandler; &#x2F;&#x2F; 用来更新视图层(V层)的方法</p>
+<pre><code>// 这里是反向通知的关键操作：
+// 绑定一个静态属性。相当于在Publisher内部创建一个“全局”变量，记录是哪个观察者触发的反向通知
+Publisher.target = this;
+// 这里使用了 mue.data[dataKey]，将触发劫持者设置的 get方法：
+// 反向通知 publisher邀请当前这个viewer成为观察者（也可以理解为viewer主动成为观察者）
+this.oldValue = mue.data[dataKey];
+// 结束，标记为空，释放内存
+Publisher.target = null;
+</code></pre>
+<p>  }</p>
+<p>  update() {<br>    const newValue &#x3D; this.mue.data[dataKey];<br>    if (this.oldValue &#x3D;&#x3D;&#x3D; newValue) { &#x2F;&#x2F; 同样地，没有更新就啥也不干<br>      return;<br>    }<br>    &#x2F;&#x2F; 更新视图，实现 V &#x3D; F1(M)<br>    this.updateHandler(newValue);<br>  }<br>}</p>
+<p>export default Viewer;<br>让我们分析一下其中Publisher.viewer是一个什么操作：</p>
+<p>在创建Viewer的时候，会给Publisher添加一个静态属性viewer，记录一下当前是在创建哪个观察者。<br>静态属性可以理解为，在Publisher上创建的一个全局变量<br>然后使用这个观察者对应的值时，会触发get方法，让观察者实例publisher将刚刚记录的观察者添加进观察者队列——看上去就像是观察者一创建就主动关注了发布者一样。</p>
+<p>这里其实有个有意思的小知识点，就顺口提一句：<br>import的内容是原数据的引用而不是拷贝，所以我们可以在viewer.js引入的Publisher上绑定新的值，然后在hijacker.js中访问到这些值。</p>
+<p>实现：模板编译者 Compiler</p>
+<p>这个是五个角色中最难的一个部分了。<br>在开始写代码前我们仍然需要介绍一堆前置概念。<br>1.首先我们要复习一下JS的DOM类型——请记住DOM也是有类型的，常见的类型如下表所示：<br>类型	说明	编号	图示参考<br>元素	每一个标签都是一个元素节点，如 <div> 、 <span><br>	1	</p>
+<p>属性	id 、class 、style等	2	<br>文本	元素节点或属性节点中的文本内容<br>	3	<br>注释	注释，比如<!-- xxx -->	8	<br>文档	也叫根节点，即document	9	<br>2.然后再让我们了解一下 伪数组。<br>JavaScript<br>&#x2F;&#x2F; 伪数组也叫类数组，本质是对象，只不过键是0-N, 就像是下面这样<br>const objectArray &#x3D; {<br>    0: ‘aaa’,<br>    1: ‘bbb’,<br>    2: ‘ccc’<br>}</p>
+<p>console.log(objectArray[0]) &#x2F;&#x2F; aaa<br>什么场景下会出现伪数组？<br>比如document.querySelectorAll的返回值、函数的arguments参数列表等都是伪数组。<br>3.如果要把伪数组变为数组，可以使用Array.from方法:<br>JavaScript</p>
+<div id="app">
+    <span>Hello</span>
+    World
+</div>
+<script>
+  const dom = document.querySelector('#app')
+  const children = dom.childNodes // 获取当前节点的所有子节点。可以以此进行前序遍历
+  console.log('伪数组', children)
+  console.log('真数组', Array.from(children))
+</script>
+那为什么要把伪数组转为真数组呢？
+因为伪数组是对象，不具有数组的某些方法，比如push和pop，许多场景下使用起来不方便。
+那JS设计者为什么要搞出伪数组这种东西？
+据JS之父自己坦白——"当初只用了十天就搞完了...现在看起来确实设计得太糙了..."
+4.最后，我们需要简单认识一下正则表达式（regular expression）。
+实现Compiler只会简单用到一点正则，所以这里只给出3种case给大家了解一下概念，不做过多深入:
+JavaScript
+const reg = /\{(.+?)\}/; // 正则表达式。这个能够匹配形如 {xxx} 的字符串, ()表示要获取的部分
+const str = '这是{msg}';
+
+<p>&#x2F;&#x2F; case 1: 用正则表达式去匹配字符串<br>console.log(reg.test(str)); &#x2F;&#x2F; true</p>
+<p>&#x2F;&#x2F; case 2: 用字符串去匹配正则表达式<br>console.log(str.match(reg)); &#x2F;&#x2F; [ ‘{msg}’, ‘msg’, index: 2, input: ‘这是{msg}’, …]</p>
+<p>&#x2F;&#x2F; case 3: 替换匹配内容<br>const data &#x3D; ‘swpu-lec, yyds’;<br>console.log(str.replace(reg, data));  &#x2F;&#x2F; 这是swpu-lec, yyds    </p>
+<p>由于主题是Vue，而且正则又博大精深，所以限于篇幅此处不做更多介绍了。如果对此感兴趣，可以学习：<br>[该类型的内容暂不支持下载]</p>
+<p>熟悉了以上内容后，先来大体看看我们要做的东西。<br>内容比较多，我们拆成了几个层次分开看，首先我们需要一个大体的框架如下：<br>JavaScript<br>import Viewer from “.&#x2F;viewer.js”;<br>&#x2F;&#x2F; 模板编译者<br>class Compiler {<br>  constructor(mue) {<br>    this.mue &#x3D; mue;<br>    this.el &#x3D; mue.el;<br>    this.compile(this.el);<br>  }</p>
+<p>  &#x2F;&#x2F; 开始编译<br>  compile(el) {<br>    const childNodes &#x3D; el.childNodes; &#x2F;&#x2F; 真实DOM伪数组<br>    const childNodesList &#x3D; Array.from(childNodes); &#x2F;&#x2F; 转为真数组，进而可以用数组的api</p>
+<pre><code>// 前序遍历整个DOM树
+childNodesList.forEach((node,) =&gt; &#123;
+  // 判断是什么类型的DOM, 扔给不同的处理方法
+  if (node.nodeType === 1) &#123; // 元素类型
+    this.compileForElement(node);
+  &#125; else if (node.nodeType === 3) &#123; // 文本类型
+    this.compileForText(node);
+  &#125;
+  // 如果还有子节点，递归获取下一层
+  if (node.childNodes.length) &#123;
+    this.compile(node);
+  &#125;
+&#125;);
+</code></pre>
+<p>  }<br>  &#x2F;&#x2F; TODO: 主要就是实现这俩函数：<br>  &#x2F;&#x2F; 处理元素类型DOM<br>  compileForElement(node) {}<br>  &#x2F;&#x2F; 处理文本类型DOM<br>  compileForText(node) {}<br>}</p>
+<p>export default Compiler;<br>怎么实现函数呢？既然我们都说过正则匹配了，那么也会用上吧：<br>JavaScript<br>&#x2F;&#x2F; 处理元素类型DOM<br>  compileForElement(node) {<br>    const reg &#x3D; &#x2F;{(.+?)}&#x2F;; &#x2F;&#x2F; 正则表达式，匹配形如 {xxx} 的字符串<br>    const allAttributes &#x3D; Array.from(node.attributes); &#x2F;&#x2F; 将节点的所有属性，处理为数组</p>
+<pre><code>// 遍历数组，处理每个属性
+allAttributes.forEach((attribute) =&gt; &#123;
+  // 比如 data=&quot;&#123;msg&#125;&quot;, attribute.name就是&quot;data&quot;, attribute.value就是&quot;&#123;msg&#125;&quot;
+  const text = attribute.value;
+  const matchRes = text.match(reg);
+  if (matchRes) &#123; // 如果包含形如 &#123;xxx&#125; 的部分
+    const dataKey = matchRes[1];    // 比如匹配的是&quot;&#123;msg&#125;&quot;, matchRes[1]就是&quot;msg&quot;
+    
+    // 创建观察者，触发相关逻辑
+    new Viewer(this.mue, dataKey, (newValue) =&gt; &#123;
+      node.textContent = newValue;
+    &#125;);
+
+    const newValue = this.mue.data[dataKey];
+    node.value = text.replace(reg, newValue); // 将 &#123;xxx&#125; 替换为具体的值
+    // 监听键盘输入，完成双向绑定，M=F2(V)
+    node.addEventListener(&#39;input&#39;, () =&gt; &#123; 
+      this.mue.data[dataKey] = node.value;
+    &#125;);
+  &#125;
+&#125;);
+</code></pre>
+<p>  }</p>
+<p>  &#x2F;&#x2F; 处理文本类型DOM<br>  compileForText(node) {<br>    const reg &#x3D; &#x2F;{(.+?)}&#x2F;;<br>    const text &#x3D; node.textContent;<br>    const matchRes &#x3D; text.match(reg);</p>
+<pre><code>if (matchRes) &#123;  // 与上面的方法基本上一样的逻辑
+  const dataKey = matchRes[1]; 
+  const newText = this.mue.data[dataKey];
+  node.textContent = text.replace(reg, newText); 
+
+  new Viewer(this.mue, dataKey, (newText) =&gt; &#123;
+    node.textContent = newText;
+  &#125;);
+&#125;
+</code></pre>
+<p>  }<br>至此，MUE已经基本完成了。可以打开HTML页面体验一下成果了！<br>但也再额外给一点开放性挑战，感兴趣可以做一做：<br>JavaScript<br>&#x2F;&#x2F; challenge 1：if、else-if、else，当值为布尔或可以类型转换为布尔时，进行相应的渲染控制</p>
+<div>
+    <div if="{false}">A</div>
+    <div else-if="{0}">B</div>
+    <div else="{true}">C</div>
+</div>
+// challenge 2：循环渲染, 其中arr是一个数组，element是其元素，index是其下标
+<div for="i:arr">
+    <span>{i}</span>
+</div>
+
+
+<p>【废弃】实现性能优化<br>我们不需要下述的性能优化方案——因为我们有了超越虚拟DOM性能的方案<br>实现：虚拟DOM<br>经过一番体验后就发现，如果非常快速地输入中文的话，可能会导致双向绑定出错…<br>这是因为，目前我们是每输入一个字符都会触发一次真实DOM的更改，高频且大量的操作就可能超出浏览器处理数据的极限（输入频率超过浏览器最大渲染频率），出现数据和视图不一致的情况…<br>总结就是，太卡了，需要优化一下，那么就像是我们上文提到的，实现一下虚拟DOM。<br>实现：Diff算法<br>如果我们没有虚拟DOM，那么我们或许可以不使用Diff算法？</p>
+<p>实现更多场景<br>我突然意识到这不仅是一次尝试，更是一个开发真实可用的框架的好机会！<br>由于Mue名字寓意太明显了抄袭痕迹太重，所以正式版改名叫Mud吧，寓意非常丰富：<br>1.实现思路借鉴了Vue，React(JSX)，Svelte等多个框架，是各种东西糊成的一坨<br>2.实现并不精致，但是容易被塑造成各种形状，朴素实用<br>3.泥巴里面可以催生出很多东西，以此为基础可以产生更多技术框架<br>4.出淤泥而不染<br>（我的确是在自吹自擂）</p>
+<ol>
+<li>在多种模块化规范下使用Mud.js<br>先简单介绍一下JS的模块化规范：<br>规范名称	说明	示例<br>umd	几乎是前端诞生以来，就有了雏形，但是一直到2009年左右才终于形成正式的规范	<script src="xxx" /></li>
+</ol>
+<p>像这样引入的就是umd包<br>cjs	NodeJS的伴生产物，也是2009年左右形成的规范	const a = require(&#39;a&#39;)<br>module.exports = {}<br>像这样的导入、导出的则是cjs包</p>
+<p>esm<br>	ECMAScript官方2015年推出的规范，JS正统	import a from &#39;a&#39;<br>export default b<br>像这样导入、导出的则是esm包<br>cmd和amd<br>	2009年前后出现，现如今使用频率较低，不在本次兼容的范围内。	?（不详）<br>我们将借助rollup的能力实现一套代码转变为多种规范的包<br>在这之前你一定听说过webpack或者vite——不使用这些是因为它们太重了，我们这里只是需要简单地转变规范，所以轻量小巧的rollup就成了首选。<br>相信配置一套满足上述要求的rollup文件不会困扰大家，所以交由大家自行实现。<br>在打包完成后，引入不同规范的包：<br>umd<br>非常容易实现，但是需要输入完整路径（形如../node_modules/mud/umd/index.js）<br>cjs<br>由于node和node_modules的关系不一般，所以只需要require直接导入包名即可(require(&#39;mud&#39;))<br>esm<br>这是最难的一个部分，需要有webpack等打包构建工具（这就埋下了一个伏笔——我们需要构建一个脚手架；还有，我个人更倾向用vite）</p>
+<p>这里为了更好地验证包发布的效果，这里可以使用工具yalc来模拟验证</p>
+<ol start="2">
+<li><p>比虚拟DOM更直接的内容更新办法<br>相比虚拟DOM，其实有个更简单且还算高效的办法——innerHTML<br>一键替换内容<br>这样的实现将会减小代码体积，并且在常规情况下的效率会高于虚拟DOM</p>
+</li>
+<li><p>模块化<br>受到腾讯的微前端框架无界的启发，我们想到了一种不一样的模块化方案：<br>先到根目录下src/index.html中写入（根组件）<br>HTML</p>
+<!DOCTYPE html></li>
+</ol>
+<html>
+<head>
+  <title>Mud.js</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <div id="app">
+      <div>{msg}</div>
+      <input type="text" value="{msg}">
+      <!-- 这个就是我们的组件了 -->
+      <component1 /> 
+  </div>
+</body>
+<script type="module" src="./xxx/Mud.js"></script>
+<script>
+new Mud({
+  el: '#app',
+  data: {
+    msg: 'Hello Mud!',
+    arr: ['Someday', 'I', 'Will', 'Be', 'Like', 'You'],
+    cnt: 1,
+  },
+  
+<p>  components: {<br>    component1: &#39;src/components/component1/index.html&#39;<br>  }<br>});<br>const plus = () =&gt; {<br>  mud.data.cnt ++<br>}<br></script></p>
+</html>
+然后这里是模块src/components/component1/index.html：
+HTML
+
+<div>这是组件</div>
+
+<script>
+ new Mud({
+  el: '#component1',
+  data: {},
+});   
+</script>
+<p>怎么引入模块呢？<br>1.从根组件开始解析（模板编译的过程），访问每个DOM节点时，通过字符串比较发现了非原生标签，那么我们就推断这是一个Mud组件<br>2.要求用户手写组件注册（id: path) ，据此便能够通过组件名称（即id），找到对应的文件路径，用ajax等方式请求下来（异步解析非常高效，也为ssr提供了能力），直接替换原来的组件标签的innerHTML即可<br>3.注意，替换之后，该组件内部可能还有组件，也遵循上述规则进行解析——这样的设计，我们便以一种非常简单的方式实现了单页面应用、组件化设计，它的特点是渲染顺序是先序，更新粒度是一个组件——所以我们不需要Diff，并且</p>
+<ol start="4">
+<li>更好的数据劫持<br>初步实现<br>将Object.defineProperty换为Proxy，这样我们就能够在不重写方法的前提下监听到数组的push、pop等操作了。这是一个改动量非常大的工作，但是很显然，它的收益是相当可观的。<br>多级调用<br>还需要支持对象多级调用，思路就是通过点来分割即可。</li>
+</ol>
+<p>性能优化<br>对于已经被劫持过的数据，我们要防止其被再次劫持以避免不必要的性能开销。</p>
+<ol start="5">
+<li>【TODO】更好的观察者模式<br>现在的观察者都是不具名的，存在很多性能问题：<br>1.一处变量a改变时，除了通知其他变量a更新之外，还会通知变量b更新。<br>2.比如handleIf中，反复改变状态时，会创建大量重复的观察者。</li>
+</ol>
+<p>优化的方案也比较简单，将Publisher的数组改为一个Set，通过键名指定更新某一个变量。<br>6. 丰富语法<br>现在已经实现了插值语法、for循环等，目前还打算实现以下语法<br>if系列<br>If else-if else, 这是vue中非常优秀的一个设计，抄了<br>for<br>组件参数传递<br>父级组件中：<br>HTML<br><component1  a={xxx} /></p>
+<script>
+new Mud({
+    data: {
+        xxx:1
+    }
+})
+</script>
+<p>子级组件中：<br>会把这个组件标签上所有的属性搜刮下来，然后自动放到props.data中（之后，props将作为一个关键字，不允许用户自定义data叫props）：<br>HTML</p>
+<div>
+    
+</div>
+
+<script>
+new Mud({
+    data: {},
+})
+</script>
+<p>另外还有props.child的操作，这个则是react中非常符合直觉的设计：<br>父组件中<br>JavaScript<br><component1  a={xxx}><br>   <div>这是嵌入的内容</div><br></component1></p>
+<script>
+new Mud({
+    data: {
+        xxx:1
+    }
+})
+</script>
+<p>子组件中：<br>结合if等语法可以实现非常多骚操作，而且这部分由于是用innerHTML直接插入的，所以还可以使用子组件中的变量<br>JavaScript</p>
+<div>
+    
+</div>
+
+<script>
+new Mud({
+    data: {},
+})
+</script>
+
+<p>Watch监听<br>即让用户手动监听数据，这个比较简单，将观察者的内部方法暴露出去即可</p>
+<ol start="7">
+<li><p>实现生命周期<br>对此，我们还得仔细思考一下，到底是实现Hook还是生命周期<br>onMounted<br>直接在挂载的时候加个函数就行了</p>
+</li>
+<li><p>更多生态<br>实现Mud-Doc：Mud官方文档<br>【TODO】实现Root：Mud框架的路由<br>实现Mud-Cli：快速搭建Mud项目<br>【TODO】产出Mud-Demo：利用Mud快速构建优秀的作品</p>
+</li>
+</ol>
+<p>组件样式库<br>暂时使用开源的xy-ui:<a target="_blank" rel="noopener" href="https://github.com/xboxyan">https://github.com/xboxyan</a><br>可以先考虑 semi-ui</p>
+<p>发布上线<br>测试点</p>
+<ol>
+<li><p>内容插值语法<br>☑常规的基础数据插值，如{a}<br>☑特殊的基础数据插值，如NaN，undefined，null，空字符串，symbol，基本数学运算表达式，三元表达式<br>对于undefined和symbol，插值语法不解析，其余均正常<br>☑常规的引用数据类型插值，如{b}，其中b&#x3D;{name: 1}<br>支持n级连续调用，但是Proxy的setter并没有生效（已修复）<br>☑特殊的引用数据类型插值，如空对象, 函数表达式，函数运算结果，new新建对象<br>对于函数表达式，竟然会直接获取到运算结果，出乎意料<br>☑更多插值方式，如直接插入表达式，插入函数调用，插入连续调用<br>暂不打算支持插入表达式和函数调用<br>☑非常极端的插值方式，如不填写任何变量，填写不存在的变量，填写特殊符号，填写标签<br>很好，填写标签也是能够如预期的一样进行<br>☑两个对象内有相同的属性名字<br>☑在插值语法的括号两侧写入其他内容，如aaaa{a}aa<br>会把两侧的其他内容覆盖掉（已修复）</p>
+</li>
+<li><p>属性插值语法<br>☑常规的属性插值，如input&#x3D;”{a}”, 其中a&#x3D;1<br>☑不恰当的插值，如input属性需要number或string等类型的数据，但是插入函数、对象等<br>☑更多插值方式，如插入表达式，插入函数调用，连续调用<br>同上，暂不打算支持直接插入表达式和函数调用<br>☑错误的插值，如填写不存在的变量，特殊符号，标签</p>
+</li>
+<li><p>if系列<br>（由于if-else和else暂未上线，所以暂时满足2.属性插值语法的标准即可判定为通过）<br>☑满足 2.属性插值语法 中的要求</p>
+</li>
+<li><p>for循环<br>☑满足 2.属性插值语法 中的要求<br>☑插入非数组元素<br>对于形如() &#x3D;&gt; [1]的值，会无法解析！<br>但是之前在data中直接写函数表达式的话，是能够解析返回值的，所以这里后续最好统一一下。<br>另外，最好再支持一下下标。</p>
+</li>
+<li><p>组件化<br>☑参数传递满足 2.属性插值语法 中的要求<br>□远程组件<br>只是试试能不能，不作为必要的测试标准<br>☑传递多个参数<br>☑组件多级嵌套<br>☑一个父组件多个子组件<br>☑传递连续调用的对象<br>☑传递函数<br>是比较符合预期的，能够实现组件通信<br>不过有个问题是，直接在script宏任务中访问window.mud是undefined，大概是还没有加载上<br>只能够异步地调用函数<br>☑传递同一个变量，以及改个名字之后重复传递<br>☑特殊的组件调用，如父子相互引用，兄弟引用，自己调用自己<br>自己调用自己：只会进行一次，递归会被阻止<br>父子相互引用：被浏览器阻止，子组件引用父组件失败</p>
+</li>
+<li><p>兼容性<br>☑移动端设备<br>☑Chrome&#x2F;Edge(其他浏览器暂时不用管)</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/cute.webp" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/cute.webp" title="头像" alt="头像"></a><div class="post-copyright__author_name">匡思进</div><div class="post-copyright__author_desc">荥晋的博客</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://kkksj.cn/posts/2025/04/Fronted/MinVue/4a7e677b.html">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://kkksj.cn/posts/2025/04/Fronted/MinVue/4a7e677b.html')">MinVue</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="/img/wchat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/wchat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/zhifubao.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/zhifubao.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://kkksj.cn/posts/2025/04/Fronted/MinVue/4a7e677b.html"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=undefined&amp;url=https://kkksj.cn/posts/2025/04/Fronted/MinVue/4a7e677b.html&amp;pic=undefined" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://kkksj.cn" target="_blank">荥晋</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/minvue/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>minvue<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="/img/9.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/2025/04/Fronted/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/c4f4b3de.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">前端学习日记</div></div></a></div><div class="next-post pull-right"><a href="/posts/2025/04/Fronted/04-%20JavaScript%E9%AB%98%E7%BA%A7/b746f28d.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JavaScript下</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/images.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://twikoo-magic.oss-cn-hangzhou.aliyuncs.com/Genshin/18.jpg" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、开发</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">匡思进</h1><div class="author-info__desc">荥晋的博客</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/nihaokkjj" target="_blank" title="Github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-GitHub"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/1276825147" target="_blank" title="BiliBili"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-BILIBILI"></use></svg></a></div></div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/07/Fronted/Vue3/3a42db2d.html" title="Vue3"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue3"/></a><div class="content"><a class="title" href="/posts/2025/07/Fronted/Vue3/3a42db2d.html" title="Vue3">Vue3</a><time datetime="2025-07-01T00:00:00.000Z" title="发表于 2025-07-01 00:00:00">2025-07-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/07/Fronted/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/4723d6e9.html" title="前端学习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端学习"/></a><div class="content"><a class="title" href="/posts/2025/07/Fronted/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/4723d6e9.html" title="前端学习">前端学习</a><time datetime="2025-07-01T00:00:00.000Z" title="发表于 2025-07-01 00:00:00">2025-07-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/07/blog/butterfly%E5%AE%89%E8%A3%85/e70f18fc.html" title="butterfly安装之旅"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="butterfly安装之旅"/></a><div class="content"><a class="title" href="/posts/2025/07/blog/butterfly%E5%AE%89%E8%A3%85/e70f18fc.html" title="butterfly安装之旅">butterfly安装之旅</a><time datetime="2025-07-01T00:00:00.000Z" title="发表于 2025-07-01 00:00:00">2025-07-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/07/blog/%E9%AD%94%E6%94%B9%E4%B9%8B%E6%97%85/afacad78.html" title="魔改之旅"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="魔改之旅"/></a><div class="content"><a class="title" href="/posts/2025/07/blog/%E9%AD%94%E6%94%B9%E4%B9%8B%E6%97%85/afacad78.html" title="魔改之旅">魔改之旅</a><time datetime="2025-07-01T00:00:00.000Z" title="发表于 2025-07-01 00:00:00">2025-07-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/06/Fronted/node/857fe845.html" title="node"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="node"/></a><div class="content"><a class="title" href="/posts/2025/06/Fronted/node/857fe845.html" title="node">node</a><time datetime="2025-06-01T00:00:00.000Z" title="发表于 2025-06-01 00:00:00">2025-06-01</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2025 By <a class="footer-bar-link" href="/" title="匡思进" target="_blank">匡思进</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">3</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://kksj.cn" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/images.jpg" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/nihaokkjj" title="去我的github里面瞅瞅吧"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/cute.webp" alt="去我的github里面瞅瞅吧"/><span class="back-menu-item-text">去我的github里面瞅瞅吧</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Vue/" style="font-size: 0.88rem;">Vue<sup>1</sup></a><a href="/tags/blog/" style="font-size: 0.88rem;">blog<sup>2</sup></a><a href="/tags/minvue/" style="font-size: 0.88rem;">minvue<sup>1</sup></a><a href="/tags/node/" style="font-size: 0.88rem;">node<sup>1</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97/" style="font-size: 0.88rem;">前端三件套<sup>5</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 0.88rem;">前端学习路线<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="7593082970" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://i.y.qq.com/n2/m/share/details/taoge.html?id=7593082970&amp;hosteuin=&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("07/0111/2025 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 匡思进 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script async src="https://at.alicdn.com/t/c/font_4976895_bnl7971qvi.js?spm=a313x.manage_type_myprojects.i1.10.73873a816pIoEr&amp;file=font_4976895_bnl7971qvi.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

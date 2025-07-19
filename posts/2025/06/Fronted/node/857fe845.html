@@ -1,0 +1,872 @@
+<!DOCTYPE html><html lang="zn-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>node | 荥晋</title><meta name="keywords" content="node"><meta name="author" content="匡思进"><meta name="copyright" content="匡思进"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="node"><meta name="application-name" content="node"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="node"><meta property="og:url" content="https://kkksj.cn/posts/2025/06/Fronted/node/857fe845.html"><meta property="og:site_name" content="荥晋"><meta property="og:description" content="node的学习"><meta property="og:locale" content="zn-CN"><meta property="og:image" content="https://kkksj.cn/img/8.jpg"><meta property="article:author" content="匡思进"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://kkksj.cn/img/8.jpg"><meta name="description" content="node的学习"><link rel="shortcut icon" href="/img/images.jpg"><link rel="canonical" href="https://kkksj.cn/posts/2025/06/Fronted/node/857fe845.html"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"你好啊, 人类👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":2},
+  friends_vue_info: {"apiurl":null},
+  navMusic: true,
+  mainTone: {"mode":"api","api":"/img/images.jpg","cover_change":true},
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 匡思进","link":"链接: ","source":"来源: 荥晋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '荥晋',
+  title: 'node',
+  postAI: '',
+  pageFillDescription: 'Node定义, 应用场景, 管理node的工具, Node 程序传递参数, Node 的输出, Node 的 REPL, Node 的全局对象, 常见的全局对象, 特殊的全局对象, global 和window 的区别, 模块化, CommonJS规范, require的实现本质, module的exports属性本质, require 查找模块细节, require 的查找规则, 情况一：X是一个NodeJs核心模块比如path、http等, 情况二：X是以.x2F 或 ..x2F 或 (根目录) 开头的, 情况三：X没有路径也不是一个核心模块, 模块的加载过程, 循环引入, CommonJS会规范缺点, AMD CMD, ES Module, 导入和导出方式, 一, 二, 三, 导入时给整个模块起别名, 优化写法, 一, 二, default用法, import函数的使用, import.meta, ES Module的解析流程, 包管理工具, npm 的重要文件, package.json 常见属性, main, scripts, dependencies, devDependencies属性, peerDependencies属性, 依赖的版本管理, npm 的常见命令, npm发布自己的包, yarn, npm 与 Yarn 的比较, cnpm, npx, 局部命令的执行, npm、yarn、pnpm 和 npx 对比总结, 硬链接和软连接, 文件拷贝, 文件的硬链接, 文件的软链接, pnpm, pnpm的原理, 非扁平化的 node_modules 目录, pnpm的store存储, webpack, path, webpack的安装, webpack的默认打包, 配置文件, loader的使用, loader配置方式定义是一个基于引擎的运行时的环境程序是使用语言编写的前端了解前端了解应用场景一目前前端开发的库都是以包的形式进行管理二工具成为前端开发使用最多的工具三越来越多的公司使用作为服务器开发中间件代理服务器四大量项目需要借助完成前后端渲染的同构应用五资深前端工程师需要为项目编写脚本工具前端工程师编写脚本通常会使用而不是或者六很多企业在使用来开发桌面应用程序管理的工具程序传递参数正常情况下执行一个程序直接跟上我们对应的文件即可在某些情况下执行程序的过程中我们可能希望给传递一些参数在程序中获取到传递的参数获取参数其实是在的内置对象中的如果我们直接打印这个内置对象它里面包含特别的信息其他的一些信息比如版本操作系统等可以自行查看的输出前端了解前端了解的是的简称翻译为读取求值输出循环是一个简单的交互式的编程环境方法在终端中直接输入在控制台中直接使用前端了解前端了解的全局对象常见的全局对象前端了解前端了解前端了解前端了解是一个全局对象等都有被放到中新的标准中还有一个也是指向全局对象的类似于浏览器中的特殊的全局对象这些全局对象是实际上是模块中的变量只是每个模块都有看起来像是全局变量在命令行交互中式不可以使用的包括获取当前文件所在的路径不包括后面的文件名获取当前文件所在的路径和文件名包括后面的文件名和的区别在浏览器中全局变量都是在上的比如有等等在中我们也有一个属性并且看起来它里面有很多其他对象在浏览器中执行的代码如果我们在顶级范围内通过定义的一个属性默认会被添加到对象上在中我们通过定义一个变量它只是在当前模块中有一个变量不会放到全局中模块化目的模块化开发最终的目的是将程序划分成一个个小的结构用法这个结构中编写属于自己的逻辑代码有自己的作用域定义变量名词时不会影响到其他的结构这个结构可以将自己希望暴露的变量函数对象等导出给其结构使用也可以通过某种方式导入另外结构中的变量函数对象等按照这种结构划分开发程序的过程就是模块化开发的过程规范中的每一个文件都是一个单独的模块模块中要导出的内容模块中要导入内容前端了解前端了解前端了解前端了解变量等于对象的实现本质前端了解前端了解前端了解前端了解变量就是对象的属性本质前端了解前端了解前端了解前端了解可以导出的原因对象的属性是对象的一个引用中的查找模块细节是一个函数可以引入一个文件模块中导出的对象书写规则的查找规则在中我们通过可以引入一个模块中导出的对象那么的查找规则是怎么样的呢导入格式下面总结几个常见的查找规则情况一是一个核心模块比如等直接返回核心模块并且停止查找情况二是以或或根目录开头的第一步将当做一个文件在对应的目录下查找如果有后缀名直接按照后缀名的格式查找对应的文件如果没有后缀名会按照如下的顺序直接查找文件查找文件查找文件查找文件第二步没有对应的文件将看作一个目录查找目录下面的文件查找文件查找文件查找文件如果还没有找到那么就报错情况三没有路径也不是一个核心模块从目录查找从当前模块的目录开始并添加并尝试从该位置加载模块例如如果在中调用则将以下顺序查找以上目录找不到那么就报错模块的加载过程模块在被第一次引入时模块中的代码会被运行一次模块被多次引入时回缓存最终只加载运行一次每个模块对象都有一个属性为表示还没有加载为表示已经加载循环引入前端了解前端了解采用深度优先算法会规范缺点加载模块是同步的同步意味着只有等到对应的模块加载完毕当前模块中的内容才能被运行这个在服务器不会有什么问题因为服务器加载的文件都是本地文件加载速度非常快应用于浏览器时浏览器加载文件需要先从服务器将文件下载下来之后再加载运行那么采用同步的就意味着后续的代码都无法正常运行即使是一些简单的操作前端了解前端了解前端了解前端了解采用将自动采用严格模式不允许在逻辑代码中写导入语法只能写在代码顶层导入和导出方式一不是一个对象只是一种特殊的语法导入二导出导出时给标识符起一个别名导入三定义时导出导入时给整个模块起别名优化写法规范可以先把要用到的模块放在一个文件里面其他再从这个文件引入一二把所有的变量导入进来用法默认导出时可以不需要指定名字在导入时不需要使用并且可以自己来指定名字它也方便我们和现有的等规范相互操作导出前端了解前端了解或者前端了解前端了解注意一个模块里面只能有一个默认导出导入前端了解前端了解函数的使用不允许在逻辑代码中写导入语法只能写在代码顶层原因这是因为在被引擎解析时就必须知道它的依赖关系由于这个时候代码没有任何的运行所以无法在进行类似于判断中根据代码的执行情况甚至拼接路径的写法也是错误的因为我们必须到运行时能确定的值错误写法动态的加载某一个模坎使用函数来动态加载函数返回一个可以通过获取结果前端了解前端了解是一个给模块暴露特定上下文的元数据属性的对象前端了解前端了解的解析流程执行流程阶段一构建根据地址查找文件并且下载将其解析成模块记录阶段二实例化对模块记录进行实例化并且分配内存空间解析模块的导入和导出语句把模块指向对应的内存地址此时的变量还没有值阶段三运行运行代码计算值并且将值填充到内存地址中赋上具体值包管理工具官方文档的重要文件属性详情这是每个项目必备的配置文件记录了项目的元数据和依赖信息它包含该文件记录了项目中每个依赖的具体版本并锁定依赖树的结构确保在不同机器上安装依赖时所有的开发环境和生产环境都能一致地获取相同版本的依赖包常见属性前端了解前端了解前端了解前端了解和分别列出了项目的生产环境和开发环境依赖自定义脚本如构建测试启动等命令配置信息许可证和作者信息等属性指定了程序的主入口文件意思是如果你的模块被命名为用户安装了这个模块并通过来使用这个模块那么返回的内容就是属性指定的文件中指向的对象它应该指向模块根目录下的一个文件对大对数模块而言这个属性更多的是让模块有一个主入口文件然而很多模块并不写这个属性属性是一个对象里边指定了项目的生命周期个各个环节需要执行的命令是生命周期中的事件是要执行的命令具体的内容有等详见属性用于配置一些脚本命令以键值对的形式存在配置后我们可以通过命令的来执行这个命令对于常用的可以省略掉直接通过等方式运行属性是指定无论开发环境还是生成环境都需要依赖的包通常是我们项目实际开发用到的一些库模块等等属性一些包在生成环境是不需要的比如等这个时候我们会通过将它安装到属性中属性还有一种项目依赖关系是对等依赖也就是你依赖的一个包它必须是以另外一个宿主包为前提的比如是依赖于的是依赖于依赖的版本管理版本规范是主版本号当你做了不兼容的修改可能不兼容之前的版本次版本号当你做了向下兼容的功能性新增新功能增加但是兼容之前的版本修订号当你做了向下兼容的问题修正没有新功能修复了之前版本的和的区别表示一个明确的版本号表示是保持不变的和永远安装最新的版本表示和保持不变的永远安装最新的版本的常见命令安装依赖安装项目中列出的所有依赖该命令会根据安装所有依赖并生成或更新文件夹如果你希望全局安装某个工具可以使用参数通常使用全局安装的包都是一些工具包等并不是类似于等库文件所以全局安装了之后并不能让我们在所有的项目中使用等库原理图前端了解前端了解前端了解前端了解添加依赖用于安装一个新的包并将其添加到或中默认会添加到添加到卸载依赖删除一个依赖包并更新和更新依赖更新项目中的所有依赖到符合版本范围的最新版本查看包信息查看已安装包的版本和详细信息执行脚本在文件中定义了脚本后可以使用命令来执行它例如发布自己的包前端了解前端了解是由发起的包管理工具目的是解决的一些性能和依赖管理问题在安装速度离线安装和一致性方面做了显著优化提供了更高效的依赖安装方式采用并行安装并且支持缓存能显著提升安装速度文件确保所有团队成员安装的依赖版本一致避免版本冲突支持离线安装在没有网络的情况下仍然能够安装已经缓存的依赖下载与的比较特性安装速度引入了一些性能优化但通常速度较慢更快支持并行安装和缓存机制依赖一致性使用来锁定版本使用锁定版本离线安装支持缓存允许在没有网络的情况下安装依赖支持离线模式依赖会被缓存工作空间支持从开始支持工作空间原生支持工作空间适合功能全面易用性不断提升更简洁但有些命令不兼容社区支持全球最大的包生态非常活跃尤其是在社区前端了解前端了解查看镜像设置镜像将设置为淘宝的镜像是版本新增的一个工具包它允许用户在不安装全局包的情况下运行已安装在本地项目中的包或者远程仓库中的包是一个由提供的工具用于直接运行中的可执行文件而不必在全局安装依赖实际上是版本中新增的命令行工具允许开发者运行任何命令而无需显式安装可以临时运行安装在项目中的命令即便这些命令没有全局安装也可以运行上的命令或者从注册表中直接运行包可以用来快速执行脚本如运行项目中的构建工具脚本命令等局部命令的执行前端了解前端了解和对比总结和对比总结特性安装方式使用安装依赖使用安装依赖使用安装依赖临时执行包中的命令不需要安装全局依赖安装速度较慢依赖树较深时效率较低快支持并行安装和缓存非常快使用硬链接和共享依赖运行时自动下载依赖不需要安装磁盘空间使用重复依赖占用较多磁盘空间缓存依赖但依赖安装较多时仍会占用一定磁盘空间通过硬链接减少重复安装节省磁盘空间不占用磁盘空间仅临时运行命令锁定依赖版本使用锁定版本使用锁定版本使用锁定版本不锁定版本运行时临时安装和执行命令依赖管理默认安装多份重复依赖有冗余安装时尽量避免冗余依赖强制封闭依赖避免隐式依赖无依赖管理直接执行命令兼容性与大部分工具和社区兼容与兼容但存在部分差异与和不完全兼容特别是在依赖管理方式上依赖于通过直接执行命令离线支持不完全支持离线安装支持离线安装缓存安装过的包完全支持离线安装依赖缓存共享不需要离线安装运行时自动下载依赖适用场景适用于大部分项目适合需要高性能和一致性保证的项目适合需要优化磁盘空间和性能的大型项目快速执行单次命令无需全局安装依赖社区和支持最大的社区支持生态最广泛被许多大公司采用尤其适合管理生态较小但专注于性能和空间优化的一部分功能简单实用主要差异总结广泛使用且成熟适合大部分项目但安装速度和磁盘空间管理较差性能优于尤其在并行安装和离线支持方面适合需要版本一致性的团队协作项目通过硬链接节省磁盘空间优化了安装速度特别适合大型项目或多个项目共享依赖的情况用于临时执行命令或包不需要全局安装适用于单次执行而不需要管理依赖的场景硬链接和软连接硬链接硬链接英语是电脑文件系统中的多个文件平等地共享同一个文件存储单元删除一个文件名字后还可以用其它名字继续访问该文件符号链接软链接符号链接软链接是一类特殊的文件其包含有一条以绝对路径或者相对路径的形式指向其它文件或者目录的引用前端了解前端了解文件拷贝会在硬盘中复制一份新的文件数据改变其中一份不会影响另一份前端了解前端了解文件的硬链接多个文件平等地共享同一个文件存储单元改变其中一份其他文件的内容也会变前端了解前端了解文件的软链接前端了解前端了解磁盘空间优化通过硬链接共享依赖显著节省了磁盘空间高效的依赖管理依赖安装速度快尤其是在多个项目共享依赖时表现优秀强制封闭依赖避免隐式依赖提高了依赖管理的可靠性的原理使用依赖包将被存放在一个统一的位置因此如果对同一依赖包使用相同的版本那么磁盘上只有这个依赖包的一份文件如果对同一依赖包需要使用不同的版本则仅有版本之间不同的文件会被存储起来所有文件都保存在硬盘上的统一的位置当安装软件包时其包含的所有文件都会硬链接到此位置而不会占用额外的硬盘空间可以在项目之间方便地共享相同版本的依赖包非扁平化的目录所有文件都会存储在硬盘上的某一位置当软件包被安装时包里的文件会硬链接到这一位置而不会占用额外的磁盘空间允许跨项目地享用同一版本的依赖前端了解前端了解的存储前端了解前端了解官方文档的核心是一个用于现代应用的静态模块打包器打包可以将帮助我们进行打包所以它是一个打包工具静态的这样表述的原因是我们最终可以将代码打包成最终的静态资源部署到静态服务器模块化默认支持各种模块化开发等现代的现代前端开发面临各种各样的问题催生了的出现和发展前端开发的流程前端了解前端了解前端了解前端了解前端了解前端了解前端了解前端了解的安装全局安装局部安装和的关系执行命令会执行下的目录下的在执行时是依赖的如果没有安装就会报错而中代码执行时才是真正利用进行编译和打包的过程所以在安装时我们需要同时安装第三方的脚手架事实上是没有使用的而是类似于自己的的东西的默认打包在目录下直接执行命令生成一个文件夹里面存放一个的文件就是打包之后的文件运行时会查找当前目录下的作为入口如果当前项目中没有存在文件就会报错通过配置指定出入口配置文件在根目录下创建一个文件来作为的配置文件前端了解前端了解如果配置文件名不是的名字可以通过来指定对应的配置文件修改名称后的配置文件的使用可以用于对模块的源代码进行转换配置方式在文件中写明配置信息允许配置多个的配置如下属性对应的值是一个数组数组中存放的是一个个的是一个对象对象中可以设置多个属性属性用于对资源进行匹配的通常会设置成正表达式属性对应的值时一个数组是一个对像可以通过对象的属性来设置一些其他属性必须有一个属性对应的值是一个字符串可选的属性值是一个字符串或者对象值会被传入到中目前已经使用来替代传递字符串如是属性的简写方式如属性的简写因为的执行顺序事从右向左的从下到上从后到前所以需要将写道的前面下载前端了解前端了解简写',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-19 11:34:48',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://kksj.cn" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/images.jpg" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/nihaokkjj" title="去我的github里面瞅瞅吧"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/cute.webp" alt="去我的github里面瞅瞅吧"/><span class="back-menu-item-text">去我的github里面瞅瞅吧</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">荥晋</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/img/wchat.jpg" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/wchat.jpg"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/zhifubao.jpg" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/zhifubao.jpg"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Vue/" style="font-size: 1.05rem;">Vue<sup>1</sup></a><a href="/tags/blog/" style="font-size: 1.05rem;">blog<sup>2</sup></a><a href="/tags/minvue/" style="font-size: 1.05rem;">minvue<sup>1</sup></a><a href="/tags/node/" style="font-size: 1.05rem;">node<sup>1</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97/" style="font-size: 1.05rem;">前端三件套<sup>5</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 1.05rem;">前端学习路线<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">July 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">June 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/04/"><span class="card-archive-list-date">April 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">6</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url">前端开发</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/node/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>node</span></a></span></div></div><h1 class="post-title" itemprop="name headline">node</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2025-06-01T00:00:00.000Z" title="发表于 2025-06-01 00:00:00">2025-06-01</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-07-19T11:34:48.658Z" title="更新于 2025-07-19 11:34:48">2025-07-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为长沙"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>长沙</span></div></div></div><article class="post-content" id="article-container" itemscope itemtype="https://kkksj.cn/posts/2025/06/Fronted/node/857fe845.html"><header><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url">前端开发</a><a href="/tags/node/" tabindex="-1" itemprop="url">node</a><h1 id="CrawlerTitle" itemprop="name headline">node</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">匡思进</span><time itemprop="dateCreated datePublished" datetime="2025-06-01T00:00:00.000Z" title="发表于 2025-06-01 00:00:00">2025-06-01</time><time itemprop="dateCreated datePublished" datetime="2025-07-19T11:34:48.658Z" title="更新于 2025-07-19 11:34:48">2025-07-19</time></header><h1 id="Node定义"><a href="#Node定义" class="headerlink" title="Node定义"></a>Node定义</h1><p><code>Node.js</code>是一个基于 <code>V8 JavaScript</code> 引擎的<code>JavaScript</code>运行时的环境</p>
+<p><code>Node</code> 程序是使用 <code>c++/ c/ js</code> 语言编写的<br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;e49f63c48826b59143b4b3366c92cf75_MD5.jpeg|Open: Pasted image 20250522151116.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;e49f63c48826b59143b4b3366c92cf75_MD5.jpeg]]</p>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>一: *目前前端开发的库都是以node包的形式进行管理</p>
+<p>二: *npm、yarn、pnpm工具成为前端开发使用最多的工具；</p>
+<p>三: 越来越多的公司使用Node.js作为web服务器开发、中间件、代理服务器；</p>
+<p>四, 大量项目需要借助Node.js完成前后端渲染的同构应用</p>
+<p>五, 资深前端工程师需要为项目编写脚本工具（前端工程师编写脚本通常会使用JavaScript,而不是Python或者shel)</p>
+<p>六, 很多企业在使用Electron来开发桌面应用程序； </p>
+<h3 id="管理node的工具"><a href="#管理node的工具" class="headerlink" title="管理node的工具"></a>管理node的工具</h3><h1 id="Node-程序传递参数"><a href="#Node-程序传递参数" class="headerlink" title="Node 程序传递参数"></a>Node 程序传递参数</h1><ul>
+<li><p>正常情况下执行一个node程序，直接跟上我们对应的文件即可：<br><code>node index.js</code></p>
+</li>
+<li><p>在某些情况下执行node程序的过程中，我们可能希望给node传递一些参数：<br><code>node index.js env=development coderwhy</code></p>
+</li>
+<li><p>*在程序中获取到传递的参数：</p>
+<ul>
+<li>获取参数其实是在<code>process</code><em>的内置对象</em>中的；</li>
+<li>如果我们<em>直接打印这个内置对象</em>，它里面包含特别的信息：<br>  √其他的一些信息，比如版本、操作系统等可以自行查看</li>
+</ul>
+</li>
+</ul>
+<h3 id="Node-的输出"><a href="#Node-的输出" class="headerlink" title="Node 的输出"></a>Node 的输出</h3><p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;31f26b1a8f5f31430c83ade96744ad0b_MD5.jpeg|Open: Pasted image 20250528223104.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;31f26b1a8f5f31430c83ade96744ad0b_MD5.jpeg]]</p>
+<h2 id="Node-的-REPL"><a href="#Node-的-REPL" class="headerlink" title="Node 的 REPL"></a>Node 的 REPL</h2><p>REPL是 <code>Read-Eval-Print Loop</code> 的简称，翻译为“<code>读取-求值-输出</code>”<br>循环；</p>
+<p>REPL是一个 <em>简单的, 交互式的编程环境</em></p>
+<p><strong>方法</strong></p>
+<ul>
+<li>在终端中直接输入node</li>
+<li>在控制台中直接使用</li>
+</ul>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;9f0b8de46e04486b4b72bf793ce3f9ce_MD5.jpeg|Open: Pasted image 20250530103657.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;9f0b8de46e04486b4b72bf793ce3f9ce_MD5.jpeg]]</p>
+<h1 id="Node-的全局对象"><a href="#Node-的全局对象" class="headerlink" title="Node 的全局对象"></a>Node 的全局对象</h1><h2 id="常见的全局对象"><a href="#常见的全局对象" class="headerlink" title="常见的全局对象"></a>常见的全局对象</h2><p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;f96f2a2c114478a8e54fb92e91463952_MD5.jpeg|Open: Pasted image 20250530105737.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;f96f2a2c114478a8e54fb92e91463952_MD5.jpeg]]</p>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;2872b99e65ce425d36b0ff9342c0c39a_MD5.jpeg|Open: Pasted image 20250530121231.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;2872b99e65ce425d36b0ff9342c0c39a_MD5.jpeg]]</p>
+<p><strong>global是一个全局对象</strong> ，<code>process、.console、setTimeouts</code>等都有被放到globalr中;</p>
+<ul>
+<li>新的标准中还有一个globalThis,也是指向全局对象的；</li>
+<li>类似于浏览器中的window;</li>
+</ul>
+<h2 id="特殊的全局对象"><a href="#特殊的全局对象" class="headerlink" title="特殊的全局对象"></a>特殊的全局对象</h2><ul>
+<li>这些全局对象是实际上是<em><strong>模块中的变量</strong></em>, 只是<em>每个模块都有</em>, 看起来*像是全局变量</li>
+<li>在命令行交互中式不可以使用的</li>
+<li>包括: <code>__dirname, __filename, export, module, require() </code></li>
+</ul>
+<p><code>__dirname</code> : 获取<em>当前文件所在的路径</em> ( 不包括后面的文件名)<br><code>__filename</code> : 获取<em>当前文件所在的路径和文件名</em> ( 包括后面的文件名)</p>
+<h2 id="global-和window-的区别"><a href="#global-和window-的区别" class="headerlink" title="global 和window 的区别"></a>global 和window 的区别</h2><ul>
+<li><em>在浏览器中，全局变量都是在window上的</em>，比如有<code>document、setInterval、setTimeout、alert、console</code>等等</li>
+<li>在Node中，我们也有一个<code>global</code>属性，并且看起来它里面有很多其他对象。</li>
+<li>在浏览器中执行的 <code>JavaScript</code> 代码，如果我们在顶级范围内通过<code>var</code>定义的一个属性，默认会被添加到<code>window</code>对象上;</li>
+<li>在node中，我们<em>通过var定义一个变量， 它只是在当前模块中有一个变量，不会放到全局中;</em></li>
+</ul>
+<h1 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h1><p><strong>目的</strong> : 模块化开发最终的目的是将程序划分成<em>一个个小的结构</em>；</p>
+<p><strong>用法</strong> : </p>
+<ul>
+<li>这个结构中<em>编写属于自己的逻辑代码</em>，有<em>自己的作用域</em>，定义变量名词时不会影响到其他的结构；</li>
+<li>这个结构可以将自己希望暴露的<code>变量、函数、对象</code>等导出给其结构使用；</li>
+<li>也可以通过某种方式，<em>导入</em>另外结构中的<code>变量、函数、对象</code>等；</li>
+</ul>
+<p><em><strong>按照这种结构划分开发程序的过程, 就是模块化开发的过程</strong></em></p>
+<h2 id="CommonJS规范"><a href="#CommonJS规范" class="headerlink" title="CommonJS规范"></a>CommonJS规范</h2><p><em>Node中的每一个 js 文件都是一个单独的模块</em></p>
+<p>模块中要导出的内容 : <code>exports</code><br>模块中要导入内容 : <code>require</code></p>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;aa2e22478987faaf12d5d70fd7bec0d4_MD5.jpeg|Open: Pasted image 20250530132649.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;aa2e22478987faaf12d5d70fd7bec0d4_MD5.jpeg]]</p>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;d68f7830be2871a364727e1ff645d1b6_MD5.jpeg|Open: Pasted image 20250530132724.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;d68f7830be2871a364727e1ff645d1b6_MD5.jpeg]]</p>
+<p><code>util</code>变量等于<code>exports</code> 对象</p>
+<h3 id="require的实现本质"><a href="#require的实现本质" class="headerlink" title="require的实现本质"></a>require的实现本质</h3><p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;a07269c198ed7949679906a92589cbb0_MD5.jpeg|Open: Pasted image 20250530145951.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;a07269c198ed7949679906a92589cbb0_MD5.jpeg]]</p>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;3271cf9d64e405d16db2c3f0bb625090_MD5.jpeg|Open: Pasted image 20250530150003.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;3271cf9d64e405d16db2c3f0bb625090_MD5.jpeg]]</p>
+<!--修改后, exports.name 的值也会改变, require 相当于引用赋值-->
+<p>bar变量就是exports对象</p>
+<h3 id="module的exports属性本质"><a href="#module的exports属性本质" class="headerlink" title="module的exports属性本质"></a>module的exports属性本质</h3><p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;354b7e2f4ebe5454f0f1c9a492d46036_MD5.jpeg|Open: Pasted image 20250530154627.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;354b7e2f4ebe5454f0f1c9a492d46036_MD5.jpeg]]</p>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;af508f1943b037e013561029247060db_MD5.jpeg|Open: Pasted image 20250530155343.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;af508f1943b037e013561029247060db_MD5.jpeg]]<br>exports可以导出的原因</p>
+<ul>
+<li>**module对象的exports属性是exports对象的一个引用</li>
+<li>&#96;module.exports &#x3D; exports &#x3D; main中的bar;</li>
+</ul>
+<h3 id="require-查找模块细节"><a href="#require-查找模块细节" class="headerlink" title="require 查找模块细节"></a>require 查找模块细节</h3><p><code>require</code>是一个函数, 可以引入一个文件(模块)中导出的对象</p>
+<p>书写规则<code>require(X)</code></p>
+<h4 id="require-的查找规则"><a href="#require-的查找规则" class="headerlink" title="require 的查找规则"></a>require 的查找规则</h4><p>在nodejs中我们通过require(X),可以引入一个模块中导出的对象。</p>
+<p>那么，require的查找规则是怎么样的呢？</p>
+<p>导入格式require(X)，下面总结几个常见的查找规则：</p>
+<h5 id="情况一：X是一个NodeJs核心模块，比如path、http等"><a href="#情况一：X是一个NodeJs核心模块，比如path、http等" class="headerlink" title="情况一：X是一个NodeJs核心模块，比如path、http等"></a>情况一：X是一个NodeJs核心模块，比如path、http等</h5><p>直接返回核心模块，并且停止查找。</p>
+<h5 id="情况二：X是以-或-或-根目录-开头的"><a href="#情况二：X是以-或-或-根目录-开头的" class="headerlink" title="情况二：X是以.&#x2F; 或 ..&#x2F; 或 (根目录) 开头的"></a>情况二：X是以.&#x2F; 或 ..&#x2F; 或 (根目录) 开头的</h5><p>第一步：将X当做一个文件在对应的目录下查找；</p>
+<ol>
+<li><p>如果有后缀名，直接按照后缀名的格式查找对应的文件</p>
+</li>
+<li><p>如果没有后缀名，会按照如下的顺序：</p>
+<ol>
+<li>直接查找文件X</li>
+<li>查找X.js文件</li>
+<li>查找X.json文件</li>
+<li>查找X.node文件</li>
+</ol>
+</li>
+</ol>
+<p>第二步：没有对应的文件，将X看作一个目录</p>
+<ol>
+<li><p>查找目录下面的index文件</p>
+<ol>
+<li>查找X&#x2F;index.js文件</li>
+<li>查找X&#x2F;index.json文件</li>
+<li>查找X&#x2F;index.node文件</li>
+</ol>
+</li>
+</ol>
+<p>如果还没有找到，那么就报错：not found</p>
+<h5 id="情况三：X没有路径，也不是一个核心模块"><a href="#情况三：X没有路径，也不是一个核心模块" class="headerlink" title="情况三：X没有路径，也不是一个核心模块"></a>情况三：X没有路径，也不是一个核心模块</h5><p>从node_modules目录查找</p>
+<p>NodeJs从当前模块的目录开始，并添加&#x2F;node_modules，并尝试从该位置加载模块</p>
+<p>例如，如果在”&#x2F;home&#x2F;ry&#x2F;projects&#x2F;foo.js”中调用 require(X),则将以下顺序查找：</p>
+<ul>
+<li>&#x2F;home&#x2F;ry&#x2F;projects&#x2F;node_mudules</li>
+<li>&#x2F;home&#x2F;ry&#x2F;node_modules</li>
+<li>&#x2F;home&#x2F;node_modules</li>
+<li>&#x2F;node_modules</li>
+</ul>
+<p>以上目录找不到，那么就报错：not found</p>
+<h3 id="模块的加载过程"><a href="#模块的加载过程" class="headerlink" title="模块的加载过程"></a>模块的加载过程</h3><ol>
+<li><p><em>模块在被第一次引入时, 模块中的 JS 代码会被运行一次</em></p>
+</li>
+<li><p><em>模块被多次引入时, 回缓存, 最终只加载(运行)一次</em></p>
+</li>
+</ol>
+<ul>
+<li>每个模块对象<code>module</code> 都有一个属性 : <code>loaded</code></li>
+<li>为<code>false</code> 表示还没有加载, 为<code>true</code> 表示已经加载</li>
+</ul>
+<h4 id="循环引入"><a href="#循环引入" class="headerlink" title="循环引入"></a>循环引入</h4><p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;5379489ed74605db6eee3fdf4f43edd2_MD5.jpeg|Open: Pasted image 20250530212957.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;5379489ed74605db6eee3fdf4f43edd2_MD5.jpeg]]<br>采用深度优先算法 <code>main -&gt; aaa -&gt; ccc -&gt; ddd -&gt; eee -&gt; bbb</code></p>
+<h3 id="CommonJS会规范缺点"><a href="#CommonJS会规范缺点" class="headerlink" title="CommonJS会规范缺点"></a>CommonJS会规范缺点</h3><p><strong>CommonJS加载模块是同步的</strong>：</p>
+<ul>
+<li>同步 意味着<em>只有等到对应的模块加载完毕</em>，<em>当前模块中的内容才能被运行</em></li>
+<li>这个在服务器不会有什么问题，因为<em>服务器加载的s文件都是本地文件</em>，加载速度非常快：</li>
+</ul>
+<p>应用于浏览器时: </p>
+<ul>
+<li>浏览器<em>加载 <code>js</code> 文件需要先从服务器将文件下载下来，之后再加载运行</em>；</li>
+<li>那么 *采用同步的就意味着后续的S代码都无法正常运行，即使是一些简单的DOM操作；</li>
+</ul>
+<h3 id="AMD-CMD"><a href="#AMD-CMD" class="headerlink" title="AMD, CMD"></a>AMD, CMD</h3><p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;3487517d1ebbbc0423bf235834f1a70a_MD5.jpeg|Open: Pasted image 20250530221305.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;3487517d1ebbbc0423bf235834f1a70a_MD5.jpeg]]<br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;b54379def73193201d802b0313f7f5bd_MD5.jpeg|Open: Pasted image 20250530221657.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;b54379def73193201d802b0313f7f5bd_MD5.jpeg]]</p>
+<h2 id="ES-Module"><a href="#ES-Module" class="headerlink" title="ES Module"></a>ES Module</h2><p><strong>采用 <code>ES Module </code> 将自动采用严格模式</strong> </p>
+<p><em>不允许在逻辑代码中写 <code>import</code> 导入语法 , 只能写在 <code>js</code> 代码顶<br>层</em></p>
+<h4 id="导入和导出方式"><a href="#导入和导出方式" class="headerlink" title="导入和导出方式"></a>导入和导出方式</h4><h5 id="一"><a href="#一" class="headerlink" title="一"></a>一</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">const name = &quot;why&quot;<br>const age = 18<br> export &#123;<br>     name,<br>     age<br> &#125; //不是一个对象, 只是一种特殊的语法<br> <br>import &#123;age, fname, sayHello&#125; from&quot;./foo.js&quot; //导入<br></code></pre></td></tr></table></figure>
+
+<h5 id="二"><a href="#二" class="headerlink" title="二"></a>二</h5><p>导出 &#x2F;导出 时给标识符起一个别名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">export &#123;<br>    name as fname,<br>    age,<br>    sayHello<br>&#125;<br>import &#123;age as fage, fname, sayHello&#125; from &quot;./foo.js&quot; //导入<br></code></pre></td></tr></table></figure>
+
+<h5 id="三"><a href="#三" class="headerlink" title="三"></a>三</h5><p>定义时导出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">export const name = &quot;why&quot;<br>export const age = 18<br>  <br>export function sayHello() &#123;<br>    console.log(&quot;sayhello&quot;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="导入时给整个模块起别名"><a href="#导入时给整个模块起别名" class="headerlink" title="导入时给整个模块起别名"></a>导入时给整个模块起别名</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> foo <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./foo.js&quot;</span><br><br><span class="hljs-keyword">const</span> name = <span class="hljs-string">&quot;kk&quot;</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(name)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo.<span class="hljs-property">name</span>)<br>foo.<span class="hljs-title function_">sayHello</span>()<br></code></pre></td></tr></table></figure>
+
+<h5 id="优化写法"><a href="#优化写法" class="headerlink" title="优化写法"></a>优化写法</h5><p><em>规范</em> : 可以先把要用到的模块放在一个 <code>js</code> 文件里面, 其他<code>js</code>再从这个文件引入</p>
+<h6 id="一-1"><a href="#一-1" class="headerlink" title="一"></a>一</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">export &#123; format, formatData &#125; from &quot;./format.js&quot;<br></code></pre></td></tr></table></figure>
+
+<h6 id="二-1"><a href="#二-1" class="headerlink" title="二"></a>二</h6><p>把所有的变量导入进来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">export * from &quot;./format.js&quot;<br></code></pre></td></tr></table></figure>
+
+<h5 id="default用法"><a href="#default用法" class="headerlink" title="default用法"></a>default用法</h5><ul>
+<li>默认导出 <code>export</code> 时可以不需要指定名字；</li>
+<li>在导入时不需要使用 <code>&#123; &#125;</code>，并且可以自己来指定名字；</li>
+<li>它也方便我们和现有的 <code>CommonJS</code>  等规范相互操作；</li>
+</ul>
+<p><strong>导出</strong><br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;57fd5241907251dd268484ec9850f5cb_MD5.jpeg|Open: Pasted image 20250601201850.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;57fd5241907251dd268484ec9850f5cb_MD5.jpeg]]<br>或者<br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;937d0952c1f4cdc75bba4c0b510f1982_MD5.jpeg|Open: Pasted image 20250601201925.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;937d0952c1f4cdc75bba4c0b510f1982_MD5.jpeg]]<br><em><strong>注意</strong></em> : <em>一个模块里面只能有一个默认导出( <code>default export</code>)</em></p>
+<p><strong>导入</strong><br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;bc35530ac76dd9fe66a85f0ab8da340c_MD5.jpeg|Open: Pasted image 20250601202009.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;bc35530ac76dd9fe66a85f0ab8da340c_MD5.jpeg]]</p>
+<h4 id="import函数的使用"><a href="#import函数的使用" class="headerlink" title="import函数的使用"></a>import函数的使用</h4><p><em>不允许在逻辑代码中写 <code>import</code> 导入语法 , 只能写在 <code>js</code> 代码顶层</em></p>
+<p><em><strong>原因</strong></em> : </p>
+<ul>
+<li>这是因为*<code>ES Module</code>在被S引擎解析*时，就必须知道它的依赖关系</li>
+<li>由于<em>这个时候<code>js</code> 代码没有任何的运行，所以无法在进行类似于f判断中根据代码的执行情况</em></li>
+<li>甚至<em>拼接路径的写法也是错误的</em> : 因为我们必须到运行时能确定path的值；<code>错误写法 import from (&quot;./foo&quot; + &quot;.js&quot;)</code></li>
+</ul>
+<p><strong>动态的加载某一个模坎</strong>：</p>
+<ul>
+<li>使用<code>import()</code>函数来动态加载；<br>√<em>importi函数返回一个Promise,可以通过then获取结果</em>；</li>
+</ul>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;5790845b0be6cb9d7ecb7a760fc5631e_MD5.jpeg|Open: Pasted image 20250601205315.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;5790845b0be6cb9d7ecb7a760fc5631e_MD5.jpeg]]</p>
+<h5 id="import-meta"><a href="#import-meta" class="headerlink" title="import.meta"></a>import.meta</h5><p><code>import.meta</code> 是一个给 <code>JavaScript</code> 模块暴露特定上下文的元数据属性的对象。</p>
+<p><code>    console.log(import.meta)</code><br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;cca6e731888b778c6f697e3b1d213964_MD5.jpeg|Open: Pasted image 20250601210256.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;cca6e731888b778c6f697e3b1d213964_MD5.jpeg]]</p>
+<h3 id="ES-Module的解析流程"><a href="#ES-Module的解析流程" class="headerlink" title="ES Module的解析流程"></a>ES Module的解析流程</h3><p>   <em><strong>执行流程</strong></em></p>
+<ul>
+<li><p>阶段一：构建(<code>Construction</code>),根据地址查找<code>js</code>文件，并且下载，将其解析成模块记录(<code>Module Record</code>);<br><code>import * as foo from &quot;./foo.js&quot;</code></p>
+</li>
+<li><p>阶段二：实例化(<code>Instantiation</code>),对模块记录进行实例化，并且分配内存空间，解析模块的导入和导出语句，把模块指向对应的内存地址。<br><code>export &#123; name, age, sayHelo &#125; </code> &#x2F;&#x2F;此时的变量还没有值</p>
+</li>
+<li><p>阶段三：运行(<code>Evaluation</code>),运行代码，计算值，并且将值填充到内存地址中；<br> &#x2F;&#x2F;赋上具体值</p>
+</li>
+</ul>
+<h1 id="包管理工具"><a href="#包管理工具" class="headerlink" title="包管理工具"></a>包管理工具</h1><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v11/commands">npm官方文档</a></p>
+<h3 id="npm-的重要文件"><a href="#npm-的重要文件" class="headerlink" title="npm 的重要文件"></a><strong>npm 的重要文件</strong></h3><ul>
+<li><strong><code>package.json</code></strong></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tzyy/p/5193811.html"> package.json属性详情</a></p>
+<p>这是每个 Node.js 项目必备的配置文件，记录了项目的元数据和依赖信息。它包含：</p>
+<p><strong>package-lock.json</strong><br>    该文件记录了项目中每个依赖的具体版本，并锁定依赖树的结构。确保在不同机器上安装依赖时，所有的开发环境和生产环境都能一致地获取相同版本的依赖包</p>
+<h4 id="package-json-常见属性"><a href="#package-json-常见属性" class="headerlink" title="package.json 常见属性"></a>package.json 常见属性</h4><p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;b92cff03fb298122f810093af113483b_MD5.jpeg|Open: Pasted image 20250602163215.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;b92cff03fb298122f810093af113483b_MD5.jpeg]]<br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;02d8e40c2946b81a4e25df73f739762a_MD5.jpeg|Open: Pasted image 20250602163342.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;02d8e40c2946b81a4e25df73f739762a_MD5.jpeg]]</p>
+<ul>
+<li><code>dependencies</code> 和 <code>devDependencies</code>：分别列出了项目的生产环境和开发环境依赖</li>
+<li>自定义脚本，如构建、测试、启动等命令</li>
+<li>配置信息、许可证和作者信息等</li>
+</ul>
+<h5 id="main"><a href="#main" class="headerlink" title="main"></a>main</h5><p><em>main属性指定了程序的主入口文件</em></p>
+<p>意思是，如果你的模块被命名为foo，用户安装了这个模块并通过require(“foo”)来使用这个模块，那么<code>require</code><em>返回的内容就是main属性指定的文件中 module.exports指向的对象。</em></p>
+<p>它应该指向模块根目录下的一个文件。对大对数模块而言，这个属性更多的是让模块有一个主入口文件，然而很多模块并不写这个属性。</p>
+<h5 id="scripts"><a href="#scripts" class="headerlink" title="scripts"></a>scripts</h5><p><em>scripts属性是一个对象，里边指定了项目的生命周期个各个环节需要执行的命令。</em><br>key是生命周期中的事件，value是要执行的命令。<br>具体的内容有 install start stop 等，详见 <a target="_blank" rel="noopener" href="https://docs.npmjs.com/misc/scripts">https://docs.npmjs.com/misc/scripts</a></p>
+<p><em>scripts属性用于配置一些脚本命令，以键值对的形式存在</em><br>配置后我们可以通过<code>npm run</code>命令的<code>key</code>来执行这个命令：</p>
+<p>对于常用的<code>start、test、stop、restart</code>可以省略掉<code>run</code>直接通过<code>npm start</code>等方式运行</p>
+<h5 id="dependencies"><a href="#dependencies" class="headerlink" title="dependencies"></a>dependencies</h5><ul>
+<li><code>dependencies</code>属性是指定无论开发环境还是生成环境都需要依赖的包；</li>
+<li>通常是我们项目实际开发用到的一些库模块<code>vue、vuex、vue-router、react、.react-dom、axios</code>等等</li>
+</ul>
+<h5 id="devDependencies属性"><a href="#devDependencies属性" class="headerlink" title="devDependencies属性"></a>devDependencies属性</h5><p>一些包在生成环境是不需要的，比如<code>webpack、babel</code>等<br>这个时候我们会通过<code>npm install webpack-save-dev</code>,将它安装到<code>devDependencies</code>属性中</p>
+<h5 id="peerDependencies属性"><a href="#peerDependencies属性" class="headerlink" title="peerDependencies属性"></a>peerDependencies属性</h5><ul>
+<li>还有一种项目依赖关系是对等依赖，也就是你依赖的一个包，它必须是以另外一个宿主包为前提的：</li>
+<li>比如<code>element-plus</code>是依赖于<code>vue3</code>的，<code>ant design</code>是依赖于<code>react、react-dom</code>;</li>
+</ul>
+<h2 id="依赖的版本管理"><a href="#依赖的版本管理" class="headerlink" title="依赖的版本管理"></a>依赖的版本管理</h2><p><em>semver版本规范是 <code>X.Y.Z</code> :</em></p>
+<ul>
+<li>X主版本号(major): 当你做了<em><strong>不兼容</strong></em>的API修改（<em>可能不兼容之前的版本</em>）</li>
+<li>Y次版本号(minor): 当你做了<em><strong>向下兼容</strong></em>的功能性新增（<em>新功能增加，但是兼容之前的版本</em>）；</li>
+<li>Z修订号(patch) :当你做了<em>向下兼容</em>的问题修正（<em>没有新功能，修复了之前版本的bug</em>);</li>
+</ul>
+<p><code>^</code>和<code>~</code>的区别：</p>
+<ul>
+<li><code>x.y.z</code> : 表示一个明确的版本号；</li>
+<li><code>^x.y.z</code> : 表示x是保持不变的，y和z永远安装最新的版本；</li>
+<li><code>~x.y.z</code> : 表示x和y保持不变的，z永远安装最新的版本；</li>
+</ul>
+<h3 id="npm-的常见命令"><a href="#npm-的常见命令" class="headerlink" title="npm 的常见命令"></a><strong>npm 的常见命令</strong></h3><ol>
+<li><strong>安装依赖</strong><br> 安装项目中列出的所有依赖：<br> <code>npm install</code></li>
+</ol>
+<p>该命令会根据 <code>package.json</code> 安装所有依赖，并生成或更新 <code>node_modules</code> 文件夹。如果你希望<em><strong>全局安装</strong></em>某个工具，可以使用 <code>-g</code> 参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">npm install -g &lt;package-name&gt;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>通常使用npm全局安装的包都是一些工具包：<code>yarn、webpack</code>等；</li>
+<li>并不是类似于<code>axios、express、koa</code>等库文件；</li>
+<li>所以全局安装了之后并不能让我们在所有的项目中使用axios等库；<br><strong>原理图</strong><br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;de93ee2b9acc3969b0b70e785cc75ea3_MD5.jpeg|Open: Pasted image 20250602205758.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;de93ee2b9acc3969b0b70e785cc75ea3_MD5.jpeg]]<br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;53fd01f2d3cbf94655e82f9dbb5edafe_MD5.jpeg|Open: Pasted image 20250602210240.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;53fd01f2d3cbf94655e82f9dbb5edafe_MD5.jpeg]]</li>
+</ul>
+<ol start="2">
+<li><strong>添加依赖</strong><br>用于安装一个新的包，并将其添加到 <code>dependencies</code> 或 <code>devDependencies</code> 中：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">npm install &lt;package-name&gt; --save  # 默认会添加到dependencies<br>npm install &lt;package-name&gt; --save-dev  # 添加到devDependencies<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li><strong>卸载依赖</strong><br>删除一个依赖包，并更新 <code>package.json</code> 和 <code>node_modules</code>：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">npm uninstall &lt;package-name&gt;<br></code></pre></td></tr></table></figure>
+<ol start="4">
+<li><strong>更新依赖</strong><br>更新项目中的所有依赖到符合版本范围的最新版本：<br><code>npm update</code></li>
+</ol>
+<p>5.<strong>查看包信息</strong><br>查看已安装包的版本和详细信息：****<br><code>npm list</code></p>
+<ol start="6">
+<li><strong>执行脚本</strong><br>在 <code>package.json</code> 文件中定义了脚本后，可以使用 <code>npm run &lt;script-name&gt;</code> 命令来执行它。例如：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">npm run build<br></code></pre></td></tr></table></figure>
+
+<h3 id="npm发布自己的包"><a href="#npm发布自己的包" class="headerlink" title="npm发布自己的包"></a>npm发布自己的包</h3><p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;e52f14a0ae89ac415e7bb49a89352f71_MD5.jpeg|Open: Pasted image 20250603102555.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;e52f14a0ae89ac415e7bb49a89352f71_MD5.jpeg]]</p>
+<h2 id="yarn"><a href="#yarn" class="headerlink" title="yarn"></a>yarn</h2><p><code>yarn</code> 是由 Facebook 发起的包管理工具，目的是解决 <code>npm</code> 的一些性能和依赖管理问题。<code>yarn</code> 在安装速度、离线安装和一致性方面做了显著优化。</p>
+<ul>
+<li><code>yarn</code> 提供了更高效的依赖安装方式，采用并行安装并且支持缓存，能显著提升安装速度。</li>
+<li><code>yarn.lock</code> 文件确保所有团队成员安装的依赖版本一致，避免版本冲突。</li>
+<li>支持离线安装，在没有网络的情况下仍然能够安装已经缓存的依赖。</li>
+</ul>
+<p>下载 <code>npm install yarn</code></p>
+<h3 id="npm-与-Yarn-的比较"><a href="#npm-与-Yarn-的比较" class="headerlink" title="npm 与 Yarn 的比较"></a><strong>npm 与 Yarn 的比较</strong></h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>npm</th>
+<th>Yarn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>安装速度</strong></td>
+<td>npm 7+ 引入了一些性能优化，但通常速度较慢</td>
+<td>更快，支持并行安装和缓存机制</td>
+</tr>
+<tr>
+<td><strong>依赖一致性</strong></td>
+<td>使用 <code>package-lock.json</code> 来锁定版本</td>
+<td>使用 <code>yarn.lock</code> 锁定版本</td>
+</tr>
+<tr>
+<td><strong>离线安装</strong></td>
+<td>支持缓存，允许在没有网络的情况下安装依赖</td>
+<td>支持离线模式，依赖会被缓存</td>
+</tr>
+<tr>
+<td><strong>工作空间支持</strong></td>
+<td>从 npm 7 开始支持工作空间</td>
+<td>原生支持工作空间，适合 monorepo</td>
+</tr>
+<tr>
+<td><strong>CLI</strong></td>
+<td>功能全面，易用性不断提升</td>
+<td>更简洁，但有些命令不兼容 npm</td>
+</tr>
+<tr>
+<td><strong>社区支持</strong></td>
+<td>全球最大的 JavaScript 包生态</td>
+<td>非常活跃，尤其是在 React 社区</td>
+</tr>
+</tbody></table>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;b079442e73df481b3518d0fd71f00ea8_MD5.jpeg|Open: Pasted image 20250602213810.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;b079442e73df481b3518d0fd71f00ea8_MD5.jpeg]]</p>
+<h2 id="cnpm"><a href="#cnpm" class="headerlink" title="cnpm"></a>cnpm</h2><p>查看npm镜像<br><code>npm config get registry</code></p>
+<p>设置npm镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">npm config set registry https://registry.npm.taobao.org<br></code></pre></td></tr></table></figure>
+
+<p>将cnpm设置为淘宝的镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">npm install -g cnpm -registry=https://registry.npm.taobao.org<br>cnpm config get registry <br></code></pre></td></tr></table></figure>
+
+
+<h2 id="npx"><a href="#npx" class="headerlink" title="npx"></a>npx</h2><p> npx 是 npm5.2.0版本新增的一个工具包，它允许用户在不安装全局包的情况下，运行已安装在本地项目中的包或者远程仓库中的包。</p>
+<p><code>npx</code> 是一个由 <code>npm</code> 提供的工具，用于直接运行 <code>node_modules/.bin</code> 中的可执行文件，而不必在全局安装依赖。<code>npx</code> 实际上是 <code>npm</code> 5.2+ 版本中新增的命令行工具，允许开发者运行任何命令而无需显式安装。</p>
+<ul>
+<li><code>npx</code> 可以临时运行安装在项目中的命令（即便这些命令没有全局安装），也可以运行 GitHub 上的命令或者从 npm 注册表中直接运行包。</li>
+<li><code>npx</code> 可以用来快速执行脚本，如运行项目中的构建工具、脚本命令等。</li>
+</ul>
+<h3 id="局部命令的执行"><a href="#局部命令的执行" class="headerlink" title="局部命令的执行"></a>局部命令的执行</h3><p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;b5ed850b7ea893e19c30211f5ccb4c69_MD5.jpeg|Open: Pasted image 20250603091039.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;b5ed850b7ea893e19c30211f5ccb4c69_MD5.jpeg]]</p>
+<h2 id="npm、yarn、pnpm-和-npx-对比总结"><a href="#npm、yarn、pnpm-和-npx-对比总结" class="headerlink" title="npm、yarn、pnpm 和 npx 对比总结"></a><code>npm</code>、<code>yarn</code>、<code>pnpm</code> 和 <code>npx</code> 对比总结</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7439320353464565800?searchId=2025060308455229ED5BF7AED3BB066612"><code>npm</code>、<code>yarn</code>、<code>pnpm</code> 和 <code>npx</code> 对比总结 </a></p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>npm</th>
+<th>yarn</th>
+<th>pnpm</th>
+<th>npx</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>安装方式</strong></td>
+<td>使用 <code>npm install</code> 安装依赖</td>
+<td>使用 <code>yarn install</code> 安装依赖</td>
+<td>使用 <code>pnpm install</code> 安装依赖</td>
+<td>临时执行包中的命令，不需要安装全局依赖</td>
+</tr>
+<tr>
+<td><strong>安装速度</strong></td>
+<td>较慢，依赖树较深时效率较低</td>
+<td>快，支持并行安装和缓存</td>
+<td>非常快，使用硬链接和共享依赖</td>
+<td>运行时自动下载依赖，不需要安装</td>
+</tr>
+<tr>
+<td><strong>磁盘空间</strong></td>
+<td>使用重复依赖，占用较多磁盘空间</td>
+<td>缓存依赖，但依赖安装较多时仍会占用一定磁盘空间</td>
+<td>通过硬链接减少重复安装，节省磁盘空间</td>
+<td>不占用磁盘空间，仅临时运行命令</td>
+</tr>
+<tr>
+<td><strong>锁定依赖版本</strong></td>
+<td>使用 <code>package-lock.json</code> 锁定版本</td>
+<td>使用 <code>yarn.lock</code> 锁定版本</td>
+<td>使用 <code>pnpm-lock.yaml</code> 锁定版本</td>
+<td>不锁定版本，运行时临时安装和执行命令</td>
+</tr>
+<tr>
+<td><strong>依赖管理</strong></td>
+<td>默认安装多份重复依赖（有冗余）</td>
+<td>安装时尽量避免冗余依赖</td>
+<td>强制封闭依赖，避免隐式依赖</td>
+<td>无依赖管理，直接执行命令</td>
+</tr>
+<tr>
+<td><strong>兼容性</strong></td>
+<td>与大部分工具和社区兼容</td>
+<td>与 <code>npm</code> 兼容，但存在部分差异</td>
+<td>与 <code>npm</code> 和 <code>yarn</code> 不完全兼容，特别是在依赖管理方式上</td>
+<td>依赖于 <code>npm</code>，通过 <code>npx</code> 直接执行命令</td>
+</tr>
+<tr>
+<td><strong>离线支持</strong></td>
+<td>不完全支持离线安装</td>
+<td>支持离线安装，缓存安装过的包</td>
+<td>完全支持离线安装，依赖缓存共享</td>
+<td>不需要离线安装，运行时自动下载依赖</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>适用于大部分 Node.js 项目</td>
+<td>适合需要高性能和一致性保证的项目</td>
+<td>适合需要优化磁盘空间和性能的大型项目</td>
+<td>快速执行单次命令，无需全局安装依赖</td>
+</tr>
+<tr>
+<td><strong>社区和支持</strong></td>
+<td>最大的社区支持，生态最广泛</td>
+<td>被许多大公司采用，尤其适合 Monorepo 管理</td>
+<td>生态较小，但专注于性能和空间优化</td>
+<td><code>npm</code> 的一部分，功能简单实用</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>主要差异总结：</strong></p>
+<ul>
+<li><strong>npm</strong>：广泛使用且成熟，适合大部分项目，但安装速度和磁盘空间管理较差。</li>
+<li><strong>yarn</strong>：性能优于 <code>npm</code>，尤其在并行安装和离线支持方面，适合需要版本一致性的团队协作项目。</li>
+<li><strong>pnpm</strong>：通过硬链接节省磁盘空间，优化了安装速度，特别适合大型项目或多个项目共享依赖的情况。</li>
+<li><strong>npx</strong>：用于临时执行命令或包，不需要全局安装，适用于单次执行而不需要管理依赖的场景。</li>
+</ul>
+<h2 id="硬链接和软连接"><a href="#硬链接和软连接" class="headerlink" title="硬链接和软连接"></a>硬链接和软连接</h2><p>硬链接(hard link):</p>
+<ul>
+<li><em><strong>硬链接</strong></em>（英语：hard link) 是*电脑文件系统中的多个文件平等地共享同一个文件存储单元；</li>
+<li>删除一个文件名字后，还可以用其它名字继续访问该文件；</li>
+</ul>
+<p>符号链接（软链接soft link、Symbolic link):</p>
+<ul>
+<li><em><strong>符号链接</strong></em>（软链接、Symbolic link)是一类*特殊的文件；</li>
+<li>其*包含有一条以绝对路径或者相对路径的形式指向其它文件或者目录的引用</li>
+</ul>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;54cca17c4865feceebea1a9e017895f1_MD5.jpeg|Open: Pasted image 20250603130622.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;54cca17c4865feceebea1a9e017895f1_MD5.jpeg]]</p>
+<h3 id="文件拷贝"><a href="#文件拷贝" class="headerlink" title="文件拷贝"></a>文件拷贝</h3><p>会在硬盘中复制一份新的文件数据(<em>改变其中一份, 不会影响另一份</em>)<br><code>copy foo.js foo_copy.js</code><br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;9d19ae1fbdbcd9a762e142c5cf1ce2e2_MD5.jpeg|Open: Pasted image 20250603132426.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;9d19ae1fbdbcd9a762e142c5cf1ce2e2_MD5.jpeg]]</p>
+<h3 id="文件的硬链接"><a href="#文件的硬链接" class="headerlink" title="文件的硬链接"></a>文件的硬链接</h3><p>多个文件平等地共享同一个文件存储单元(<em>改变其中一份, 其他文件的内容也会变</em>)<br><code>mklink /H foo.js foo_hard.js</code><br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;3b67fc58b7a2c415f3432e30712e6715_MD5.jpeg|Open: Pasted image 20250603132740.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;3b67fc58b7a2c415f3432e30712e6715_MD5.jpeg]]</p>
+<h3 id="文件的软链接"><a href="#文件的软链接" class="headerlink" title="文件的软链接"></a>文件的软链接</h3><p><code>mklink foo.js foo_hard.js </code></p>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;eab8bb7351e7d0e0516366e9b9b1867e_MD5.jpeg|Open: Pasted image 20250603133709.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;eab8bb7351e7d0e0516366e9b9b1867e_MD5.jpeg]]</p>
+<h2 id="pnpm"><a href="#pnpm" class="headerlink" title="pnpm"></a><code>pnpm</code></h2><ul>
+<li><strong>磁盘空间优化</strong>：通过硬链接共享依赖，显著节省了磁盘空间。</li>
+<li><strong>高效的依赖管理</strong>：依赖安装速度快，尤其是在多个项目共享依赖时表现优秀。</li>
+<li><strong>强制封闭依赖</strong>：避免隐式依赖，提高了依 赖管理的可靠性。</li>
+</ul>
+<h3 id="pnpm的原理"><a href="#pnpm的原理" class="headerlink" title="pnpm的原理"></a>pnpm的原理</h3><p>使用pnpm, <strong>依赖包将被存放在一个统一的位置</strong>，因此：</p>
+<ul>
+<li>如果<em>对同一依赖包使用相同的版本</em>，那么<em>磁盘上只有这个依赖包的一份文件</em>；</li>
+<li>如果<em>对同一依赖包需要使用不同的版本</em>，则<em>仅有版本之间不同的文件会被存储起来</em></li>
+<li>所有文件都保存在硬盘上的统一的位置：</li>
+<li>当安装软件包时，其包含的所有文件都会<em><strong>硬链接</strong></em>到此位置，而<em>不会占用额外的硬盘空间</em>；</li>
+<li>可以在项目之间方便地<em>共享相同版本的依赖包</em>；</li>
+</ul>
+<h4 id="非扁平化的-node-modules-目录"><a href="#非扁平化的-node-modules-目录" class="headerlink" title="非扁平化的 node_modules 目录"></a>非扁平化的 <code>node_modules</code> 目录</h4><p>所有文件都会存储在硬盘上的某一位置. 当软件包被安装时, 包里的文件会<em>硬链接</em>到这一位置, 而不会占用额外的磁盘空间 . 允许跨项目地享用同一版本的依赖</p>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;216694d140e0e8643ae60a379b195f29_MD5.jpeg|Open: Pasted image 20250603152432.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;216694d140e0e8643ae60a379b195f29_MD5.jpeg]]</p>
+<h5 id="pnpm的store存储"><a href="#pnpm的store存储" class="headerlink" title="pnpm的store存储"></a>pnpm的store存储</h5><p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;5992ee0d4fdaca3825d820a342aeb0f5_MD5.jpeg|Open: Pasted image 20250603155958.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;5992ee0d4fdaca3825d820a342aeb0f5_MD5.jpeg]]</p>
+<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p><a target="_blank" rel="noopener" href="https://webpack.js.org/concepts/">webpack官方文档</a></p>
+<p><code>webpack</code> 的核心是一个用于现代 <code>JavaScript</code> 应用的静态模块打包器</p>
+<ul>
+<li>打包bundler:  webpack可以将帮助我们进行打包，所以它是一个打包工具</li>
+<li>静态的static :  这样表述的原因是我们最终可以将代码打包成最终的静态资源（部署到静态服务器）；</li>
+<li>模块化module:  webpack默认支持各种模块化开发ES Module、CommonJS、AMD等；</li>
+<li>现代的modern:  现代前端开发面临各种各样的问题，催生了webpack的出现和发展；</li>
+</ul>
+<p>前端开发的流程<br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;a42138b7fc8da6b36cab5fc1353e9011_MD5.jpeg|Open: Pasted image 20250604105132.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;a42138b7fc8da6b36cab5fc1353e9011_MD5.jpeg]]</p>
+<h3 id="path"><a href="#path" class="headerlink" title="path"></a>path</h3><p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;f588dfec8ef80c8883c609d36dab60ec_MD5.jpeg|Open: Pasted image 20250604131317.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;f588dfec8ef80c8883c609d36dab60ec_MD5.jpeg]]<br>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;1fe253f3c088785cef56223ff7286e52_MD5.jpeg|Open: Pasted image 20250604131328.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;1fe253f3c088785cef56223ff7286e52_MD5.jpeg]]</p>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;4d7bbf25139209bf647f3e62c551541d_MD5.jpeg|Open: Pasted image 20250604131334.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;4d7bbf25139209bf647f3e62c551541d_MD5.jpeg]]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">const path = require(&quot;path&quot;)<br><br>const filepath = &quot;C:/abc/cba/nba.txt&quot;<br><br>console.log(path.extname(filepath)) // &quot;.txt&quot;<br><br>console.log(path.basename(filepath))  //&quot;nba.txt&quot;<br><br>console.log(path.dirname(filepath))  //  &quot;C:/abc/cba&quot;<br><br>const path1 = &quot;/a/d/s&quot;<br>const path2 = &quot;../why/ksj/mae.txt&quot;<br><br>console.log(path.join(path1, path2))  //&quot;\a\d\why\ksj\mae.txt&quot;<br><br>console.log(path.resolve(&quot;./acd/s&quot;, &quot;./ehdy/sd&quot;, &quot;../sda.txt&quot;))<br>//   &quot;C:\Users\sai_8\Desktop\1\code\path\acd\s\ehdy\sda.txt&quot;<br><br>console.log(path.resolve(&quot;as/sd&quot;, &quot;./dsf&quot;, &quot;/df.txt&quot;))<br>//  &quot;C:\df.txt&quot;<br><br>console.log(path.resolve(&quot;./sd/ads&quot;, &quot;/dsf/sad&quot;, &quot;./as.txt&quot;))<br>//  &quot;C:\dsf\sad\as.txt&quot;<br></code></pre></td></tr></table></figure>
+
+<h3 id="webpack的安装"><a href="#webpack的安装" class="headerlink" title="webpack的安装"></a>webpack的安装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">npm install webpack webpack-cli-g #全局安装<br>npm instal1 webpack webpack-cli-D #局部安装<br></code></pre></td></tr></table></figure>
+<p><strong>webpack 和 webpack-cli的关系</strong></p>
+<ul>
+<li>执行<code>webpack</code>命令，会执行<code>node modules</code>下的 <code>.bin</code> 目录下的<code>webpack</code>;</li>
+<li><code> webpack</code> 在执行时是依赖<code>webpack-cli</code>的，如果没有安装就会报错：</li>
+<li>而 <code>webpack-cli</code>中代码执行时，才是真正利用<code>webpack</code>进行编译和打包的过程；</li>
+<li>所以在安装 <code>webpack</code>时，我们需要同时安装 <code>webpack-cli</code>(第三方的脚手架事实上是没有使用webpack-cli的，而是类似于自己的 <code>vue-service-cli</code> 的东西)</li>
+</ul>
+<h3 id="webpack的默认打包"><a href="#webpack的默认打包" class="headerlink" title="webpack的默认打包"></a>webpack的默认打包</h3><ul>
+<li>在目录下直接执行webpack命令<ul>
+<li>生成一个<code>dist</code> 文件夹, 里面存放一个<code>main.js</code> 的文件, 就是打包之后的文件</li>
+</ul>
+</li>
+</ul>
+<p>-运行<code>webpack</code> 时, <code>webpack</code> 会查找当前目录下的 <code>src/index.js</code> 作为入口<br>如果当前项目中没有存在 <code>src/index.js</code>文件, 就会报错</p>
+<p><em>通过配置指定出入口</em> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">npx webpack --entry ./src/main.js --output-path ./build<br></code></pre></td></tr></table></figure>
+
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>在根目录下创建一个 <code>webpack.config.js</code>  文件，来作为<code>webpack</code> 的配置文件</p>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;097f3c1fd505f887c84cb2bbdabc1eb6_MD5.jpeg|Open: Pasted image 20250604155437.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;097f3c1fd505f887c84cb2bbdabc1eb6_MD5.jpeg]]</p>
+<p>*如果配置文件名不是 <code>webpack.config.js</code>的名字 *</p>
+<ul>
+<li>可以通过 <code>--config</code> 来指定对应的配置文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">webpack --config 修改名称后的配置文件<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="loader的使用"><a href="#loader的使用" class="headerlink" title="loader的使用"></a>loader的使用</h3><ul>
+<li><code>loader</code> 可以用于对<code>模块的源代码</code>进行转换</li>
+</ul>
+<h4 id="loader配置方式"><a href="#loader配置方式" class="headerlink" title="loader配置方式"></a>loader配置方式</h4><p>在<code>webpack.config.js</code> 文件中写明配置信息 </p>
+<p><code>module.rules</code> 允许配置多个 loader<br><strong>module.rules的配置</strong> 如下：</p>
+<ul>
+<li><code>rules</code> 属性对应的值是一个数组：[Rule]</li>
+<li>数组中存放的是一个个的<code>Rule</code>  , <code>Rule</code> 是一个对象，对象中可以设置多个属性：<ul>
+<li><em>test属性</em>：用于对<code>resource</code> (资源)进行匹配的，通常会设置成<em>正表达式</em></li>
+<li><em>use属性</em> ：对应的值时一个数组：[UseEntry]</li>
+<li><code>UseEntry</code>是一个对像，可以通过对象的属性来设置一些其他属性<blockquote>
+<pre><code>loader:必须有一个loader属性，对应的值是一个字符串：
+</code></pre>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<pre><code>options : 可选的属性，值是一个字符串或者对象，值会被传入到 loader中；
+query: 目前已经使用options来替代；
+</code></pre>
+</blockquote>
+<p>  传递字符串（如：use:[‘style-loader’])是loader属性的简写方式（如：use:[{loader:’style-loader’}]);</p>
+<ul>
+<li>loader属性：Rule.use:[{loader}]的简写。</li>
+</ul>
+<p><em><strong>因为<code>loader</code>的执行顺序事从右向左的(从下到上, 从后到前), 所以需要将 <code>style-loader</code> 写道<code>css-loader</code> 的前面</strong></em></p>
+<p><strong>下载</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">npm install css-loader -D<br>npm install style-loader -D<br></code></pre></td></tr></table></figure>
+<p>[[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;48318a757d2ecc7795830fb554028204_MD5.jpeg|Open: Pasted image 20250604215809.png]]<br>![[前端了解&#x2F;Node&#x2F;_resources&#x2F;node&#x2F;48318a757d2ecc7795830fb554028204_MD5.jpeg]]</p>
+<p>简写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"> loader: &quot;css-loader&quot;,<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">use: [&quot;style-loader&quot;, &quot;css-loader&quot;]<br></code></pre></td></tr></table></figure>
+
+
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/cute.webp" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/cute.webp" title="头像" alt="头像"></a><div class="post-copyright__author_name">匡思进</div><div class="post-copyright__author_desc">荥晋的博客</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://kkksj.cn/posts/2025/06/Fronted/node/857fe845.html">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://kkksj.cn/posts/2025/06/Fronted/node/857fe845.html')">node</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="/img/wchat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/wchat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/zhifubao.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/zhifubao.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://kkksj.cn/posts/2025/06/Fronted/node/857fe845.html"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=undefined&amp;url=https://kkksj.cn/posts/2025/06/Fronted/node/857fe845.html&amp;pic=undefined" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://kkksj.cn" target="_blank">荥晋</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/node/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>node<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="/img/9.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/2025/04/Fronted/01-%20HTML/2eec1551.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">HTML</div></div></a></div><div class="next-post pull-right"><a href="/posts/2025/07/blog/%E9%AD%94%E6%94%B9%E4%B9%8B%E6%97%85/afacad78.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">魔改之旅</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/images.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://twikoo-magic.oss-cn-hangzhou.aliyuncs.com/Genshin/18.jpg" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、开发</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">匡思进</h1><div class="author-info__desc">荥晋的博客</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/nihaokkjj" target="_blank" title="Github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-GitHub"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/1276825147" target="_blank" title="BiliBili"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-BILIBILI"></use></svg></a></div></div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Node%E5%AE%9A%E4%B9%89"><span class="toc-text">Node定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E7%90%86node%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-text">管理node的工具</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-%E7%A8%8B%E5%BA%8F%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0"><span class="toc-text">Node 程序传递参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-%E7%9A%84%E8%BE%93%E5%87%BA"><span class="toc-text">Node 的输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-%E7%9A%84-REPL"><span class="toc-text">Node 的 REPL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-%E7%9A%84%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1"><span class="toc-text">Node 的全局对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1"><span class="toc-text">常见的全局对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%9A%84%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1"><span class="toc-text">特殊的全局对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#global-%E5%92%8Cwindow-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">global 和window 的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CommonJS%E8%A7%84%E8%8C%83"><span class="toc-text">CommonJS规范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#require%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%9C%AC%E8%B4%A8"><span class="toc-text">require的实现本质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#module%E7%9A%84exports%E5%B1%9E%E6%80%A7%E6%9C%AC%E8%B4%A8"><span class="toc-text">module的exports属性本质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#require-%E6%9F%A5%E6%89%BE%E6%A8%A1%E5%9D%97%E7%BB%86%E8%8A%82"><span class="toc-text">require 查找模块细节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#require-%E7%9A%84%E6%9F%A5%E6%89%BE%E8%A7%84%E5%88%99"><span class="toc-text">require 的查找规则</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%83%85%E5%86%B5%E4%B8%80%EF%BC%9AX%E6%98%AF%E4%B8%80%E4%B8%AANodeJs%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%8C%E6%AF%94%E5%A6%82path%E3%80%81http%E7%AD%89"><span class="toc-text">情况一：X是一个NodeJs核心模块，比如path、http等</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%83%85%E5%86%B5%E4%BA%8C%EF%BC%9AX%E6%98%AF%E4%BB%A5-%E6%88%96-%E6%88%96-%E6%A0%B9%E7%9B%AE%E5%BD%95-%E5%BC%80%E5%A4%B4%E7%9A%84"><span class="toc-text">情况二：X是以.&#x2F; 或 ..&#x2F; 或 (根目录) 开头的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%83%85%E5%86%B5%E4%B8%89%EF%BC%9AX%E6%B2%A1%E6%9C%89%E8%B7%AF%E5%BE%84%EF%BC%8C%E4%B9%9F%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97"><span class="toc-text">情况三：X没有路径，也不是一个核心模块</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-text">模块的加载过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%85%A5"><span class="toc-text">循环引入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CommonJS%E4%BC%9A%E8%A7%84%E8%8C%83%E7%BC%BA%E7%82%B9"><span class="toc-text">CommonJS会规范缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AMD-CMD"><span class="toc-text">AMD, CMD</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES-Module"><span class="toc-text">ES Module</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%92%8C%E5%AF%BC%E5%87%BA%E6%96%B9%E5%BC%8F"><span class="toc-text">导入和导出方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80"><span class="toc-text">一</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C"><span class="toc-text">二</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89"><span class="toc-text">三</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E6%97%B6%E7%BB%99%E6%95%B4%E4%B8%AA%E6%A8%A1%E5%9D%97%E8%B5%B7%E5%88%AB%E5%90%8D"><span class="toc-text">导入时给整个模块起别名</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E5%86%99%E6%B3%95"><span class="toc-text">优化写法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%80-1"><span class="toc-text">一</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BA%8C-1"><span class="toc-text">二</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#default%E7%94%A8%E6%B3%95"><span class="toc-text">default用法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#import%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">import函数的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#import-meta"><span class="toc-text">import.meta</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES-Module%E7%9A%84%E8%A7%A3%E6%9E%90%E6%B5%81%E7%A8%8B"><span class="toc-text">ES Module的解析流程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-text">包管理工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-%E7%9A%84%E9%87%8D%E8%A6%81%E6%96%87%E4%BB%B6"><span class="toc-text">npm 的重要文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#package-json-%E5%B8%B8%E8%A7%81%E5%B1%9E%E6%80%A7"><span class="toc-text">package.json 常见属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#main"><span class="toc-text">main</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#scripts"><span class="toc-text">scripts</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#dependencies"><span class="toc-text">dependencies</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#devDependencies%E5%B1%9E%E6%80%A7"><span class="toc-text">devDependencies属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#peerDependencies%E5%B1%9E%E6%80%A7"><span class="toc-text">peerDependencies属性</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E7%9A%84%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86"><span class="toc-text">依赖的版本管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-%E7%9A%84%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4"><span class="toc-text">npm 的常见命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm%E5%8F%91%E5%B8%83%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8C%85"><span class="toc-text">npm发布自己的包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yarn"><span class="toc-text">yarn</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-%E4%B8%8E-Yarn-%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">npm 与 Yarn 的比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cnpm"><span class="toc-text">cnpm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npx"><span class="toc-text">npx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E5%91%BD%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="toc-text">局部命令的执行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm%E3%80%81yarn%E3%80%81pnpm-%E5%92%8C-npx-%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="toc-text">npm、yarn、pnpm 和 npx 对比总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E9%93%BE%E6%8E%A5%E5%92%8C%E8%BD%AF%E8%BF%9E%E6%8E%A5"><span class="toc-text">硬链接和软连接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D"><span class="toc-text">文件拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E7%A1%AC%E9%93%BE%E6%8E%A5"><span class="toc-text">文件的硬链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E8%BD%AF%E9%93%BE%E6%8E%A5"><span class="toc-text">文件的软链接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pnpm"><span class="toc-text">pnpm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pnpm%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-text">pnpm的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E6%89%81%E5%B9%B3%E5%8C%96%E7%9A%84-node-modules-%E7%9B%AE%E5%BD%95"><span class="toc-text">非扁平化的 node_modules 目录</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#pnpm%E7%9A%84store%E5%AD%98%E5%82%A8"><span class="toc-text">pnpm的store存储</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack"><span class="toc-text">webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#path"><span class="toc-text">path</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">webpack的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack%E7%9A%84%E9%BB%98%E8%AE%A4%E6%89%93%E5%8C%85"><span class="toc-text">webpack的默认打包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">配置文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#loader%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">loader的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#loader%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F"><span class="toc-text">loader配置方式</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/07/Fronted/Vue3/3a42db2d.html" title="Vue3"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue3"/></a><div class="content"><a class="title" href="/posts/2025/07/Fronted/Vue3/3a42db2d.html" title="Vue3">Vue3</a><time datetime="2025-07-01T00:00:00.000Z" title="发表于 2025-07-01 00:00:00">2025-07-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/07/Fronted/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/4723d6e9.html" title="前端学习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端学习"/></a><div class="content"><a class="title" href="/posts/2025/07/Fronted/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/4723d6e9.html" title="前端学习">前端学习</a><time datetime="2025-07-01T00:00:00.000Z" title="发表于 2025-07-01 00:00:00">2025-07-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/07/blog/butterfly%E5%AE%89%E8%A3%85/e70f18fc.html" title="butterfly安装之旅"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="butterfly安装之旅"/></a><div class="content"><a class="title" href="/posts/2025/07/blog/butterfly%E5%AE%89%E8%A3%85/e70f18fc.html" title="butterfly安装之旅">butterfly安装之旅</a><time datetime="2025-07-01T00:00:00.000Z" title="发表于 2025-07-01 00:00:00">2025-07-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/07/blog/%E9%AD%94%E6%94%B9%E4%B9%8B%E6%97%85/afacad78.html" title="魔改之旅"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="魔改之旅"/></a><div class="content"><a class="title" href="/posts/2025/07/blog/%E9%AD%94%E6%94%B9%E4%B9%8B%E6%97%85/afacad78.html" title="魔改之旅">魔改之旅</a><time datetime="2025-07-01T00:00:00.000Z" title="发表于 2025-07-01 00:00:00">2025-07-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/06/Fronted/node/857fe845.html" title="node"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="node"/></a><div class="content"><a class="title" href="/posts/2025/06/Fronted/node/857fe845.html" title="node">node</a><time datetime="2025-06-01T00:00:00.000Z" title="发表于 2025-06-01 00:00:00">2025-06-01</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2025 By <a class="footer-bar-link" href="/" title="匡思进" target="_blank">匡思进</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">3</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://kksj.cn" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/images.jpg" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/nihaokkjj" title="去我的github里面瞅瞅吧"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/cute.webp" alt="去我的github里面瞅瞅吧"/><span class="back-menu-item-text">去我的github里面瞅瞅吧</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Vue/" style="font-size: 0.88rem;">Vue<sup>1</sup></a><a href="/tags/blog/" style="font-size: 0.88rem;">blog<sup>2</sup></a><a href="/tags/minvue/" style="font-size: 0.88rem;">minvue<sup>1</sup></a><a href="/tags/node/" style="font-size: 0.88rem;">node<sup>1</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97/" style="font-size: 0.88rem;">前端三件套<sup>5</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 0.88rem;">前端学习路线<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="7593082970" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://i.y.qq.com/n2/m/share/details/taoge.html?id=7593082970&amp;hosteuin=&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("07/0111/2025 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 匡思进 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script async src="https://at.alicdn.com/t/c/font_4976895_bnl7971qvi.js?spm=a313x.manage_type_myprojects.i1.10.73873a816pIoEr&amp;file=font_4976895_bnl7971qvi.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
