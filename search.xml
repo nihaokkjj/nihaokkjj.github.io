@@ -1,6 +1,479 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MinVue</title>
+    <url>/posts/2025/04/Fronted/MinVue/4a7e677b.html</url>
+    <content><![CDATA[Mini Vue前言在尝试读懂这篇文章之前，请保证已经学习过面向对象基本知识、HTML基础、JS基础，并且有过一定的实践开发基础，不然可能会有非常多的小问号。
+如果不满足上述条件，也可以试着读一读，不必为其中不懂的内容感到焦虑，后面都能学会的。
+本文旨在教会读者实现一个精简版的Vue，很多Vue的功能会被简化，但是核心思想是相通的。
+本文会尽可能通俗易懂、避开JS的各种生僻特性。
+我们先不说Vue的事情，让我们先通过一些场景了解一点前置知识和概念——只需要知道大概是什么，没必要咬文嚼字：
+一个场景里的概念：响应式数据、依赖、数据劫持、MVVM 和双向绑定看看这段代码：
+// 我们希望这个关系恒成立： y = 2 * x + 1 let x = 10 let y = 2 * x + 1 x = 20 // x变了，但是y却不会发生变化
+
+我们希望，x变化时y能自动地变化，而不是我们还需要手动赋值多此一举。
+那么怎么实现呢？这里有一种思路是，设置一个角色专门监听x的变化，在察觉x变化时能够通知y发生变化。
+这很容易做到，JS为我们提供了一个API，Object.defineProperty：
+const data = &#123;   x: 10,   y: 21 &#125;; // 监听 data.x 的 修改 Object.defineProperty(data, &#x27;x&#x27;, &#123;   set(value) &#123;     data.y = value * 2 + 1; // 当 x 修改时，通知 y 发生相应变化   &#125; &#125;); console.log(&#x27;一开始:&#x27;, data.y); // 21 data.x = 100; console.log(&#x27;x变化后:&#x27;, data.y); // 201
+
+在Vue中，将普通数据变成响应式数据的过程，就叫数据劫持。
+而Object.defineProperty扮演的这个角色，在下文中被称为 数据劫持者（hijacker）。
+回到web中，JS的DOM操作是如何去修改视图的呢？
+让我们再看看一个DOM操作修改&lt;input /&gt;内容的例子：
+let value = document.querySelector(&#x27;input&#x27;).value; // 1.获取input当前内容 value = Number(value) + 1; // 2. 修改内容 document.querySelector(&#x27;input&#x27;).value = value; // 3.重新赋值
+
+我们能不能将第3步干掉？重新赋值看上去太多此一举了！
+结合上文x和y的关系，相信大家应该是灵光一闪。
+我们这里先抛出问题，暂时不考虑其中具体的实现细节。
+响应式数据指的是，依赖变化时，该数据会自动变化。如上文的y就是响应式数据，x则是其依赖，响应式数据和其依赖总是能表达为y=F(x)。
+M-V-VM是一种技术架构，M代表数据层(Model)，V代表视图层(View)，VM(ViewModel)在这里则是Vue代表的层次。
+VM层会监听另外两层的变化，在其中一个变化时，使另外一个发生相应的变化，即VM层将V层和M层进行了双向绑定——V&#x3D;F1(M)且M&#x3D;F2(V),V与M互为依赖。
+具体一点：
+
+用户在输入框输入了123（V层），内存里与之关联的数据自动变为123（M层）
+通过代码修改内存的数据为123（M层），界面上与之关联的部分自动变为123（V层）
+
+Vue通过建立MVVM架构实现了双向的响应式，即双向绑定。
+
+又一个场景里的概念：观察者模式、依赖收集&lt;script&gt;  let v = 1;&lt;/script&gt;&lt;div&gt;  &lt;input value=&#123;v&#125; /&gt;  &lt;input value=&#123;v&#125; /&gt;&lt;/div&gt;
+
+上述HTML片段中，两个&lt;input /&gt;内使用了一个JS变量v。
+我们实现一下对v变化的监听，察觉到它发生变化的时机，然后及时通知到两个&lt;input /&gt;的value改变：
+// 监听v，一旦v变化，就改变两个input的值Object.defineProperty(window, &#x27;v&#x27;, () =&gt; &#123;  set(value) &#123;    const inputDoms = document.querySelectorAll(&#x27;input&#x27;)    inputDoms[0].value = value    inputDoms[1].value = value  &#125;       &#125;)
+
+注意，这里我们能进行通知，是因为这个片段很简单，我们能直接看到v被使用的位置，所以可以写像创建上文x与y的关系那样的代码。
+但是，如果我们的项目有无穷多处都依赖了v, 那我们还能一个一个手动去实现每一个响应式数据吗？
+所以我们面临一个问题：怎么快速修改所有v？
+这里我们需要先学习业界大佬们总结的23种设计模式之一，观察者模式。
+什么是观察者模式？
+这个模式中一共有2个角色，发布者与观察者。
+发布者好比一个UP主，观察者就是ta的粉丝，当UP发视频的时候，粉丝就会第一时间收到通知。
+让我们用代码表述一下：
+我们的问题解决了——怎么快速修改所有v:
+通过发布者通知所有观察者执行update方法修改数据，就实现了修改所有v。
+我们可以手动创建一个发布者，但是新的问题是，我们该怎么创建观察者？
+让我们分析一下该怎么做，就像是把大象放进冰箱一样，凡事都只需要三步：
+
+观察局势，发现很多地方都使用了变量v，比如&lt;input value=&#123;v&#125;&gt;
+特殊标记这些v的位置
+让被标记的变量成为观察者
+
+怎么标记呢？那就是创造一种语法，比如&lt;input value=&#123;v&#125;&gt;中的&#123;v&#125;。
+然后通过一些~~暴力~~巧妙的操作，遍历所有HTML，找到其中格式满足&#123;xxx&#125;的内容，将其变成观察者即可。
+同时，我们会用巧妙的操作实现一种逻辑，在观察者产生的时候，它会主动关注发布者。
+具体怎么操作，我们后面再谈。
+寻找被特殊标记的变量的过程，就是依赖收集；将标记变量转化为响应式的过程，就是数据劫持；
+至此，我们实现了单向的响应式，在publisher的内容被修改时触发publish方法通知所有存在于HTML片段里面的observer一起修改——也就是完成了V=F1(M)。
+那双向绑定，M=F2(V)怎么实现呢？
+有了上述的铺垫之后就非常简单了！视图层(V层)的变动主要是来自于用户的输入（键盘输入、鼠标点击等），所以我们只需要监听一些用户操作事件就好，比如当用户输入时，让publisher进行通知就行了。
+代码示意如下：
+&lt;div&gt;  &lt;input value=&#123;v&#125; /&gt; // 用户在这里标签上进行输入  &lt;input value=&#123;v&#125; /&gt;&lt;/div&gt;&lt;script&gt;  // ... 省略一堆代码  const inputDom1 = document.querySelector(&#x27;input&#x27;)  // 监听键盘输入  inputDom1.oninput = (e) =&gt; &#123;    // 一旦用户进行输入，就让UP主（publisher）把新的值告诉其他所有粉丝（观察者）    publisher.publish(e.target.value)  &#125;&lt;/script&gt;
+
+
+再一个场景里的概念：虚拟DOM和Diff算法让我们先来讲个故事：
+某个疯狂星期四，乐程的xxl点外卖。打开某团先点了一份黄金鸡块，五分钟后，觉得不够吃又点了一份吮指原味鸡，再过了五分钟，觉得有点渴于是又点了一杯肥宅快乐水…
+这个故事给我们什么启发？
+很明显，这样多次操作下来，需要支付多次配送费用，显然不如一次性点完所有来得划算。
+在web中也是类似的：
+JS引擎和处理HTML的渲染引擎不在同一个进程下，每当用JS去操作HTML（DOM操作），都需要开辟一个跨进程的通道，这种操作开销不小。
+看不懂没关系，我们通俗一点说，
+相当于，JS和HTML是不在同一个国家的，JS要去处理HTML相关的事情，就得花大价钱买机票出国去做，做完了又得买机票回来继续做自己的事情，如果下次又有HTML的事情要处理，那么就又得买机票出国…
+这种开销是昂贵的。
+所以，如果JS能先把要处理的DOM统一记录下来，之后一次性处理完，就能节省许多不必要的开销。
+而这种记录，就是虚拟DOM。
+众所周知，HTML会被解析为DOM树，下图左侧HTML对应就是右侧的DOM树：
+DOM这个词严格来说指的是DOM树，其中每个节点就叫DOM节点，而DOM元素专指标签。
+但是口头上，DOM、DOM树、DOM节点这几个词经常混用，并不做严格的区分…
+
+
+
+
+
+
+
+
+我们为了更明确地表示区分，在提到虚拟DOM的语境下，会把DOM称为真实DOM。
+虚拟DOM就是用JS代码表示上图右侧结构(主要看a标签那一块的表示就好了)：
+const visualDom = &#123;     tag: &#x27;html&#x27;,  // 标签名     props: &#123;&#125;,    // 标签的属性     content: [    // 标签的内容         &#123;             tag: &#x27;head&#x27;,             props: &#123;&#125;,             content: []         &#125;,         &#123;             tag: &#x27;body&#x27;,             props: &#x27;&#x27;,             content: [                 &#123;                     tag: &#x27;a&#x27;,                     props: &#123;                         href: &#x27;xxx&#x27;                     &#125;,                     content: [                         &#x27;a的内容&#x27; // 内容可以直接就是一个字符串,所以后面需要区分,是字符串还是标签                     ]                 &#125;,                 &#x27;123&#x27;             ]         &#125;     ] &#125;
+
+之后，每次JS先在自己家里把要做的改变记录好，后面出国就能一次性把所有事情办完，节省开销。
+那么如何构建虚拟DOM呢？让我们一步一步考虑：
+
+起初，遍历所有真实DOM，产生上述结构。
+当发送改变时，比如新增&#x2F;删除了一些标签，我们得先在虚拟DOM记录这种改变——这时候问题出现了！
+
+我们怎么知道这种改变发生在虚拟DOM的哪个位置？又重新遍历所有真实DOM节点产生新的结构吗？这听上去开销也太大了，甚至比我们使用虚拟DOM前的情况还要大，那这简直是得不偿失。
+所以我们需要一些算法来优化一下，也就是Diff算法。
+Diff算法不是具体某个算法，而是像DP一样，是一类算法，解决的问题是如何尽快找出两份内容中不同的部分。
+
+准备开始在了解了上面所有概念之后，我们最后来进行一点总结。
+我们要做的是My-Vue，所以简称为MUE吧。
+在正式开始之前，希望大家能先去体验一下真正的Vue。
+由于Mue的语法模仿的是Vue2, 所以推荐大家选择Vue2进行体验。
+因为Vue3语法发生了一些变化，可能会给大家带来一些困扰。
+但无论什么版本，底层原理还是基本一致的。
+**体验到什么程度？**只需要看看大概长啥样，自己再写一点响应式数据试一下就行了。
+让我们梳理一下上面三个场景中提到的内容，整体流程大概是这样的：
+其中需要注意的是，我们之前提到的观察者模式中，没有实现反向通知的能力，这点会在下文提及。
+让我们准备一下文件结构：
+其中index.html和main.js中的内容分别是：
+&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;  &lt;title&gt;Mue&lt;/title&gt;&lt;/head&gt;&lt;body&gt;  &lt;div id=&quot;app&quot;&gt;    &lt;div&gt;&#123;msg&#125;&lt;/div&gt;    &lt;input type=&quot;text&quot; value=&quot;&#123;msg&#125;&quot;&gt;  &lt;/div&gt;&lt;/body&gt;&lt;script type=&quot;module&quot; src=&quot;./main.js&quot;&gt;&lt;/script&gt;&lt;/html&gt;
+
+如果一切顺利，html中出现的&#123;msg&#125;将被替换成Hello Mue。
+import Mue from &#x27;../mue-core/mue.js&#x27;;window.mue = new Mue(&#123;  el: &#x27;#app&#x27;,  data: &#123;    msg: &#x27;Hello MUE!&#x27;  &#125;,&#125;);
+
+和上文一样，接下来涉及到面向对象的部分，我们都用Class进行实现。
+JS中，Class本质是Function，这意味着可以用Function实现——并且这是更推荐的做法。
+但是考虑到大家的面向对象基础更多来自于Java，用Class实现应该更容易上手。
+
+实现核心能力实现：ViewModel层核心 Mue非常简单，主要是记录一下el和data。
+el即对应的真实DOM节点，后续我们将把整个项目挂载到el上。
+然后创建数据劫持者Hijacker和模板编译者Compiler即可。
+import Hijacker from &#x27;../mue-core/hijacker.js&#x27;;import Compiler from &#x27;./compiler.js&#x27;;class Mue &#123;  constructor(options) &#123;    // element的简写。作为项目挂载的根节点。    this.el = document.querySelector(options.el);    this.data = options.data;    new Hijacker(this, &#x27;data&#x27;);    new Compiler(this); // 把整个mue都传给Compiler  &#125;&#125;export default Mue;
+
+实现：发布者 Publisher比较简单，基本和之前提到的部分一致，不再过多赘述：
+// 发布者class Publisher &#123;  constructor(data) &#123;    this.viewers = [];  &#125;  addViewer(viewer) &#123;    this.viewers.push(viewer);  &#125;  publish() &#123;    this.viewers.forEach((viewer) =&gt; &#123;      viewer.update();    &#125;);  &#125;&#125;export default Publisher;
+
+实现：数据劫持者 Hijacker考虑到大家的JS基础，我们这里先简单说明一个JS的知识点，this指向。
+本文的目的不是学习this，所以只做不严谨且粗略的介绍。（如果你已经弄懂了this，请跳过这个部分）
+上文已经用到过不少了，看到这里相信也也应该知道Class中的this大部分时候的意思就是”我自己”。
+我们上文也提到了，Class本质是Function，而且Function内部也有this。
+大部分情况下，**一个函数的this指向这个函数的调用者。**来看看下面这个例子：
+// case 1：类的方法class A &#123;  testThis() &#123;    console.log(this);  &#125;&#125;new A().testThis(); // **A**// case 2: 全局函数function B() &#123;  console.log(this);&#125;B(); // (浏览器环境下)**window**。 因为这是window.B()的缩写// case 3: 类的方法中使用全局函数class C &#123;  testThis() &#123;    B();  &#125;&#125;new C().testThis(); // (浏览器环境下)**window**, 因为还是 window.B()// case 4: 为了让 类的方法中使用的全局函数 访问到 类的this, 我们需要这么改：function Dfunction(that) &#123;  console.log(that);&#125;class Dclass &#123;  testThis() &#123;    const that = this; // 这里多开一个变量的确是不必要的，这里这么做是为了**强调这种处理方式**    Dfunction(that);  &#125;&#125;new Dclass().testThis(); // Dclass
+
+另外，数据劫持还需要注意一个事情就是，可能出现下面这样树形的数据，所以我们需要进行一个遍历处理，这里我们采用递归实现。
+const data = &#123;    a: &#123;        aa:123,        ab: &#123;            aba: &#x27;hhh&#x27;        &#125;    &#125;,    b: &#x27;aaaaaaa&#x27;&#125;
+
+好了，现在让我们来实现Hijacker:
+import Publisher from &quot;./publisher.js&quot;;// 数据劫持者class Hijacker &#123;  constructor(mue, data) &#123;    this.hijack(mue, data);  &#125;  // Object.defineProperty劫持数据需要拿到 该数据节点 及 其父级对象  hijack(object, key) &#123;    // **创建发布者**    const publisher = new Publisher();    let value = object[key];    if (!value) &#123;      return;    &#125; else if (typeof value === &#x27;object&#x27;) &#123; // 当前节点是树，递归;      Object.keys(value).forEach((key) =&gt; &#123;        this.hijack(value, key);      &#125;);    &#125; else &#123; // 当前节点是叶子节点；object则是其父级节点      // **上文提到的知识点：JS的this指向**      const that = this;          // **开始劫持数据**      Object.defineProperties(object, value, &#123;        // **记住这个get, 这个很重要**        get() &#123;  // **实现反向通知的核心步骤**，具体怎么回事在**实现Viewer时进一步说明**          if (Publisher.target) &#123;            publisher.addViewer(Publisher.target);          &#125;          return value;        &#125;,        set(newValue) &#123;          if (value === newValue) &#123; // 防止死循环: 更新-&gt;触发publish-&gt;更新-&gt;...            return          &#125;          value = newValue;          that.hijack(object, newValue); // 提防一首新的数据是树形结构，递归一下          publisher.publish();        &#125;      &#125;);    &#125;  &#125;&#125;export default Hijacker;
+
+实现：观察者 Viewer观察者也非常容易实现，只需要在之前提到过的代码上加一点点内容实现反向通知即可：
+import Publisher from &quot;./publisher.js&quot;;// 观察者class Viewer &#123;  constructor(mue, dataKey, updateHandler) &#123;    this.mue = mue; // 传说中的vm层，即mue实例    this.dataKey = dataKey; // 数据的键    this.updateHandler = updateHandler; // 用来更新视图层(V层)的方法    // 这里是反向通知的关键操作：    // 绑定一个静态属性。相当于在Publisher内部创建一个“全局”变量，记录是哪个观察者触发的反向通知    Publisher.target = this;    // 这里使用了 mue.data[dataKey]，**将触发劫持者设置的 get方法**：    // **反向通知 publisher邀请当前这个viewer成为观察者（也可以理解为viewer主动成为观察者）**    this.oldValue = mue.data[dataKey];    // 结束，标记为空，释放内存    Publisher.target = null;  &#125;  update() &#123;    const newValue = this.mue.data[dataKey];    if (this.oldValue === newValue) &#123; // 同样地，没有更新就啥也不干      return;    &#125;    // 更新视图，实现 V = F1(M)    this.updateHandler(newValue);  &#125;&#125;export default Viewer;
+
+让我们分析一下其中Publisher.target是一个什么操作：
+在创建Viewer的时候，会给Publisher添加一个静态属性target，记录一下当前是在创建哪个观察者。
+静态属性可以理解为，在Publisher上创建的一个全局变量。
+然后使用这个观察者对应的值时，会触发get方法，让观察者实例publisher将刚刚记录的观察者添加进观察者队列——看上去就像是观察者一创建就主动关注了发布者一样。
+这里其实有个有意思的小知识点，就顺口提一句：import的内容是原数据的引用而不是拷贝，所以我们可以在viewer.js引入的Publisher上绑定新的值，然后在hijacker.js中访问到这些值。
+实现：模板编译者 Compiler这个是五个角色中最难的一个部分了。
+在开始写代码前我们仍然需要介绍一堆前置概念。
+
+首先我们要复习一下JS的DOM类型——请记住DOM也是有类型的，常见的类型如下表所示：
+
+
+
+
+类型
+说明
+编号
+图示参考
+
+
+
+元素
+每一个标签都是一个元素节点，如 &lt;div&gt; 、 &lt;span&gt;
+1
+
+
+
+属性
+id 、class 、style等
+2
+
+
+
+文本
+元素节点或属性节点中的文本内容
+3
+
+
+
+注释
+注释，比如``
+8
+
+
+
+文档
+也叫根节点，即document
+9
+
+
+
+
+然后再让我们了解一下 伪数组。
+
+
+
+// 伪数组也叫类数组，本质是对象，只不过键是0-N, 就像是下面这样const objectArray = &#123;    0: &#x27;aaa&#x27;,    1: &#x27;bbb&#x27;,    2: &#x27;ccc&#x27;&#125;console.log(objectArray[0]) // aaa
+
+什么场景下会出现伪数组？
+比如document.querySelectorAll的返回值、函数的arguments参数列表等都是伪数组。
+
+如果要把伪数组变为数组，可以使用Array.from方法:
+
+
+
+&lt;div id=&quot;app&quot;&gt;  &lt;span&gt;Hello&lt;/span&gt;  World&lt;/div&gt;&lt;script&gt;  const dom = document.querySelector(&#x27;#app&#x27;)  const children = dom.childNodes // **获取当前节点的所有子节点。可以以此进行前序遍历**  console.log(&#x27;伪数组&#x27;, children)  console.log(&#x27;真数组&#x27;, Array.from(children))&lt;/script&gt;
+
+那为什么要把伪数组转为真数组呢？
+因为伪数组是对象，不具有数组的某些方法，比如push和pop，许多场景下使用起来不方便。
+那JS设计者为什么要搞出伪数组这种东西？
+据JS之父自己坦白——“当初只用了十天就搞完了…现在看起来确实设计得太糙了…”
+
+最后，我们需要简单认识一下正则表达式（regular expression）。
+
+实现Compiler只会简单用到一点正则，所以这里只给出3种case给大家了解一下概念，不做过多深入:
+const reg = /\&#123;(.+?)\&#125;/; // 正则表达式。这个能够匹配形如 &#123;xxx&#125; 的字符串, ()表示要获取的部分const str = &#x27;这是&#123;msg&#125;&#x27;;// case 1: 用正则表达式去匹配字符串console.log(reg.test(str)); // true// case 2: 用字符串去匹配正则表达式console.log(str.match(reg)); // [ &#x27;&#123;msg&#125;&#x27;, &#x27;msg&#x27;, index: 2, input: &#x27;这是&#123;msg&#125;&#x27;, ...]// case 3: 替换匹配内容const data = &#x27;swpu-lec, yyds&#x27;;console.log(str.replace(reg, data));  // 这是swpu-lec, yyds
+
+由于主题是Vue，而且正则又博大精深，所以限于篇幅此处不做更多介绍了。如果对此感兴趣，可以学习：[该类型的内容暂不支持下载]
+熟悉了以上内容后，先来大体看看我们要做的东西。
+内容比较多，我们拆成了几个层次分开看，首先我们需要一个大体的框架如下：
+import Viewer from &quot;./viewer.js&quot;;// 模板编译者class Compiler &#123;  constructor(mue) &#123;    this.mue = mue;    this.el = mue.el;    this.compile(this.el);  &#125;  // 开始编译  compile(el) &#123;    const childNodes = el.childNodes; // 真实DOM伪数组    const childNodesList = Array.from(childNodes); // 转为真数组，进而可以用数组的api    // 前序遍历整个DOM树    childNodesList.forEach((node,) =&gt; &#123;      // 判断是什么类型的DOM, 扔给不同的处理方法      if (node.nodeType === 1) &#123; // 元素类型        this.compileForElement(node);      &#125; else if (node.nodeType === 3) &#123; // 文本类型        this.compileForText(node);      &#125;      // 如果还有子节点，递归获取下一层      if (node.childNodes.length) &#123;        this.compile(node);      &#125;    &#125;);  &#125;  // TODO: 主要就是实现这俩函数：  // 处理元素类型DOM  compileForElement(node) &#123;&#125;  // 处理文本类型DOM  compileForText(node) &#123;&#125;&#125;export default Compiler;
+
+怎么实现函数呢？既然我们都说过正则匹配了，那么也会用上吧：
+// 处理元素类型DOMcompileForElement(node) &#123;  const reg = /\&#123;(.+?)\&#125;/; // 正则表达式，匹配形如 &#123;xxx&#125; 的字符串  const allAttributes = Array.from(node.attributes); // 将节点的所有属性，处理为数组  // 遍历数组，处理每个属性  allAttributes.forEach((attribute) =&gt; &#123;    // 比如 data=&quot;&#123;msg&#125;&quot;, attribute.name就是&quot;data&quot;, attribute.value就是&quot;&#123;msg&#125;&quot;    const text = attribute.value;    const matchRes = text.match(reg);    if (matchRes) &#123; // 如果包含形如 &#123;xxx&#125; 的部分      const dataKey = matchRes[1];    // 比如匹配的是&quot;&#123;msg&#125;&quot;, matchRes[1]就是&quot;msg&quot;      // 创建观察者，触发相关逻辑      new Viewer(this.mue, dataKey, (newValue) =&gt; &#123;        node.textContent = newValue;      &#125;);      const newValue = this.mue.data[dataKey];      node.value = text.replace(reg, newValue); // 将 &#123;xxx&#125; 替换为具体的值      // 监听键盘输入，完成双向绑定，M=F2(V)      node.addEventListener(&#x27;input&#x27;, () =&gt; &#123;        this.mue.data[dataKey] = node.value;      &#125;);    &#125;  &#125;);&#125;// 处理文本类型DOMcompileForText(node) &#123;  const reg = /\&#123;(.+?)\&#125;/;  const text = node.textContent;  const matchRes = text.match(reg);  if (matchRes) &#123;  // 与上面的方法基本上一样的逻辑    const dataKey = matchRes[1];    const newText = this.mue.data[dataKey];    node.textContent = text.replace(reg, newText);    new Viewer(this.mue, dataKey, (newText) =&gt; &#123;      node.textContent = newText;    &#125;);  &#125;&#125;
+
+至此，MUE已经基本完成了。可以打开HTML页面体验一下成果了！
+但也再额外给一点开放性挑战，感兴趣可以做一做：
+// challenge 1：if、else-if、else，当值为布尔或可以类型转换为布尔时，进行相应的渲染控制&lt;div&gt;  &lt;div if=&quot;&#123;false&#125;&quot;&gt;A&lt;/div&gt;  &lt;div else-if=&quot;&#123;0&#125;&quot;&gt;B&lt;/div&gt;  &lt;div else=&quot;&#123;true&#125;&quot;&gt;C&lt;/div&gt;&lt;/div&gt;// challenge 2：循环渲染, 其中arr是一个数组，element是其元素，index是其下标&lt;div for=&quot;i:arr&quot;&gt;  &lt;span&gt;&#123;i&#125;&lt;/span&gt;&lt;/div&gt;
+
+
+~~【废弃】实现性能优化~~我们不需要下述的性能优化方案——因为我们有了超越虚拟DOM性能的方案。
+~~实现：虚拟DOM~~~~经过一番体验后就发现，如果非常快速地输入中文的话，可能会导致双向绑定出错…~~
+~~这是因为，目前我们是每输入一个字符都会触发一次真实DOM的更改，高频且大量的操作就可能超出浏览器处理数据的极限（输入频率超过浏览器最大渲染频率），出现数据和视图不一致的情况…~~
+~~总结就是，太卡了，需要优化一下，那么就像是我们上文提到的，实现一下虚拟DOM。~~
+~~实现：Diff算法~~如果我们没有虚拟DOM，那么我们或许可以不使用Diff算法？
+
+实现更多场景我突然意识到这不仅是一次尝试，更是一个开发真实可用的框架的好机会！
+由于Mue名字寓意太明显了抄袭痕迹太重，所以正式版改名叫Mud吧，寓意非常丰富：
+
+实现思路借鉴了Vue，React(JSX)，Svelte等多个框架，是各种东西糊成的一坨
+实现并不精致，但是容易被塑造成各种形状，朴素实用
+泥巴里面可以催生出很多东西，以此为基础可以产生更多技术框架
+出淤泥而不染
+
+（我的确是在自吹自擂）
+1. 在多种模块化规范下使用Mud.js先简单介绍一下JS的模块化规范：
+
+
+
+规范名称
+说明
+示例
+
+
+
+umd
+几乎是前端诞生以来，就有了雏形，但是一直到2009年左右才终于形成正式的规范
+&lt;script src=&quot;xxx&quot; /&gt; &lt;br&gt;像这样引入的就是umd包
+
+
+cjs
+NodeJS的伴生产物，也是2009年左右形成的规范
+const a = require(&#39;a&#39;) &lt;br&gt;module.exports = &#123;&#125; &lt;br&gt;像这样的导入、导出的则是cjs包
+
+
+esm
+ECMAScript官方2015年推出的规范，JS正统
+import a from &#39;a&#39; &lt;br&gt;export default b &lt;br&gt;像这样导入、导出的则是esm包
+
+
+cmd和amd
+2009年前后出现，现如今使用频率较低，不在本次兼容的范围内。
+?（不详）
+
+
+我们将借助rollup的能力实现一套代码转变为多种规范的包。
+在这之前你一定听说过webpack或者vite——不使用这些是因为它们太重了，我们这里只是需要简单地转变规范，所以轻量小巧的rollup就成了首选。
+相信配置一套满足上述要求的rollup文件不会困扰大家，所以交由大家自行实现。
+在打包完成后，引入不同规范的包：
+umd
+非常容易实现，但是需要输入完整路径（形如../node_modules/mud/umd/index.js）
+cjs
+由于node和node_modules的关系不一般，所以只需要require直接导入包名即可(require(&#39;mud&#39;))
+esm
+这是最难的一个部分，需要有webpack等打包构建工具（这就埋下了一个伏笔——我们需要构建一个脚手架；还有，我个人更倾向用vite）
+这里为了更好地验证包发布的效果，这里可以使用工具yalc来模拟验证。
+2. 比虚拟DOM更直接的内容更新办法相比虚拟DOM，其实有个更简单且还算高效的办法——innerHTML。
+一键替换内容。
+这样的实现将会减小代码体积，并且在常规情况下的效率会高于虚拟DOM。
+3. 模块化受到腾讯的微前端框架无界的启发，我们想到了一种不一样的模块化方案：
+先到根目录下src/index.html中写入（根组件）
+&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;  &lt;title&gt;Mud.js&lt;/title&gt;  &lt;link rel=&quot;stylesheet&quot; href=&quot;./index.css&quot;&gt;&lt;/head&gt;&lt;body&gt;  &lt;div id=&quot;app&quot;&gt;    &lt;div&gt;&#123;msg&#125;&lt;/div&gt;    &lt;input type=&quot;text&quot; value=&quot;&#123;msg&#125;&quot;&gt;    &lt;component1 /&gt;  &lt;/div&gt;&lt;/body&gt;&lt;script type=&quot;module&quot; src=&quot;./xxx/Mud.js&quot;&gt;&lt;/script&gt;&lt;script&gt;new Mud(&#123;  el: &#x27;#app&#x27;,  data: &#123;    msg: &#x27;Hello Mud!&#x27;,    arr: [&#x27;Someday&#x27;, &#x27;I&#x27;, &#x27;Will&#x27;, &#x27;Be&#x27;, &#x27;Like&#x27;, &#x27;You&#x27;],    cnt: 1,  &#125;,  components: &#123;    component1: &#x27;src/components/component1/index.html&#x27;  &#125;&#125;);const plus = () =&gt; &#123;  mud.data.cnt ++&#125;&lt;/script&gt;&lt;/html&gt;
+
+然后这里是模块src/components/component1/index.html：
+&lt;div&gt;这是组件&lt;/div&gt;&lt;script&gt; new Mud(&#123;  el: &#x27;#component1&#x27;,  data: &#123;&#125;,&#125;);       &lt;/script&gt;
+
+怎么引入模块呢？
+
+从根组件开始解析（模板编译的过程），访问每个DOM节点时，通过字符串比较发现了非原生标签，那么我们就推断这是一个Mud组件。
+要求用户手写组件注册（id: path），据此便能够通过组件名称（即id），找到对应的文件路径，用ajax等方式请求下来（异步解析非常高效，也为ssr提供了能力），直接替换原来的组件标签的innerHTML即可。
+注意，替换之后，该组件内部可能还有组件，也遵循上述规则进行解析——这样的设计，我们便以一种非常简单的方式实现了单页面应用、组件化设计，它的特点是渲染顺序是先序，更新粒度是一个组件——所以我们不需要Diff，并且…
+更好的数据劫持
+
+初步实现将Object.defineProperty换为Proxy，这样我们就能够在不重写方法的前提下监听到数组的push、pop等操作了。这是一个改动量非常大的工作，但是很显然，它的收益是相当可观的。
+多级调用还需要支持对象多级调用，思路就是通过点来分割即可。
+性能优化对于已经被劫持过的数据，我们要防止其被再次劫持以避免不必要的性能开销。
+5. 【TODO】更好的观察者模式现在的观察者都是不具名的，存在很多性能问题：
+
+一处变量a改变时，除了通知其他变量a更新之外，还会通知变量b更新。
+比如handleIf中，反复改变状态时，会创建大量重复的观察者。
+
+优化的方案也比较简单，将Publisher的数组改为一个Set，通过键名指定更新某一个变量。
+6. 丰富语法现在已经实现了插值语法、for循环等，目前还打算实现以下语法。
+if系列
+If else-if else，这是vue中非常优秀的一个设计，抄了。
+for
+组件参数传递
+父级组件中：
+&lt;component1 a=&#123;xxx&#125; /&gt;&lt;script&gt;new Mud(&#123;    data: &#123;        xxx:1    &#125;&#125;)&lt;/script&gt;
+
+子级组件中：
+会把这个组件标签上所有的属性搜刮下来，然后自动放到props.data中（之后，props将作为一个关键字，不允许用户自定义data叫props）：
+&lt;div&gt;    &#123;&#123;props.data.xxx&#125;&#125;&lt;/div&gt;&lt;script&gt;new Mud(&#123;    data: &#123;&#125;,&#125;)&lt;/script&gt;
+
+另外还有props.child的操作，这个则是react中非常符合直觉的设计：
+父组件中：
+&lt;component1 a=&#123;xxx&#125;&gt;    &lt;div&gt;这是嵌入的内容&lt;/div&gt;&lt;/component1&gt;&lt;script&gt;new Mud(&#123;    data: &#123;        xxx:1    &#125;&#125;)&lt;/script&gt;
+
+子组件中：
+结合if等语法可以实现非常多骚操作，而且这部分由于是用innerHTML直接插入的，所以还可以使用子组件中的变量。
+&lt;div&gt;    &#123;&#123;props.child&#125;&#125;&lt;/div&gt;&lt;script&gt;new Mud(&#123;    data: &#123;&#125;,&#125;)&lt;/script&gt;
+
+Watch监听
+即让用户手动监听数据，这个比较简单，将观察者的内部方法暴露出去即可。
+7. 实现生命周期对此，我们还得仔细思考一下，到底是实现Hook还是生命周期。
+onMounted
+直接在挂载的时候加个函数就行了。
+8. 更多生态实现Mud-Doc：Mud官方文档
+【TODO】实现Root：Mud框架的路由
+实现Mud-Cli：快速搭建Mud项目
+【TODO】产出Mud-Demo：利用Mud快速构建优秀的作品
+组件样式库
+~~暂时使用开源的xy-ui:https://github.com/xboxyan~~
+可以先考虑 semi-ui
+发布上线
+
+测试点1. 内容插值语法
+☑ 常规的基础数据插值，如&#123;a&#125;
+
+☑ 特殊的基础数据插值，如NaN，undefined，null，空字符串，symbol，基本数学运算表达式，三元表达式
+
+对于undefined和symbol，插值语法不解析，其余均正常。
+
+
+☑ 常规的引用数据类型插值，如&#123;b&#125;，其中b=&#123;name: 1&#125;
+
+支持n级连续调用，但是Proxy的setter并没有生效（已修复）。
+
+
+☑ 特殊的引用数据类型插值，如空对象, 函数表达式，函数运算结果，new新建对象
+
+对于函数表达式，竟然会直接获取到运算结果，出乎意料。
+
+
+☑ 更多插值方式，如直接插入表达式，插入函数调用，插入连续调用
+
+暂不打算支持插入表达式和函数调用。
+
+
+☑ 非常极端的插值方式，如不填写任何变量，填写不存在的变量，填写特殊符号，填写标签
+
+很好，填写标签也是能够如预期的一样进行。
+
+
+☑ 两个对象内有相同的属性名字
+
+☑ 在插值语法的括号两侧写入其他内容，如aaaa&#123;a&#125;aa
+
+会把两侧的其他内容覆盖掉（已修复）。
+
+
+
+2. 属性插值语法
+☑ 常规的属性插值，如input=&quot;&#123;a&#125;&quot;，其中a=1
+
+☑ 不恰当的插值，如input属性需要number或string等类型的数据，但是插入函数、对象等
+
+☑ 更多插值方式，如插入表达式，插入函数调用，连续调用
+
+同上，暂不打算支持直接插入表达式和函数调用。
+
+
+☑ 错误的插值，如填写不存在的变量，特殊符号，标签
+
+
+3. if系列（由于if-else和else暂未上线，所以暂时满足2.属性插值语法的标准即可判定为通过）
+
+☑ 满足2.属性插值语法中的要求
+
+4. for循环
+☑ 满足2.属性插值语法中的要求
+
+☑ 插入非数组元素
+
+对于形如() =&gt; [1]的值，会无法解析！
+
+
+但是之前在data中直接写函数表达式的话，是能够解析返回值的，所以这里后续最好统一一下。
+
+
+另外，最好再支持一下下标。
+
+
+
+5. 组件化
+☑ 参数传递满足2.属性插值语法中的要求
+
+☐ 远程组件
+
+只是试试能不能，不作为必要的测试标准。
+
+
+☑ 传递多个参数
+
+☑ 组件多级嵌套
+
+☑ 一个父组件多个子组件
+
+☑ 传递连续调用的对象
+
+☑ 传递函数
+
+是比较符合预期的，能够实现组件通信。
+
+
+不过有个问题是，直接在script宏任务中访问window.mud是undefined，大概是还没有加载上。
+
+
+只能够异步地调用函数。
+
+
+☑ 传递同一个变量，以及改个名字之后重复传递
+
+☑ 特殊的组件调用，如父子相互引用，兄弟引用，自己调用自己
+
+自己调用自己：只会进行一次，递归会被阻止。
+
+
+父子相互引用：被浏览器阻止，子组件引用父组件失败。
+
+
+
+6. 兼容性
+☑ 移动端设备
+☑ Chrome&#x2F;Edge(其他浏览器暂时不用管)
+
+]]></content>
+      <categories>
+        <category>进一步学习vue</category>
+      </categories>
+      <tags>
+        <tag>minvue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue3</title>
     <url>/posts/2025/07/Fronted/Vue3/3a42db2d.html</url>
     <content><![CDATA[
@@ -4786,479 +5259,6 @@ Fetch文件上传![[Pasted image 20240827164955.png]]
       </categories>
       <tags>
         <tag>前端三件套</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MinVue</title>
-    <url>/posts/2025/04/Fronted/MinVue/4a7e677b.html</url>
-    <content><![CDATA[Mini Vue前言在尝试读懂这篇文章之前，请保证已经学习过面向对象基本知识、HTML基础、JS基础，并且有过一定的实践开发基础，不然可能会有非常多的小问号。
-如果不满足上述条件，也可以试着读一读，不必为其中不懂的内容感到焦虑，后面都能学会的。
-本文旨在教会读者实现一个精简版的Vue，很多Vue的功能会被简化，但是核心思想是相通的。
-本文会尽可能通俗易懂、避开JS的各种生僻特性。
-我们先不说Vue的事情，让我们先通过一些场景了解一点前置知识和概念——只需要知道大概是什么，没必要咬文嚼字：
-一个场景里的概念：响应式数据、依赖、数据劫持、MVVM 和双向绑定看看这段代码：
-// 我们希望这个关系恒成立： y = 2 * x + 1 let x = 10 let y = 2 * x + 1 x = 20 // x变了，但是y却不会发生变化
-
-我们希望，x变化时y能自动地变化，而不是我们还需要手动赋值多此一举。
-那么怎么实现呢？这里有一种思路是，设置一个角色专门监听x的变化，在察觉x变化时能够通知y发生变化。
-这很容易做到，JS为我们提供了一个API，Object.defineProperty：
-const data = &#123;   x: 10,   y: 21 &#125;; // 监听 data.x 的 修改 Object.defineProperty(data, &#x27;x&#x27;, &#123;   set(value) &#123;     data.y = value * 2 + 1; // 当 x 修改时，通知 y 发生相应变化   &#125; &#125;); console.log(&#x27;一开始:&#x27;, data.y); // 21 data.x = 100; console.log(&#x27;x变化后:&#x27;, data.y); // 201
-
-在Vue中，将普通数据变成响应式数据的过程，就叫数据劫持。
-而Object.defineProperty扮演的这个角色，在下文中被称为 数据劫持者（hijacker）。
-回到web中，JS的DOM操作是如何去修改视图的呢？
-让我们再看看一个DOM操作修改&lt;input /&gt;内容的例子：
-let value = document.querySelector(&#x27;input&#x27;).value; // 1.获取input当前内容 value = Number(value) + 1; // 2. 修改内容 document.querySelector(&#x27;input&#x27;).value = value; // 3.重新赋值
-
-我们能不能将第3步干掉？重新赋值看上去太多此一举了！
-结合上文x和y的关系，相信大家应该是灵光一闪。
-我们这里先抛出问题，暂时不考虑其中具体的实现细节。
-响应式数据指的是，依赖变化时，该数据会自动变化。如上文的y就是响应式数据，x则是其依赖，响应式数据和其依赖总是能表达为y=F(x)。
-M-V-VM是一种技术架构，M代表数据层(Model)，V代表视图层(View)，VM(ViewModel)在这里则是Vue代表的层次。
-VM层会监听另外两层的变化，在其中一个变化时，使另外一个发生相应的变化，即VM层将V层和M层进行了双向绑定——V&#x3D;F1(M)且M&#x3D;F2(V),V与M互为依赖。
-具体一点：
-
-用户在输入框输入了123（V层），内存里与之关联的数据自动变为123（M层）
-通过代码修改内存的数据为123（M层），界面上与之关联的部分自动变为123（V层）
-
-Vue通过建立MVVM架构实现了双向的响应式，即双向绑定。
-
-又一个场景里的概念：观察者模式、依赖收集&lt;script&gt;  let v = 1;&lt;/script&gt;&lt;div&gt;  &lt;input value=&#123;v&#125; /&gt;  &lt;input value=&#123;v&#125; /&gt;&lt;/div&gt;
-
-上述HTML片段中，两个&lt;input /&gt;内使用了一个JS变量v。
-我们实现一下对v变化的监听，察觉到它发生变化的时机，然后及时通知到两个&lt;input /&gt;的value改变：
-// 监听v，一旦v变化，就改变两个input的值Object.defineProperty(window, &#x27;v&#x27;, () =&gt; &#123;  set(value) &#123;    const inputDoms = document.querySelectorAll(&#x27;input&#x27;)    inputDoms[0].value = value    inputDoms[1].value = value  &#125;       &#125;)
-
-注意，这里我们能进行通知，是因为这个片段很简单，我们能直接看到v被使用的位置，所以可以写像创建上文x与y的关系那样的代码。
-但是，如果我们的项目有无穷多处都依赖了v, 那我们还能一个一个手动去实现每一个响应式数据吗？
-所以我们面临一个问题：怎么快速修改所有v？
-这里我们需要先学习业界大佬们总结的23种设计模式之一，观察者模式。
-什么是观察者模式？
-这个模式中一共有2个角色，发布者与观察者。
-发布者好比一个UP主，观察者就是ta的粉丝，当UP发视频的时候，粉丝就会第一时间收到通知。
-让我们用代码表述一下：
-我们的问题解决了——怎么快速修改所有v:
-通过发布者通知所有观察者执行update方法修改数据，就实现了修改所有v。
-我们可以手动创建一个发布者，但是新的问题是，我们该怎么创建观察者？
-让我们分析一下该怎么做，就像是把大象放进冰箱一样，凡事都只需要三步：
-
-观察局势，发现很多地方都使用了变量v，比如&lt;input value=&#123;v&#125;&gt;
-特殊标记这些v的位置
-让被标记的变量成为观察者
-
-怎么标记呢？那就是创造一种语法，比如&lt;input value=&#123;v&#125;&gt;中的&#123;v&#125;。
-然后通过一些~~暴力~~巧妙的操作，遍历所有HTML，找到其中格式满足&#123;xxx&#125;的内容，将其变成观察者即可。
-同时，我们会用巧妙的操作实现一种逻辑，在观察者产生的时候，它会主动关注发布者。
-具体怎么操作，我们后面再谈。
-寻找被特殊标记的变量的过程，就是依赖收集；将标记变量转化为响应式的过程，就是数据劫持；
-至此，我们实现了单向的响应式，在publisher的内容被修改时触发publish方法通知所有存在于HTML片段里面的observer一起修改——也就是完成了V=F1(M)。
-那双向绑定，M=F2(V)怎么实现呢？
-有了上述的铺垫之后就非常简单了！视图层(V层)的变动主要是来自于用户的输入（键盘输入、鼠标点击等），所以我们只需要监听一些用户操作事件就好，比如当用户输入时，让publisher进行通知就行了。
-代码示意如下：
-&lt;div&gt;  &lt;input value=&#123;v&#125; /&gt; // 用户在这里标签上进行输入  &lt;input value=&#123;v&#125; /&gt;&lt;/div&gt;&lt;script&gt;  // ... 省略一堆代码  const inputDom1 = document.querySelector(&#x27;input&#x27;)  // 监听键盘输入  inputDom1.oninput = (e) =&gt; &#123;    // 一旦用户进行输入，就让UP主（publisher）把新的值告诉其他所有粉丝（观察者）    publisher.publish(e.target.value)  &#125;&lt;/script&gt;
-
-
-再一个场景里的概念：虚拟DOM和Diff算法让我们先来讲个故事：
-某个疯狂星期四，乐程的xxl点外卖。打开某团先点了一份黄金鸡块，五分钟后，觉得不够吃又点了一份吮指原味鸡，再过了五分钟，觉得有点渴于是又点了一杯肥宅快乐水…
-这个故事给我们什么启发？
-很明显，这样多次操作下来，需要支付多次配送费用，显然不如一次性点完所有来得划算。
-在web中也是类似的：
-JS引擎和处理HTML的渲染引擎不在同一个进程下，每当用JS去操作HTML（DOM操作），都需要开辟一个跨进程的通道，这种操作开销不小。
-看不懂没关系，我们通俗一点说，
-相当于，JS和HTML是不在同一个国家的，JS要去处理HTML相关的事情，就得花大价钱买机票出国去做，做完了又得买机票回来继续做自己的事情，如果下次又有HTML的事情要处理，那么就又得买机票出国…
-这种开销是昂贵的。
-所以，如果JS能先把要处理的DOM统一记录下来，之后一次性处理完，就能节省许多不必要的开销。
-而这种记录，就是虚拟DOM。
-众所周知，HTML会被解析为DOM树，下图左侧HTML对应就是右侧的DOM树：
-DOM这个词严格来说指的是DOM树，其中每个节点就叫DOM节点，而DOM元素专指标签。
-但是口头上，DOM、DOM树、DOM节点这几个词经常混用，并不做严格的区分…
-
-
-
-
-
-
-
-
-我们为了更明确地表示区分，在提到虚拟DOM的语境下，会把DOM称为真实DOM。
-虚拟DOM就是用JS代码表示上图右侧结构(主要看a标签那一块的表示就好了)：
-const visualDom = &#123;     tag: &#x27;html&#x27;,  // 标签名     props: &#123;&#125;,    // 标签的属性     content: [    // 标签的内容         &#123;             tag: &#x27;head&#x27;,             props: &#123;&#125;,             content: []         &#125;,         &#123;             tag: &#x27;body&#x27;,             props: &#x27;&#x27;,             content: [                 &#123;                     tag: &#x27;a&#x27;,                     props: &#123;                         href: &#x27;xxx&#x27;                     &#125;,                     content: [                         &#x27;a的内容&#x27; // 内容可以直接就是一个字符串,所以后面需要区分,是字符串还是标签                     ]                 &#125;,                 &#x27;123&#x27;             ]         &#125;     ] &#125;
-
-之后，每次JS先在自己家里把要做的改变记录好，后面出国就能一次性把所有事情办完，节省开销。
-那么如何构建虚拟DOM呢？让我们一步一步考虑：
-
-起初，遍历所有真实DOM，产生上述结构。
-当发送改变时，比如新增&#x2F;删除了一些标签，我们得先在虚拟DOM记录这种改变——这时候问题出现了！
-
-我们怎么知道这种改变发生在虚拟DOM的哪个位置？又重新遍历所有真实DOM节点产生新的结构吗？这听上去开销也太大了，甚至比我们使用虚拟DOM前的情况还要大，那这简直是得不偿失。
-所以我们需要一些算法来优化一下，也就是Diff算法。
-Diff算法不是具体某个算法，而是像DP一样，是一类算法，解决的问题是如何尽快找出两份内容中不同的部分。
-
-准备开始在了解了上面所有概念之后，我们最后来进行一点总结。
-我们要做的是My-Vue，所以简称为MUE吧。
-在正式开始之前，希望大家能先去体验一下真正的Vue。
-由于Mue的语法模仿的是Vue2, 所以推荐大家选择Vue2进行体验。
-因为Vue3语法发生了一些变化，可能会给大家带来一些困扰。
-但无论什么版本，底层原理还是基本一致的。
-**体验到什么程度？**只需要看看大概长啥样，自己再写一点响应式数据试一下就行了。
-让我们梳理一下上面三个场景中提到的内容，整体流程大概是这样的：
-其中需要注意的是，我们之前提到的观察者模式中，没有实现反向通知的能力，这点会在下文提及。
-让我们准备一下文件结构：
-其中index.html和main.js中的内容分别是：
-&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;  &lt;title&gt;Mue&lt;/title&gt;&lt;/head&gt;&lt;body&gt;  &lt;div id=&quot;app&quot;&gt;    &lt;div&gt;&#123;msg&#125;&lt;/div&gt;    &lt;input type=&quot;text&quot; value=&quot;&#123;msg&#125;&quot;&gt;  &lt;/div&gt;&lt;/body&gt;&lt;script type=&quot;module&quot; src=&quot;./main.js&quot;&gt;&lt;/script&gt;&lt;/html&gt;
-
-如果一切顺利，html中出现的&#123;msg&#125;将被替换成Hello Mue。
-import Mue from &#x27;../mue-core/mue.js&#x27;;window.mue = new Mue(&#123;  el: &#x27;#app&#x27;,  data: &#123;    msg: &#x27;Hello MUE!&#x27;  &#125;,&#125;);
-
-和上文一样，接下来涉及到面向对象的部分，我们都用Class进行实现。
-JS中，Class本质是Function，这意味着可以用Function实现——并且这是更推荐的做法。
-但是考虑到大家的面向对象基础更多来自于Java，用Class实现应该更容易上手。
-
-实现核心能力实现：ViewModel层核心 Mue非常简单，主要是记录一下el和data。
-el即对应的真实DOM节点，后续我们将把整个项目挂载到el上。
-然后创建数据劫持者Hijacker和模板编译者Compiler即可。
-import Hijacker from &#x27;../mue-core/hijacker.js&#x27;;import Compiler from &#x27;./compiler.js&#x27;;class Mue &#123;  constructor(options) &#123;    // element的简写。作为项目挂载的根节点。    this.el = document.querySelector(options.el);    this.data = options.data;    new Hijacker(this, &#x27;data&#x27;);    new Compiler(this); // 把整个mue都传给Compiler  &#125;&#125;export default Mue;
-
-实现：发布者 Publisher比较简单，基本和之前提到的部分一致，不再过多赘述：
-// 发布者class Publisher &#123;  constructor(data) &#123;    this.viewers = [];  &#125;  addViewer(viewer) &#123;    this.viewers.push(viewer);  &#125;  publish() &#123;    this.viewers.forEach((viewer) =&gt; &#123;      viewer.update();    &#125;);  &#125;&#125;export default Publisher;
-
-实现：数据劫持者 Hijacker考虑到大家的JS基础，我们这里先简单说明一个JS的知识点，this指向。
-本文的目的不是学习this，所以只做不严谨且粗略的介绍。（如果你已经弄懂了this，请跳过这个部分）
-上文已经用到过不少了，看到这里相信也也应该知道Class中的this大部分时候的意思就是”我自己”。
-我们上文也提到了，Class本质是Function，而且Function内部也有this。
-大部分情况下，**一个函数的this指向这个函数的调用者。**来看看下面这个例子：
-// case 1：类的方法class A &#123;  testThis() &#123;    console.log(this);  &#125;&#125;new A().testThis(); // **A**// case 2: 全局函数function B() &#123;  console.log(this);&#125;B(); // (浏览器环境下)**window**。 因为这是window.B()的缩写// case 3: 类的方法中使用全局函数class C &#123;  testThis() &#123;    B();  &#125;&#125;new C().testThis(); // (浏览器环境下)**window**, 因为还是 window.B()// case 4: 为了让 类的方法中使用的全局函数 访问到 类的this, 我们需要这么改：function Dfunction(that) &#123;  console.log(that);&#125;class Dclass &#123;  testThis() &#123;    const that = this; // 这里多开一个变量的确是不必要的，这里这么做是为了**强调这种处理方式**    Dfunction(that);  &#125;&#125;new Dclass().testThis(); // Dclass
-
-另外，数据劫持还需要注意一个事情就是，可能出现下面这样树形的数据，所以我们需要进行一个遍历处理，这里我们采用递归实现。
-const data = &#123;    a: &#123;        aa:123,        ab: &#123;            aba: &#x27;hhh&#x27;        &#125;    &#125;,    b: &#x27;aaaaaaa&#x27;&#125;
-
-好了，现在让我们来实现Hijacker:
-import Publisher from &quot;./publisher.js&quot;;// 数据劫持者class Hijacker &#123;  constructor(mue, data) &#123;    this.hijack(mue, data);  &#125;  // Object.defineProperty劫持数据需要拿到 该数据节点 及 其父级对象  hijack(object, key) &#123;    // **创建发布者**    const publisher = new Publisher();    let value = object[key];    if (!value) &#123;      return;    &#125; else if (typeof value === &#x27;object&#x27;) &#123; // 当前节点是树，递归;      Object.keys(value).forEach((key) =&gt; &#123;        this.hijack(value, key);      &#125;);    &#125; else &#123; // 当前节点是叶子节点；object则是其父级节点      // **上文提到的知识点：JS的this指向**      const that = this;          // **开始劫持数据**      Object.defineProperties(object, value, &#123;        // **记住这个get, 这个很重要**        get() &#123;  // **实现反向通知的核心步骤**，具体怎么回事在**实现Viewer时进一步说明**          if (Publisher.target) &#123;            publisher.addViewer(Publisher.target);          &#125;          return value;        &#125;,        set(newValue) &#123;          if (value === newValue) &#123; // 防止死循环: 更新-&gt;触发publish-&gt;更新-&gt;...            return          &#125;          value = newValue;          that.hijack(object, newValue); // 提防一首新的数据是树形结构，递归一下          publisher.publish();        &#125;      &#125;);    &#125;  &#125;&#125;export default Hijacker;
-
-实现：观察者 Viewer观察者也非常容易实现，只需要在之前提到过的代码上加一点点内容实现反向通知即可：
-import Publisher from &quot;./publisher.js&quot;;// 观察者class Viewer &#123;  constructor(mue, dataKey, updateHandler) &#123;    this.mue = mue; // 传说中的vm层，即mue实例    this.dataKey = dataKey; // 数据的键    this.updateHandler = updateHandler; // 用来更新视图层(V层)的方法    // 这里是反向通知的关键操作：    // 绑定一个静态属性。相当于在Publisher内部创建一个“全局”变量，记录是哪个观察者触发的反向通知    Publisher.target = this;    // 这里使用了 mue.data[dataKey]，**将触发劫持者设置的 get方法**：    // **反向通知 publisher邀请当前这个viewer成为观察者（也可以理解为viewer主动成为观察者）**    this.oldValue = mue.data[dataKey];    // 结束，标记为空，释放内存    Publisher.target = null;  &#125;  update() &#123;    const newValue = this.mue.data[dataKey];    if (this.oldValue === newValue) &#123; // 同样地，没有更新就啥也不干      return;    &#125;    // 更新视图，实现 V = F1(M)    this.updateHandler(newValue);  &#125;&#125;export default Viewer;
-
-让我们分析一下其中Publisher.target是一个什么操作：
-在创建Viewer的时候，会给Publisher添加一个静态属性target，记录一下当前是在创建哪个观察者。
-静态属性可以理解为，在Publisher上创建的一个全局变量。
-然后使用这个观察者对应的值时，会触发get方法，让观察者实例publisher将刚刚记录的观察者添加进观察者队列——看上去就像是观察者一创建就主动关注了发布者一样。
-这里其实有个有意思的小知识点，就顺口提一句：import的内容是原数据的引用而不是拷贝，所以我们可以在viewer.js引入的Publisher上绑定新的值，然后在hijacker.js中访问到这些值。
-实现：模板编译者 Compiler这个是五个角色中最难的一个部分了。
-在开始写代码前我们仍然需要介绍一堆前置概念。
-
-首先我们要复习一下JS的DOM类型——请记住DOM也是有类型的，常见的类型如下表所示：
-
-
-
-
-类型
-说明
-编号
-图示参考
-
-
-
-元素
-每一个标签都是一个元素节点，如 &lt;div&gt; 、 &lt;span&gt;
-1
-
-
-
-属性
-id 、class 、style等
-2
-
-
-
-文本
-元素节点或属性节点中的文本内容
-3
-
-
-
-注释
-注释，比如``
-8
-
-
-
-文档
-也叫根节点，即document
-9
-
-
-
-
-然后再让我们了解一下 伪数组。
-
-
-
-// 伪数组也叫类数组，本质是对象，只不过键是0-N, 就像是下面这样const objectArray = &#123;    0: &#x27;aaa&#x27;,    1: &#x27;bbb&#x27;,    2: &#x27;ccc&#x27;&#125;console.log(objectArray[0]) // aaa
-
-什么场景下会出现伪数组？
-比如document.querySelectorAll的返回值、函数的arguments参数列表等都是伪数组。
-
-如果要把伪数组变为数组，可以使用Array.from方法:
-
-
-
-&lt;div id=&quot;app&quot;&gt;  &lt;span&gt;Hello&lt;/span&gt;  World&lt;/div&gt;&lt;script&gt;  const dom = document.querySelector(&#x27;#app&#x27;)  const children = dom.childNodes // **获取当前节点的所有子节点。可以以此进行前序遍历**  console.log(&#x27;伪数组&#x27;, children)  console.log(&#x27;真数组&#x27;, Array.from(children))&lt;/script&gt;
-
-那为什么要把伪数组转为真数组呢？
-因为伪数组是对象，不具有数组的某些方法，比如push和pop，许多场景下使用起来不方便。
-那JS设计者为什么要搞出伪数组这种东西？
-据JS之父自己坦白——“当初只用了十天就搞完了…现在看起来确实设计得太糙了…”
-
-最后，我们需要简单认识一下正则表达式（regular expression）。
-
-实现Compiler只会简单用到一点正则，所以这里只给出3种case给大家了解一下概念，不做过多深入:
-const reg = /\&#123;(.+?)\&#125;/; // 正则表达式。这个能够匹配形如 &#123;xxx&#125; 的字符串, ()表示要获取的部分const str = &#x27;这是&#123;msg&#125;&#x27;;// case 1: 用正则表达式去匹配字符串console.log(reg.test(str)); // true// case 2: 用字符串去匹配正则表达式console.log(str.match(reg)); // [ &#x27;&#123;msg&#125;&#x27;, &#x27;msg&#x27;, index: 2, input: &#x27;这是&#123;msg&#125;&#x27;, ...]// case 3: 替换匹配内容const data = &#x27;swpu-lec, yyds&#x27;;console.log(str.replace(reg, data));  // 这是swpu-lec, yyds
-
-由于主题是Vue，而且正则又博大精深，所以限于篇幅此处不做更多介绍了。如果对此感兴趣，可以学习：[该类型的内容暂不支持下载]
-熟悉了以上内容后，先来大体看看我们要做的东西。
-内容比较多，我们拆成了几个层次分开看，首先我们需要一个大体的框架如下：
-import Viewer from &quot;./viewer.js&quot;;// 模板编译者class Compiler &#123;  constructor(mue) &#123;    this.mue = mue;    this.el = mue.el;    this.compile(this.el);  &#125;  // 开始编译  compile(el) &#123;    const childNodes = el.childNodes; // 真实DOM伪数组    const childNodesList = Array.from(childNodes); // 转为真数组，进而可以用数组的api    // 前序遍历整个DOM树    childNodesList.forEach((node,) =&gt; &#123;      // 判断是什么类型的DOM, 扔给不同的处理方法      if (node.nodeType === 1) &#123; // 元素类型        this.compileForElement(node);      &#125; else if (node.nodeType === 3) &#123; // 文本类型        this.compileForText(node);      &#125;      // 如果还有子节点，递归获取下一层      if (node.childNodes.length) &#123;        this.compile(node);      &#125;    &#125;);  &#125;  // TODO: 主要就是实现这俩函数：  // 处理元素类型DOM  compileForElement(node) &#123;&#125;  // 处理文本类型DOM  compileForText(node) &#123;&#125;&#125;export default Compiler;
-
-怎么实现函数呢？既然我们都说过正则匹配了，那么也会用上吧：
-// 处理元素类型DOMcompileForElement(node) &#123;  const reg = /\&#123;(.+?)\&#125;/; // 正则表达式，匹配形如 &#123;xxx&#125; 的字符串  const allAttributes = Array.from(node.attributes); // 将节点的所有属性，处理为数组  // 遍历数组，处理每个属性  allAttributes.forEach((attribute) =&gt; &#123;    // 比如 data=&quot;&#123;msg&#125;&quot;, attribute.name就是&quot;data&quot;, attribute.value就是&quot;&#123;msg&#125;&quot;    const text = attribute.value;    const matchRes = text.match(reg);    if (matchRes) &#123; // 如果包含形如 &#123;xxx&#125; 的部分      const dataKey = matchRes[1];    // 比如匹配的是&quot;&#123;msg&#125;&quot;, matchRes[1]就是&quot;msg&quot;      // 创建观察者，触发相关逻辑      new Viewer(this.mue, dataKey, (newValue) =&gt; &#123;        node.textContent = newValue;      &#125;);      const newValue = this.mue.data[dataKey];      node.value = text.replace(reg, newValue); // 将 &#123;xxx&#125; 替换为具体的值      // 监听键盘输入，完成双向绑定，M=F2(V)      node.addEventListener(&#x27;input&#x27;, () =&gt; &#123;        this.mue.data[dataKey] = node.value;      &#125;);    &#125;  &#125;);&#125;// 处理文本类型DOMcompileForText(node) &#123;  const reg = /\&#123;(.+?)\&#125;/;  const text = node.textContent;  const matchRes = text.match(reg);  if (matchRes) &#123;  // 与上面的方法基本上一样的逻辑    const dataKey = matchRes[1];    const newText = this.mue.data[dataKey];    node.textContent = text.replace(reg, newText);    new Viewer(this.mue, dataKey, (newText) =&gt; &#123;      node.textContent = newText;    &#125;);  &#125;&#125;
-
-至此，MUE已经基本完成了。可以打开HTML页面体验一下成果了！
-但也再额外给一点开放性挑战，感兴趣可以做一做：
-// challenge 1：if、else-if、else，当值为布尔或可以类型转换为布尔时，进行相应的渲染控制&lt;div&gt;  &lt;div if=&quot;&#123;false&#125;&quot;&gt;A&lt;/div&gt;  &lt;div else-if=&quot;&#123;0&#125;&quot;&gt;B&lt;/div&gt;  &lt;div else=&quot;&#123;true&#125;&quot;&gt;C&lt;/div&gt;&lt;/div&gt;// challenge 2：循环渲染, 其中arr是一个数组，element是其元素，index是其下标&lt;div for=&quot;i:arr&quot;&gt;  &lt;span&gt;&#123;i&#125;&lt;/span&gt;&lt;/div&gt;
-
-
-~~【废弃】实现性能优化~~我们不需要下述的性能优化方案——因为我们有了超越虚拟DOM性能的方案。
-~~实现：虚拟DOM~~~~经过一番体验后就发现，如果非常快速地输入中文的话，可能会导致双向绑定出错…~~
-~~这是因为，目前我们是每输入一个字符都会触发一次真实DOM的更改，高频且大量的操作就可能超出浏览器处理数据的极限（输入频率超过浏览器最大渲染频率），出现数据和视图不一致的情况…~~
-~~总结就是，太卡了，需要优化一下，那么就像是我们上文提到的，实现一下虚拟DOM。~~
-~~实现：Diff算法~~如果我们没有虚拟DOM，那么我们或许可以不使用Diff算法？
-
-实现更多场景我突然意识到这不仅是一次尝试，更是一个开发真实可用的框架的好机会！
-由于Mue名字寓意太明显了抄袭痕迹太重，所以正式版改名叫Mud吧，寓意非常丰富：
-
-实现思路借鉴了Vue，React(JSX)，Svelte等多个框架，是各种东西糊成的一坨
-实现并不精致，但是容易被塑造成各种形状，朴素实用
-泥巴里面可以催生出很多东西，以此为基础可以产生更多技术框架
-出淤泥而不染
-
-（我的确是在自吹自擂）
-1. 在多种模块化规范下使用Mud.js先简单介绍一下JS的模块化规范：
-
-
-
-规范名称
-说明
-示例
-
-
-
-umd
-几乎是前端诞生以来，就有了雏形，但是一直到2009年左右才终于形成正式的规范
-&lt;script src=&quot;xxx&quot; /&gt; &lt;br&gt;像这样引入的就是umd包
-
-
-cjs
-NodeJS的伴生产物，也是2009年左右形成的规范
-const a = require(&#39;a&#39;) &lt;br&gt;module.exports = &#123;&#125; &lt;br&gt;像这样的导入、导出的则是cjs包
-
-
-esm
-ECMAScript官方2015年推出的规范，JS正统
-import a from &#39;a&#39; &lt;br&gt;export default b &lt;br&gt;像这样导入、导出的则是esm包
-
-
-cmd和amd
-2009年前后出现，现如今使用频率较低，不在本次兼容的范围内。
-?（不详）
-
-
-我们将借助rollup的能力实现一套代码转变为多种规范的包。
-在这之前你一定听说过webpack或者vite——不使用这些是因为它们太重了，我们这里只是需要简单地转变规范，所以轻量小巧的rollup就成了首选。
-相信配置一套满足上述要求的rollup文件不会困扰大家，所以交由大家自行实现。
-在打包完成后，引入不同规范的包：
-umd
-非常容易实现，但是需要输入完整路径（形如../node_modules/mud/umd/index.js）
-cjs
-由于node和node_modules的关系不一般，所以只需要require直接导入包名即可(require(&#39;mud&#39;))
-esm
-这是最难的一个部分，需要有webpack等打包构建工具（这就埋下了一个伏笔——我们需要构建一个脚手架；还有，我个人更倾向用vite）
-这里为了更好地验证包发布的效果，这里可以使用工具yalc来模拟验证。
-2. 比虚拟DOM更直接的内容更新办法相比虚拟DOM，其实有个更简单且还算高效的办法——innerHTML。
-一键替换内容。
-这样的实现将会减小代码体积，并且在常规情况下的效率会高于虚拟DOM。
-3. 模块化受到腾讯的微前端框架无界的启发，我们想到了一种不一样的模块化方案：
-先到根目录下src/index.html中写入（根组件）
-&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;  &lt;title&gt;Mud.js&lt;/title&gt;  &lt;link rel=&quot;stylesheet&quot; href=&quot;./index.css&quot;&gt;&lt;/head&gt;&lt;body&gt;  &lt;div id=&quot;app&quot;&gt;    &lt;div&gt;&#123;msg&#125;&lt;/div&gt;    &lt;input type=&quot;text&quot; value=&quot;&#123;msg&#125;&quot;&gt;    &lt;component1 /&gt;  &lt;/div&gt;&lt;/body&gt;&lt;script type=&quot;module&quot; src=&quot;./xxx/Mud.js&quot;&gt;&lt;/script&gt;&lt;script&gt;new Mud(&#123;  el: &#x27;#app&#x27;,  data: &#123;    msg: &#x27;Hello Mud!&#x27;,    arr: [&#x27;Someday&#x27;, &#x27;I&#x27;, &#x27;Will&#x27;, &#x27;Be&#x27;, &#x27;Like&#x27;, &#x27;You&#x27;],    cnt: 1,  &#125;,  components: &#123;    component1: &#x27;src/components/component1/index.html&#x27;  &#125;&#125;);const plus = () =&gt; &#123;  mud.data.cnt ++&#125;&lt;/script&gt;&lt;/html&gt;
-
-然后这里是模块src/components/component1/index.html：
-&lt;div&gt;这是组件&lt;/div&gt;&lt;script&gt; new Mud(&#123;  el: &#x27;#component1&#x27;,  data: &#123;&#125;,&#125;);       &lt;/script&gt;
-
-怎么引入模块呢？
-
-从根组件开始解析（模板编译的过程），访问每个DOM节点时，通过字符串比较发现了非原生标签，那么我们就推断这是一个Mud组件。
-要求用户手写组件注册（id: path），据此便能够通过组件名称（即id），找到对应的文件路径，用ajax等方式请求下来（异步解析非常高效，也为ssr提供了能力），直接替换原来的组件标签的innerHTML即可。
-注意，替换之后，该组件内部可能还有组件，也遵循上述规则进行解析——这样的设计，我们便以一种非常简单的方式实现了单页面应用、组件化设计，它的特点是渲染顺序是先序，更新粒度是一个组件——所以我们不需要Diff，并且…
-更好的数据劫持
-
-初步实现将Object.defineProperty换为Proxy，这样我们就能够在不重写方法的前提下监听到数组的push、pop等操作了。这是一个改动量非常大的工作，但是很显然，它的收益是相当可观的。
-多级调用还需要支持对象多级调用，思路就是通过点来分割即可。
-性能优化对于已经被劫持过的数据，我们要防止其被再次劫持以避免不必要的性能开销。
-5. 【TODO】更好的观察者模式现在的观察者都是不具名的，存在很多性能问题：
-
-一处变量a改变时，除了通知其他变量a更新之外，还会通知变量b更新。
-比如handleIf中，反复改变状态时，会创建大量重复的观察者。
-
-优化的方案也比较简单，将Publisher的数组改为一个Set，通过键名指定更新某一个变量。
-6. 丰富语法现在已经实现了插值语法、for循环等，目前还打算实现以下语法。
-if系列
-If else-if else，这是vue中非常优秀的一个设计，抄了。
-for
-组件参数传递
-父级组件中：
-&lt;component1 a=&#123;xxx&#125; /&gt;&lt;script&gt;new Mud(&#123;    data: &#123;        xxx:1    &#125;&#125;)&lt;/script&gt;
-
-子级组件中：
-会把这个组件标签上所有的属性搜刮下来，然后自动放到props.data中（之后，props将作为一个关键字，不允许用户自定义data叫props）：
-&lt;div&gt;    &#123;&#123;props.data.xxx&#125;&#125;&lt;/div&gt;&lt;script&gt;new Mud(&#123;    data: &#123;&#125;,&#125;)&lt;/script&gt;
-
-另外还有props.child的操作，这个则是react中非常符合直觉的设计：
-父组件中：
-&lt;component1 a=&#123;xxx&#125;&gt;    &lt;div&gt;这是嵌入的内容&lt;/div&gt;&lt;/component1&gt;&lt;script&gt;new Mud(&#123;    data: &#123;        xxx:1    &#125;&#125;)&lt;/script&gt;
-
-子组件中：
-结合if等语法可以实现非常多骚操作，而且这部分由于是用innerHTML直接插入的，所以还可以使用子组件中的变量。
-&lt;div&gt;    &#123;&#123;props.child&#125;&#125;&lt;/div&gt;&lt;script&gt;new Mud(&#123;    data: &#123;&#125;,&#125;)&lt;/script&gt;
-
-Watch监听
-即让用户手动监听数据，这个比较简单，将观察者的内部方法暴露出去即可。
-7. 实现生命周期对此，我们还得仔细思考一下，到底是实现Hook还是生命周期。
-onMounted
-直接在挂载的时候加个函数就行了。
-8. 更多生态实现Mud-Doc：Mud官方文档
-【TODO】实现Root：Mud框架的路由
-实现Mud-Cli：快速搭建Mud项目
-【TODO】产出Mud-Demo：利用Mud快速构建优秀的作品
-组件样式库
-~~暂时使用开源的xy-ui:https://github.com/xboxyan~~
-可以先考虑 semi-ui
-发布上线
-
-测试点1. 内容插值语法
-☑ 常规的基础数据插值，如&#123;a&#125;
-
-☑ 特殊的基础数据插值，如NaN，undefined，null，空字符串，symbol，基本数学运算表达式，三元表达式
-
-对于undefined和symbol，插值语法不解析，其余均正常。
-
-
-☑ 常规的引用数据类型插值，如&#123;b&#125;，其中b=&#123;name: 1&#125;
-
-支持n级连续调用，但是Proxy的setter并没有生效（已修复）。
-
-
-☑ 特殊的引用数据类型插值，如空对象, 函数表达式，函数运算结果，new新建对象
-
-对于函数表达式，竟然会直接获取到运算结果，出乎意料。
-
-
-☑ 更多插值方式，如直接插入表达式，插入函数调用，插入连续调用
-
-暂不打算支持插入表达式和函数调用。
-
-
-☑ 非常极端的插值方式，如不填写任何变量，填写不存在的变量，填写特殊符号，填写标签
-
-很好，填写标签也是能够如预期的一样进行。
-
-
-☑ 两个对象内有相同的属性名字
-
-☑ 在插值语法的括号两侧写入其他内容，如aaaa&#123;a&#125;aa
-
-会把两侧的其他内容覆盖掉（已修复）。
-
-
-
-2. 属性插值语法
-☑ 常规的属性插值，如input=&quot;&#123;a&#125;&quot;，其中a=1
-
-☑ 不恰当的插值，如input属性需要number或string等类型的数据，但是插入函数、对象等
-
-☑ 更多插值方式，如插入表达式，插入函数调用，连续调用
-
-同上，暂不打算支持直接插入表达式和函数调用。
-
-
-☑ 错误的插值，如填写不存在的变量，特殊符号，标签
-
-
-3. if系列（由于if-else和else暂未上线，所以暂时满足2.属性插值语法的标准即可判定为通过）
-
-☑ 满足2.属性插值语法中的要求
-
-4. for循环
-☑ 满足2.属性插值语法中的要求
-
-☑ 插入非数组元素
-
-对于形如() =&gt; [1]的值，会无法解析！
-
-
-但是之前在data中直接写函数表达式的话，是能够解析返回值的，所以这里后续最好统一一下。
-
-
-另外，最好再支持一下下标。
-
-
-
-5. 组件化
-☑ 参数传递满足2.属性插值语法中的要求
-
-☐ 远程组件
-
-只是试试能不能，不作为必要的测试标准。
-
-
-☑ 传递多个参数
-
-☑ 组件多级嵌套
-
-☑ 一个父组件多个子组件
-
-☑ 传递连续调用的对象
-
-☑ 传递函数
-
-是比较符合预期的，能够实现组件通信。
-
-
-不过有个问题是，直接在script宏任务中访问window.mud是undefined，大概是还没有加载上。
-
-
-只能够异步地调用函数。
-
-
-☑ 传递同一个变量，以及改个名字之后重复传递
-
-☑ 特殊的组件调用，如父子相互引用，兄弟引用，自己调用自己
-
-自己调用自己：只会进行一次，递归会被阻止。
-
-
-父子相互引用：被浏览器阻止，子组件引用父组件失败。
-
-
-
-6. 兼容性
-☑ 移动端设备
-☑ Chrome&#x2F;Edge(其他浏览器暂时不用管)
-
-]]></content>
-      <categories>
-        <category>进一步学习vue</category>
-      </categories>
-      <tags>
-        <tag>minvue</tag>
       </tags>
   </entry>
 </search>
