@@ -1170,6 +1170,36 @@ Fireship
       </tags>
   </entry>
   <entry>
+    <title>butterfly安装之旅</title>
+    <url>/posts/2025/07/blog/butterfly%E5%AE%89%E8%A3%85/e70f18fc.html</url>
+    <content><![CDATA[创建一个文件夹
+在文件夹打开git
+git clone -b main https://github.com/jerryc127/hexo -theme-butterfly .git themes/butterfly
+
+应用主题修改Hexo 根目录下的_config.yml，把主题改为butterfly
+theme:  butterfly
+
+安装插件下载安装渲染器：
+npm install hexo -renderer-pug hexo -renderer-stylus  --save
+
+重中之重
+在hexo 的根目录创建一个文件_config.butterfly.yml，并把主题目录的_config.yml 内容复制_config.butterfly.yml到 去。
+
+注意:
+
+复制的是主题的_config.yml，而不是hexo 的_config.yml
+不要把主题目录的_config.yml删掉
+以后只需要在_config.butterfly.yml进行配置就行。如果使用了_config.butterfly.yml， 配置主题的_config.yml将不会有效果。
+Hexo 会自动合并主题中的_config.yml和_config.butterfly.yml里的配置，如果存在同名配置，会使用_config.butterfly.yml的配置，其优先度较高。
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>分享工具帖</title>
     <url>/posts/2025/09/Fronted/%E5%AD%A6%E9%95%BF%E5%88%86%E4%BA%AB%E8%B4%B4/6335c835.html</url>
     <content><![CDATA[学三件套时, .学长分享的好用工具, 当时有许多看不懂(现在也是).避免以后遗忘, 把它搬到这里来
@@ -1387,36 +1417,6 @@ Shopify Editions | Summer ’24
       </tags>
   </entry>
   <entry>
-    <title>butterfly安装之旅</title>
-    <url>/posts/2025/07/blog/butterfly%E5%AE%89%E8%A3%85/e70f18fc.html</url>
-    <content><![CDATA[创建一个文件夹
-在文件夹打开git
-git clone -b main https://github.com/jerryc127/hexo -theme-butterfly .git themes/butterfly
-
-应用主题修改Hexo 根目录下的_config.yml，把主题改为butterfly
-theme:  butterfly
-
-安装插件下载安装渲染器：
-npm install hexo -renderer-pug hexo -renderer-stylus  --save
-
-重中之重
-在hexo 的根目录创建一个文件_config.butterfly.yml，并把主题目录的_config.yml 内容复制_config.butterfly.yml到 去。
-
-注意:
-
-复制的是主题的_config.yml，而不是hexo 的_config.yml
-不要把主题目录的_config.yml删掉
-以后只需要在_config.butterfly.yml进行配置就行。如果使用了_config.butterfly.yml， 配置主题的_config.yml将不会有效果。
-Hexo 会自动合并主题中的_config.yml和_config.butterfly.yml里的配置，如果存在同名配置，会使用_config.butterfly.yml的配置，其优先度较高。
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>魔改之旅</title>
     <url>/posts/2025/07/blog/%E9%AD%94%E6%94%B9%E4%B9%8B%E6%97%85/afacad78.html</url>
     <content><![CDATA[文档指路https://butterfly.zhheo.com/create.html我的主题色 : rgb(191, 219, 221)加载动画 (安知鱼)https://blog.anheyu.com/posts/52d8.html导航栏修改(安知鱼)https://blog.anheyu.com/posts/8e53.html试了一下, 每次改完网站就挂了(细节处理太麻烦了), 以后再试试其他主题
@@ -1448,6 +1448,34 @@ permalink: posts/:year/:month/:title/:abbrlink.html
       </tags>
   </entry>
   <entry>
+    <title>使用电脑clash verge给手机共享代理</title>
+    <url>/posts/2025/07/%E7%94%9F%E6%B4%BB%E5%B0%8F%E6%8A%80%E5%B7%A7/%E6%89%8B%E6%9C%BA%E4%BB%A3%E7%90%86/6c1cb663.html</url>
+    <content><![CDATA[框框灵机一动, 想在手机上面也能访问github, 这里做个记录, 免得之后忘记怎么设置了
+前提我现在的手机型号是 oppo Pro12, 安卓, 电脑用的是clash verge, 节点购买的 赔钱机场
+网上的资料使用电脑clash verge给手机共享代理【电脑上的准备】
+1.首先打开clash verge的设置界面，打开“局域网连接”，若弹出防火墙提示，请选择允许访问
+2.使用win+r快捷键，在弹出页面输入“cmd”并点击确定或回车
+3.在新弹出的页面中输入”ipconfig&#x2F;all“并回车
+4.在显示的列表中找到“ IPv4 地址 . . . . . . . . . . . . :”一栏
+【手机上的设置】
+1.进入网络设置中的wifi设置，通常在你连接的wifi右侧会有感叹号图标，或者长按可以修改网络具体设置，若没有，请自行在网上查询您所使用的设备如何设置手动代理
+2.在网络的具体设置中找到代理设置，通常默认为关闭，请将其设置为手动
+3.在服务器一栏内填写上方电脑中获取到的ipv4地址（通常格式为192.168..或10.236..）
+4.在端口一栏填写clash verge设置页面“端口设置”后方的数字，默认为“7890”您也可以自行更改
+5.填写完之后点击保存即可，若提示已连接网络但无法访问互联网，请不要在意，直接打开浏览器尝试访问外网即可，此时不出意外的话应该已经能够正常连接
+实际电脑跟网上找的资料说的一样, 记录下电脑的端口号 和 IPv4的数值
+手机进入wife连接界面 -&gt; 点击wife右边那个感叹号 -&gt; 找到高级选项 -&gt; 把代理换成手动设置 -&gt; 将 IP设置改为静态 -&gt; IP地址设置为电脑提供的 IPv4 的数值 -&gt; 端口号也改成电脑的值 -&gt; 隐私那里改成”使用设备MAC地址”
+ok, 恭喜你
+现在, 你可以自由的在手机上访问github啦!
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>手机设置代理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>日记</title>
     <url>/posts/2025/07/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/%E9%9A%8F%E7%AC%94/3458e8f8.html</url>
     <content><![CDATA[路漫漫其修远兮, 路还长, 一切才刚刚开始
@@ -1474,34 +1502,6 @@ permalink: posts/:year/:month/:title/:abbrlink.html
       </categories>
       <tags>
         <tag>没有营养的话</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用电脑clash verge给手机共享代理</title>
-    <url>/posts/2025/07/%E7%94%9F%E6%B4%BB%E5%B0%8F%E6%8A%80%E5%B7%A7/%E6%89%8B%E6%9C%BA%E4%BB%A3%E7%90%86/6c1cb663.html</url>
-    <content><![CDATA[框框灵机一动, 想在手机上面也能访问github, 这里做个记录, 免得之后忘记怎么设置了
-前提我现在的手机型号是 oppo Pro12, 安卓, 电脑用的是clash verge, 节点购买的 赔钱机场
-网上的资料使用电脑clash verge给手机共享代理【电脑上的准备】
-1.首先打开clash verge的设置界面，打开“局域网连接”，若弹出防火墙提示，请选择允许访问
-2.使用win+r快捷键，在弹出页面输入“cmd”并点击确定或回车
-3.在新弹出的页面中输入”ipconfig&#x2F;all“并回车
-4.在显示的列表中找到“ IPv4 地址 . . . . . . . . . . . . :”一栏
-【手机上的设置】
-1.进入网络设置中的wifi设置，通常在你连接的wifi右侧会有感叹号图标，或者长按可以修改网络具体设置，若没有，请自行在网上查询您所使用的设备如何设置手动代理
-2.在网络的具体设置中找到代理设置，通常默认为关闭，请将其设置为手动
-3.在服务器一栏内填写上方电脑中获取到的ipv4地址（通常格式为192.168..或10.236..）
-4.在端口一栏填写clash verge设置页面“端口设置”后方的数字，默认为“7890”您也可以自行更改
-5.填写完之后点击保存即可，若提示已连接网络但无法访问互联网，请不要在意，直接打开浏览器尝试访问外网即可，此时不出意外的话应该已经能够正常连接
-实际电脑跟网上找的资料说的一样, 记录下电脑的端口号 和 IPv4的数值
-手机进入wife连接界面 -&gt; 点击wife右边那个感叹号 -&gt; 找到高级选项 -&gt; 把代理换成手动设置 -&gt; 将 IP设置改为静态 -&gt; IP地址设置为电脑提供的 IPv4 的数值 -&gt; 端口号也改成电脑的值 -&gt; 隐私那里改成”使用设备MAC地址”
-ok, 恭喜你
-现在, 你可以自由的在手机上访问github啦!
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>手机设置代理</tag>
       </tags>
   </entry>
   <entry>
@@ -4643,6 +4643,58 @@ var date = new Date() //当前时间   console.log(date)   console.log(date.toIS
       </tags>
   </entry>
   <entry>
+    <title>router</title>
+    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/router/c031c21b.html</url>
+    <content><![CDATA[位置: src下的router文件
+安装和设置路由导入mian.js, , 并使用 app.use(router)
+import&#123;createRouter, createWebHistory,createWebHashHistory&#125; from &#x27;vue-router&#x27;const routes = [    &#123;        path: &#x27;/&#x27;,        component: () =&gt; import (&quot;../views/index.vue&quot;)    &#125;,]const router = createRouter(&#123;    history: createWebHistory(),     // history: createWebHashHistory(),    routes&#125;)export default router
+配置路径别名打开vite.config.js文件导入 import path from &#39;path&#39; 
+添加
+import &#123; defineConfig &#125; from &#x27;vite&#x27;import vue from &#x27;@vitejs/plugin-vue&#x27;import path from &#x27;path&#x27;// https://vite.dev/config/export default defineConfig(&#123;  plugins: [vue(), ],  resolve: &#123;    alias: &#123; //配置路径别名      &#x27;@&#x27;: path.resolve(__dirname, &#x27;src&#x27;)    &#125;  &#125;&#125;)
+
+在src根目录下添加 jsconfig.json文件 (针对js项目, ts需要写tsconfig.json)并配置
+&#123;    &quot;compilerOptions&quot;: &#123;        &quot;baseUrl&quot;:&quot;.&quot;,        &quot;paths&quot;: &#123;            &quot;@/*&quot;:[&quot;src/*&quot;]//配置@符号指向src目录及其子目录         &#125;    &#125;&#125;
+
+使用查询字符串传递参数动态路由我们经常需要把某种模式匹配到的所有路由，全都映射到同个组件。例如，我们有一个 User 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。我们可以在 vueRrouter 的路由路径中使用“动态路径参数”(dynamic segment) 来达到这个效果。
+
+动态路由的创建，主要是使用 path 属性过程中，使用动态路径参数，路径参数 用冒号 : 表示。
+
+当一个路由被匹配时，它的 params 的值将在每个组件中以 this.$route.query 的形式暴露出来。因此，我们可以通过更新 User 的模板来呈现当前的用户 ID：
+const routes = [  &#123;    path: &#x27;/user/:id&#x27;    name: &#x27;User&#x27;    components: User	&#125;]
+****_vue-router _**通过配置 **_params _**和 **_query _来实现动态路由
+params 传参
+必须使用 命名路由 name 传值
+
+参数不会显示在 url 上
+
+浏览器强制刷新时传参会被清空
+
+
+// 传递参数this.$router.push(&#123;  name: Home，  params: &#123;    number: 1 ,    code: &#x27;999&#x27;  &#125;&#125;)// 接收参数const p = this.$route.params
+query 传参
+可以用 name 也可以使用 path 传参
+传递的参数会显示在 url 上
+页面刷新是传参不会丢失
+
+// 方式一：路由拼接this.$router.push(&#x27;/home?username=xixi&amp;age=18&#x27;)// 方式二：name + query 传参this.$router.push(&#123;  name: Home，  query: &#123;    username: &#x27;xixi&#x27;,    age: 18	&#125;&#125;)// 方式三：path + name 传参this.$router.push(&#123;  path: &#x27;/home&#x27;，  query: &#123;    username: &#x27;xixi&#x27;,    age: 18	&#125;&#125;)// 接收参数const q = this.$route.query
+
+定义别名借助 alias
+    &#123;        path: &#x27;/&#x27;,        alias: [&#x27;/home&#x27;, &#x27;/index&#x27;],        component: () =&gt; import (&quot;@/views/index.vue&quot;)    &#125;,
+
+注意:  访问时,  ‘&#x2F;‘, ‘&#x2F;home’, ‘inedx’, 都可以进入到 index.vue页面
+router-link 组件router-link 的本质是 a 标签，在标签上绑定了click事件，然后执行对应的VueRouter实例的push()实现的
+router-view 组件渲染组件渲染的关键在于 router-view ，将路由变化时匹配到的组件进行渲染。 routerView是一个函数式组件，函数式组件没有data，没有组件实例。 因此使用了父组件中的$createElement函数，用以渲染组件，并且在组件渲染的各个时期注册了hook 如果被 keep-alive 包裹则直接使用缓存的 vnode 通过 depth 实现路由嵌套， 循环向上级访问，直到访问到根组件，得到路由的 depth 深度
+全局前置守卫在main.js中写
+router.beforeEach((to, from, next) =&gt; &#123;    console.log(&quot;to&quot;, to) //即将进入路由的信息    console.log(&quot;from&quot;, from) //即将离开路由的信息	if(to.name === &#x27;number) &#123;		next(false) //拦截	&#125; else &#123;		next() //继续	&#125;&#125;)
+]]></content>
+      <categories>
+        <category>easybbs</category>
+      </categories>
+      <tags>
+        <tag>easybbs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript下</title>
     <url>/posts/2025/04/Fronted/%E4%B8%89%E4%BB%B6%E5%A5%97/04-%20JavaScript%E9%AB%98%E7%BA%A7/b746f28d.html</url>
     <content><![CDATA[this指向this的绑定规则this的指向
@@ -5657,59 +5709,7 @@ Fetch文件上传![[Pasted image 20240827164955.png]]
       </tags>
   </entry>
   <entry>
-    <title>easybbs</title>
-    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/router/c031c21b.html</url>
-    <content><![CDATA[位置: src下的router文件
-安装和设置路由导入mian.js, , 并使用 app.use(router)
-import&#123;createRouter, createWebHistory,createWebHashHistory&#125; from &#x27;vue-router&#x27;const routes = [    &#123;        path: &#x27;/&#x27;,        component: () =&gt; import (&quot;../views/index.vue&quot;)    &#125;,]const router = createRouter(&#123;    history: createWebHistory(),     // history: createWebHashHistory(),    routes&#125;)export default router
-配置路径别名打开vite.config.js文件导入 import path from &#39;path&#39; 
-添加
-import &#123; defineConfig &#125; from &#x27;vite&#x27;import vue from &#x27;@vitejs/plugin-vue&#x27;import path from &#x27;path&#x27;// https://vite.dev/config/export default defineConfig(&#123;  plugins: [vue(), ],  resolve: &#123;    alias: &#123; //配置路径别名      &#x27;@&#x27;: path.resolve(__dirname, &#x27;src&#x27;)    &#125;  &#125;&#125;)
-
-在src根目录下添加 jsconfig.json文件 (针对js项目, ts需要写tsconfig.json)并配置
-&#123;    &quot;compilerOptions&quot;: &#123;        &quot;baseUrl&quot;:&quot;.&quot;,        &quot;paths&quot;: &#123;            &quot;@/*&quot;:[&quot;src/*&quot;]//配置@符号指向src目录及其子目录         &#125;    &#125;&#125;
-
-使用查询字符串传递参数动态路由我们经常需要把某种模式匹配到的所有路由，全都映射到同个组件。例如，我们有一个 User 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。我们可以在 vueRrouter 的路由路径中使用“动态路径参数”(dynamic segment) 来达到这个效果。
-
-动态路由的创建，主要是使用 path 属性过程中，使用动态路径参数，路径参数 用冒号 : 表示。
-
-当一个路由被匹配时，它的 params 的值将在每个组件中以 this.$route.query 的形式暴露出来。因此，我们可以通过更新 User 的模板来呈现当前的用户 ID：
-const routes = [  &#123;    path: &#x27;/user/:id&#x27;    name: &#x27;User&#x27;    components: User	&#125;]
-****_vue-router _**通过配置 **_params _**和 **_query _来实现动态路由
-params 传参
-必须使用 命名路由 name 传值
-
-参数不会显示在 url 上
-
-浏览器强制刷新时传参会被清空
-
-
-// 传递参数this.$router.push(&#123;  name: Home，  params: &#123;    number: 1 ,    code: &#x27;999&#x27;  &#125;&#125;)// 接收参数const p = this.$route.params
-query 传参
-可以用 name 也可以使用 path 传参
-传递的参数会显示在 url 上
-页面刷新是传参不会丢失
-
-// 方式一：路由拼接this.$router.push(&#x27;/home?username=xixi&amp;age=18&#x27;)// 方式二：name + query 传参this.$router.push(&#123;  name: Home，  query: &#123;    username: &#x27;xixi&#x27;,    age: 18	&#125;&#125;)// 方式三：path + name 传参this.$router.push(&#123;  path: &#x27;/home&#x27;，  query: &#123;    username: &#x27;xixi&#x27;,    age: 18	&#125;&#125;)// 接收参数const q = this.$route.query
-
-定义别名借助 alias
-    &#123;        path: &#x27;/&#x27;,        alias: [&#x27;/home&#x27;, &#x27;/index&#x27;],        component: () =&gt; import (&quot;@/views/index.vue&quot;)    &#125;,
-
-注意:  访问时,  ‘&#x2F;‘, ‘&#x2F;home’, ‘inedx’, 都可以进入到 index.vue页面
-router-link 组件router-link 的本质是 a 标签，在标签上绑定了click事件，然后执行对应的VueRouter实例的push()实现的
-router-view 组件渲染组件渲染的关键在于 router-view ，将路由变化时匹配到的组件进行渲染。 routerView是一个函数式组件，函数式组件没有data，没有组件实例。 因此使用了父组件中的$createElement函数，用以渲染组件，并且在组件渲染的各个时期注册了hook 如果被 keep-alive 包裹则直接使用缓存的 vnode 通过 depth 实现路由嵌套， 循环向上级访问，直到访问到根组件，得到路由的 depth 深度
-全局前置守卫在main.js中写
-router.beforeEach((to, from, next) =&gt; &#123;    console.log(&quot;to&quot;, to) //即将进入路由的信息    console.log(&quot;from&quot;, from) //即将离开路由的信息	if(to.name === &#x27;number) &#123;		next(false) //拦截	&#125; else &#123;		next() //继续	&#125;&#125;)
-]]></content>
-      <categories>
-        <category>项目</category>
-      </categories>
-      <tags>
-        <tag>项目练习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>easybbs</title>
+    <title>router和route</title>
     <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/route%E5%92%8Crouter%E5%8C%BA%E5%88%AB/p031c21b.html</url>
     <content><![CDATA[前端路由傻傻分不清？route和router的区别，看完这篇别再搞混了！一、前言：为什么这俩玩意儿容易搞混？刚学前端路由时，我也被route和router搞得头晕眼花，面试还被问：”你能说说$route和$router的区别吗？” 我支支吾吾半天，面试官的表情逐渐凝固… 😅
 今天，我们就来彻底搞懂这俩兄弟，让你以后再也不怕面试官的灵魂拷问！
@@ -5766,15 +5766,15 @@ router管跳转，route管信息跳转找router，参数找route
 所以，看完这篇，千万别再搞混了！  🚀
 ]]></content>
       <categories>
-        <category>项目</category>
+        <category>easybbs</category>
       </categories>
       <tags>
-        <tag>项目练习</tag>
+        <tag>easybbs</tag>
       </tags>
   </entry>
   <entry>
-    <title>easybbs</title>
-    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%89%8D%E4%BC%A0/c03nc21b.html</url>
+    <title>easybbs前传</title>
+    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%89%8D%E4%BC%A0/c03nc29b.html</url>
     <content><![CDATA[现在是大一下册的暑假中期, 在荒废了一段时间后, 我又振作了起来, 不能在这样下去了
 刚好有团队的论坛项目需要我搭建, 趁着这个时间, 我先找个类似的项目练练手, 顺便熟悉熟悉vue
 地址Vue3项目实战 开发 论坛 计算机毕业设计 个人简历项目 仿知乎 掘金 (前端) 
@@ -5782,14 +5782,14 @@ router管跳转，route管信息跳转找router，参数找route
 接着, 安装了MySQL, ffmpeg, 环境配置告一段落
 ]]></content>
       <categories>
-        <category>项目</category>
+        <category>easybbs</category>
       </categories>
       <tags>
-        <tag>项目练习</tag>
+        <tag>easybbs</tag>
       </tags>
   </entry>
   <entry>
-    <title>easybbs</title>
+    <title>登录注册表单</title>
     <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8D%95%E7%BB%84%E4%BB%B6/c031c21b.html</url>
     <content><![CDATA[前言2025-9  原版链接仓库链接
 一些东西按照自己的理解写了一下, 最后实现的功能暂时没什么问题
@@ -5856,10 +5856,10 @@ main.jsimport &#123;createApp&#125; from &#x27;vue&#x27;import App from &#x27;./
 
 ]]></content>
       <categories>
-        <category>项目</category>
+        <category>easybbs</category>
       </categories>
       <tags>
-        <tag>项目练习</tag>
+        <tag>easybbs</tag>
       </tags>
   </entry>
 </search>
