@@ -1102,6 +1102,32 @@ SynthWave ‘84
       </tags>
   </entry>
   <entry>
+    <title>学习网站</title>
+    <url>/posts/2025/07/Fronted/%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99/52e318f2.html</url>
+    <content><![CDATA[一些有用的网站值得被记录, 但是总是因为一些原因而搁置, 遗忘搜藏夹里面有一大堆网站, 但我从来不会打开看看
+这里放个标, 希望以后还能找到, 而不是吃灰
+前端学习学习网站1, 学长推荐的网站Youtubehttps://app.daily.dev/youtube的大火博主
+
+Net Ninja 
+Traversy Media
+Ryan Carniato
+Web Dev Simplified
+Fireship
+
+2 博客园里面看到的一个前端路线笔记https://www.cnblogs.com/qianguyihao/p/16370961.html
+3 浏览器工作和实践原理https://zhqwq.github.io/broswer-working-principle/guide/intro.html
+4 前端交流网站 stack overflowhttps://stackoverflow.com/questions
+组件库https://uiverse.io/elements
+小工具提高图片分辨率https://upscayl.org/
+]]></content>
+      <categories>
+        <category>进修</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>前端学习日记</title>
     <url>/posts/2025/04/Fronted/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/c4f4b3de.html</url>
     <content><![CDATA[祖传三件套html我是看的黑马程序员的课, 这个B站上面有很多资源建议时间: 三天
@@ -1141,62 +1167,6 @@ git(重中之重, git远不止这些运用, 还需要在B站上继续进修)
       </categories>
       <tags>
         <tag>前端三件套</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学习网站</title>
-    <url>/posts/2025/07/Fronted/%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99/52e318f2.html</url>
-    <content><![CDATA[一些有用的网站值得被记录, 但是总是因为一些原因而搁置, 遗忘搜藏夹里面有一大堆网站, 但我从来不会打开看看
-这里放个标, 希望以后还能找到, 而不是吃灰
-前端学习学习网站1, 学长推荐的网站Youtubehttps://app.daily.dev/youtube的大火博主
-
-Net Ninja 
-Traversy Media
-Ryan Carniato
-Web Dev Simplified
-Fireship
-
-2 博客园里面看到的一个前端路线笔记https://www.cnblogs.com/qianguyihao/p/16370961.html
-3 浏览器工作和实践原理https://zhqwq.github.io/broswer-working-principle/guide/intro.html
-4 前端交流网站 stack overflowhttps://stackoverflow.com/questions
-组件库https://uiverse.io/elements
-小工具提高图片分辨率https://upscayl.org/
-]]></content>
-      <categories>
-        <category>进修</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>butterfly安装之旅</title>
-    <url>/posts/2025/07/blog/butterfly%E5%AE%89%E8%A3%85/e70f18fc.html</url>
-    <content><![CDATA[创建一个文件夹
-在文件夹打开git
-git clone -b main https://github.com/jerryc127/hexo -theme-butterfly .git themes/butterfly
-
-应用主题修改Hexo 根目录下的_config.yml，把主题改为butterfly
-theme:  butterfly
-
-安装插件下载安装渲染器：
-npm install hexo -renderer-pug hexo -renderer-stylus  --save
-
-重中之重
-在hexo 的根目录创建一个文件_config.butterfly.yml，并把主题目录的_config.yml 内容复制_config.butterfly.yml到 去。
-
-注意:
-
-复制的是主题的_config.yml，而不是hexo 的_config.yml
-不要把主题目录的_config.yml删掉
-以后只需要在_config.butterfly.yml进行配置就行。如果使用了_config.butterfly.yml， 配置主题的_config.yml将不会有效果。
-Hexo 会自动合并主题中的_config.yml和_config.butterfly.yml里的配置，如果存在同名配置，会使用_config.butterfly.yml的配置，其优先度较高。
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -1448,31 +1418,33 @@ permalink: posts/:year/:month/:title/:abbrlink.html
       </tags>
   </entry>
   <entry>
-    <title>使用电脑clash verge给手机共享代理</title>
-    <url>/posts/2025/07/%E7%94%9F%E6%B4%BB%E5%B0%8F%E6%8A%80%E5%B7%A7/%E6%89%8B%E6%9C%BA%E4%BB%A3%E7%90%86/6c1cb663.html</url>
-    <content><![CDATA[框框灵机一动, 想在手机上面也能访问github, 这里做个记录, 免得之后忘记怎么设置了
-前提我现在的手机型号是 oppo Pro12, 安卓, 电脑用的是clash verge, 节点购买的 赔钱机场
-网上的资料使用电脑clash verge给手机共享代理【电脑上的准备】
-1.首先打开clash verge的设置界面，打开“局域网连接”，若弹出防火墙提示，请选择允许访问
-2.使用win+r快捷键，在弹出页面输入“cmd”并点击确定或回车
-3.在新弹出的页面中输入”ipconfig&#x2F;all“并回车
-4.在显示的列表中找到“ IPv4 地址 . . . . . . . . . . . . :”一栏
-【手机上的设置】
-1.进入网络设置中的wifi设置，通常在你连接的wifi右侧会有感叹号图标，或者长按可以修改网络具体设置，若没有，请自行在网上查询您所使用的设备如何设置手动代理
-2.在网络的具体设置中找到代理设置，通常默认为关闭，请将其设置为手动
-3.在服务器一栏内填写上方电脑中获取到的ipv4地址（通常格式为192.168..或10.236..）
-4.在端口一栏填写clash verge设置页面“端口设置”后方的数字，默认为“7890”您也可以自行更改
-5.填写完之后点击保存即可，若提示已连接网络但无法访问互联网，请不要在意，直接打开浏览器尝试访问外网即可，此时不出意外的话应该已经能够正常连接
-实际电脑跟网上找的资料说的一样, 记录下电脑的端口号 和 IPv4的数值
-手机进入wife连接界面 -&gt; 点击wife右边那个感叹号 -&gt; 找到高级选项 -&gt; 把代理换成手动设置 -&gt; 将 IP设置改为静态 -&gt; IP地址设置为电脑提供的 IPv4 的数值 -&gt; 端口号也改成电脑的值 -&gt; 隐私那里改成”使用设备MAC地址”
-ok, 恭喜你
-现在, 你可以自由的在手机上访问github啦!
+    <title>butterfly安装之旅</title>
+    <url>/posts/2025/07/blog/butterfly%E5%AE%89%E8%A3%85/e70f18fc.html</url>
+    <content><![CDATA[创建一个文件夹
+在文件夹打开git
+git clone -b main https://github.com/jerryc127/hexo -theme-butterfly .git themes/butterfly
+
+应用主题修改Hexo 根目录下的_config.yml，把主题改为butterfly
+theme:  butterfly
+
+安装插件下载安装渲染器：
+npm install hexo -renderer-pug hexo -renderer-stylus  --save
+
+重中之重
+在hexo 的根目录创建一个文件_config.butterfly.yml，并把主题目录的_config.yml 内容复制_config.butterfly.yml到 去。
+
+注意:
+
+复制的是主题的_config.yml，而不是hexo 的_config.yml
+不要把主题目录的_config.yml删掉
+以后只需要在_config.butterfly.yml进行配置就行。如果使用了_config.butterfly.yml， 配置主题的_config.yml将不会有效果。
+Hexo 会自动合并主题中的_config.yml和_config.butterfly.yml里的配置，如果存在同名配置，会使用_config.butterfly.yml的配置，其优先度较高。
 ]]></content>
       <categories>
-        <category>生活</category>
+        <category>blog</category>
       </categories>
       <tags>
-        <tag>手机设置代理</tag>
+        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -2377,6 +2349,34 @@ import &#123; PiniaSymbol &#125; from &quot;./rootStore&quot;import &#123;ref&#1
       </categories>
       <tags>
         <tag>pinia</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用电脑clash verge给手机共享代理</title>
+    <url>/posts/2025/07/%E7%94%9F%E6%B4%BB%E5%B0%8F%E6%8A%80%E5%B7%A7/%E6%89%8B%E6%9C%BA%E4%BB%A3%E7%90%86/6c1cb663.html</url>
+    <content><![CDATA[框框灵机一动, 想在手机上面也能访问github, 这里做个记录, 免得之后忘记怎么设置了
+前提我现在的手机型号是 oppo Pro12, 安卓, 电脑用的是clash verge, 节点购买的 赔钱机场
+网上的资料使用电脑clash verge给手机共享代理【电脑上的准备】
+1.首先打开clash verge的设置界面，打开“局域网连接”，若弹出防火墙提示，请选择允许访问
+2.使用win+r快捷键，在弹出页面输入“cmd”并点击确定或回车
+3.在新弹出的页面中输入”ipconfig&#x2F;all“并回车
+4.在显示的列表中找到“ IPv4 地址 . . . . . . . . . . . . :”一栏
+【手机上的设置】
+1.进入网络设置中的wifi设置，通常在你连接的wifi右侧会有感叹号图标，或者长按可以修改网络具体设置，若没有，请自行在网上查询您所使用的设备如何设置手动代理
+2.在网络的具体设置中找到代理设置，通常默认为关闭，请将其设置为手动
+3.在服务器一栏内填写上方电脑中获取到的ipv4地址（通常格式为192.168..或10.236..）
+4.在端口一栏填写clash verge设置页面“端口设置”后方的数字，默认为“7890”您也可以自行更改
+5.填写完之后点击保存即可，若提示已连接网络但无法访问互联网，请不要在意，直接打开浏览器尝试访问外网即可，此时不出意外的话应该已经能够正常连接
+实际电脑跟网上找的资料说的一样, 记录下电脑的端口号 和 IPv4的数值
+手机进入wife连接界面 -&gt; 点击wife右边那个感叹号 -&gt; 找到高级选项 -&gt; 把代理换成手动设置 -&gt; 将 IP设置改为静态 -&gt; IP地址设置为电脑提供的 IPv4 的数值 -&gt; 端口号也改成电脑的值 -&gt; 隐私那里改成”使用设备MAC地址”
+ok, 恭喜你
+现在, 你可以自由的在手机上访问github啦!
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>手机设置代理</tag>
       </tags>
   </entry>
   <entry>
@@ -4643,58 +4643,6 @@ var date = new Date() //当前时间   console.log(date)   console.log(date.toIS
       </tags>
   </entry>
   <entry>
-    <title>router</title>
-    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/router/c031c21b.html</url>
-    <content><![CDATA[位置: src下的router文件
-安装和设置路由导入mian.js, , 并使用 app.use(router)
-import&#123;createRouter, createWebHistory,createWebHashHistory&#125; from &#x27;vue-router&#x27;const routes = [    &#123;        path: &#x27;/&#x27;,        component: () =&gt; import (&quot;../views/index.vue&quot;)    &#125;,]const router = createRouter(&#123;    history: createWebHistory(),     // history: createWebHashHistory(),    routes&#125;)export default router
-配置路径别名打开vite.config.js文件导入 import path from &#39;path&#39; 
-添加
-import &#123; defineConfig &#125; from &#x27;vite&#x27;import vue from &#x27;@vitejs/plugin-vue&#x27;import path from &#x27;path&#x27;// https://vite.dev/config/export default defineConfig(&#123;  plugins: [vue(), ],  resolve: &#123;    alias: &#123; //配置路径别名      &#x27;@&#x27;: path.resolve(__dirname, &#x27;src&#x27;)    &#125;  &#125;&#125;)
-
-在src根目录下添加 jsconfig.json文件 (针对js项目, ts需要写tsconfig.json)并配置
-&#123;    &quot;compilerOptions&quot;: &#123;        &quot;baseUrl&quot;:&quot;.&quot;,        &quot;paths&quot;: &#123;            &quot;@/*&quot;:[&quot;src/*&quot;]//配置@符号指向src目录及其子目录         &#125;    &#125;&#125;
-
-使用查询字符串传递参数动态路由我们经常需要把某种模式匹配到的所有路由，全都映射到同个组件。例如，我们有一个 User 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。我们可以在 vueRrouter 的路由路径中使用“动态路径参数”(dynamic segment) 来达到这个效果。
-
-动态路由的创建，主要是使用 path 属性过程中，使用动态路径参数，路径参数 用冒号 : 表示。
-
-当一个路由被匹配时，它的 params 的值将在每个组件中以 this.$route.query 的形式暴露出来。因此，我们可以通过更新 User 的模板来呈现当前的用户 ID：
-const routes = [  &#123;    path: &#x27;/user/:id&#x27;    name: &#x27;User&#x27;    components: User	&#125;]
-****_vue-router _**通过配置 **_params _**和 **_query _来实现动态路由
-params 传参
-必须使用 命名路由 name 传值
-
-参数不会显示在 url 上
-
-浏览器强制刷新时传参会被清空
-
-
-// 传递参数this.$router.push(&#123;  name: Home，  params: &#123;    number: 1 ,    code: &#x27;999&#x27;  &#125;&#125;)// 接收参数const p = this.$route.params
-query 传参
-可以用 name 也可以使用 path 传参
-传递的参数会显示在 url 上
-页面刷新是传参不会丢失
-
-// 方式一：路由拼接this.$router.push(&#x27;/home?username=xixi&amp;age=18&#x27;)// 方式二：name + query 传参this.$router.push(&#123;  name: Home，  query: &#123;    username: &#x27;xixi&#x27;,    age: 18	&#125;&#125;)// 方式三：path + name 传参this.$router.push(&#123;  path: &#x27;/home&#x27;，  query: &#123;    username: &#x27;xixi&#x27;,    age: 18	&#125;&#125;)// 接收参数const q = this.$route.query
-
-定义别名借助 alias
-    &#123;        path: &#x27;/&#x27;,        alias: [&#x27;/home&#x27;, &#x27;/index&#x27;],        component: () =&gt; import (&quot;@/views/index.vue&quot;)    &#125;,
-
-注意:  访问时,  ‘&#x2F;‘, ‘&#x2F;home’, ‘inedx’, 都可以进入到 index.vue页面
-router-link 组件router-link 的本质是 a 标签，在标签上绑定了click事件，然后执行对应的VueRouter实例的push()实现的
-router-view 组件渲染组件渲染的关键在于 router-view ，将路由变化时匹配到的组件进行渲染。 routerView是一个函数式组件，函数式组件没有data，没有组件实例。 因此使用了父组件中的$createElement函数，用以渲染组件，并且在组件渲染的各个时期注册了hook 如果被 keep-alive 包裹则直接使用缓存的 vnode 通过 depth 实现路由嵌套， 循环向上级访问，直到访问到根组件，得到路由的 depth 深度
-全局前置守卫在main.js中写
-router.beforeEach((to, from, next) =&gt; &#123;    console.log(&quot;to&quot;, to) //即将进入路由的信息    console.log(&quot;from&quot;, from) //即将离开路由的信息	if(to.name === &#x27;number) &#123;		next(false) //拦截	&#125; else &#123;		next() //继续	&#125;&#125;)
-]]></content>
-      <categories>
-        <category>easybbs</category>
-      </categories>
-      <tags>
-        <tag>easybbs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaScript下</title>
     <url>/posts/2025/04/Fronted/%E4%B8%89%E4%BB%B6%E5%A5%97/04-%20JavaScript%E9%AB%98%E7%BA%A7/b746f28d.html</url>
     <content><![CDATA[this指向this的绑定规则this的指向
@@ -5709,6 +5657,58 @@ Fetch文件上传![[Pasted image 20240827164955.png]]
       </tags>
   </entry>
   <entry>
+    <title>router</title>
+    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/router/c031c21b.html</url>
+    <content><![CDATA[位置: src下的router文件
+安装和设置路由导入mian.js, , 并使用 app.use(router)
+import&#123;createRouter, createWebHistory,createWebHashHistory&#125; from &#x27;vue-router&#x27;const routes = [    &#123;        path: &#x27;/&#x27;,        component: () =&gt; import (&quot;../views/index.vue&quot;)    &#125;,]const router = createRouter(&#123;    history: createWebHistory(),     // history: createWebHashHistory(),    routes&#125;)export default router
+配置路径别名打开vite.config.js文件导入 import path from &#39;path&#39; 
+添加
+import &#123; defineConfig &#125; from &#x27;vite&#x27;import vue from &#x27;@vitejs/plugin-vue&#x27;import path from &#x27;path&#x27;// https://vite.dev/config/export default defineConfig(&#123;  plugins: [vue(), ],  resolve: &#123;    alias: &#123; //配置路径别名      &#x27;@&#x27;: path.resolve(__dirname, &#x27;src&#x27;)    &#125;  &#125;&#125;)
+
+在src根目录下添加 jsconfig.json文件 (针对js项目, ts需要写tsconfig.json)并配置
+&#123;    &quot;compilerOptions&quot;: &#123;        &quot;baseUrl&quot;:&quot;.&quot;,        &quot;paths&quot;: &#123;            &quot;@/*&quot;:[&quot;src/*&quot;]//配置@符号指向src目录及其子目录         &#125;    &#125;&#125;
+
+使用查询字符串传递参数动态路由我们经常需要把某种模式匹配到的所有路由，全都映射到同个组件。例如，我们有一个 User 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。我们可以在 vueRrouter 的路由路径中使用“动态路径参数”(dynamic segment) 来达到这个效果。
+
+动态路由的创建，主要是使用 path 属性过程中，使用动态路径参数，路径参数 用冒号 : 表示。
+
+当一个路由被匹配时，它的 params 的值将在每个组件中以 this.$route.query 的形式暴露出来。因此，我们可以通过更新 User 的模板来呈现当前的用户 ID：
+const routes = [  &#123;    path: &#x27;/user/:id&#x27;    name: &#x27;User&#x27;    components: User	&#125;]
+****_vue-router _**通过配置 **_params _**和 **_query _来实现动态路由
+params 传参
+必须使用 命名路由 name 传值
+
+参数不会显示在 url 上
+
+浏览器强制刷新时传参会被清空
+
+
+// 传递参数this.$router.push(&#123;  name: Home，  params: &#123;    number: 1 ,    code: &#x27;999&#x27;  &#125;&#125;)// 接收参数const p = this.$route.params
+query 传参
+可以用 name 也可以使用 path 传参
+传递的参数会显示在 url 上
+页面刷新是传参不会丢失
+
+// 方式一：路由拼接this.$router.push(&#x27;/home?username=xixi&amp;age=18&#x27;)// 方式二：name + query 传参this.$router.push(&#123;  name: Home，  query: &#123;    username: &#x27;xixi&#x27;,    age: 18	&#125;&#125;)// 方式三：path + name 传参this.$router.push(&#123;  path: &#x27;/home&#x27;，  query: &#123;    username: &#x27;xixi&#x27;,    age: 18	&#125;&#125;)// 接收参数const q = this.$route.query
+
+定义别名借助 alias
+    &#123;        path: &#x27;/&#x27;,        alias: [&#x27;/home&#x27;, &#x27;/index&#x27;],        component: () =&gt; import (&quot;@/views/index.vue&quot;)    &#125;,
+
+注意:  访问时,  ‘&#x2F;‘, ‘&#x2F;home’, ‘inedx’, 都可以进入到 index.vue页面
+router-link 组件router-link 的本质是 a 标签，在标签上绑定了click事件，然后执行对应的VueRouter实例的push()实现的
+router-view 组件渲染组件渲染的关键在于 router-view ，将路由变化时匹配到的组件进行渲染。 routerView是一个函数式组件，函数式组件没有data，没有组件实例。 因此使用了父组件中的$createElement函数，用以渲染组件，并且在组件渲染的各个时期注册了hook 如果被 keep-alive 包裹则直接使用缓存的 vnode 通过 depth 实现路由嵌套， 循环向上级访问，直到访问到根组件，得到路由的 depth 深度
+全局前置守卫在main.js中写
+router.beforeEach((to, from, next) =&gt; &#123;    console.log(&quot;to&quot;, to) //即将进入路由的信息    console.log(&quot;from&quot;, from) //即将离开路由的信息	if(to.name === &#x27;number) &#123;		next(false) //拦截	&#125; else &#123;		next() //继续	&#125;&#125;)
+]]></content>
+      <categories>
+        <category>easybbs</category>
+      </categories>
+      <tags>
+        <tag>easybbs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>router和route</title>
     <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/route%E5%92%8Crouter%E5%8C%BA%E5%88%AB/p031c21b.html</url>
     <content><![CDATA[前端路由傻傻分不清？route和router的区别，看完这篇别再搞混了！一、前言：为什么这俩玩意儿容易搞混？刚学前端路由时，我也被route和router搞得头晕眼花，面试还被问：”你能说说$route和$router的区别吗？” 我支支吾吾半天，面试官的表情逐渐凝固… 😅
@@ -5789,9 +5789,139 @@ router管跳转，route管信息跳转找router，参数找route
       </tags>
   </entry>
   <entry>
+    <title>学习</title>
+    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%AD%A6%E4%B9%A0/p031c28b.html</url>
+    <content><![CDATA[定义全局变量在 main.ts 里定义全局变量
+app.config.globalProperties.globalInfo = &#123;  bodyWidth: 1300,&#125;
+
+在组件中引用全局变量
+&lt;template&gt;  &lt;div class=&quot;header&quot;&gt;    &lt;div class=&quot;header-content&quot;    :style=&quot;&#123;width: proxy.globalInfo.bodyWidth + &#x27;px&#x27;&#125;&quot; &gt;  &lt;/div&gt;&lt;/div&gt;&lt;/template&gt;&lt;script setup&gt;import &#123;ref, getCurrentInstance&#125; from &#x27;vue&#x27;const &#123;proxy&#125; = getCurrentInstance()
+
+TypeScript 编译器无法理解 .vue 文件和 .js 文件原因 : 缺少了必要的 类型声明
+解决方案要解决这个问题，你需要为 .vue 和 .js 文件创建或配置类型声明文件。
+
+1. 解决 .vue 文件报错对于 .vue 文件，你需要在你的项目中创建一个 .d.ts 文件来声明其类型。通常，一个名为 env.d.ts 的文件会包含这个声明。
+
+步骤：
+
+在你的 src 目录下，创建一个名为 env.d.ts 的文件（如果它不存在）。
+
+在文件中添加以下内容：
+ TypeScript
+ /// &lt;reference types=&quot;vite/client&quot; /&gt;declare module &#x27;*.vue&#x27; &#123;  import type &#123; DefineComponent &#125; from &#x27;vue&#x27;  const component: DefineComponent&lt;&#123;&#125;, &#123;&#125;, any&gt;  export default component&#125;
+
+  这个声明告诉 TypeScript，任何以 .vue 结尾的文件都应该被视为一个 DefineComponent，从而让导入 .vue 文件不再报错。
+
+
+
+2. 解决 .js 文件报错对于 .js 文件，你需要确保 TypeScript 知道如何处理它。通常，Vite + Vue 3 项目的 TypeScript 配置已经处理了这个问题，但如果你的 tsconfig.json 配置不正确，就会出现这个错误。
+
+步骤：
+
+检查你的 tsconfig.json 或 tsconfig.app.json 文件。
+
+确保 compilerOptions 中包含了 allowJs: true。这个选项允许 TypeScript 编译器处理 JavaScript 文件。
+ JSON
+ &#123;  &quot;extends&quot;: &quot;@vue/tsconfig/tsconfig.dom.json&quot;,  &quot;compilerOptions&quot;: &#123;    &quot;allowJs&quot;: true, // 确保有这一行    &quot;tsBuildInfoFile&quot;: &quot;./node_modules/.tmp/tsconfig.app.tsbuildinfo&quot;,    &quot;composite&quot;: true,    &quot;baseUrl&quot;: &quot;.&quot;,    // ... 其他配置  &#125;,  // ...&#125;
+
+
+
+
+3. 重启 TypeScript 服务完成以上更改后，请执行以下操作：
+监听滚动条功能: 实时监听网页滚动条的位置, 实现当滚动条下滑且下滑到一定位置时, 隐藏组件; 当上滑时, 显示组件
+//导航栏的显示效果const showHeader = ref(true)//获取滚动条的高度const getScrollTop = () =&gt; &#123;  let scrollTop = //不同浏览器获取的方式不同  document.documentElement.scrollTop   || window.pageYOffset   || document.body.scrollTop  return scrollTop&#125;const initScroll =() =&gt; &#123;  let initScrollTop = getScrollTop()  let scrollType = 0  window.addEventListener(&#x27;scroll&#x27;, () =&gt; &#123;    let currentScrollTop = getScrollTop()    if (currentScrollTop &gt; initScrollTop) &#123;      scrollType = 1    &#125; else &#123;      scrollType = 0    &#125;    initScrollTop = currentScrollTop    // console.log(scrollType === 1 ? &#x27;shang&#x27; : &#x27;xia&#x27;)    if (scrollType === 1 &amp;&amp; currentScrollTop &gt; 150) &#123;      showHeader.value = false    &#125; else showHeader.value = true    &#125;)   &#125;  onMounted(() =&gt; &#123;    initScroll()  &#125;)
+
+隐藏密码效果: 初始默认密码为隐藏状态(眼睛图标闭合)		点击后密码为显示状态(眼睛图标睁开)
+&lt;tepmlate&gt;  &lt;!-- 登录密码 --&gt;    &lt;el-form-item prop=&quot;registerPassword&quot;&gt;      &lt;el-input      :type=&quot;passwordEyeType.registerPasswordEye?&#x27;text&#x27;:&#x27;password&#x27;&quot;        size=&quot;large&quot;        clearable        placeholder=&quot;请输入密码&quot;        v-model=&quot;formData.registerPassward&quot;        &gt;        &lt;template #prefix&gt;          &lt;span class=&quot;iconfont icon-password&quot;&gt;&lt;/span&gt;        &lt;/template&gt;        &lt;template #suffix&gt;          &lt;span           @click=&quot;eyeChange(&#x27;registerPasswordEye&#x27;)&quot;          :class=&quot;[          &#x27;iconfont&#x27;,          passwordEyeType.registerPasswordEye          ?&#x27;icon-eye&#x27;          : &#x27;icon-close-eye&#x27;          ]&quot;&gt;&lt;/span&gt;        &lt;/template&gt;      &lt;/el-input&gt;    &lt;/el-form-item&gt;&lt;/template&gt;&lt;script&gt;//密码显示隐藏操作const passwordEyeType = reactive(&#123;    passwordEye:false,    registerPasswordEye:false,    reRegisterPasswordEye:false,&#125;)const eyeChange = (type)=&gt;&#123;  passwordEyeType[type] = !passwordEyeType[type]&#125;&lt;/script&gt;
+
+合并两个仓库在合作的过程中, 我终于知道为什么说合并两个仓库很常见了
+应用场景 :多人写一个项目, 需要一个人把主体仓库建好, 其余人去fork这个仓库每个人写好自己的功能部分, 写完后发送请求然后建立这个仓库的人需要新建一个分支
+
+首先需要remote其他人复刻的仓库(contirbutor)
+
+# 1. 确认已在正确的本地分支git checkout main# 2. 从贡献者的远程仓库获取最新代码git fetch contributor# 3. 将贡献者的分支合并到你的本地 main 分支git merge contributor/main# 4. 将合并后的代码推送到你的主仓库git push origin main
+
+两个弹窗同时出现时的闪退问题组件: element中的# MessageBox 消息弹框描述: 点击登录时界面出现一个弹出框, 第二个弹出框是是隐藏状态.输入正确格式的邮箱后, 点击按钮[[前端了解&#x2F;仿知乎, 掘金vue3项目&#x2F;_resources&#x2F;学习&#x2F;e7181b6a66f4121a31efc96c0b9b8db2_MD5.jpeg|Open: Pasted image 20250828151143.png]]![[前端了解&#x2F;仿知乎, 掘金vue3项目&#x2F;_resources&#x2F;学习&#x2F;e7181b6a66f4121a31efc96c0b9b8db2_MD5.jpeg]]第二个弹出框出现后, 两个弹出框立马闪退
+问题一const showSendEmailDialog = ()=&gt;&#123;  formDataRef.value.validateField(&quot;email&quot;, (valid) =&gt; &#123;    if(!valid) &#123;      return    &#125;     dialogConfig4SendEmailCode.value.show = true    nextTick(() =&gt; &#123;    //进行表单初始化      formData4SendEmailCode.value = &#123;        email: formData.value.email,        checkCode: &#x27;&#x27;      &#125;      //先判断这个表单是否为空      if (formData4SendEmailCodeRef.value) &#123;        formData4SendEmailCodeRef.value.resetFields();      &#125;      //存在表单后再生成验证码      changeCheckCode(1);    &#125;)  &#125;)&#125;
+
+
+访问本地图片  const localImage = new URL(&#x27;@/assets/img/default.jpg&#x27;, import.meta.url).href&lt;img src=&quot;localImage&quot;&gt;  &lt;/img&gt;
+这是在现代 JavaScript 模块（ES Module）中**动态导入（dynamic import）**本地资源的常见写法，尤其是在使用像 Vue CLI 或 Vite 这样的构建工具时。
+
+代码分解为了理解这行代码，我们把它拆成两部分：
+
+import.meta.url
+
+new URL(..., ...)
+
+
+1. import.meta.url这是一个内置的 JavaScript 属性，它在 ES Module 中提供了当前模块的 URL。
+
+简单来说，它告诉你当前正在运行的 JavaScript 文件在文件系统中的完整路径。
+
+例如，如果你的文件路径是 src/components/MyComponent.vue，那么 import.meta.url 可能会是 file:///C:/.../src/components/MyComponent.vue。
+
+
+2. new URL(resource, base)这是一个标准的浏览器 API，用于创建和处理 URL。它接收两个参数：
+
+resource：你想要引用的相对路径，这里是 &#39;@/assets/img/default.jpg&#39;。
+
+base：一个基础 URL，相对路径会基于它进行解析，这里是 import.meta.url。
+
+
+当这两者结合在一起时，new URL() 就会根据当前模块的 URL (import.meta.url) 解析出 &#39;@/assets/img/default.jpg&#39; 的完整绝对路径。
+3. .href最后，.href 属性获取的是解析后 URL 对象的完整字符串表示。
+
+为什么需要这样写？在过去，我们通常使用 require() 或直接的相对路径来引用图片。但在现代前端项目中，由于构建工具（如 Vite）的优化，图片的路径通常会在构建时被处理和压缩，其最终路径会改变。
+
+直接使用相对路径：./assets/img/default.jpg 在不同组件中可能会有不同的解析结果，容易出错。
+
+使用 new URL()：这种方法能确保路径解析始终是相对于当前模块的，并且生成的 URL 是一个可被构建工具识别和处理的静态资源路径。
+
+
+简单来说，这行代码的作用是：安全地、动态地获取本地图片的 URL，以便在运行时可以正确地引用它。
+这使得你可以将图片路径作为变量传递给组件或在 JavaScript 中使用，同时确保图片在构建后能够被正确加载。
+板块部分高亮状态延迟出现问题描述: 导航栏的板块部分在切换板块时, 字体的active并不会立即生效, 但是在点击第二次时却会生效;
+原思路在pinia中定义两个数
+const activePboardId = ref(0) //一级板块    const activeBoardId = ref(0) //二级板块
+表示高亮状态的板块编号
+当点击某一栏时, click函数改变高亮的板块编号, 同时跳转路由watch监听pinia中高亮编号的变化, 一旦发生改变立刻给对应的板块添加active属性样式
+原先代码	&lt;!-- 板块信息 --&gt;	&lt;div class=&quot;menu-pannel&quot;&gt;		&lt;router-link class=&quot;menu-item home&quot; to=&quot;/&quot;		:class=&quot;&#123;&#x27;active&#x27;: activePboardId === 0&#125;&quot;&gt;首页&lt;/router-link&gt;		&lt;template 			v-for=&quot;item in boardList&quot; 			:key=&quot;item.boardId&quot;&gt;			&lt;el-popover				v-if=&quot;item.children.length &gt;= 1&quot;				:width=&quot;250&quot;				title=&quot;Title&quot;				placement=&quot;bottom-start&quot;				trigger=&quot;hover&quot;&gt;				&lt;template #reference&gt;				&lt;span class=&quot;menu-item&quot; 				 @click=boardClickHandler(item)				 :class=&quot;&#123;&#x27;active&#x27;: activePboardId === item.boardId&#125;&quot;&gt;					&#123;&#123; item.boardName &#125;&#125;				&lt;/span&gt;				&lt;/template&gt;				&lt;span class=&quot;sub-board-list&quot;&gt;					&lt;span class=&quot;sub-board&quot; 					  v-for=&quot;subBoard in item.children&quot; 						@click=&quot;subBoardClickHandler(subBoard)&quot;						:class=&quot;&#123;&#x27;active&#x27;: activeBoardId === subBoard.boardId&#125;&quot;&gt;					  &#123;&#123; subBoard.boardName &#125;&#125;					&lt;/span&gt;				&lt;/span&gt;			&lt;/el-popover&gt;			&lt;span v-else class=&quot;menu-item&quot; 			@click=&quot;boardClickHandler(item)&quot;			:class=&quot;&#123;&#x27;active&#x27;: activePboardId === item.boardId&#125;&quot;&gt;&#123;&#123; item.boardName &#125;&#125;&lt;/span&gt;		&lt;/template&gt;	&lt;/div&gt;
+
+//板块点击const boardClickHandler = (board) =&gt; &#123;    userStore.activePboardId = board.boardId    userStore.activeBoardId = null; // 清空二级板块的高亮状态    router.push(`/forum/$&#123;board.boardId&#125;`)&#125;//二级板块const subBoardClickHandler = (subBoard) =&gt; &#123;    userStore.activePboardId = subBoard.pBoardId    userStore.activeBoardId = subBoard.boardId    router.push(`/forum/$&#123;subBoard.pBoardId&#125;/$&#123;subBoard.boardId&#125;`)&#125;//板块字体颜色变化const activePboardId = ref(0)const activeBoardId = ref(0)watch(    () =&gt; userStore.activePboardId,    (newValue,oldValue) =&gt; &#123;            activePboardId.value = newValue    &#125;)watch(    () =&gt; userStore.activeBoardId,    (newValue,oldValue) =&gt; &#123;        if (newValue !== undefined) &#123;            activeBoardId.value = newValue        &#125;    &#125;)
+
+问题代码中存在一个“数据流的延迟”：
+
+用户点击：点击一个板块，boardClickHandler 或 subBoardClickHandler 函数被调用。
+
+更新 Pinia Store：在这些处理函数中，我立即更新了 Pinia store 中的状态，例如 userStore.activePboardId = board.boardId;。
+
+本地 watch 监听：我的本地 activePboardId 和 activeBoardId 变量通过 watch 监听 Pinia store 中的状态。
+
+
+异步更新：Vue 的 watch 监听器是异步执行的。这意味着当我在点击处理函数中更新 Pinia store 的状态时，watch 回调函数并不会立即执行。它会被排进一个队列，在下一个“tick”（微任务队列）中执行。
+
+
+
+
+首次渲染：在第一个“tick”完成之前，我的组件模板已经根据当前的 activePboardId 和 activeBoardId 值进行了重新渲染。由于 watch 还没执行，这些本地变量的值还是旧的，所以高亮效果没有出现。
+
+二次点击：当我第二次点击时，第一次点击的 watch 回调才执行，更新了本地变量，使得高亮生效。但此时你又触发了第二次点击，新的 watch 回调又会排队，导致“滞后一拍”的现象。
+
+
+解决方案不再监听pinia中 activeboard数据的变化, 当路由信息改变时, 直接改变active信息, 相当于取消了监听中间值了
+    //板块点击    const boardClickHandler = (board) =&gt; &#123;            router.push(`/forum/$&#123;board.boardId&#125;`)    &#125;    //二级板块    const subBoardClickHandler = (subBoard) =&gt; &#123;        router.push(`/forum/$&#123;subBoard.pBoardId&#125;/$&#123;subBoard.boardId&#125;`)    &#125;    //板块字体颜色变化    const activePboardId = ref(0)    const activeBoardId = ref(0)watch(  () =&gt; route.params,  (newValue) =&gt; &#123;    // 从路由参数中获取板块 ID，并确保是数字类型    userStore.activePboardId = newValue.pBoardId ? parseInt(newValue.pBoardId) : 0;    userStore.activeBoardId = newValue.boardId ? parseInt(newValue.boardId) : null;        activePboardId.value = userStore.activePboardId        activeBoardId.value = userStore.activeBoardId  &#125;,  &#123; immediate: true, deep: true &#125;);]]></content>
+      <categories>
+        <category>easybbs</category>
+      </categories>
+      <tags>
+        <tag>easybbs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>登录注册表单</title>
     <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8D%95%E7%BB%84%E4%BB%B6/c031c21b.html</url>
-    <content><![CDATA[前言2025-9  原版链接仓库链接
+    <content><![CDATA[前言2025-9 原版链接仓库链接
 一些东西按照自己的理解写了一下, 最后实现的功能暂时没什么问题
 组件库 : element
 基础表单封装作用 : 表单的壳子, 实现标题和最后 “登录&#x2F;注册&#x2F;重置表单”的渲染部分
