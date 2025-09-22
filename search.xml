@@ -2295,92 +2295,6 @@ v-if 和 v-for 在同一个元素身上使用时的优先级发生了变化。
       </tags>
   </entry>
   <entry>
-    <title>Pinia源码</title>
-    <url>/posts/2025/08/Fronted/Vue/pinia%E6%BA%90%E7%A0%81/a42dfghf.html</url>
-    <content><![CDATA[参考资料pinia的使用(原链接)Pinia支持compositionApi同时也兼容optionsApi(this指向)Pinia可以采用多个store,store之间可以互相调用（扁平化），不用担心命名冲突问题
-Pinia基本使用组合式 与 选项式 写法
-import &#123;defineStore&#125; from &#x27;../pinia/store&#x27;import &#123;ref, computed&#125; from &#x27;vue&#x27;export const useCounterStore = defineStore(&#x27;counter&#x27;, ()=&gt;&#123;    const count = ref(0)    const double = computed(()=&gt;&#123;        return count.value * 2    &#125;)    const increment = (num)=&gt;&#123;        count.value += num        console.log(todosStore.todos)    &#125;    return &#123;        count,        double,        increment    &#125;&#125;)// export const useCounterStore = defineStore(&#x27;counter&#x27;, &#123;//     state: () =&gt; &#123;//         return &#123;count: 0&#125;//     &#125;,//     getters: &#123;//         double() &#123;//             return this.count * 2//         &#125;//     &#125;,//     actions: &#123;//         increment(num) &#123;//             this.count += num//         &#125;//     &#125;// &#125;)
-Pinia实现原理pinia中的最近数据存储在state中_s 记录了state的各个时态, 存放各个时期的state, 有利于重复使用
-创建原理import &#123; PiniaSymbol &#125; from &quot;./rootStore&quot;import &#123;ref&#125; from &#x27;vue&#x27;export function createPinia () &#123;        const state = ref(&#123;&#125;)    const pinia = &#123;        install(app) &#123;            app.config.globalProperties.$pinia = pinia //更新            app.provide(PiniaSymbol, pinia)        &#125;,        state,        _s:new Map(),    &#125;    return pinia&#125;
-
-存储原理其中参数含义如下：
-
-id：store 的 id，必须唯一。
-
-options： 与 Vue 的选项式 API 类似，我们也可以传入一个带有 id、 state、actions与 getters属性的 Option 对象。
-
-storeSetup：以 setup 的方式创建，与 Vue 的 setup 函数 相似。在 storeSetup 中：
-
-ref() 等同于 state。
-computed() 等同于 getters。
-function() 等同于 actions
-
-
-
-getCurrentInstance 是 Vue 3 Composition API 中的一个函数，用于获取当前组件实例的内部对象
-在调用useStore时, 首先会在_s中寻找所求值是否存在, 如果存在则直接赋值, 不存在则再创建一个新的值
-export function defineStore(idOrOptions, setup) &#123;    let id    let options    //判断是组合式还是选项式    const isSetupStore = typeof setup === &#x27;function&#x27;    if(typeof idOrOptions == &#x27;string&#x27;) &#123;        id = idOrOptions        options = setup    &#125; else &#123; //不是字符串, 说明传入了对象        options = idOrOptions        id = idOrOptions.id    &#125;        function useStore() &#123;        const currentInstance = getCurrentInstance()        const pinia = currentInstance &amp;&amp; inject(PiniaSymbol)                if (!pinia._s.has(id)) &#123; //这个store时第一次使用                        if(isSetupStore)&#123;                createSetupStore(id, setup, pinia)                //创建组合式store            &#125; else &#123;                createOptionStore(id, options, pinia)                //创建后的store只需要存到_s中即可            &#125;        &#125;        //如果已经有了store, 不用创建, 直接拿到store就行了        const store = pinia._s.get(id)        return store    &#125;    return useStore&#125;
-
-组合式this指向当传入的值中含有方法对象时, 直接处理会改变对象的this指向, 这时候需要进行特殊处理保证传入的类的this指向不改变通过wrapAction函数显示转换他们的this指向
-将处理好的值与旧值进行更新 (Object.assign)加入到_s中, 在二次调用时减少计算
-//setupStore 用户已经提供了完整的setup方法了, 我们只需执行setup函数即可,//通过这个返回值, 将其放在store上即可function createSetupStore(id, setup, pinia) &#123;    const store = reactive(&#123;&#125;)        //处理this指向    function wrapAction (action) &#123;        return function () &#123;            //将action中的this永远处理成store, 保证this指向正确            return action.call(store, ...arguments)        &#125;    &#125;    const setupStore = setup()    //拿到的setupStore可能没有处理this指向    //处理this    for (let prop in setupStore) &#123;        const value = setupStore[prop]        if (typeof value === &#x27;function&#x27;) &#123;            setupStore[prop] = wrapAction(value)        &#125;    &#125;    Object.assign(store, setupStore)//加入到队伍里面        pinia._s.set(id, store)    return store &#125;
-
-选项式相比与组合式, 选项式多了一个setup()函数
-在此过程中，state 的内容也会被存储到 pinia.state 中。action 则会被 wrapAction 处理
-每一项 action 进行处理，目的是为了支持 $onAction 方法，此方法会在执行 action 时执行回调函数，回调函数可以接收三个参数分别是：被调用的 store、action 的名字、传递给 action 的参数。
-getters处理时, 需将他的逻辑执行完后,得到的值存入store
-function createOptionStore(id, options, pinia) &#123;    const &#123;state, actions, getters=&#123;&#125;&#125; = options //store里面的数据, 已定义    const store = reactive(&#123;&#125;) //pinia就是创建了一个响应式对象而已    //需要将这个api转换成组合式    function setup() &#123;        pinia.state.value[id] = state ? state() : &#123;&#125;        let localState = toRefs(pinia.state.value[id])        return Object.assign(            localState,            actions,            Object.keys(getters).reduce((computeds, getterKey)=&gt;&#123;                computeds[getterKey] = computed(()=&gt;&#123;                    return getters[getterKey].call(store)                &#125;)                return computeds            &#125;, &#123;&#125;)        )    &#125;    //减少代码的重复书写, 此时选项式store已经将数据处理, 剩下的逻辑和处理组合式一致    createSetupStore(id, setup, pinia)    return store &#125;
-
-store中的基础api实现定义
- const actionSubscriptions = [] //所有订阅的actions时间, 都应该放在这个数组中 const partialStore = &#123;     $patch,     //订阅状态     $subscribe(callback) &#123;         watch(pinia.state.value[id], state =&gt; &#123;             callback(&#123;id&#125;, state)         &#125;)     &#125;,     //订阅用户的action操作     $onAction: addSubscription.bind(null, actionSubscriptions), //订阅&#125; //pinia就是创建了一个响应式对象而已 const store = reactive(partialStore)
-patch将一个 state 补丁应用于当前状态。允许传递嵌套值。
-$patch 允许两种参数传递方式，传入一个函数，或一个 state 的补丁。
-    //这里需要获取原来的所有状态    function $patch(partialStateOrMutator) &#123;        //partialStateOrMutator部分状态        if(typeof partialStateOrMutator !== &#x27;function&#x27;) &#123;            //当前store中的全部状态, pinia.state.value[i]            merge(pinia.state.value[id], partialStateOrMutator)        &#125; else &#123;            partialStateOrMutator(pinia.state.value[id])        &#125;    &#125;        function merge(target, partialState) &#123;        for (const key in partialState) &#123;            if(!partialState.hasOwnProperty(key)) continue            //原始的值            const targetValue = target[key]            //后来的值            const subPatch = partialState[key]            if (isObject(targetValue) &amp;&amp; isObject(subPatch) &amp;&amp; !isRef(subPatch)) &#123; //ref也是对象                target[key] = merge(targetValue, subPatch)            &#125; else &#123;                //如果不需要合并直接用新的覆盖掉老的即可                target[key] = subPatch            &#125;        &#125;    &#125;     if(isSetupStore) &#123;        pinia.state.value[id] = &#123;&#125;        //用于存放setupStore中的状态    &#125;
-
-reset功能: 通过建立一个新的状态对象，将 store 重设为初始状态。
-重置方法只能在optionStore中书写因为在setupStore中, 用户自己控制状态; 
-
-state: () &#x3D;&gt; ({count: 1}) 是一个函数，只要重新调用就可以获取原始值，
-而 组合式 构建的话 state 以 ref() 的形式实现，无法获取原始值。
-
-    store.$reset = function() &#123; //这个方法只支持optionAPI, 因为setupAPI中, 用户自己控制状态        const newState = state ? state() : &#123;&#125;        this.$patch(newState)    &#125;
-
-subscribe设置一个回调，当状态发生变化时被调用。它会返回一个用来移除此回调的函数。 请注意，当在组件内调用 store.$subscribe() 时，除非 detached 被设置为 true， 否则当组件被卸载时，它将被自动清理掉。
-在store中的实现
-        //订阅状态        $subscribe(callback) &#123;            watch(pinia.state.value[id], state =&gt; &#123;                callback(&#123;id&#125;, state)            &#125;)        &#125;,
-
-onAction设置一个回调，当一个 action 即将被调用时，就会被调用。 回调接收一个对象， 其包含被调用 action 的所有相关信息：
-
-store: 被调用的 store
-name: action 的名称
-args: 传递给 action 的参数
-
-除此之外，它会接收两个函数， 允许在 action 完成或失败时执行的回调。
-它还会返回一个用来删除回调的函数。 请注意，当在组件内调用 store.$onAction() 时，除非 detached 被设置为 true， 否则当组件被卸载时，它将被自动清理掉。
-调用方法
-export function addSubscription(subscriptions, callback) &#123;    subscriptions.push(callback)//将回调函数放在数组中      const removeSubscription = () =&gt; &#123;       const idx = subscriptions.indexOf(callback)       if(idx &gt; -1) &#123;        subscriptions.splice(idx, 1)       &#125;    &#125;    return removeSubscription&#125;  export function triggerSubscriptions(subscriptions, ...args) &#123;    subscriptions.slice().forEach(cb=&gt;cb(...args))&#125;
-
-定义
-const actionSubscriptions = [] //所有订阅的actions时间, 都应该放在这个数组中const partialStore = &#123;	...        //订阅用户的action操作        $onAction: addSubscription.bind(null, actionSubscriptions),   &#125;
-实现
-  //处理this指向    function wrapAction (action) &#123;        return function () &#123;            const afterCallbacks = []            const onErrorCallbacks = []            const after = (callback) =&gt; &#123;                afterCallbacks.push(callback)            &#125;            const onError = (callback) =&gt; &#123;                onErrorCallbacks.push(callback)            &#125;            triggerSubscriptions(actionSubscriptions, &#123;after, onError&#125;) //让用户传递after和error            //将action中的this永远处理成store, 保证this指向正确              //回调的方式            let result            try &#123;//正常action是一个回调的情况, 可以直接拿到返回值出发after回调            result =  action.call(store, ...arguments)            triggerSubscriptions(afterCallbacks, result)            &#125; catch (e)&#123;                triggerSubscriptions(onErrorCallbacks, e)            &#125;            //如果返回值是一个Promise, 针对场景做处理              if(result instanceof Promise) &#123;                return result.then(value =&gt; &#123;                    triggerSubscriptions(afterCallbacks, value)                &#125;).catch(error =&gt; &#123;                    triggerSubscriptions(onErrorCallbacks, error)                &#125;)            &#125;              return result        &#125;    &#125;
-
-pinia插件写法main.js中
-const pinia = createPinia()function persitisPlugin() &#123; //为了用户传递参数, 所以用函数    return (&#123;store, id&#125;) =&gt; &#123; //所有的store都会执行此方法         let oldState = JSON.parse(localStorage.getItem(id) || &#x27;&#123;&#125;&#x27;)        store.$state = oldState        // store.$patch(oldState) //将老状态进行替换        store.$subscribe((mutation, state) =&gt; &#123;            localStorage.setItem(id, JSON.stringify(state))        &#125;)    &#125;&#125;pinia.use(persitisPlugin()) //use API可以去调用插件的install方法，将app注入进来app.use(pinia) //使用pinia插件
-
-
-createStore中
-import &#123; PiniaSymbol &#125; from &quot;./rootStore&quot;import &#123;ref&#125; from &#x27;vue&#x27;export function createPinia () &#123;    //pinia是管理多个state状态的    const state = ref(&#123;&#125;)    const _p = [] //插件    const pinia = &#123;        install(app) &#123;            app.config.globalProperties.$pinia = pinia            app.provide(PiniaSymbol, pinia)        &#125;,        use(plugin) &#123;            _p.push(plugin)            return pinia        &#125;,        state,        _s:new Map(),        _p    &#125;    return pinia&#125;
-总结仓库链接这里附上整个源码
-]]></content>
-      <categories>
-        <category>前端开发</category>
-      </categories>
-      <tags>
-        <tag>pinia</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>route和router的区别</title>
     <url>/posts/2025/08/Fronted/Vue/route%E5%92%8Crouter%E5%8C%BA%E5%88%AB/a4edfghf.html</url>
     <content><![CDATA[前端路由傻傻分不清？route和router的区别，看完这篇别再搞混了！一、前言：为什么这俩玩意儿容易搞混？刚学前端路由时，我也被route和router搞得头晕眼花，面试还被问：”你能说说$route和$router的区别吗？” 我支支吾吾半天，面试官的表情逐渐凝固… 😅
@@ -2442,96 +2356,6 @@ router管跳转，route管信息跳转找router，参数找route
       </categories>
       <tags>
         <tag>router</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HTML</title>
-    <url>/posts/2025/04/Fronted/%E4%B8%89%E4%BB%B6%E5%A5%97/01-%20HTML/2eec1551.html</url>
-    <content><![CDATA[HTML标签语法规范基本语法概述1.所有标签都包括在&lt;&gt;里面2.并且一般情况下&lt;&gt;都成对出现，例如：&lt; html &gt;(开始标签) 和&lt; &#x2F;html &gt;(结束标签)，称为双标签3.有极少数标签必须是单个标签，例如：&lt; br &#x2F;&gt;
-标签关系包含关系和并列关系![[Pasted image 20240415204232.png]]![[Pasted image 20240415204710.png]]
-基本结构标签&lt; html&gt; 和 &lt; &#x2F;html&gt; 内包含所有内容&lt; head&gt; 和&lt; &#x2F;head&gt; 内包含头部即![[Pasted image 20240415215459.png]]&lt; title&gt;和&lt; &#x2F;title&gt; 内包含标题即![[Pasted image 20240415215620.png]]&lt; body&gt; 和&lt; &#x2F;body&gt;内包含主要内容即![[Pasted image 20240415215711.png]]
-HTML常用标签标题标签分为6个等级的网页标题，&lt; h1&gt;-&lt; h6&gt;双标签如：&lt; h1&gt; &lt; &#x2F;h1&gt;特点：1.加了标题的文字会被加粗，字号也会依次变大2.一个标题独占一行效果：![[Pasted image 20240416171114.png]]
-段落和换行标签段落标签可以将网页分为若干个段落。如：&lt; p&gt; 我是一个段落&lt; &#x2F;p&gt;不加段落标签的效果：![[Pasted image 20240416172237.png]]![[Pasted image 20240416172253.png]]加了段落标签的效果：![[Pasted image 20240416172531.png]]![[Pasted image 20240416172541.png]]特点：1、文本在一个段落中会根据浏览器窗口大小自动换行如：![[Pasted image 20240416172734.png]]
-![[Pasted image 20240416172745.png]]
-2、段落和段落之间保有空隙
-换行标签让某段文本强制换行显示。 (单标签)![[Pasted image 20240416175007.png]]![[Pasted image 20240416175016.png]]特点：1、是单个标签2、标签只是简单开始新的一行，与段落不同，段落之间会插入一些间距
-文本格式化标签把文字 设置粗体、斜体、下划线等效果，突出重要性加粗：&lt; strong&gt;&lt; &#x2F;strong&gt; 或者&lt; b&gt;&lt; &#x2F;b&gt;倾斜：&lt; em&gt;&lt; &#x2F;em&gt;或者&lt; i&gt;&lt; &#x2F;i&gt;删除线：&lt; del&gt;&lt; &#x2F;del&gt;或者&lt; s&gt;&lt; &#x2F;s&gt;下划线：&lt; ins&gt;&lt; &#x2F;ins&gt;或者&lt; u&gt;&lt; &#x2F;u&gt;
-&lt;div&gt;和&lt;span&gt;标签他俩没有语义，它们就是一个盒子，用来装内容特点：1、&lt;div&gt;标签用来布局，但是一行只能放一个&lt;div&gt;.是大盒子2、&lt;span&gt;标签用来布局，一行上可以放多个&lt;span&gt;.是小盒子![[Pasted image 20240416195917.png]]![[Pasted image 20240416195931.png]]
-图像标签和路径图像标签&lt;img /&gt; 用于定义HTML页面中的图像，是单个标签&lt;img src=&quot;图像URL&quot; /&gt;src是&lt;img&gt;标签的必须属性，用于指定图像文件的路径和文件名要使用图片在网页中，必须把图片和网页放在同一个文件夹中![[Pasted image 20240416201001.png]]注意点：1、图像标签可以有多个属性，必须写在标签名的后面2、属性之间不分先后顺序，标签名与属性、属性与属性之间均以空格分开3、属性的格式：属性&#x3D;“属性值”
-路径1、目录文件夹和根目录目录文件夹：普通文件夹，里面存放做页面的相关素材，如html文件、图片等根目录：打开目录文件夹的第一层就是根目录
-2、路径通常建立一个文件夹来储存图像文件，这时查找图像，需要采取“路径”的方式来指定图像文件的位置相对路径：相对路径是从代码所在的这个文件出发，去寻找目标文件![[Pasted image 20240416203015.png]]
-绝对路径：![[Pasted image 20240416203639.png]]
-超链接标签&lt;a&gt;标签用于定义超链接，作用是从一个页面链接到另一个页面
-链接的语法格式![[Pasted image 20240416204158.png]]
-![[Pasted image 20240416204242.png]]
-链接分类1、外部链接：例如&lt;a herf=&quot;http://www.baidu.com&quot;&gt;百度&lt; /a&gt;2、内部链接：网站内部页面之间的相互链接，直接连接内部页面名称即可，例如：&lt;a herf=&quot;index.html&quot;&gt;首页&lt; /a&gt;3、空链接：没有确定链接目标，&lt;a herf=&quot;#&quot;&gt;首页&lt; /a&gt;4、下载链接：如果herf里面地址是一个文件或者压缩包，会下载这个文件5、网页元素链接：在网页中的各种网页元素，如文本、图像、表格、音频、视频等都可以添加超链接6、锚点链接：当我们点击链接，可以快速定位到页面中的某个位置
-![[Pasted image 20240416210054.png]]
-
-HTML中的注释和特殊字符注释注释以““结束![[Pasted image 20240416210352.png]]
-特殊字符![[Pasted image 20240416210706.png]]
-表格标签表格的主要作用用于显示、展示数据，可以让数据显示的非常规整，可读性非常好。
-表格的基本语法1、&lt;table&gt; &lt;/table&gt;是用于定义表格的标签2、&lt;tr&gt; &lt;/tr&gt;标签用于定义表格中的行，必须嵌套在&lt;table&gt; &lt;/table&gt;标签中3、&lt;td&gt; &lt;/td&gt;用于定义表格中的单元格，必须嵌套在&lt;tr&gt; &lt;/tr&gt;标签中4、字母td指表格数据，即数据单元格的内容
-表头单元格标签一般表头单元格位于表格的第一列或第一行，表头单元格里面的文本内容加粗居中显示&lt;th&gt; &lt;/th&gt;标签表示HTML表格的表头部分
-表格属性实际开发不常用，后面通过CSS来设置 ![[Pasted image 20240416214210.png]] 注意：属性写在table里面
-表格结构标签使用场景：表格可能很长，为了更好表示表格的语义，可以将表格分为表格头部和表格主体两部分&lt;thead&gt;标签表示表格的头部区域，&lt;tbody&gt;标签表示表格的主体区域1、&lt;thead&gt; &lt;/thead&gt;用于定义表格的头部。&lt;thead&gt;内部必须拥有&lt;tr&gt;标签，一般位于第一行2、&lt;tbody&gt; &lt;/tbody&gt;用于定义表格的主体，主要用于放数据本体3、以上标签都是放在&lt;table&gt; &lt;/table&gt;标签中
-合并单元格1、合并单元格的方式*跨行合并：rowspan&#x3D;“合并单元格的个数”![[Pasted image 20240416220516.png]]
-*跨列合并：colspan&#x3D;“合并单元格的个数”![[Pasted image 20240416220545.png]]
-2、目标单元格（写合并代码）![[Pasted image 20240416220705.png]]、
-3、合并单元格三部曲先确定是跨行还是跨列合并找到目标单元格，写上合并方式&#x3D;合并的单元格数量。如：&#96; 删除多余单元格
-列表标签用来布局特点：整齐、整洁、有序
-无序列表&lt;ul&gt; &lt;/ul&gt; 标签表示HTML项目中的无序列表&lt;li&gt; &lt;/li&gt;标签表示列表项语法基本格式如下：&lt;ul&gt; 	 列表项1  	 列表项2  	 列表项3   *注意：* 1、 中只能嵌套 ，直接在 标签中输入其他标签或者文字的做法是不被允许的 2、 &#96;之间相当于一个容器，可以容纳所有元素3、无序列表带有自己的样式属性，但在实际使用时，我们使用CSS来设置
-有序列表&lt;ol&gt; &lt;/ol&gt;标签表示HTML项目中的有序列表&lt;li&gt; &lt;/li&gt;标签表示列表项语法基本格式如下：&lt;ol&gt; 	 列表项1  	 列表项2  	 列表项3   *注意：* 1、 中只能嵌套 ，直接在 标签中输入其他标签或者文字的做法是不被允许的 2、 &#96;之间相当于一个容器，可以容纳所有元素3、有序列表带有自己的样式属性，但在实际使用时，我们使用CSS来设置
-自定义列表常用于对术语或名词进行解释和描述，定义列表的列表项前没有任何项目符号&lt;dl&gt; &lt;/dl&gt;标签表示HTML项目中的自定义列表&lt;dt&gt; &lt;/dt&gt;标签表示定义项目的名字&lt;dd&gt; &lt;/dd&gt;标签表示描述每一个项目语法基本格式如下：&lt;dl&gt; 	 名词1  	 名词1解释1  	 名词1解释2   *注意：* 1、 里面只能包含 和 2、&lt;dt&gt; &lt;/dt&gt;和&lt;dd&gt; &lt;/dd&gt;个数没有限制，通常是一个&lt;dt&gt;对应多个&lt;dd&gt;
-表单标签为什么需要表单目的：收集用户信息
-表单的组成由表单域、表单控件（即表单元素）、提示信息3部分构成![[Pasted image 20240417153314.png]]
-表单域包含表单元素的区域&lt;form&gt; &lt;/form&gt;标签表示定义表单域，以实现用户信息的收集和传递&lt;form&gt;会把它范围内的表单元素信息提交给服务器语法基本格式如下：&lt;form action=&quot;url地址&quot; method=&quot;提交方式&quot; name=&quot;表单域名称&quot;	各种表单元素控件&lt;/form&gt;![[Pasted image 20240417171730.png]]
-表单控件（表单元素）&lt;input&gt;表单元素&lt;input&gt;标签用于收集用户信息，是单个标签在&lt;input&gt;标签中，包含一个type属性，根据不同的type属性值，输入字段拥有很多种形式（可以是文本、字段、复选框、掩码后的文本控件、单选按钮、按钮等）。语法基本格式如下：&lt;input type = &quot;属性值&quot; /&gt;
-![[Pasted image 20240417172528.png]]
-除type属性外，&lt;input&gt;标签还有其他很多属性：![[Pasted image 20240417173755.png]]注意：1、name和value是每个表单元素都有的属性值，主要给后台人员使用2、name表单元素的名字，要求单选按钮和复选框要有相同的name值*3、checked属性主要针对于单选按钮和复选框，作用是一打开界面就默认选中某个表单元素4、maxlength是用户可以在表单元素输入的最大字符数，一般较少使用
-![[Pasted image 20240417193415.png]]
-![[Pasted image 20240417193426.png]]
-&lt;lable&gt;标签&lt;label&gt; &lt;/label&gt;标签为input元素定义标签&lt;label&gt;标签用于绑定一个表单元素，当点击&lt;label&gt;标签内的文本时，浏览器会自动将焦点（光标）转到对应的表单元素上，用来增加用户体验语法基本格式如下：
-&lt;label for=&quot;性别&quot;&gt;男&lt;/label&gt;&lt;input type=&quot;radio&quot; name=&quot;sex&quot; id=&quot;性别&quot; /&gt;
-核心：&lt;label&gt;标签的for属性应当与相关元素的id属性相同![[Pasted image 20240417194812.png]]
-&lt;select&gt;表单元素使用场景：在页面中，如果有多个选择让用户选择，并且想要节约页面空间，我们可以使用&lt;select&gt;标签控件定义下拉列表![[Pasted image 20240417195224.png]]
-语法基本格式如下：&lt;select&gt;	&lt;option&gt;选项1&lt;/option&gt;	&lt;option&gt;选项2&lt;/option&gt;	&lt;option&gt;选项3&lt;/option&gt;	...&lt;/select&gt;注意：1、&lt;select&gt;中至少包含一对&lt;option&gt;2、在&lt;option&gt;中定义selected&#x3D;“selected”时，当前项即为默认选中项
-![[Pasted image 20240417200003.png]]
-![[Pasted image 20240417200023.png]]
-&lt;textarea&gt;表单元素使用场景：当用户输入内容较多的情况下，我们使用&lt;textarea&gt;标签&lt;textarea&gt;标签是用于定义多行文本输入的控件语法基本格式如下：&lt;textarea rows=&quot;3&quot; cols=&quot;20&quot;&gt;	文本内容&lt;/textarea&gt;
-![[Pasted image 20240417201708.png]]
-![[Pasted image 20240417201721.png]]
-注意：1、通过&lt;textarea&gt;标签可以轻松地创建多行文本输入框2、cols&#x3D;”每行中的字符数“ ，rows&#x3D;”显示的行数”，我们在实际开发中不会使用，都是用CSS来改变大小
-HTML5的新特性注意： 这些新特性都有兼容问题，基本上是IE9+以上版本的浏览器才支持
-HTML新增的语义化标签1、&lt;header&gt;头部标签2、&lt;nav&gt;导航标签3、&lt;article&gt;内容标签4、section&gt;定义文档某个区域5、&lt;aside&gt;侧边栏标签6、&lt;footer&gt;尾部标签
-![[Pasted image 20240417203348.png]]
-![[Pasted image 20240417204528.png]]
-![[Pasted image 20240417204547.png]]
-HTML5新增的多媒体标签视频&lt;video&gt;当前&lt;video&gt;元素支持三种视频格式：MP4，WebM，Ogg。但尽量使用MP4格式，因为几乎所有浏览器都支持语法基本格式如下：&lt;video src=&quot;文件地址&quot; controls=&quot;contorls&quot;&gt; &lt;/video&gt;注意：如果害怕浏览器不支持当前格式，可以参照以下写法
-![[Pasted image 20240417205241.png]]
-![[Pasted image 20240417205638.png]]
-音频&lt;audio&gt;当前&lt;audio&gt;支持3中音频格式：MP3、Wav、Ogg。但尽量使用MP3格式，因为几乎所有浏览器都支持语法基本格式如下：&lt;audio src=&quot;文件地址&quot; controls=&quot;contorls&quot;&gt; &lt;/audio&gt;注意：如果害怕浏览器不支持当前格式，可以参照以下写法
-![[Pasted image 20240417205926.png]]
-![[Pasted image 20240417210200.png]]
-HTML5新增的input标签![[Pasted image 20240417210434.png]]
-![[Pasted image 20240417211039.png]]、![[Pasted image 20240417211048.png]]
-HTML5新增的表单属性![[Pasted image 20240417211533.png]]
-HTML5新增的全局属性 data-*
-data-* ，用于自定义数据属性
-data设置的属性可以在JavaScript的DOM操作中 通过dataset轻松获取
-通常用于HTML和JavaScript数据之间的传递
-
-
-
-&lt;div class=&quot;box&quot; title=&quot;abc&quot; data-name=&quot;why&quot; data-age=&quot;18&quot;&gt;	box&lt;/div&gt;&lt;script&gt;	const boxE1 = document.querySelector(&quot;.box&quot;)	console.log(boxE1.dataset)&lt;/script&gt;
-
-在小程序中，通过data-来传递数据
-
-]]></content>
-      <categories>
-        <category>前端开发</category>
-      </categories>
-      <tags>
-        <tag>前端三件套</tag>
       </tags>
   </entry>
   <entry>
@@ -4644,6 +4468,234 @@ var date = new Date() //当前时间   console.log(date)   console.log(date.toIS
       </tags>
   </entry>
   <entry>
+    <title>Pinia源码</title>
+    <url>/posts/2025/08/Fronted/Vue/pinia%E6%BA%90%E7%A0%81/a42dfghf.html</url>
+    <content><![CDATA[参考资料pinia的使用(原链接)Pinia支持compositionApi同时也兼容optionsApi(this指向)Pinia可以采用多个store,store之间可以互相调用（扁平化），不用担心命名冲突问题
+Pinia基本使用组合式 与 选项式 写法
+import &#123;defineStore&#125; from &#x27;../pinia/store&#x27;import &#123;ref, computed&#125; from &#x27;vue&#x27;export const useCounterStore = defineStore(&#x27;counter&#x27;, ()=&gt;&#123;    const count = ref(0)    const double = computed(()=&gt;&#123;        return count.value * 2    &#125;)    const increment = (num)=&gt;&#123;        count.value += num        console.log(todosStore.todos)    &#125;    return &#123;        count,        double,        increment    &#125;&#125;)// export const useCounterStore = defineStore(&#x27;counter&#x27;, &#123;//     state: () =&gt; &#123;//         return &#123;count: 0&#125;//     &#125;,//     getters: &#123;//         double() &#123;//             return this.count * 2//         &#125;//     &#125;,//     actions: &#123;//         increment(num) &#123;//             this.count += num//         &#125;//     &#125;// &#125;)
+Pinia实现原理pinia中的最近数据存储在state中_s 记录了state的各个时态, 存放各个时期的state, 有利于重复使用
+创建原理import &#123; PiniaSymbol &#125; from &quot;./rootStore&quot;import &#123;ref&#125; from &#x27;vue&#x27;export function createPinia () &#123;        const state = ref(&#123;&#125;)    const pinia = &#123;        install(app) &#123;            app.config.globalProperties.$pinia = pinia //更新            app.provide(PiniaSymbol, pinia)        &#125;,        state,        _s:new Map(),    &#125;    return pinia&#125;
+
+存储原理其中参数含义如下：
+
+id：store 的 id，必须唯一。
+
+options： 与 Vue 的选项式 API 类似，我们也可以传入一个带有 id、 state、actions与 getters属性的 Option 对象。
+
+storeSetup：以 setup 的方式创建，与 Vue 的 setup 函数 相似。在 storeSetup 中：
+
+ref() 等同于 state。
+computed() 等同于 getters。
+function() 等同于 actions
+
+
+
+getCurrentInstance 是 Vue 3 Composition API 中的一个函数，用于获取当前组件实例的内部对象
+在调用useStore时, 首先会在_s中寻找所求值是否存在, 如果存在则直接赋值, 不存在则再创建一个新的值
+export function defineStore(idOrOptions, setup) &#123;    let id    let options    //判断是组合式还是选项式    const isSetupStore = typeof setup === &#x27;function&#x27;    if(typeof idOrOptions == &#x27;string&#x27;) &#123;        id = idOrOptions        options = setup    &#125; else &#123; //不是字符串, 说明传入了对象        options = idOrOptions        id = idOrOptions.id    &#125;        function useStore() &#123;        const currentInstance = getCurrentInstance()        const pinia = currentInstance &amp;&amp; inject(PiniaSymbol)                if (!pinia._s.has(id)) &#123; //这个store时第一次使用                        if(isSetupStore)&#123;                createSetupStore(id, setup, pinia)                //创建组合式store            &#125; else &#123;                createOptionStore(id, options, pinia)                //创建后的store只需要存到_s中即可            &#125;        &#125;        //如果已经有了store, 不用创建, 直接拿到store就行了        const store = pinia._s.get(id)        return store    &#125;    return useStore&#125;
+
+组合式this指向当传入的值中含有方法对象时, 直接处理会改变对象的this指向, 这时候需要进行特殊处理保证传入的类的this指向不改变通过wrapAction函数显示转换他们的this指向
+将处理好的值与旧值进行更新 (Object.assign)加入到_s中, 在二次调用时减少计算
+//setupStore 用户已经提供了完整的setup方法了, 我们只需执行setup函数即可,//通过这个返回值, 将其放在store上即可function createSetupStore(id, setup, pinia) &#123;    const store = reactive(&#123;&#125;)        //处理this指向    function wrapAction (action) &#123;        return function () &#123;            //将action中的this永远处理成store, 保证this指向正确            return action.call(store, ...arguments)        &#125;    &#125;    const setupStore = setup()    //拿到的setupStore可能没有处理this指向    //处理this    for (let prop in setupStore) &#123;        const value = setupStore[prop]        if (typeof value === &#x27;function&#x27;) &#123;            setupStore[prop] = wrapAction(value)        &#125;    &#125;    Object.assign(store, setupStore)//加入到队伍里面        pinia._s.set(id, store)    return store &#125;
+
+选项式相比与组合式, 选项式多了一个setup()函数
+在此过程中，state 的内容也会被存储到 pinia.state 中。action 则会被 wrapAction 处理
+每一项 action 进行处理，目的是为了支持 $onAction 方法，此方法会在执行 action 时执行回调函数，回调函数可以接收三个参数分别是：被调用的 store、action 的名字、传递给 action 的参数。
+getters处理时, 需将他的逻辑执行完后,得到的值存入store
+function createOptionStore(id, options, pinia) &#123;    const &#123;state, actions, getters=&#123;&#125;&#125; = options //store里面的数据, 已定义    const store = reactive(&#123;&#125;) //pinia就是创建了一个响应式对象而已    //需要将这个api转换成组合式    function setup() &#123;        pinia.state.value[id] = state ? state() : &#123;&#125;        let localState = toRefs(pinia.state.value[id])        return Object.assign(            localState,            actions,            Object.keys(getters).reduce((computeds, getterKey)=&gt;&#123;                computeds[getterKey] = computed(()=&gt;&#123;                    return getters[getterKey].call(store)                &#125;)                return computeds            &#125;, &#123;&#125;)        )    &#125;    //减少代码的重复书写, 此时选项式store已经将数据处理, 剩下的逻辑和处理组合式一致    createSetupStore(id, setup, pinia)    return store &#125;
+
+store中的基础api实现定义
+ const actionSubscriptions = [] //所有订阅的actions时间, 都应该放在这个数组中 const partialStore = &#123;     $patch,     //订阅状态     $subscribe(callback) &#123;         watch(pinia.state.value[id], state =&gt; &#123;             callback(&#123;id&#125;, state)         &#125;)     &#125;,     //订阅用户的action操作     $onAction: addSubscription.bind(null, actionSubscriptions), //订阅&#125; //pinia就是创建了一个响应式对象而已 const store = reactive(partialStore)
+patch将一个 state 补丁应用于当前状态。允许传递嵌套值。
+$patch 允许两种参数传递方式，传入一个函数，或一个 state 的补丁。
+    //这里需要获取原来的所有状态    function $patch(partialStateOrMutator) &#123;        //partialStateOrMutator部分状态        if(typeof partialStateOrMutator !== &#x27;function&#x27;) &#123;            //当前store中的全部状态, pinia.state.value[i]            merge(pinia.state.value[id], partialStateOrMutator)        &#125; else &#123;            partialStateOrMutator(pinia.state.value[id])        &#125;    &#125;        function merge(target, partialState) &#123;        for (const key in partialState) &#123;            if(!partialState.hasOwnProperty(key)) continue            //原始的值            const targetValue = target[key]            //后来的值            const subPatch = partialState[key]            if (isObject(targetValue) &amp;&amp; isObject(subPatch) &amp;&amp; !isRef(subPatch)) &#123; //ref也是对象                target[key] = merge(targetValue, subPatch)            &#125; else &#123;                //如果不需要合并直接用新的覆盖掉老的即可                target[key] = subPatch            &#125;        &#125;    &#125;     if(isSetupStore) &#123;        pinia.state.value[id] = &#123;&#125;        //用于存放setupStore中的状态    &#125;
+
+reset功能: 通过建立一个新的状态对象，将 store 重设为初始状态。
+重置方法只能在optionStore中书写因为在setupStore中, 用户自己控制状态; 
+
+state: () &#x3D;&gt; ({count: 1}) 是一个函数，只要重新调用就可以获取原始值，
+而 组合式 构建的话 state 以 ref() 的形式实现，无法获取原始值。
+
+    store.$reset = function() &#123; //这个方法只支持optionAPI, 因为setupAPI中, 用户自己控制状态        const newState = state ? state() : &#123;&#125;        this.$patch(newState)    &#125;
+
+subscribe设置一个回调，当状态发生变化时被调用。它会返回一个用来移除此回调的函数。 请注意，当在组件内调用 store.$subscribe() 时，除非 detached 被设置为 true， 否则当组件被卸载时，它将被自动清理掉。
+在store中的实现
+        //订阅状态        $subscribe(callback) &#123;            watch(pinia.state.value[id], state =&gt; &#123;                callback(&#123;id&#125;, state)            &#125;)        &#125;,
+
+onAction设置一个回调，当一个 action 即将被调用时，就会被调用。 回调接收一个对象， 其包含被调用 action 的所有相关信息：
+
+store: 被调用的 store
+name: action 的名称
+args: 传递给 action 的参数
+
+除此之外，它会接收两个函数， 允许在 action 完成或失败时执行的回调。
+它还会返回一个用来删除回调的函数。 请注意，当在组件内调用 store.$onAction() 时，除非 detached 被设置为 true， 否则当组件被卸载时，它将被自动清理掉。
+调用方法
+export function addSubscription(subscriptions, callback) &#123;    subscriptions.push(callback)//将回调函数放在数组中      const removeSubscription = () =&gt; &#123;       const idx = subscriptions.indexOf(callback)       if(idx &gt; -1) &#123;        subscriptions.splice(idx, 1)       &#125;    &#125;    return removeSubscription&#125;  export function triggerSubscriptions(subscriptions, ...args) &#123;    subscriptions.slice().forEach(cb=&gt;cb(...args))&#125;
+
+定义
+const actionSubscriptions = [] //所有订阅的actions时间, 都应该放在这个数组中const partialStore = &#123;	...        //订阅用户的action操作        $onAction: addSubscription.bind(null, actionSubscriptions),   &#125;
+实现
+  //处理this指向    function wrapAction (action) &#123;        return function () &#123;            const afterCallbacks = []            const onErrorCallbacks = []            const after = (callback) =&gt; &#123;                afterCallbacks.push(callback)            &#125;            const onError = (callback) =&gt; &#123;                onErrorCallbacks.push(callback)            &#125;            triggerSubscriptions(actionSubscriptions, &#123;after, onError&#125;) //让用户传递after和error            //将action中的this永远处理成store, 保证this指向正确              //回调的方式            let result            try &#123;//正常action是一个回调的情况, 可以直接拿到返回值出发after回调            result =  action.call(store, ...arguments)            triggerSubscriptions(afterCallbacks, result)            &#125; catch (e)&#123;                triggerSubscriptions(onErrorCallbacks, e)            &#125;            //如果返回值是一个Promise, 针对场景做处理              if(result instanceof Promise) &#123;                return result.then(value =&gt; &#123;                    triggerSubscriptions(afterCallbacks, value)                &#125;).catch(error =&gt; &#123;                    triggerSubscriptions(onErrorCallbacks, error)                &#125;)            &#125;              return result        &#125;    &#125;
+
+pinia插件写法main.js中
+const pinia = createPinia()function persitisPlugin() &#123; //为了用户传递参数, 所以用函数    return (&#123;store, id&#125;) =&gt; &#123; //所有的store都会执行此方法         let oldState = JSON.parse(localStorage.getItem(id) || &#x27;&#123;&#125;&#x27;)        store.$state = oldState        // store.$patch(oldState) //将老状态进行替换        store.$subscribe((mutation, state) =&gt; &#123;            localStorage.setItem(id, JSON.stringify(state))        &#125;)    &#125;&#125;pinia.use(persitisPlugin()) //use API可以去调用插件的install方法，将app注入进来app.use(pinia) //使用pinia插件
+
+
+createStore中
+import &#123; PiniaSymbol &#125; from &quot;./rootStore&quot;import &#123;ref&#125; from &#x27;vue&#x27;export function createPinia () &#123;    //pinia是管理多个state状态的    const state = ref(&#123;&#125;)    const _p = [] //插件    const pinia = &#123;        install(app) &#123;            app.config.globalProperties.$pinia = pinia            app.provide(PiniaSymbol, pinia)        &#125;,        use(plugin) &#123;            _p.push(plugin)            return pinia        &#125;,        state,        _s:new Map(),        _p    &#125;    return pinia&#125;
+总结仓库链接这里附上整个源码
+]]></content>
+      <categories>
+        <category>前端开发</category>
+      </categories>
+      <tags>
+        <tag>pinia</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTML</title>
+    <url>/posts/2025/04/Fronted/%E4%B8%89%E4%BB%B6%E5%A5%97/01-%20HTML/2eec1551.html</url>
+    <content><![CDATA[HTML标签语法规范基本语法概述1.所有标签都包括在&lt;&gt;里面2.并且一般情况下&lt;&gt;都成对出现，例如：&lt; html &gt;(开始标签) 和&lt; &#x2F;html &gt;(结束标签)，称为双标签3.有极少数标签必须是单个标签，例如：&lt; br &#x2F;&gt;
+标签关系包含关系和并列关系![[Pasted image 20240415204232.png]]![[Pasted image 20240415204710.png]]
+基本结构标签&lt; html&gt; 和 &lt; &#x2F;html&gt; 内包含所有内容&lt; head&gt; 和&lt; &#x2F;head&gt; 内包含头部即![[Pasted image 20240415215459.png]]&lt; title&gt;和&lt; &#x2F;title&gt; 内包含标题即![[Pasted image 20240415215620.png]]&lt; body&gt; 和&lt; &#x2F;body&gt;内包含主要内容即![[Pasted image 20240415215711.png]]
+HTML常用标签标题标签分为6个等级的网页标题，&lt; h1&gt;-&lt; h6&gt;双标签如：&lt; h1&gt; &lt; &#x2F;h1&gt;特点：1.加了标题的文字会被加粗，字号也会依次变大2.一个标题独占一行效果：![[Pasted image 20240416171114.png]]
+段落和换行标签段落标签可以将网页分为若干个段落。如：&lt; p&gt; 我是一个段落&lt; &#x2F;p&gt;不加段落标签的效果：![[Pasted image 20240416172237.png]]![[Pasted image 20240416172253.png]]加了段落标签的效果：![[Pasted image 20240416172531.png]]![[Pasted image 20240416172541.png]]特点：1、文本在一个段落中会根据浏览器窗口大小自动换行如：![[Pasted image 20240416172734.png]]
+![[Pasted image 20240416172745.png]]
+2、段落和段落之间保有空隙
+换行标签让某段文本强制换行显示。 (单标签)![[Pasted image 20240416175007.png]]![[Pasted image 20240416175016.png]]特点：1、是单个标签2、标签只是简单开始新的一行，与段落不同，段落之间会插入一些间距
+文本格式化标签把文字 设置粗体、斜体、下划线等效果，突出重要性加粗：&lt; strong&gt;&lt; &#x2F;strong&gt; 或者&lt; b&gt;&lt; &#x2F;b&gt;倾斜：&lt; em&gt;&lt; &#x2F;em&gt;或者&lt; i&gt;&lt; &#x2F;i&gt;删除线：&lt; del&gt;&lt; &#x2F;del&gt;或者&lt; s&gt;&lt; &#x2F;s&gt;下划线：&lt; ins&gt;&lt; &#x2F;ins&gt;或者&lt; u&gt;&lt; &#x2F;u&gt;
+&lt;div&gt;和&lt;span&gt;标签他俩没有语义，它们就是一个盒子，用来装内容特点：1、&lt;div&gt;标签用来布局，但是一行只能放一个&lt;div&gt;.是大盒子2、&lt;span&gt;标签用来布局，一行上可以放多个&lt;span&gt;.是小盒子![[Pasted image 20240416195917.png]]![[Pasted image 20240416195931.png]]
+图像标签和路径图像标签&lt;img /&gt; 用于定义HTML页面中的图像，是单个标签&lt;img src=&quot;图像URL&quot; /&gt;src是&lt;img&gt;标签的必须属性，用于指定图像文件的路径和文件名要使用图片在网页中，必须把图片和网页放在同一个文件夹中![[Pasted image 20240416201001.png]]注意点：1、图像标签可以有多个属性，必须写在标签名的后面2、属性之间不分先后顺序，标签名与属性、属性与属性之间均以空格分开3、属性的格式：属性&#x3D;“属性值”
+路径1、目录文件夹和根目录目录文件夹：普通文件夹，里面存放做页面的相关素材，如html文件、图片等根目录：打开目录文件夹的第一层就是根目录
+2、路径通常建立一个文件夹来储存图像文件，这时查找图像，需要采取“路径”的方式来指定图像文件的位置相对路径：相对路径是从代码所在的这个文件出发，去寻找目标文件![[Pasted image 20240416203015.png]]
+绝对路径：![[Pasted image 20240416203639.png]]
+超链接标签&lt;a&gt;标签用于定义超链接，作用是从一个页面链接到另一个页面
+链接的语法格式![[Pasted image 20240416204158.png]]
+![[Pasted image 20240416204242.png]]
+链接分类1、外部链接：例如&lt;a herf=&quot;http://www.baidu.com&quot;&gt;百度&lt; /a&gt;2、内部链接：网站内部页面之间的相互链接，直接连接内部页面名称即可，例如：&lt;a herf=&quot;index.html&quot;&gt;首页&lt; /a&gt;3、空链接：没有确定链接目标，&lt;a herf=&quot;#&quot;&gt;首页&lt; /a&gt;4、下载链接：如果herf里面地址是一个文件或者压缩包，会下载这个文件5、网页元素链接：在网页中的各种网页元素，如文本、图像、表格、音频、视频等都可以添加超链接6、锚点链接：当我们点击链接，可以快速定位到页面中的某个位置
+![[Pasted image 20240416210054.png]]
+
+HTML中的注释和特殊字符注释注释以““结束![[Pasted image 20240416210352.png]]
+特殊字符![[Pasted image 20240416210706.png]]
+表格标签表格的主要作用用于显示、展示数据，可以让数据显示的非常规整，可读性非常好。
+表格的基本语法1、&lt;table&gt; &lt;/table&gt;是用于定义表格的标签2、&lt;tr&gt; &lt;/tr&gt;标签用于定义表格中的行，必须嵌套在&lt;table&gt; &lt;/table&gt;标签中3、&lt;td&gt; &lt;/td&gt;用于定义表格中的单元格，必须嵌套在&lt;tr&gt; &lt;/tr&gt;标签中4、字母td指表格数据，即数据单元格的内容
+表头单元格标签一般表头单元格位于表格的第一列或第一行，表头单元格里面的文本内容加粗居中显示&lt;th&gt; &lt;/th&gt;标签表示HTML表格的表头部分
+表格属性实际开发不常用，后面通过CSS来设置 ![[Pasted image 20240416214210.png]] 注意：属性写在table里面
+表格结构标签使用场景：表格可能很长，为了更好表示表格的语义，可以将表格分为表格头部和表格主体两部分&lt;thead&gt;标签表示表格的头部区域，&lt;tbody&gt;标签表示表格的主体区域1、&lt;thead&gt; &lt;/thead&gt;用于定义表格的头部。&lt;thead&gt;内部必须拥有&lt;tr&gt;标签，一般位于第一行2、&lt;tbody&gt; &lt;/tbody&gt;用于定义表格的主体，主要用于放数据本体3、以上标签都是放在&lt;table&gt; &lt;/table&gt;标签中
+合并单元格1、合并单元格的方式*跨行合并：rowspan&#x3D;“合并单元格的个数”![[Pasted image 20240416220516.png]]
+*跨列合并：colspan&#x3D;“合并单元格的个数”![[Pasted image 20240416220545.png]]
+2、目标单元格（写合并代码）![[Pasted image 20240416220705.png]]、
+3、合并单元格三部曲先确定是跨行还是跨列合并找到目标单元格，写上合并方式&#x3D;合并的单元格数量。如：&#96; 删除多余单元格
+列表标签用来布局特点：整齐、整洁、有序
+无序列表&lt;ul&gt; &lt;/ul&gt; 标签表示HTML项目中的无序列表&lt;li&gt; &lt;/li&gt;标签表示列表项语法基本格式如下：&lt;ul&gt; 	 列表项1  	 列表项2  	 列表项3   *注意：* 1、 中只能嵌套 ，直接在 标签中输入其他标签或者文字的做法是不被允许的 2、 &#96;之间相当于一个容器，可以容纳所有元素3、无序列表带有自己的样式属性，但在实际使用时，我们使用CSS来设置
+有序列表&lt;ol&gt; &lt;/ol&gt;标签表示HTML项目中的有序列表&lt;li&gt; &lt;/li&gt;标签表示列表项语法基本格式如下：&lt;ol&gt; 	 列表项1  	 列表项2  	 列表项3   *注意：* 1、 中只能嵌套 ，直接在 标签中输入其他标签或者文字的做法是不被允许的 2、 &#96;之间相当于一个容器，可以容纳所有元素3、有序列表带有自己的样式属性，但在实际使用时，我们使用CSS来设置
+自定义列表常用于对术语或名词进行解释和描述，定义列表的列表项前没有任何项目符号&lt;dl&gt; &lt;/dl&gt;标签表示HTML项目中的自定义列表&lt;dt&gt; &lt;/dt&gt;标签表示定义项目的名字&lt;dd&gt; &lt;/dd&gt;标签表示描述每一个项目语法基本格式如下：&lt;dl&gt; 	 名词1  	 名词1解释1  	 名词1解释2   *注意：* 1、 里面只能包含 和 2、&lt;dt&gt; &lt;/dt&gt;和&lt;dd&gt; &lt;/dd&gt;个数没有限制，通常是一个&lt;dt&gt;对应多个&lt;dd&gt;
+表单标签为什么需要表单目的：收集用户信息
+表单的组成由表单域、表单控件（即表单元素）、提示信息3部分构成![[Pasted image 20240417153314.png]]
+表单域包含表单元素的区域&lt;form&gt; &lt;/form&gt;标签表示定义表单域，以实现用户信息的收集和传递&lt;form&gt;会把它范围内的表单元素信息提交给服务器语法基本格式如下：&lt;form action=&quot;url地址&quot; method=&quot;提交方式&quot; name=&quot;表单域名称&quot;	各种表单元素控件&lt;/form&gt;![[Pasted image 20240417171730.png]]
+表单控件（表单元素）&lt;input&gt;表单元素&lt;input&gt;标签用于收集用户信息，是单个标签在&lt;input&gt;标签中，包含一个type属性，根据不同的type属性值，输入字段拥有很多种形式（可以是文本、字段、复选框、掩码后的文本控件、单选按钮、按钮等）。语法基本格式如下：&lt;input type = &quot;属性值&quot; /&gt;
+![[Pasted image 20240417172528.png]]
+除type属性外，&lt;input&gt;标签还有其他很多属性：![[Pasted image 20240417173755.png]]注意：1、name和value是每个表单元素都有的属性值，主要给后台人员使用2、name表单元素的名字，要求单选按钮和复选框要有相同的name值*3、checked属性主要针对于单选按钮和复选框，作用是一打开界面就默认选中某个表单元素4、maxlength是用户可以在表单元素输入的最大字符数，一般较少使用
+![[Pasted image 20240417193415.png]]
+![[Pasted image 20240417193426.png]]
+&lt;lable&gt;标签&lt;label&gt; &lt;/label&gt;标签为input元素定义标签&lt;label&gt;标签用于绑定一个表单元素，当点击&lt;label&gt;标签内的文本时，浏览器会自动将焦点（光标）转到对应的表单元素上，用来增加用户体验语法基本格式如下：
+&lt;label for=&quot;性别&quot;&gt;男&lt;/label&gt;&lt;input type=&quot;radio&quot; name=&quot;sex&quot; id=&quot;性别&quot; /&gt;
+核心：&lt;label&gt;标签的for属性应当与相关元素的id属性相同![[Pasted image 20240417194812.png]]
+&lt;select&gt;表单元素使用场景：在页面中，如果有多个选择让用户选择，并且想要节约页面空间，我们可以使用&lt;select&gt;标签控件定义下拉列表![[Pasted image 20240417195224.png]]
+语法基本格式如下：&lt;select&gt;	&lt;option&gt;选项1&lt;/option&gt;	&lt;option&gt;选项2&lt;/option&gt;	&lt;option&gt;选项3&lt;/option&gt;	...&lt;/select&gt;注意：1、&lt;select&gt;中至少包含一对&lt;option&gt;2、在&lt;option&gt;中定义selected&#x3D;“selected”时，当前项即为默认选中项
+![[Pasted image 20240417200003.png]]
+![[Pasted image 20240417200023.png]]
+&lt;textarea&gt;表单元素使用场景：当用户输入内容较多的情况下，我们使用&lt;textarea&gt;标签&lt;textarea&gt;标签是用于定义多行文本输入的控件语法基本格式如下：&lt;textarea rows=&quot;3&quot; cols=&quot;20&quot;&gt;	文本内容&lt;/textarea&gt;
+![[Pasted image 20240417201708.png]]
+![[Pasted image 20240417201721.png]]
+注意：1、通过&lt;textarea&gt;标签可以轻松地创建多行文本输入框2、cols&#x3D;”每行中的字符数“ ，rows&#x3D;”显示的行数”，我们在实际开发中不会使用，都是用CSS来改变大小
+HTML5的新特性注意： 这些新特性都有兼容问题，基本上是IE9+以上版本的浏览器才支持
+HTML新增的语义化标签1、&lt;header&gt;头部标签2、&lt;nav&gt;导航标签3、&lt;article&gt;内容标签4、section&gt;定义文档某个区域5、&lt;aside&gt;侧边栏标签6、&lt;footer&gt;尾部标签
+![[Pasted image 20240417203348.png]]
+![[Pasted image 20240417204528.png]]
+![[Pasted image 20240417204547.png]]
+HTML5新增的多媒体标签视频&lt;video&gt;当前&lt;video&gt;元素支持三种视频格式：MP4，WebM，Ogg。但尽量使用MP4格式，因为几乎所有浏览器都支持语法基本格式如下：&lt;video src=&quot;文件地址&quot; controls=&quot;contorls&quot;&gt; &lt;/video&gt;注意：如果害怕浏览器不支持当前格式，可以参照以下写法
+![[Pasted image 20240417205241.png]]
+![[Pasted image 20240417205638.png]]
+音频&lt;audio&gt;当前&lt;audio&gt;支持3中音频格式：MP3、Wav、Ogg。但尽量使用MP3格式，因为几乎所有浏览器都支持语法基本格式如下：&lt;audio src=&quot;文件地址&quot; controls=&quot;contorls&quot;&gt; &lt;/audio&gt;注意：如果害怕浏览器不支持当前格式，可以参照以下写法
+![[Pasted image 20240417205926.png]]
+![[Pasted image 20240417210200.png]]
+HTML5新增的input标签![[Pasted image 20240417210434.png]]
+![[Pasted image 20240417211039.png]]、![[Pasted image 20240417211048.png]]
+HTML5新增的表单属性![[Pasted image 20240417211533.png]]
+HTML5新增的全局属性 data-*
+data-* ，用于自定义数据属性
+data设置的属性可以在JavaScript的DOM操作中 通过dataset轻松获取
+通常用于HTML和JavaScript数据之间的传递
+
+
+
+&lt;div class=&quot;box&quot; title=&quot;abc&quot; data-name=&quot;why&quot; data-age=&quot;18&quot;&gt;	box&lt;/div&gt;&lt;script&gt;	const boxE1 = document.querySelector(&quot;.box&quot;)	console.log(boxE1.dataset)&lt;/script&gt;
+
+在小程序中，通过data-来传递数据
+
+]]></content>
+      <categories>
+        <category>前端开发</category>
+      </categories>
+      <tags>
+        <tag>前端三件套</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>router</title>
+    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/router/c031c21b.html</url>
+    <content><![CDATA[位置: src下的router文件
+安装和设置路由导入mian.js, , 并使用 app.use(router)
+import&#123;createRouter, createWebHistory,createWebHashHistory&#125; from &#x27;vue-router&#x27;const routes = [    &#123;        path: &#x27;/&#x27;,        component: () =&gt; import (&quot;../views/index.vue&quot;)    &#125;,]const router = createRouter(&#123;    history: createWebHistory(),     // history: createWebHashHistory(),    routes&#125;)export default router
+配置路径别名打开vite.config.js文件导入 import path from &#39;path&#39; 
+添加
+import &#123; defineConfig &#125; from &#x27;vite&#x27;import vue from &#x27;@vitejs/plugin-vue&#x27;import path from &#x27;path&#x27;// https://vite.dev/config/export default defineConfig(&#123;  plugins: [vue(), ],  resolve: &#123;    alias: &#123; //配置路径别名      &#x27;@&#x27;: path.resolve(__dirname, &#x27;src&#x27;)    &#125;  &#125;&#125;)
+
+在src根目录下添加 jsconfig.json文件 (针对js项目, ts需要写tsconfig.json)并配置
+&#123;    &quot;compilerOptions&quot;: &#123;        &quot;baseUrl&quot;:&quot;.&quot;,        &quot;paths&quot;: &#123;            &quot;@/*&quot;:[&quot;src/*&quot;]//配置@符号指向src目录及其子目录         &#125;    &#125;&#125;
+
+使用查询字符串传递参数动态路由我们经常需要把某种模式匹配到的所有路由，全都映射到同个组件。例如，我们有一个 User 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。我们可以在 vueRrouter 的路由路径中使用“动态路径参数”(dynamic segment) 来达到这个效果。
+
+动态路由的创建，主要是使用 path 属性过程中，使用动态路径参数，路径参数 用冒号 : 表示。
+
+当一个路由被匹配时，它的 params 的值将在每个组件中以 this.$route.query 的形式暴露出来。因此，我们可以通过更新 User 的模板来呈现当前的用户 ID：
+const routes = [  &#123;    path: &#x27;/user/:id&#x27;    name: &#x27;User&#x27;    components: User	&#125;]
+****_vue-router _**通过配置 **_params _**和 **_query _来实现动态路由
+params 传参
+必须使用 命名路由 name 传值
+
+参数不会显示在 url 上
+
+浏览器强制刷新时传参会被清空
+
+
+// 传递参数this.$router.push(&#123;  name: Home，  params: &#123;    number: 1 ,    code: &#x27;999&#x27;  &#125;&#125;)// 接收参数const p = this.$route.params
+query 传参
+可以用 name 也可以使用 path 传参
+传递的参数会显示在 url 上
+页面刷新是传参不会丢失
+
+// 方式一：路由拼接this.$router.push(&#x27;/home?username=xixi&amp;age=18&#x27;)// 方式二：name + query 传参this.$router.push(&#123;  name: Home，  query: &#123;    username: &#x27;xixi&#x27;,    age: 18	&#125;&#125;)// 方式三：path + name 传参this.$router.push(&#123;  path: &#x27;/home&#x27;，  query: &#123;    username: &#x27;xixi&#x27;,    age: 18	&#125;&#125;)// 接收参数const q = this.$route.query
+
+定义别名借助 alias
+    &#123;        path: &#x27;/&#x27;,        alias: [&#x27;/home&#x27;, &#x27;/index&#x27;],        component: () =&gt; import (&quot;@/views/index.vue&quot;)    &#125;,
+
+注意:  访问时,  ‘&#x2F;‘, ‘&#x2F;home’, ‘inedx’, 都可以进入到 index.vue页面
+router-link 组件router-link 的本质是 a 标签，在标签上绑定了click事件，然后执行对应的VueRouter实例的push()实现的
+router-view 组件渲染组件渲染的关键在于 router-view ，将路由变化时匹配到的组件进行渲染。 routerView是一个函数式组件，函数式组件没有data，没有组件实例。 因此使用了父组件中的$createElement函数，用以渲染组件，并且在组件渲染的各个时期注册了hook 如果被 keep-alive 包裹则直接使用缓存的 vnode 通过 depth 实现路由嵌套， 循环向上级访问，直到访问到根组件，得到路由的 depth 深度
+全局前置守卫在main.js中写
+router.beforeEach((to, from, next) =&gt; &#123;    console.log(&quot;to&quot;, to) //即将进入路由的信息    console.log(&quot;from&quot;, from) //即将离开路由的信息	if(to.name === &#x27;number) &#123;		next(false) //拦截	&#125; else &#123;		next() //继续	&#125;&#125;)
+]]></content>
+      <categories>
+        <category>easybbs</category>
+      </categories>
+      <tags>
+        <tag>easybbs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript下</title>
     <url>/posts/2025/04/Fronted/%E4%B8%89%E4%BB%B6%E5%A5%97/04-%20JavaScript%E9%AB%98%E7%BA%A7/b746f28d.html</url>
     <content><![CDATA[this指向this的绑定规则this的指向
@@ -5658,58 +5710,6 @@ Fetch文件上传![[Pasted image 20240827164955.png]]
       </tags>
   </entry>
   <entry>
-    <title>router</title>
-    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/router/c031c21b.html</url>
-    <content><![CDATA[位置: src下的router文件
-安装和设置路由导入mian.js, , 并使用 app.use(router)
-import&#123;createRouter, createWebHistory,createWebHashHistory&#125; from &#x27;vue-router&#x27;const routes = [    &#123;        path: &#x27;/&#x27;,        component: () =&gt; import (&quot;../views/index.vue&quot;)    &#125;,]const router = createRouter(&#123;    history: createWebHistory(),     // history: createWebHashHistory(),    routes&#125;)export default router
-配置路径别名打开vite.config.js文件导入 import path from &#39;path&#39; 
-添加
-import &#123; defineConfig &#125; from &#x27;vite&#x27;import vue from &#x27;@vitejs/plugin-vue&#x27;import path from &#x27;path&#x27;// https://vite.dev/config/export default defineConfig(&#123;  plugins: [vue(), ],  resolve: &#123;    alias: &#123; //配置路径别名      &#x27;@&#x27;: path.resolve(__dirname, &#x27;src&#x27;)    &#125;  &#125;&#125;)
-
-在src根目录下添加 jsconfig.json文件 (针对js项目, ts需要写tsconfig.json)并配置
-&#123;    &quot;compilerOptions&quot;: &#123;        &quot;baseUrl&quot;:&quot;.&quot;,        &quot;paths&quot;: &#123;            &quot;@/*&quot;:[&quot;src/*&quot;]//配置@符号指向src目录及其子目录         &#125;    &#125;&#125;
-
-使用查询字符串传递参数动态路由我们经常需要把某种模式匹配到的所有路由，全都映射到同个组件。例如，我们有一个 User 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。我们可以在 vueRrouter 的路由路径中使用“动态路径参数”(dynamic segment) 来达到这个效果。
-
-动态路由的创建，主要是使用 path 属性过程中，使用动态路径参数，路径参数 用冒号 : 表示。
-
-当一个路由被匹配时，它的 params 的值将在每个组件中以 this.$route.query 的形式暴露出来。因此，我们可以通过更新 User 的模板来呈现当前的用户 ID：
-const routes = [  &#123;    path: &#x27;/user/:id&#x27;    name: &#x27;User&#x27;    components: User	&#125;]
-****_vue-router _**通过配置 **_params _**和 **_query _来实现动态路由
-params 传参
-必须使用 命名路由 name 传值
-
-参数不会显示在 url 上
-
-浏览器强制刷新时传参会被清空
-
-
-// 传递参数this.$router.push(&#123;  name: Home，  params: &#123;    number: 1 ,    code: &#x27;999&#x27;  &#125;&#125;)// 接收参数const p = this.$route.params
-query 传参
-可以用 name 也可以使用 path 传参
-传递的参数会显示在 url 上
-页面刷新是传参不会丢失
-
-// 方式一：路由拼接this.$router.push(&#x27;/home?username=xixi&amp;age=18&#x27;)// 方式二：name + query 传参this.$router.push(&#123;  name: Home，  query: &#123;    username: &#x27;xixi&#x27;,    age: 18	&#125;&#125;)// 方式三：path + name 传参this.$router.push(&#123;  path: &#x27;/home&#x27;，  query: &#123;    username: &#x27;xixi&#x27;,    age: 18	&#125;&#125;)// 接收参数const q = this.$route.query
-
-定义别名借助 alias
-    &#123;        path: &#x27;/&#x27;,        alias: [&#x27;/home&#x27;, &#x27;/index&#x27;],        component: () =&gt; import (&quot;@/views/index.vue&quot;)    &#125;,
-
-注意:  访问时,  ‘&#x2F;‘, ‘&#x2F;home’, ‘inedx’, 都可以进入到 index.vue页面
-router-link 组件router-link 的本质是 a 标签，在标签上绑定了click事件，然后执行对应的VueRouter实例的push()实现的
-router-view 组件渲染组件渲染的关键在于 router-view ，将路由变化时匹配到的组件进行渲染。 routerView是一个函数式组件，函数式组件没有data，没有组件实例。 因此使用了父组件中的$createElement函数，用以渲染组件，并且在组件渲染的各个时期注册了hook 如果被 keep-alive 包裹则直接使用缓存的 vnode 通过 depth 实现路由嵌套， 循环向上级访问，直到访问到根组件，得到路由的 depth 深度
-全局前置守卫在main.js中写
-router.beforeEach((to, from, next) =&gt; &#123;    console.log(&quot;to&quot;, to) //即将进入路由的信息    console.log(&quot;from&quot;, from) //即将离开路由的信息	if(to.name === &#x27;number) &#123;		next(false) //拦截	&#125; else &#123;		next() //继续	&#125;&#125;)
-]]></content>
-      <categories>
-        <category>easybbs</category>
-      </categories>
-      <tags>
-        <tag>easybbs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>router和route</title>
     <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/route%E5%92%8Crouter%E5%8C%BA%E5%88%AB/p031c21b.html</url>
     <content><![CDATA[前端路由傻傻分不清？route和router的区别，看完这篇别再搞混了！一、前言：为什么这俩玩意儿容易搞混？刚学前端路由时，我也被route和router搞得头晕眼花，面试还被问：”你能说说$route和$router的区别吗？” 我支支吾吾半天，面试官的表情逐渐凝固… 😅
@@ -5790,18 +5790,6 @@ router管跳转，route管信息跳转找router，参数找route
       </tags>
   </entry>
   <entry>
-    <title>项目功能预览</title>
-    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%8A%9F%E8%83%BD%E9%A2%84%E8%A7%88/c031021b.html</url>
-    <content><![CDATA[【Xmind思维导图】easybbs https://ai.xmind.cn/share/GheHleaN?xid=dhGz5hu6
-]]></content>
-      <categories>
-        <category>easybbs</category>
-      </categories>
-      <tags>
-        <tag>easybbs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>图片预览</title>
     <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88%E7%BB%84%E4%BB%B6/c6yj21b.html</url>
     <content><![CDATA[ 借助element的图片预览组件  
@@ -5816,6 +5804,18 @@ router管跳转，route管信息跳转找router，参数找route
 调用&lt;!-- 图片预览 --&gt; &lt;ImageViewer  ref=&quot;imageViewerRef&quot; :imageList=&quot;previewImageList&quot;&gt;		&lt;/ImageViewer&gt;
 
 //图片预览const imageViewerRef = ref(null)const previewImageList = ref([])const imagePreview = () =&gt; &#123;  nextTick(() =&gt; &#123; //等待下一次 DOM 更新循环结束后执行回调函数中的代码    const imageNodeList = document    .querySelector(&#x27;#detail&#x27;)    .querySelectorAll(&quot;img&quot;)    const imageList = []    imageNodeList.forEach((item, index) =&gt; &#123;      const src = item.getAttribute(&quot;src&quot;)      imageList.push(src)      item.addEventListener(&quot;click&quot;, () =&gt; &#123;        imageViewerRef.value.show(index)      &#125;)    &#125;)    previewImageList.value = imageList  &#125;)&#125;]]></content>
+      <categories>
+        <category>easybbs</category>
+      </categories>
+      <tags>
+        <tag>easybbs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>项目功能预览</title>
+    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%8A%9F%E8%83%BD%E9%A2%84%E8%A7%88/c031021b.html</url>
+    <content><![CDATA[【Xmind思维导图】easybbs https://ai.xmind.cn/share/GheHleaN?xid=dhGz5hu6
+]]></content>
       <categories>
         <category>easybbs</category>
       </categories>
