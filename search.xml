@@ -1102,32 +1102,6 @@ SynthWave ‘84
       </tags>
   </entry>
   <entry>
-    <title>学习网站</title>
-    <url>/posts/2025/07/Fronted/%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99/52e318f2.html</url>
-    <content><![CDATA[一些有用的网站值得被记录, 但是总是因为一些原因而搁置, 遗忘搜藏夹里面有一大堆网站, 但我从来不会打开看看
-这里放个标, 希望以后还能找到, 而不是吃灰
-前端学习学习网站1, 学长推荐的网站Youtubehttps://app.daily.dev/youtube的大火博主
-
-Net Ninja 
-Traversy Media
-Ryan Carniato
-Web Dev Simplified
-Fireship
-
-2 博客园里面看到的一个前端路线笔记https://www.cnblogs.com/qianguyihao/p/16370961.html
-3 浏览器工作和实践原理https://zhqwq.github.io/broswer-working-principle/guide/intro.html
-4 前端交流网站 stack overflowhttps://stackoverflow.com/questions
-组件库https://uiverse.io/elements
-小工具提高图片分辨率https://upscayl.org/
-]]></content>
-      <categories>
-        <category>进修</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>前端学习日记</title>
     <url>/posts/2025/04/Fronted/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/c4f4b3de.html</url>
     <content><![CDATA[祖传三件套html我是看的黑马程序员的课, 这个B站上面有很多资源建议时间: 三天
@@ -1167,6 +1141,33 @@ git(重中之重, git远不止这些运用, 还需要在B站上继续进修)
       </categories>
       <tags>
         <tag>前端三件套</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习网站</title>
+    <url>/posts/2025/07/Fronted/%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99/52e318f2.html</url>
+    <content><![CDATA[一些有用的网站值得被记录, 但是总是因为一些原因而搁置, 遗忘搜藏夹里面有一大堆网站, 但我从来不会打开看看
+这里放个标, 希望以后还能找到, 而不是吃灰
+前端学习学习网站Youtubehttps://app.daily.dev/youtube的大火博主
+
+Net Ninja 
+Traversy Media
+Ryan Carniato
+Web Dev Simplified
+Fireship
+
+帖子策略模式
+前端路线笔记
+浏览器工作和实践原理
+前端交流网站 stack overflow
+组件库https://uiverse.io/elements
+小工具提高图片分辨率
+]]></content>
+      <categories>
+        <category>进修</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -1387,6 +1388,36 @@ Shopify Editions | Summer ’24
       </tags>
   </entry>
   <entry>
+    <title>butterfly安装之旅</title>
+    <url>/posts/2025/07/blog/butterfly%E5%AE%89%E8%A3%85/e70f18fc.html</url>
+    <content><![CDATA[创建一个文件夹
+在文件夹打开git
+git clone -b main https://github.com/jerryc127/hexo -theme-butterfly .git themes/butterfly
+
+应用主题修改Hexo 根目录下的_config.yml，把主题改为butterfly
+theme:  butterfly
+
+安装插件下载安装渲染器：
+npm install hexo -renderer-pug hexo -renderer-stylus  --save
+
+重中之重
+在hexo 的根目录创建一个文件_config.butterfly.yml，并把主题目录的_config.yml 内容复制_config.butterfly.yml到 去。
+
+注意:
+
+复制的是主题的_config.yml，而不是hexo 的_config.yml
+不要把主题目录的_config.yml删掉
+以后只需要在_config.butterfly.yml进行配置就行。如果使用了_config.butterfly.yml， 配置主题的_config.yml将不会有效果。
+Hexo 会自动合并主题中的_config.yml和_config.butterfly.yml里的配置，如果存在同名配置，会使用_config.butterfly.yml的配置，其优先度较高。
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>魔改之旅</title>
     <url>/posts/2025/07/blog/%E9%AD%94%E6%94%B9%E4%B9%8B%E6%97%85/afacad78.html</url>
     <content><![CDATA[文档指路https://butterfly.zhheo.com/create.html我的主题色 : rgb(191, 219, 221)加载动画 (安知鱼)https://blog.anheyu.com/posts/52d8.html导航栏修改(安知鱼)https://blog.anheyu.com/posts/8e53.html试了一下, 每次改完网站就挂了(细节处理太麻烦了), 以后再试试其他主题
@@ -1409,36 +1440,6 @@ permalink: posts/:year/:month/:title/:abbrlink.html
 
 大功告成😘
 感悟这些都是框框的血泪史, 中间遇到了无数的bug, 光是blog就重装了四五次了, 希望这篇帖子能帮助到你🤣
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>butterfly安装之旅</title>
-    <url>/posts/2025/07/blog/butterfly%E5%AE%89%E8%A3%85/e70f18fc.html</url>
-    <content><![CDATA[创建一个文件夹
-在文件夹打开git
-git clone -b main https://github.com/jerryc127/hexo -theme-butterfly .git themes/butterfly
-
-应用主题修改Hexo 根目录下的_config.yml，把主题改为butterfly
-theme:  butterfly
-
-安装插件下载安装渲染器：
-npm install hexo -renderer-pug hexo -renderer-stylus  --save
-
-重中之重
-在hexo 的根目录创建一个文件_config.butterfly.yml，并把主题目录的_config.yml 内容复制_config.butterfly.yml到 去。
-
-注意:
-
-复制的是主题的_config.yml，而不是hexo 的_config.yml
-不要把主题目录的_config.yml删掉
-以后只需要在_config.butterfly.yml进行配置就行。如果使用了_config.butterfly.yml， 配置主题的_config.yml将不会有效果。
-Hexo 会自动合并主题中的_config.yml和_config.butterfly.yml里的配置，如果存在同名配置，会使用_config.butterfly.yml的配置，其优先度较高。
 ]]></content>
       <categories>
         <category>blog</category>
@@ -1474,6 +1475,34 @@ Hexo 会自动合并主题中的_config.yml和_config.butterfly.yml里的配置�
       </categories>
       <tags>
         <tag>没有营养的话</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用电脑clash verge给手机共享代理</title>
+    <url>/posts/2025/07/%E7%94%9F%E6%B4%BB%E5%B0%8F%E6%8A%80%E5%B7%A7/%E6%89%8B%E6%9C%BA%E4%BB%A3%E7%90%86/6c1cb663.html</url>
+    <content><![CDATA[框框灵机一动, 想在手机上面也能访问github, 这里做个记录, 免得之后忘记怎么设置了
+前提我现在的手机型号是 oppo Pro12, 安卓, 电脑用的是clash verge, 节点购买的 赔钱机场
+网上的资料使用电脑clash verge给手机共享代理【电脑上的准备】
+1.首先打开clash verge的设置界面，打开“局域网连接”，若弹出防火墙提示，请选择允许访问
+2.使用win+r快捷键，在弹出页面输入“cmd”并点击确定或回车
+3.在新弹出的页面中输入”ipconfig&#x2F;all“并回车
+4.在显示的列表中找到“ IPv4 地址 . . . . . . . . . . . . :”一栏
+【手机上的设置】
+1.进入网络设置中的wifi设置，通常在你连接的wifi右侧会有感叹号图标，或者长按可以修改网络具体设置，若没有，请自行在网上查询您所使用的设备如何设置手动代理
+2.在网络的具体设置中找到代理设置，通常默认为关闭，请将其设置为手动
+3.在服务器一栏内填写上方电脑中获取到的ipv4地址（通常格式为192.168..或10.236..）
+4.在端口一栏填写clash verge设置页面“端口设置”后方的数字，默认为“7890”您也可以自行更改
+5.填写完之后点击保存即可，若提示已连接网络但无法访问互联网，请不要在意，直接打开浏览器尝试访问外网即可，此时不出意外的话应该已经能够正常连接
+实际电脑跟网上找的资料说的一样, 记录下电脑的端口号 和 IPv4的数值
+手机进入wife连接界面 -&gt; 点击wife右边那个感叹号 -&gt; 找到高级选项 -&gt; 把代理换成手动设置 -&gt; 将 IP设置改为静态 -&gt; IP地址设置为电脑提供的 IPv4 的数值 -&gt; 端口号也改成电脑的值 -&gt; 隐私那里改成”使用设备MAC地址”
+ok, 恭喜你
+现在, 你可以自由的在手机上访问github啦!
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>手机设置代理</tag>
       </tags>
   </entry>
   <entry>
@@ -2349,34 +2378,6 @@ import &#123; PiniaSymbol &#125; from &quot;./rootStore&quot;import &#123;ref&#1
       </categories>
       <tags>
         <tag>pinia</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用电脑clash verge给手机共享代理</title>
-    <url>/posts/2025/07/%E7%94%9F%E6%B4%BB%E5%B0%8F%E6%8A%80%E5%B7%A7/%E6%89%8B%E6%9C%BA%E4%BB%A3%E7%90%86/6c1cb663.html</url>
-    <content><![CDATA[框框灵机一动, 想在手机上面也能访问github, 这里做个记录, 免得之后忘记怎么设置了
-前提我现在的手机型号是 oppo Pro12, 安卓, 电脑用的是clash verge, 节点购买的 赔钱机场
-网上的资料使用电脑clash verge给手机共享代理【电脑上的准备】
-1.首先打开clash verge的设置界面，打开“局域网连接”，若弹出防火墙提示，请选择允许访问
-2.使用win+r快捷键，在弹出页面输入“cmd”并点击确定或回车
-3.在新弹出的页面中输入”ipconfig&#x2F;all“并回车
-4.在显示的列表中找到“ IPv4 地址 . . . . . . . . . . . . :”一栏
-【手机上的设置】
-1.进入网络设置中的wifi设置，通常在你连接的wifi右侧会有感叹号图标，或者长按可以修改网络具体设置，若没有，请自行在网上查询您所使用的设备如何设置手动代理
-2.在网络的具体设置中找到代理设置，通常默认为关闭，请将其设置为手动
-3.在服务器一栏内填写上方电脑中获取到的ipv4地址（通常格式为192.168..或10.236..）
-4.在端口一栏填写clash verge设置页面“端口设置”后方的数字，默认为“7890”您也可以自行更改
-5.填写完之后点击保存即可，若提示已连接网络但无法访问互联网，请不要在意，直接打开浏览器尝试访问外网即可，此时不出意外的话应该已经能够正常连接
-实际电脑跟网上找的资料说的一样, 记录下电脑的端口号 和 IPv4的数值
-手机进入wife连接界面 -&gt; 点击wife右边那个感叹号 -&gt; 找到高级选项 -&gt; 把代理换成手动设置 -&gt; 将 IP设置改为静态 -&gt; IP地址设置为电脑提供的 IPv4 的数值 -&gt; 端口号也改成电脑的值 -&gt; 隐私那里改成”使用设备MAC地址”
-ok, 恭喜你
-现在, 你可以自由的在手机上访问github啦!
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>手机设置代理</tag>
       </tags>
   </entry>
   <entry>
@@ -5789,6 +5790,40 @@ router管跳转，route管信息跳转找router，参数找route
       </tags>
   </entry>
   <entry>
+    <title>项目功能预览</title>
+    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%8A%9F%E8%83%BD%E9%A2%84%E8%A7%88/c031021b.html</url>
+    <content><![CDATA[【Xmind思维导图】easybbs https://ai.xmind.cn/share/GheHleaN?xid=dhGz5hu6
+]]></content>
+      <categories>
+        <category>easybbs</category>
+      </categories>
+      <tags>
+        <tag>easybbs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图片预览</title>
+    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88%E7%BB%84%E4%BB%B6/c6yj21b.html</url>
+    <content><![CDATA[ 借助element的图片预览组件  
+功能
+当点击点击遮罩层时, 关闭 preview  hide-on-click-modal
+预览图片时, 关闭页面的鼠标滚轮  stopScroll
+可以在图片预览处切换查看的图片 imageList
+
+基础封装&lt;script setup&gt;import &#123; ref &#125; from &#x27;vue&#x27;const props = defineProps(&#123;  imageList: &#123;    type: Array,  &#125;,&#125;)//开始预览的const previewImageIndex = ref(null)//关闭图片预览const closeImgViewer = () =&gt; &#123;  startScroll()  previewImageIndex.value = null&#125;const show = (index) =&gt; &#123;  stopScroll()  previewImageIndex.value = index&#125;//禁止滚动const stopScroll = () =&gt; &#123;  document.body.style.overflow = &quot;hidden&quot;&#125;//开始滚动const startScroll = () =&gt; &#123;  document.body.style.overflow = &quot;auto&quot;&#125;defineExpose(&#123;show&#125;)&lt;/script&gt;&lt;template&gt;  &lt;div class=&quot;image-view&quot;&gt;    &lt;el-image-viewer     :initial-index=&quot;previewImageIndex&quot;     hide-on-click-modal     :url-list=&quot;imageList&quot;     @close=&quot;closeImgViewer&quot;     v-if=&quot;previewImageIndex != null&quot;     &gt;    &lt;/el-image-viewer&gt;  &lt;/div&gt;&lt;/template&gt;&lt;style scoped&gt;.image-view &#123;  el-image-viewer__mask &#123;  /* 背景透明度 */    opacity: 0.9;  &#125;&#125;&lt;/style&gt;
+
+
+调用&lt;!-- 图片预览 --&gt; &lt;ImageViewer  ref=&quot;imageViewerRef&quot; :imageList=&quot;previewImageList&quot;&gt;		&lt;/ImageViewer&gt;
+
+//图片预览const imageViewerRef = ref(null)const previewImageList = ref([])const imagePreview = () =&gt; &#123;  nextTick(() =&gt; &#123; //等待下一次 DOM 更新循环结束后执行回调函数中的代码    const imageNodeList = document    .querySelector(&#x27;#detail&#x27;)    .querySelectorAll(&quot;img&quot;)    const imageList = []    imageNodeList.forEach((item, index) =&gt; &#123;      const src = item.getAttribute(&quot;src&quot;)      imageList.push(src)      item.addEventListener(&quot;click&quot;, () =&gt; &#123;        imageViewerRef.value.show(index)      &#125;)    &#125;)    previewImageList.value = imageList  &#125;)&#125;]]></content>
+      <categories>
+        <category>easybbs</category>
+      </categories>
+      <tags>
+        <tag>easybbs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习</title>
     <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%AD%A6%E4%B9%A0/p031c28b.html</url>
     <content><![CDATA[定义全局变量在 main.ts 里定义全局变量
@@ -5982,6 +6017,107 @@ const resetForm = () =&gt; &#123;  dialogConfig.value.show = true  if(onType.val
 提交表单const doSubmit = () =&gt; &#123;  formDataRef.value.validate(async (valid) =&gt; &#123;    if (!valid) &#123;      return    &#125;    let params = &#123;&#125;    Object.assign(params, formData.value)    //注册或者重置密码都需要把密码改成现有的    if (onType.value == 0 || onType.value == 2) &#123;      //储存注册的密码      params.password = params.registerPassword      delete params.registerPassword      delete params.reRegisterPassword    &#125;     else if(onType.value == 1) &#123;      let cookieLoginInfo = proxy.VueCookies.get(&quot;loginInfo&quot;)      let cookiePassword =         cookieLoginInfo == null ? null : cookieLoginInfo.password            if(params.password !== cookiePassword) &#123;          params.password = md5(params.registerPassword || &quot;&quot;)        &#125;    &#125;    let url = null    if (onType.value == 0) &#123;      url = api.register    &#125; else if (onType.value == 1) &#123;      url = api.login    &#125; else if (onType.value == 2)&#123;      url = api.resetPwd    &#125;    let result = await proxy.Request(&#123;      url: url,      params: params,      errorCallback: () =&gt; &#123;        changeCheckCode(0)//刷新验证码      &#125;    &#125;)    if (!result) &#123;      return    &#125;    //注册返回    if (onType.value == 0) &#123;      proxy.Message.success(&quot;注册成功, 请登录&quot;)      showPanel(1) //跳转到登录界面    &#125; else if (onType.value == 1) &#123; //登录返回      //登录      if (params.rememberMe) &#123; //对应表单的&quot;记住我&quot;        const loginInfo = &#123;          email: params.email,          password: params.password,          rememberMe: params.rememberMe        &#125;        proxy.VueCookies.set(&quot;loginInfo&quot;, loginInfo, &quot;7d&quot;)      &#125;      else &#123;        proxy.VueCookies.remove(&quot;loginInfo&quot;)      &#125;      dialogConfig.value.show = false      proxy.Message.success(&quot;登录成功&quot;)    &#125; else if (onType.value == 2) &#123;      proxy.Message.success(&quot;重置密码成功, 请登录&quot;)      //重置密码      showPanel(1)    &#125;  &#125;)&#125;
 
 main.jsimport &#123;createApp&#125; from &#x27;vue&#x27;import App from &#x27;./App.vue&#x27;import router from &#x27;./router/index.ts&#x27;//引入piniaimport &#123;createPinia&#125; from &#x27;pinia&#x27;//引入cookiesimport VueCookies from &#x27;vue-cookies&#x27;//vue-cookies提供了一个简洁、方便的方式来在 Vue 组件中设置、获取和删除浏览器 Cookie。//引入element plusimport ElementPlus from &#x27;element-plus&#x27;import &#x27;element-plus/dist/index.css&#x27;//我们使用sass 所以这里将base.css 改成base.scss// import &#x27;./assets/base.scss&#x27;import &#x27;./assets/style.css&#x27;//图标 图标在附件中import &#x27;./assets/icon/iconfont.css&#x27;import Dialog from &#x27;./components/Dialog.vue&#x27;import Verify from &#x27;./utils/Verify.js&#x27;import Message from &#x27;./utils/Message.js&#x27;import Request from &#x27;./utils/Request.js&#x27;import Avatar from &#x27;./components/Avatar.vue&#x27;const app = createApp(App)const pinia = createPinia()app.use(pinia)app.use(router)app.use(ElementPlus);app.config.globalProperties.VueCookies = VueCookies;app.config.globalProperties.globalInfo = &#123;  bodyWidth: 1300,  avatarUrl: &quot;/api/file/getAvatar/&quot;&#125;app.config.globalProperties.Verify = Verifyapp.config.globalProperties.Message = Messageapp.config.globalProperties.Request = Requestapp.component(&#x27;Dialog&#x27;, Dialog )app.component(&#x27;Avatar&#x27;, Avatar)app.mount(&#x27;#app&#x27;)
+
+
+]]></content>
+      <categories>
+        <category>easybbs</category>
+      </categories>
+      <tags>
+        <tag>easybbs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>评论组件</title>
+    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E8%AF%84%E8%AE%BA%E7%BB%84%E4%BB%B6/1031c21b.html</url>
+    <content><![CDATA[仓库链接[[前端了解&#x2F;仿知乎, 掘金vue3项目&#x2F;_resources&#x2F;评论组件&#x2F;3cc93b50abce1b169da3d99c0ffa751a_MD5.jpeg|Open: Pasted image 20250922101620.png]]![[前端了解&#x2F;仿知乎, 掘金vue3项目&#x2F;_resources&#x2F;评论组件&#x2F;3cc93b50abce1b169da3d99c0ffa751a_MD5.jpeg]]
+
+评论CommentList
+
+commentPost, 发表评论的文本框加按钮
+
+发布图片CommentImage
+
+图片链接CommentImgUrl
+
+
+发布帖子, 添加与父组件的响应事件 – postCommentFinish
+
+
+
+评论列表CommentListItem
+
+每发表一个新评论, 就把后端返回的数据(回复评论下的所有评论) 中最后一个数添加到父级评论数组中 postCommentFinish
+
+一级评论直接把评论列表更新为后端返回的数据
+
+二级评论添加到评论列表的子级中
+
+
+
+
+
+处理评论数量时需要多次回调
+
+头部进行分类 orderChange
+
+
+
+
+[[前端了解&#x2F;仿知乎, 掘金vue3项目&#x2F;_resources&#x2F;评论组件&#x2F;976955c63c85f199b6a01b7f63f94d6a_MD5.jpeg|Open: Pasted image 20250922101753.png]]![[前端了解&#x2F;仿知乎, 掘金vue3项目&#x2F;_resources&#x2F;评论组件&#x2F;976955c63c85f199b6a01b7f63f94d6a_MD5.jpeg]]
+组件功能简介CommentList : 包含分类按钮, 控制评论列表的刷新, 评论的基本布局		- CommentPost : 发表评论的组件		- CommentListItem: 评论的展示CommentListItem : 一级评论和二级评论的展示, 通过遍历数组, 来展示每一条一级评论(一级附带的二级评论)CommentPost: 发布一级评论或二级评论CommentImage : 评论里面图片的展示
+详解CommentList样式页面展示:	评论排序 -&gt; 一级评论发布的文本框 -&gt; 评论列表
+&lt;template&gt;  &lt;div class=&quot;comment-body&quot;&gt;    &lt;div class=&quot;comment-title&quot;&gt;      &lt;div class=&quot;title&quot;&gt;        评论        &lt;span class=&quot;count&quot;&gt;&#123;&#123; commentListInfo.totalCount &#125;&#125;&lt;/span&gt;      &lt;/div&gt;      &lt;div class=&quot;tab&quot;&gt;        &lt;span         @click=&quot;orderChange(0)&quot;         :class=&quot;&#123;&#x27;a-link&#x27;:orderType === 0&#125;&quot;         &gt;热榜&lt;/span&gt;        &lt;el-divider direction=&quot;vertical&quot;&gt;&lt;/el-divider&gt;        &lt;span         @click=&quot;orderChange(1)&quot;         :class=&quot;&#123;&#x27;a-link&#x27;:orderType === 1&#125;&quot;         &gt;最新&lt;/span&gt;      &lt;/div&gt;    &lt;/div&gt;    &lt;!-- 发送评论 --&gt;    &lt;div class=&quot;comment-form-pannel&quot;&gt;      &lt;CommentPost         :articlrUserId=&quot;articleUserId&quot;        :articleId=&quot;articleId&quot;        :avatarWidth=&quot;50&quot;        :userId=&quot;currentUserInfo.userId&quot;        :showInsertImg=&quot;currentUserInfo.userId !== null&quot;        :pCommentId=&quot;0&quot;        @postCommentFinish=&quot;postCommentFinish&quot;        &gt;&lt;/CommentPost&gt;    &lt;/div&gt;    &lt;div class=&quot;comment-list&quot;&gt;      &lt;DataList       :dataSource=&quot;commentListInfo&quot;      :loading=&quot;loading&quot;      @loadData=&quot;loadComment&quot;      noDataMsg=&quot;暂无评论, 赶紧占沙发吧!&quot;      &gt;        &lt;template #default=&quot;&#123;data&#125;&quot;&gt;          &lt;CommentListItem           :articleId=&quot;articleId&quot;          :commentData=&quot;data&quot;          :articleUserId=&quot;articleUserId&quot;          :currentUserId=&quot;currentUserInfo.userId&quot;          @hiddenAllReply=&quot;hiddenAllReplyHandler&quot;          @reloadData=&quot;loadComment&quot;          &gt;        &lt;/CommentListItem&gt;        &lt;/template&gt;      &lt;/DataList&gt;    &lt;/div&gt;  &lt;/div&gt;&lt;/template&gt;&lt;style scoped&gt;.comment-body &#123;  .comment-title &#123;    align-items: center;    display: flex;    .title &#123;      font-size: 22px;      .count &#123;        font-size: 19px;        padding: 0px 10px;      &#125;    &#125;  &#125;&#125;&lt;/style&gt;
+
+函数import CommentListItem from &#x27;./CommentListItem.vue&#x27;;import &#123; useUserStore &#125; from &#x27;@/store/index.js&#x27;;import &#123;ref, watch&#125; from &#x27;vue&#x27;import &#123; getCurrentInstance &#125; from &#x27;vue&#x27;;import CommentPost from &#x27;./CommentPost.vue&#x27;;import &#123; handleCurrentChange &#125; from &#x27;element-plus/es/components/tree/src/model/util.mjs&#x27;;
+
+基础数据const userStore = useUserStore()const &#123;proxy&#125; = getCurrentInstance()const props = defineProps(&#123;  articleId: &#123;    type: String,  &#125;,  articleUserId: &#123;    type: String,  &#125;&#125;)const api = &#123;  loadComment: &quot;/comment/loadComment&quot;,  postComment: &quot;/comment/postComment&quot;,  doLike: &quot;/comment/doLike&quot;,&#125;const currentUserInfo = ref(&#123;&#125;)currentUserInfo.value = userStore.loginUserInfo || &#123;&#125;  //form信息, post内容  const formData = ref(&#123;&#125;)  const formDataRef = ref(&#123;&#125;)  const rules = &#123;    title: [      &#123;required: true, message: &quot;请输入评论内容&quot;&#125;,    ]  &#125;
+
+排序点击不同的分类, 修改数据后改变params传递的值, 重新渲染评论板块
+//排序const orderType = ref(0)const orderChange = (type) =&gt; &#123;  orderType.value = type  loadComment()&#125;
+渲染评论列表传递对应的params信息, 后端返回相应的评论loading 表示加载动画的显示
+//评论列表const loading = ref(null)const commentListInfo = ref(&#123;&#125;)const loadComment = async() =&gt; &#123;  let params = &#123;    pageNo: commentListInfo.value.pageNo, //页码脚标    articleId: props.articleId, //文章id    orderType: orderType.value, //排序  &#125;  loading.value = true  let result = await proxy.Request(&#123;    url: api.loadComment,    params,  &#125;)    loading.value = false  if (!result) &#123;    return  &#125;  commentListInfo.value = result.data&#125;loadComment()
+
+发布评论刚发布时, 会把评论放在列表的最上方刷新网页后, 评论按照排序顺序重新排列发布评论的同时更新评论数量
+//评论发布完成const emit = defineEmits([&#x27;updateCommentCount&#x27;])const postCommentFinish = (resultData) =&gt; &#123;  commentListInfo.value.list.unshift(resultData)  const totalCount = commentListInfo.value.totalCount + 1  commentListInfo.value.totalCount = totalCount  emit(&#x27;updateCommentCount&#x27;, totalCount)&#125;
+
+CommentListItem样式先显示一级评论的信息如果有二级评论, 再显示二级评论最后通过 一&#x2F;二级评论的 “回复” 图标控制发布评论的文本框
+&lt;template&gt;&lt;div class=&quot;comment-item&quot;&gt;  &lt;Avatar  :userId=&quot;commentData.userId&quot;  :width=&quot;50&quot;  &gt;&lt;/Avatar&gt;  &lt;div class=&quot;comment-info&quot;&gt;    &lt;div class=&quot;nick-name&quot;    @click=&quot;gotoUcenter(commentData.userId)&quot;    &gt;      &lt;span class=&quot;name&quot;&gt;&#123;&#123; commentData.nickName &#125;&#125;&lt;/span&gt;      &lt;span       class=&quot;tag-author&quot;      v-if=&quot;commentData.userId === articleUserId&quot;      &gt;作者&lt;/span&gt;    &lt;/div&gt;    &lt;div class=&quot;comment-content&quot;&gt;      &lt;div&gt;        &lt;span         class=&quot;tag tag-toping&quot;         v-if=&quot;commentData.topType === 1&quot;         &gt;置顶&lt;/span&gt;         &lt;span          class=&quot;tag no-audit&quot;          v-if=&quot;commentData.status === 0&quot;          &gt;待审核&lt;/span&gt;        &lt;span v-html=&quot;commentData.content&quot;&gt;&lt;/span&gt;      &lt;/div&gt;      &#123;&#123; commentData.imageUrl &#125;&#125;      &lt;CommentImage      :style=&quot;&#123;&#x27;margin-top&#x27;:&#x27;10px&#x27;&#125;&quot;        v-if=&quot;commentData.imgPath&quot;        :src=&quot;commentImgUrl&quot;        :imgList=&quot;[proxy.globalInfo.imageUrl + commentData.imgPath]&quot;        &gt;&lt;/CommentImage&gt;    &lt;/div&gt;    &lt;div class=&quot;op-panel&quot;&gt;      &lt;div class=&quot;time&quot;&gt;        &lt;span&gt;&#123;&#123; commentData.postTime &#125;&#125;&lt;/span&gt;        &lt;span class=&quot;address&quot;&gt;          &amp;nbsp;.&amp;nbsp;&#123;&#123; commentData.userIpAddress &#125;&#125;        &lt;/span&gt;    &lt;/div&gt;    &lt;div    :class=&quot;&#123;active: commentData.likeType === 1&#125;&quot;     class=&quot;iconfont icon-good&quot;     @click=&quot;doLike(commentData)&quot;     &gt;      &#123;&#123; commentData.goodCount&gt;0 ? commentData.goodCount : &#x27;点赞&#x27; &#125;&#125;    &lt;/div&gt;    &lt;div     class=&quot;iconfont icon-comment&quot;     @click=&quot;showReplayPanel(commentData, 0)&quot;     &gt;      回复    &lt;/div&gt;    &lt;el-dropdown     v-if=&quot;articleUserId === currentUserId&quot;    &gt;    &lt;div class=&quot;iconfont icon-more&quot;&gt;&lt;/div&gt;    &lt;template #dropdown&gt;      &lt;el-dropdown-menu&gt;        &lt;el-dropdown-item         @click=&quot;onTop(commentData)&quot;        &gt;          &#123;&#123;             commentData.topType === 0 ? &#x27;设为置顶&#x27; : &#x27;取消置顶&#x27;          &#125;&#125;        &lt;/el-dropdown-item&gt;      &lt;/el-dropdown-menu&gt;    &lt;/template&gt;  &lt;/el-dropdown&gt;  &lt;div v-if=&quot;commentData.children&quot;&gt;    &lt;div v-if=&quot;showMore&quot;&gt;      &lt;el-icon @click=&quot;changeShowState&quot;&gt;&lt;ArrowUp /&gt;&lt;/el-icon&gt;    &lt;/div&gt;    &lt;div v-else&gt;      &lt;el-icon @click=&quot;changeShowState&quot;&gt;&lt;ArrowDown /&gt;&lt;/el-icon&gt;    &lt;/div&gt;  &lt;/div&gt;    &lt;/div&gt;    &lt;div class=&quot;comment-sub-list&quot;      v-if=&quot;commentData.children &amp;&amp; showMore&quot;      &gt;      &lt;div class=&quot;comment-sub-item&quot;      v-for=&quot;sub in commentData.children&quot;      &gt;        &lt;Avatar          :userId=&quot;sub.userId&quot;          :width=&quot;35&quot;        &gt;&lt;/Avatar&gt;        &lt;div class=&quot;comment-sub-info&quot;&gt;          &lt;div class=&quot;nick-name&quot;          &gt;            &lt;span               class=&quot;name&quot;               @click=&quot;gotoUcenter(sub.userId)&quot;              &gt;&#123;&#123;sub.nickName&#125;&#125;&lt;/span&gt;            &lt;span               class=&quot;tag-author&quot;              v-if=&quot;sub.userId === articleUserId&quot;             &gt;作者&lt;/span&gt;             &lt;span class=&quot;reply-name&quot;&gt;回复&lt;/span&gt;             &lt;span              @click=&quot;gotoUcenter(sub.replyUserId)&quot;              class=&quot;a-link&quot;              &gt;@&#123;&#123; sub.replyNickName &#125;&#125;&lt;/span&gt;             &lt;span&gt; : &lt;/span&gt;             &lt;span class=&quot;sub-content&quot; v-html=&quot;sub.content&quot;&gt;&lt;/span&gt;          &lt;/div&gt;          &lt;div class=&quot;op-panel&quot;&gt;          &lt;div class=&quot;time&quot;&gt;            &lt;span&gt;&#123;&#123; sub.postTime &#125;&#125;&lt;/span&gt;            &lt;span class=&quot;address&quot;&gt;              &amp;nbsp;.&amp;nbsp;&#123;&#123; sub.userIpAddress &#125;&#125;            &lt;/span&gt;        &lt;/div&gt;        &lt;div        :class=&quot;&#123;active: sub.likeType === 1&#125;&quot;         class=&quot;iconfont icon-good&quot;         @click=&quot;doLike(sub)&quot;         &gt;          &#123;&#123; sub.goodCount&gt;0 ? sub.goodCount : &#x27;点赞&#x27; &#125;&#125;        &lt;/div&gt;        &lt;div        class=&quot;iconfont icon-comment&quot;        @click=&quot;showReplayPanel(sub, 1)&quot;        &gt;          回复        &lt;/div&gt;          &lt;/div&gt;        &lt;/div&gt;      &lt;/div&gt;    &lt;/div&gt;    &lt;div     class=&quot;replay-info&quot;     v-if=&quot;commentData.showReplay&quot;&gt;      &lt;CommentPost        :articleId=&quot;articleId&quot;        :avatarWidth=&quot;35&quot;        :placeholderInfo=&quot;placeholderInfo&quot;        :replyUserId=&quot;replyUserId&quot;        :userId=&quot;currentUserId&quot;        :showInsertImg=&quot;false&quot;        :pCommentId=&quot;pCommentId&quot;        @postCommentFinish=&quot;postCommentFinish&quot;      &gt;&lt;/CommentPost&gt;    &lt;/div&gt;  &lt;/div&gt;&lt;/div&gt;&lt;/template&gt;&lt;style scoped&gt;.comment-item &#123;  display: flex;  padding-top: 6px;  .comment-info &#123;    flex: 1;    margin-left: 10px;    border-bottom: 1px solid #ddd;    padding-bottom: 8px;    .nick-name &#123;      align-items: center;      .name &#123;        margin-right: 10px;        font-size: 14px;        color: var(--text2);      &#125;      .tag-author &#123;        padding: 2px 3px;        background: var(--pink);        color: #fff;        font-size: 12px;        border-radius: 2px;      &#125;    &#125;    .comment-content &#123;      margin-top: 5px;      font-size: 15px;      line-height: 22px;      .tag &#123;        margin-right: 5px;        font-size: 13px;        border-radius: 3px;        padding: 1px 4px;      &#125;      .tag-toping &#123;        color: var(--pink);        border: 1px solid var(--pink);      &#125;      .no-audit &#123;        color: var(--text2);        border: 1px solid var(--text2);      &#125;    &#125;    .op-panel &#123;      align-items: center;      display: flex;      margin-top: 5px;      font-size: 13px;      color: var(--text2);      .address &#123;        margin: 0px 15px      &#125;      .iconfont &#123;        cursor: pointer;        color: var(--icon);        margin-right: 12px;      &#125;      .active &#123;        color: var(--link);      &#125;      .iconfont::before &#123;        margin-right: 5px;      &#125;      .icon-more &#123;        outline: none;      &#125;    &#125;    .comment-sub-list &#123;        margin-top: 10px;        .comment-sub-item &#123;          display: flex;          margin: 10px 0px;          .comment-sub-info &#123;            .nick-name &#123;              .reply-name&#123;                margin: 0 5px;              &#125;              .tag-author &#123;                padding: 1.5px;                background: var(--pink);                color: #fff;                font-size: 12px;                border-radius: 2px;              &#125;              .reply-name &#123;                margin: 0px 5px;                font-size: 14px;              &#125;            &#125;            .op-panel &#123;              margin-top: 5px;              .active &#123;                color: var(--link);              &#125;            &#125;          &#125;        &#125;      &#125;    .replay-info &#123;      margin-top: 15px;    &#125;  &#125;&#125;&lt;/style&gt;
+
+
+函数基础数据import CommentImage from &#x27;./CommentImage.vue&#x27;;import &#123; defineProps, ref, computed &#125; from &#x27;vue&#x27;;import CommentPost from &#x27;./CommentPost.vue&#x27;;import Avatar from &#x27;@/components/Avatar.vue&#x27;;import &#123; useRouter &#125; from &#x27;vue-router&#x27;;import &#123; getCurrentInstance &#125; from &#x27;vue&#x27;;import &#123; ArrowDown, ArrowUp &#125; from &#x27;@element-plus/icons-vue&#x27;;
+
+const &#123; proxy &#125; = getCurrentInstance()const router = useRouter()const props = defineProps(&#123;  articleId: &#123;    type: String,  &#125;,  commentData: &#123;    type: Object,  &#125;,  articleUserId: &#123;    type: String,  &#125;,  currentUserId: &#123;    type: String,  &#125;&#125;)const api = &#123;  doLike: &quot;/comment/doLike&quot;,  changeTopType: &quot;/comment/changeTopType&quot;,&#125;const placeholderInfo = ref(&#x27;&#x27;)
+
+CommentPost文本框的控制点击回复时, 若type为0 则为一级评论; 为 1则为二级评论
+更新文本框里面的提示信息, 回复的人的id信息, 文本框的出现
+//回复的评论的idconst pCommentId = ref(0)const replyUserId = ref(null)const emit = defineEmits([&quot;reloadData&quot;])//发布评论const showReplayPanel = (curData, type) =&gt; &#123;  if (type === 0) &#123;    if(curData.showReplay === true &amp;&amp; pCommentId.value === curData.commentId)         curData.showReplay = false    else curData.showReplay = true  &#125; else &#123;    if (props.commentData.showReplay !== true)      props.commentData.showReplay = true    else if (pCommentId.value === curData.commentId) &#123;      props.commentData.showReplay = false    &#125;  &#125;  replyUserId.value = curData.userId  placeholderInfo.value = &quot;回复 @&quot; + curData.nickName  pCommentId.value = curData.commentId&#125;
+
+二级评论是否展示通过showMore切换图标, 同时控制二级评论信息的展示
+//是否展示二级评论const showMore = ref(false)const changeShowState = () =&gt; &#123;  showMore.value = !showMore.value&#125;
+
+发布评论此组件里面发布的评论均为二级评论更新一级评论children里面的内容
+const postCommentFinish = (resultData) =&gt; &#123;  //当发布第一个二级评论时, 需要将children初始化, 防止children为空  if (!props.commentData.children) &#123;        props.commentData.children = [];    &#125;  props.commentData.children.push(resultData[resultData.length - 1])  props.commentData.showReplay = false&#125;
+
+点赞//点赞const doLike = async (data) =&gt; &#123;  let result = await proxy.Request(&#123;    url: api.doLike,    showloading: false,    params: &#123;      commentId: data.commentId,    &#125;  &#125;)  if (!result) &#123;      return     &#125;    data.goodCount = result.data.goodCount    data.likeType = result.data.likeType&#125;
+
+评论的图片信息图片的路径加上项目的路径
+//展示图片 const commentImgUrl = computed(() =&gt; &#123;    if (props.commentData.imgPath) &#123;      return proxy.globalInfo.imageUrl + props.commentData.imgPath.replace(&#x27;.&#x27;,&#x27;_.&#x27;)    &#125;    return &#x27;&#x27;  &#125;)
+
+置顶//置顶 const emit = defineEmits([&quot;reloadData&quot;]) const onTop = async(data) =&gt; &#123;   let result = await proxy.Request(&#123;     url: api.changeTopType,     params: &#123;       commentId: data.commentId,       topType: data.topType === 1 ? 0 : 1     &#125;   &#125;)   if (!result) &#123;     return   &#125;   emit(&#x27;reloadData&#x27;) &#125;
+
+CommentPost样式&lt;template&gt;  &lt;div class=&quot;post-comment-panel&quot;&gt;    &lt;Avatar     :width=&quot;avatarWidth&quot;     :userId=&quot;userId&quot;    &gt;&lt;/Avatar&gt;      &lt;div class=&quot;comment-form&quot;&gt;        &lt;el-form          :model=&quot;formData&quot;          :rules=&quot;rules&quot;          ref=&quot;formDataRef&quot;        &gt;          &lt;!-- textarea输入 --&gt;          &lt;el-form-item  prop=&quot;content&quot;&gt;            &lt;el-input              clearable              :placeholder=placeholderInfo              type=&quot;textarea&quot;              :maxlength=&quot;200&quot;              resize=&quot;none&quot;              show-word-limit              v-model=&quot;formData.content&quot;            &gt;            &lt;/el-input&gt;            &lt;div               class=&quot;insert-img&quot;               v-if=&quot;showInsertImg&quot;&gt;              &lt;div class=&quot;pre-img&quot; v-if=&quot;commentImg&quot;&gt;                &lt;CommentImage                   :src=&quot;commentImg&quot;                &gt;&lt;/CommentImage&gt;                &lt;span                 class=&quot;iconfont icon-remove&quot;                 @click=&quot;removeCommentImg&quot;                 &gt;&lt;/span&gt;              &lt;/div&gt;              &lt;el-upload               v-else              name=&quot;file&quot;               :show-file-list=&quot;false&quot;              accept=&quot;.png,.PNG,.jpg,.JPG,.jepg,.JEPG,.gif,.GIF,.bmp,.BMP&quot;              :multiple=&quot;false&quot;              :http-request=&quot;selectImg&quot;              &gt;                &lt;span class=&quot;iconfont icon-image&quot;&gt;&lt;/span&gt;              &lt;/el-upload&gt;          &lt;/div&gt;          &lt;/el-form-item&gt;        &lt;/el-form&gt;      &lt;/div&gt;      &lt;div class=&quot;send-btn&quot; @click=&quot;postCommentDo&quot;&gt;发表&lt;/div&gt;  &lt;/div&gt;&lt;/template&gt;&lt;style scoped&gt;.post-comment-panel &#123;    margin-top: 10px;    display: flex;    align-items: top;    .comment-form&#123;      margin: 0 10px;      flex: 1;      .insert-img &#123;        line-height: normal;         .iconfont &#123;          cursor: pointer;          margin-top: 3px;          font-size: 21px;          color: #4b4848;        &#125;        .pre-img &#123;          margin-top: 10px;          position: relative;          .iconfont &#123;            position: absolute;            top: -10px;            right: -10px;            color: rgb(104, 102, 102);          &#125;        &#125;      &#125;    &#125;    .send-btn &#123;      width: 55px;      height: 55px;      background: var(--link);      color: #fff;      text-align: center;      line-height: 55px;      font-size: 18px;      border-radius: 10px;      cursor: pointer;  &#125;&#125;&lt;/style&gt;
+
+函数基础数据import CommentImage from &#x27;./CommentImage.vue&#x27;;import &#123; defineProps, ref &#125; from &#x27;vue&#x27;;import &#123; getCurrentInstance &#125; from &#x27;vue&#x27;;const &#123;proxy&#125; = getCurrentInstance()const props = defineProps(&#123;  articleId: &#123;    type: String  &#125;,  avatarWidth: &#123;    type: Number,  &#125;,  userId: &#123;    type: String  &#125;,  showInsertImg: &#123;    type: Boolean,  &#125;,  placeholderInfo: &#123;    type: String,    default: &quot;请文明发言,做一个棒棒的程序员!&quot;  &#125;,  pCommentId: &#123;    type: Number,  &#125; ,  replyUserId: &#123;    type: String  &#125;,&#125;)const api = &#123;  postComment: &quot;/comment/postComment&quot;,&#125;
+
+文本框信息验证不满足条件时打印对应的信息
+const checkPostComment = (rule, value, callback) =&gt; &#123;  if (value === null &amp;&amp; formData.value.image === null) &#123;    callback(new Error(rule.message))  &#125; else &#123;    callback()  &#125;&#125;  const formData = ref(&#123;&#125;)  const formDataRef = ref(&#123;&#125;)  const rules = &#123;    content: [      &#123;required: true, message: &quot;请输入评论内容&quot;, validator: checkPostComment&#125;,      &#123;min: 5, message: &quot;评论至少5个字&quot;&#125;    ]  &#125;
+
+发布帖子与父组件CommentList和CommentListitem均有信息传递当点击发表时, 新发布的内容传递到父组件, 父组件在添加到评论列表中
+const emit = defineEmits([&quot;postCommentFinish&quot;])const postCommentDo = () =&gt; &#123;  formDataRef.value.validate(async (valid) =&gt; &#123;    if (!valid) &#123;      return;    &#125;    let params = Object.assign(&#123;&#125;, formData.value)    params.articleId = props.articleId    params.pCommentId = props.pCommentId    params.replyUserId = props.replyUserId        let result = await proxy.Request(&#123;      url: api.postComment,      params,    &#125;)    proxy.Message.success(&quot;评论发表成功&quot;)    formDataRef.value.resetFields()    removeCommentImg()    emit(&quot;postCommentFinish&quot;, result.data)  &#125;) &#125;
+
+图片处理
+  // 选择图片  const commentImg = ref(null)  const selectImg = (file) =&gt; &#123;    file = file.file    let img = new FileReader()    img.readAsDataURL(file)    img.onload = (&#123;target&#125;) =&gt; &#123;      let imgData = target.result      commentImg.value = imgData      formData.value.image = file    &#125;  &#125;//删除图片const removeCommentImg = () =&gt; &#123;  commentImg.value = null  formData.value.image = null&#125;
 
 
 ]]></content>
