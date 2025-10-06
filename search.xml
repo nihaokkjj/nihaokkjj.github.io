@@ -1479,6 +1479,28 @@ permalink: posts/:year/:month/:title/:abbrlink.html
       </tags>
   </entry>
   <entry>
+    <title>B站视频下载</title>
+    <url>/posts/2025/10/%E7%94%9F%E6%B4%BB%E5%B0%8F%E6%8A%80%E5%B7%A7/B%E7%AB%99%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD/defcbb89.html</url>
+    <content><![CDATA[前提:因交叉学科老师要求交一个v-log, 但拍摄小白根本不会拍摄. 只能靠网上的资源现拼接啦.但是B站居然没有下载视频这一功能, 所以有了这篇帖子
+安装首先! 你必须要有一个 python 环境
+然后进入点击这个仓库链接 yutto
+克隆该仓库
+打开控制台, 或者git, 进入克隆该仓库的文件夹
+运行  pip install yutto-2.0.3-py3-none-any.whl
+等待安装依赖, 接着运行 pip install yutto
+恭喜你! 现在你可以下载各种各样的B站2视频啦
+下载操作复制视频链接
+运行 yutto + 视频链接
+欧克, 视频已经安装到你的电脑文件夹上面啦! (默认安装在你克隆的仓库的文件夹里面哦)
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用电脑clash verge给手机共享代理</title>
     <url>/posts/2025/07/%E7%94%9F%E6%B4%BB%E5%B0%8F%E6%8A%80%E5%B7%A7/%E6%89%8B%E6%9C%BA%E4%BB%A3%E7%90%86/6c1cb663.html</url>
     <content><![CDATA[框框灵机一动, 想在手机上面也能访问github, 这里做个记录, 免得之后忘记怎么设置了
@@ -2296,6 +2318,70 @@ v-if 和 v-for 在同一个元素身上使用时的优先级发生了变化。
       </tags>
   </entry>
   <entry>
+    <title>route和router的区别</title>
+    <url>/posts/2025/08/Fronted/Vue/route%E5%92%8Crouter%E5%8C%BA%E5%88%AB/a4edfghf.html</url>
+    <content><![CDATA[前端路由傻傻分不清？route和router的区别，看完这篇别再搞混了！一、前言：为什么这俩玩意儿容易搞混？刚学前端路由时，我也被route和router搞得头晕眼花，面试还被问：”你能说说$route和$router的区别吗？” 我支支吾吾半天，面试官的表情逐渐凝固… 😅
+今天，我们就来彻底搞懂这俩兄弟，让你以后再也不怕面试官的灵魂拷问！
+二、一句话总结router（路由器） ：是管理路由的老大，负责整个路由的跳转、拦截、传参等。route（路由信息） ：是当前激活的路由对象，存储当前页面的路径、参数、查询参数等信息。
+举个栗子 🌰：
+router 就像快递公司的调度中心，决定包裹（页面）怎么配送。route 就像你手里的快递单，记录当前包裹（页面）的信息（地址、收件人、订单号等）。
+三、代码实战：Vue里的route和router1. router（Vue Router实例）router是全局路由管理器，负责跳转、拦截、动态路由等操作。
+// 在Vue组件里使用export default &#123;  methods: &#123;    我的跳转方法() &#123;      // router.push() 用于跳转      this.$router.push(&#x27;/home&#x27;); // 跳转到首页            // router.replace() 替换当前路由（不记录历史）      this.$router.replace(&#x27;/login&#x27;);            // router.go() 前进/后退      this.$router.go(-1); // 返回上一页    &#125;  &#125;&#125;
+
+2. route（当前路由信息）route是当前激活的路由对象，包含路径、参数、查询参数等信息。
+export default &#123;  created() &#123;    // 获取当前路由信息    console.log(this.$route.path);    // 当前路径，比如 &quot;/user/123&quot;    console.log(this.$route.params); // 动态参数，比如 &#123; id: &quot;123&quot; &#125;    console.log(this.$route.query);   // 查询参数，比如 ?name=小杨 → &#123; name: &quot;小杨&quot; &#125;  &#125;&#125;
+
+四、React里的类似概念React没有$router和$route，但概念是相通的：
+router → BrowserRouter &#x2F; HashRouter（React Router的管理者）route → useLocation() &#x2F; useParams()（当前路由信息）
+import &#123; useNavigate, useLocation, useParams &#125; from &#x27;react-router-dom&#x27;;function 我的组件() &#123;  const navigate = useNavigate(); // 相当于 this.$router  const location = useLocation(); // 相当于 this.$route  const params = useParams();     // 相当于 this.$route.params  const 跳转首页 = () =&gt; &#123;    navigate(&#x27;/home&#x27;); // 相当于 this.$router.push(&#x27;/home&#x27;)  &#125;;  return (    &lt;div&gt;      当前路径：&#123;location.pathname&#125; &lt;br /&gt;      参数：&#123;params.id&#125;    &lt;/div&gt;  );&#125;
+
+五、常见误区 &amp; 面试题1. this.$router 和 this.$route 能互换吗？❌ 不能！
+this.$router 是路由管理器（负责跳转、拦截）。this.$route 是当前路由信息（只读数据）。
+2. 为什么动态路由要用params，而查询参数用query？params（如&#x2F;user&#x2F;:id）→ 是路由的一部分，适合SEO、短链接。query（如?name&#x3D;小杨）→ 是额外参数，不影响路由匹配。
+3. 编程式导航能用替代吗？✅ 可以，但场景不同：
+ → 模板里用（类似标签）。this.$router.push() → JS逻辑里用（比如登录后跳转）。
+六、总结
+
+
+对比项
+router
+route
+
+
+
+作用
+路由管理（跳转、拦截）
+当前路由信息（路径、参数）
+
+
+类比
+快递公司调度中心
+你手里的快递单
+
+
+Vue
+this.$router
+this.$route
+
+
+React
+useNavigate()
+useLocation()
+
+
+记住口诀：
+router管跳转，route管信息跳转找router，参数找route
+七、最后的小故事曾经我在项目里疯狂用this.$route.push()，结果控制台疯狂报错，debug半小时才发现… 我把router和route写反了！  😭
+所以，看完这篇，千万别再搞混了！  🚀
+]]></content>
+      <categories>
+        <category>前端开发</category>
+      </categories>
+      <tags>
+        <tag>router</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Pinia源码</title>
     <url>/posts/2025/08/Fronted/Vue/pinia%E6%BA%90%E7%A0%81/a42dfghf.html</url>
     <content><![CDATA[参考资料pinia的使用(原链接)Pinia支持compositionApi同时也兼容optionsApi(this指向)Pinia可以采用多个store,store之间可以互相调用（扁平化），不用担心命名冲突问题
@@ -2379,70 +2465,6 @@ import &#123; PiniaSymbol &#125; from &quot;./rootStore&quot;import &#123;ref&#1
       </categories>
       <tags>
         <tag>pinia</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>route和router的区别</title>
-    <url>/posts/2025/08/Fronted/Vue/route%E5%92%8Crouter%E5%8C%BA%E5%88%AB/a4edfghf.html</url>
-    <content><![CDATA[前端路由傻傻分不清？route和router的区别，看完这篇别再搞混了！一、前言：为什么这俩玩意儿容易搞混？刚学前端路由时，我也被route和router搞得头晕眼花，面试还被问：”你能说说$route和$router的区别吗？” 我支支吾吾半天，面试官的表情逐渐凝固… 😅
-今天，我们就来彻底搞懂这俩兄弟，让你以后再也不怕面试官的灵魂拷问！
-二、一句话总结router（路由器） ：是管理路由的老大，负责整个路由的跳转、拦截、传参等。route（路由信息） ：是当前激活的路由对象，存储当前页面的路径、参数、查询参数等信息。
-举个栗子 🌰：
-router 就像快递公司的调度中心，决定包裹（页面）怎么配送。route 就像你手里的快递单，记录当前包裹（页面）的信息（地址、收件人、订单号等）。
-三、代码实战：Vue里的route和router1. router（Vue Router实例）router是全局路由管理器，负责跳转、拦截、动态路由等操作。
-// 在Vue组件里使用export default &#123;  methods: &#123;    我的跳转方法() &#123;      // router.push() 用于跳转      this.$router.push(&#x27;/home&#x27;); // 跳转到首页            // router.replace() 替换当前路由（不记录历史）      this.$router.replace(&#x27;/login&#x27;);            // router.go() 前进/后退      this.$router.go(-1); // 返回上一页    &#125;  &#125;&#125;
-
-2. route（当前路由信息）route是当前激活的路由对象，包含路径、参数、查询参数等信息。
-export default &#123;  created() &#123;    // 获取当前路由信息    console.log(this.$route.path);    // 当前路径，比如 &quot;/user/123&quot;    console.log(this.$route.params); // 动态参数，比如 &#123; id: &quot;123&quot; &#125;    console.log(this.$route.query);   // 查询参数，比如 ?name=小杨 → &#123; name: &quot;小杨&quot; &#125;  &#125;&#125;
-
-四、React里的类似概念React没有$router和$route，但概念是相通的：
-router → BrowserRouter &#x2F; HashRouter（React Router的管理者）route → useLocation() &#x2F; useParams()（当前路由信息）
-import &#123; useNavigate, useLocation, useParams &#125; from &#x27;react-router-dom&#x27;;function 我的组件() &#123;  const navigate = useNavigate(); // 相当于 this.$router  const location = useLocation(); // 相当于 this.$route  const params = useParams();     // 相当于 this.$route.params  const 跳转首页 = () =&gt; &#123;    navigate(&#x27;/home&#x27;); // 相当于 this.$router.push(&#x27;/home&#x27;)  &#125;;  return (    &lt;div&gt;      当前路径：&#123;location.pathname&#125; &lt;br /&gt;      参数：&#123;params.id&#125;    &lt;/div&gt;  );&#125;
-
-五、常见误区 &amp; 面试题1. this.$router 和 this.$route 能互换吗？❌ 不能！
-this.$router 是路由管理器（负责跳转、拦截）。this.$route 是当前路由信息（只读数据）。
-2. 为什么动态路由要用params，而查询参数用query？params（如&#x2F;user&#x2F;:id）→ 是路由的一部分，适合SEO、短链接。query（如?name&#x3D;小杨）→ 是额外参数，不影响路由匹配。
-3. 编程式导航能用替代吗？✅ 可以，但场景不同：
- → 模板里用（类似标签）。this.$router.push() → JS逻辑里用（比如登录后跳转）。
-六、总结
-
-
-对比项
-router
-route
-
-
-
-作用
-路由管理（跳转、拦截）
-当前路由信息（路径、参数）
-
-
-类比
-快递公司调度中心
-你手里的快递单
-
-
-Vue
-this.$router
-this.$route
-
-
-React
-useNavigate()
-useLocation()
-
-
-记住口诀：
-router管跳转，route管信息跳转找router，参数找route
-七、最后的小故事曾经我在项目里疯狂用this.$route.push()，结果控制台疯狂报错，debug半小时才发现… 我把router和route写反了！  😭
-所以，看完这篇，千万别再搞混了！  🚀
-]]></content>
-      <categories>
-        <category>前端开发</category>
-      </categories>
-      <tags>
-        <tag>router</tag>
       </tags>
   </entry>
   <entry>
@@ -5791,6 +5813,20 @@ router管跳转，route管信息跳转找router，参数找route
       </tags>
   </entry>
   <entry>
+    <title>项目功能预览</title>
+    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%8A%9F%E8%83%BD%E9%A2%84%E8%A7%88/c031021b.html</url>
+    <content><![CDATA[基本功能【Xmind思维导图】easybbs https://ai.xmind.cn/share/GheHleaN?xid=jGuk6s2F
+[[b70de2ebdd3e53b75a5f86be12507e00_MD5.jpg|Open: easybbs.png]]![[b70de2ebdd3e53b75a5f86be12507e00_MD5.jpg]]
+使用组件element (大部分)v-md-edit (markdown编辑器) Tiptap (富文本编辑器)
+]]></content>
+      <categories>
+        <category>easybbs</category>
+      </categories>
+      <tags>
+        <tag>easybbs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>图片预览</title>
     <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88%E7%BB%84%E4%BB%B6/c6yj21b.html</url>
     <content><![CDATA[ 借助element的图片预览组件  
@@ -5805,18 +5841,6 @@ router管跳转，route管信息跳转找router，参数找route
 调用&lt;!-- 图片预览 --&gt; &lt;ImageViewer  ref=&quot;imageViewerRef&quot; :imageList=&quot;previewImageList&quot;&gt;		&lt;/ImageViewer&gt;
 
 //图片预览const imageViewerRef = ref(null)const previewImageList = ref([])const imagePreview = () =&gt; &#123;  nextTick(() =&gt; &#123; //等待下一次 DOM 更新循环结束后执行回调函数中的代码    const imageNodeList = document    .querySelector(&#x27;#detail&#x27;)    .querySelectorAll(&quot;img&quot;)    const imageList = []    imageNodeList.forEach((item, index) =&gt; &#123;      const src = item.getAttribute(&quot;src&quot;)      imageList.push(src)      item.addEventListener(&quot;click&quot;, () =&gt; &#123;        imageViewerRef.value.show(index)      &#125;)    &#125;)    previewImageList.value = imageList  &#125;)&#125;]]></content>
-      <categories>
-        <category>easybbs</category>
-      </categories>
-      <tags>
-        <tag>easybbs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>项目功能预览</title>
-    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%8A%9F%E8%83%BD%E9%A2%84%E8%A7%88/c031021b.html</url>
-    <content><![CDATA[【Xmind思维导图】easybbs https://ai.xmind.cn/share/GheHleaN?xid=dhGz5hu6
-]]></content>
       <categories>
         <category>easybbs</category>
       </categories>
@@ -6008,6 +6032,147 @@ auto 这个值是最常用、最智能的选项。它告诉浏览器：
 如果内容没有超出容器，就不显示滚动条。
 
 如果内容超出了容器，就自动显示滚动条，让用户可以滚动查看所有内容。
+
+
+点击按钮时页面自动刷新在 HTML 中，button 元素如果没有指定 type 属性，它的默认类型是 submit。当一个 submit 类型的按钮被点击时，它会尝试提交最接近它的父级 &lt;form&gt; 元素，这会导致页面刷新。
+如果不给button设置 type属性的话, 可能会出现一些意想不到的错误
+自定义样式不生效描述: 在使用element组件库时, 给他加上class名称, 在自定义书写样式时, 发现样式不生效
+   &lt;div class=&quot;message-info&quot;&gt;  &lt;el-dropdown&gt;	&lt;el-badge	:value=&quot;messageCountInfo.total&quot;	class=&quot;item&quot;	:hidden=&quot;		messageCountInfo.total === 0 ||		messageCountInfo.total === null	&quot;&gt;	&lt;div class=&quot;iconfont icon-message&quot;&gt;&lt;/div&gt;	&lt;/el-badge&gt;	&lt;template #dropdown&gt;		&lt;el-dropdown-menu&gt;			&lt;el-dropdown-item			  class=&quot;message-item&quot;  //想要修改的样式				@click=&quot;gotoMessage(&#x27;reply&#x27;)&quot;&gt;						&lt;span class=&quot;text&quot;&gt;回复我的&lt;/span&gt;				&lt;span				  v-if=&quot;messageCountInfo.likeComment &gt; 0&quot;					class=&quot;count&quot;&gt;		&#123;&#123;					messageCountInfo.likeComment &gt; 99						? &#x27;99+&#x27;						: messageCountInfo.likeComment				&#125;&#125;&lt;/span&gt;					&lt;/el-dropdown-item&gt;		&lt;/el-dropdown-menu&gt;  &lt;/template&gt;  &lt;/el-dropdown&gt;&lt;/div&gt;
+
+当把 message-item 的css代码写在嵌套里面, 发现一俺家的样式不生效
+但当把  message-item 的css代码直接卸载 &lt;style&gt; 的子级下, 外面没有任何嵌套时, 却能生效
+问题出在 Element UI 的渲染方式
+el-dropdown-menu（以及其内部的 el-dropdown-item）在页面上渲染时，它们不会被放在 message-info 或您的根组件 &lt;div class=&quot;header&quot;&gt; 内部。
+
+Element UI 通常会使用 Portal（或类似的机制）将这些下拉菜单浮层元素渲染到 &lt;body&gt; 元素的直接子节点。
+
+因此，当 Vue 为您的 .message-item 样式加上作用域属性后，例如变成 .[data-v-xxxxxx] .message-item[data-v-xxxxxx]，它就无法匹配到那个被渲染在 &lt;body&gt; 下的 &lt;li class=&quot;el-dropdown-menu__item message-item&quot;&gt; 元素，样式自然就失效了。
+
+
+Portal
+Portal（传送门）：在 Vue 3 中，它是一个内置组件，名为 &lt;Teleport&gt;。
+
+作用：它允许您在组件内部编写代码（保留组件的逻辑和状态），但将这些代码渲染到 DOM 树中的其他位置，通常是 &lt;body-content&gt; 的最末尾或一个特定的顶级容器中。
+
+
+Portal&#x2F;Teleport 主要用于解决以下几类组件的 层叠（z-index） 和 样式作用域 问题：
+
+模态框&#x2F;弹窗 (Modal)：如果模态框嵌套在很深的组件层级中，其父组件的 overflow: hidden 或 transform 样式可能会裁剪或影响模态框的显示。将模态框“传送”到 &lt;body&gt; 根部，可以确保它位于所有元素的顶层。
+
+下拉菜单&#x2F;气泡提示 (Popover&#x2F;Tooltip&#x2F;Dropdown)：就像您遇到的 Element UI 组件一样，将浮层元素渲染到 DOM 根部，可以确保它不会被任何父组件的布局或 CSS 属性（如 z-index）限制，从而保证浮层能正确覆盖所有内容。
+
+
+配置404界面直接在route的子级下面配置
+routes: [	&#123;	//项目的基本功能页面	&#125;,	&#123;      path: &#x27;/:pathMatch(.*)*&#x27;,      name: &#x27;404&#x27;,      component: ()=&gt; import(&quot;@/views/ucenter/Error404.vue&quot;)    &#125;,]
+
+Vue 的scoped原理这个项目中运用了大量的element插件, 但它提供的基本样式往往不能满足项目需求
+在重新定义element组件样式的过程中, 我发现 给有些组件加上class后, 子级写的样式不能生效, 很多时候需要加上深度选择器 :deep()后, 才能起作用.在网上看到了一篇 帖子 , 终于知道原因了
+CSS常见模块化方案
+BEM方案：BEM全称是Block Element Modifier，通过.block__element--modifier即.模块名__元素名--修饰符名这种CSS命名方式实现样式隔离和模块化；
+CSS Modules：将CSS文件进行编译后，使之具备模块化的能力；
+CSS-IN-JS：使用 js 来编写CSS规则；
+
+而Vue设置样式的方法则是通过单文件组件中的style标签进行样式，你只要在style标签上添加一个scoped属性，就能轻松实现样式隔离，而且还可以支持less、sass等预处理器，甚至还深度集成了CSS Modules。当然我们这里主要介绍是scoped。
+scoped的使用 &lt;style scoped&gt;   .container &#123;       background: red;   &#125; &lt;/style&gt;
+
+在style标签上增加scoped属性后，最终编译出来的结果会在选择器上增加一个唯一的attribute（比如data-v-mlxsojjm），每个.vue文件编译出来的attribute都不一样，从而实现了样式隔离。
+ &lt;style scoped&gt;   .container[data-v-mlxsojjm] &#123;       background: red;   &#125; &lt;/style&gt;
+.vue文件的css编译 &lt;template&gt;   &lt;div class=&quot;container&quot;&gt;&lt;/div&gt; &lt;/template&gt; ​ &lt;style scoped&gt; .container &#123;   width: 100px;   height: 100px;   background-color: red; &#125; &lt;/style&gt;
+
+我们可以用vue提供的解析单文件组件的编译包@vue/compiler-sfc，来解析我们在.vue文件中编写的css。
+ const &#123; compileStyle &#125; = require(&quot;@vue/compiler-sfc&quot;); const css = ` .container &#123;     width: 100px;     height: 100px;     background-color: red; &#125; `; const &#123; code &#125; = compileStyle(&#123;   source: css, // css源代码   scoped: true, // 是否要启用scoped   id: `data-v-$&#123;Math.random().toString(36).substring(2, 10)&#125;`, // scoped的id &#125;); console.log(code);
+
+编译结果如下：
+ .container[data-v-mlxsojjm] &#123;     width: 100px;     height: 100px;     background-color: red; &#125;
+
+可以看到，带了scoped的style标签中的css，编译后会被加上一个属性选择器，名字以data-v开头，后面跟的是一个字符串，这个其实可以自己定义，只要保证全局唯一就行了，比如可以取当前文件的路径，然后用摘要函数md5或者sha256去生成一个哈希，取这个哈希值就行了。
+而template经过编译后，结果如下：
+ &lt;template&gt;   &lt;div class=&quot;container&quot; data-v-mlxsojjm&gt;&lt;/div&gt; &lt;/template&gt;
+
+这就是scoped的原理了，通过给组件中DOM元素和CSS各自都添加一个相同且唯一的属性选择器，让当前的css文件的样式只对当前组件生效。
+注意点1. 子组件的根节点会同时被自己以及父组件的样式所影响在vue官网中有这么一段话： “使用 scoped 后，父组件的样式将不会渗透到子组件中。不过，子组件的根节点会同时被父组件的作用域样式和子组件的作用域样式影响。这样设计是为了让父组件可以从布局的角度出发，调整其子组件根元素的样式” 。
+啥意思呢？比如你定义一个父组件parent.vue和子组件child.vue：
+ // Child.vue &lt;template&gt;     &lt;div class=&quot;child-container&quot;&gt;       child     &lt;/div&gt; &lt;/template&gt; ​ &lt;style scoped&gt; .child-container &#123;   color: red; &#125; &lt;/style&gt; ​ // parent.vue &lt;template&gt;   &lt;div class=&quot;container&quot;&gt;     &lt;Child /&gt;   &lt;/div&gt; &lt;/template&gt; &lt;script&gt; import Child from &quot;./Child.vue&quot;; export default &#123;   name: &quot;Parent&quot;,   components: &#123;     Child,   &#125;, &#125; &lt;/script&gt; ​ &lt;style scoped&gt; .container &#123;   width: 100px;   height: 100px;   background-color: red; &#125; .child-container &#123;   color: blue !important; &#125; &lt;/style&gt;
+
+最终渲染出来的子组件里面显示的字体颜色是蓝色。
+![[前端了解&#x2F;仿知乎, 掘金vue3项目&#x2F;_resources&#x2F;学习&#x2F;9edce1d34e35ae9d5e76f67d572ea7ab_MD5.webp]]
+怎么会这样呢？看vue最终渲染出来DOM的样子就能看出来了。 ![[前端了解&#x2F;仿知乎, 掘金vue3项目&#x2F;_resources&#x2F;学习&#x2F;183f7e5887f10e4325a2669f84078831_MD5.webp]]
+子组件Child的根节点上既有自己声明scoped后的属性选择器，又有父级的声明scoped后的属性选择器，所以在父组件中，就可以修改子组件根节点的样式了。
+我之前不知道这个知识点的时候，被这个坑了一把，不知道为啥自己组件的样式被改了，当时找了半天才看到是父组件改的，所以我之后定义组件根节点的class名字的时候，尽量定义成一个独一无二的，免得无意中被父组件的同名类名的样式污染了。
+2. scoped对插槽slot的影响我们把提供插槽的组件叫Child，使用插槽的组件叫Parent，slot中的内容最终编译出来会同时含有Parent和Child的scopedId，所以会同时受Parent、Child两个组件的的样式影响。
+ // Parent.vue &lt;template&gt;   &lt;div class=&quot;container&quot;&gt;     &lt;Child &gt;       &lt;div class=&quot;c1&quot;&gt;c&lt;/div&gt;     &lt;/Child&gt;   &lt;/div&gt; &lt;/template&gt; &lt;script&gt; import Child from &quot;./Child.vue&quot;; export default &#123;   name: &quot;Parent&quot;,   components: &#123;     Child,   &#125;, &#125; &lt;/script&gt; &lt;style scoped&gt; &lt;/style&gt; // Child.vue &lt;template&gt;   &lt;div class=&quot;child-container&quot;&gt;     child    &lt;div&gt;     &lt;slot&gt;&lt;/slot&gt;    &lt;/div&gt;   &lt;/div&gt; &lt;/template&gt; &lt;style scoped&gt; &lt;/style&gt;
+
+最终渲染的DOM如下：
+![[前端了解&#x2F;仿知乎, 掘金vue3项目&#x2F;_resources&#x2F;学习&#x2F;6f23925f44d56a3f18c8defd2c6c5480_MD5.webp]]
+如果遇到相同权重的样式，比如元素&lt;div class=&quot;text&quot;&gt;a&lt;/div&gt;，在Parent组件中写的样式是.text&#123; color: red &#125;，在Child组件中写的样式是.text&#123; color: blue &#125;，由于在vue父子组件的渲染过程中，子组件会先于父组件渲染完成，所以最终父组件样式会覆盖子组件相同权重的样式，最终渲染color颜色会是red。
+深度选择器在实际开发中，我们常常需要在父组件修改子组件的样式，比如在用三方组件库的时候，组件库里的样式往往不能100%满足我们的需求，这时候就要用到深度选择器做样式穿透了。
+深度选择器有4种语法：
+
+三个大于号 &gt;&gt;&gt;
+&#x2F;deep&#x2F;
+::deep{}
+:deep()
+
+比如你这样写了一段样式：
+ .a :deep(.b) &#123;   color: green; &#125;
+上面的代码会被编译成：
+ .a[data-v-9ea40744] .b &#123;     color: green; &#125;
+
+在编译后，在对应css样式上会带上该组件scoped对应的属性选择器，所以自然就能影响子组件的样式了。
+]]></content>
+      <categories>
+        <category>easybbs</category>
+      </categories>
+      <tags>
+        <tag>easybbs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>帖子目录</title>
+    <url>/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%B8%96%E5%AD%90%E7%9B%AE%E5%BD%95/t031a0219.html</url>
+    <content><![CDATA[功能介绍将帖子内部的标题提取出来, 按照层级顺序将他们呈现在目录上, 方便用户浏览大致内容
+随着用户滑动界面, 目录会显示用户浏览的位置(具体表现为对应的标题演示变化, 加上active)
+当用户直接点击目录上的某一个标题时, 界面也会跳转到相应的位置
+学习: 对于任何浏览器, 怎么在不影响滚动功能的情况下, 隐藏滚动条
+详解样式  &lt;div class=&quot;toc-panel&quot;&gt;	&lt;div class=&quot;toc-container&quot;&gt;	  &lt;div class=&quot;toc-title&quot;&gt;目录&lt;/div&gt;	  &lt;div class=&quot;hiddenMouse&quot;&gt;		&lt;div class=&quot;toc-list&quot;&gt;		  &lt;template v-if=&quot;tocArray.length === 0&quot;&gt;			&lt;div class=&quot;no-toc&quot;&gt;未解析到目录&lt;/div&gt;		  &lt;/template&gt;		  &lt;template v-else&gt;			  &lt;div v-for=&quot;toc in tocArray&quot;&gt;			  &lt;span			   class=&quot;toc-item&quot;			   :class=&quot;&#123;&#x27;active&#x27;: toc.id === activeChorId&#125;&quot;			   :style=&quot;&#123;&#x27;padding-left&#x27;: toc.level * 10 + &#x27;px&#x27;&#125;&quot;			   @click=&quot;gotoAnchor(toc.id)&quot;&gt;&#123;&#123; toc.title &#125;&#125;&lt;/span&gt;			&lt;/div&gt;		  &lt;/template&gt;		&lt;/div&gt;	  &lt;/div&gt;	&lt;/div&gt;  &lt;/div&gt;
+
+.toc-panel &#123;  position: absolute;  top: 60px;  right: 0px;  width: 285px;  .toc-container &#123;    position: fixed;    margin: 5px 5px;    width: 285px;    background-color: #fff;    .toc-title &#123;      border-bottom: 1px solid #ddd;      padding: 10px;    &#125;    .hiddenMouse &#123; /*隐藏滚动条但不影响滚动效果*/        max-height: calc(100% - 30px);        overflow: hidden;        width: 285px;        .toc-list &#123;          width: 290px;          padding: 8px 0px 5px 10px;          max-height: 500px;          overflow: auto;          .no-toc &#123;            text-align: center;            color: #757474;            line-height: 13px;            font-size: 13px;          &#125;          .toc-item &#123;            margin: 3px 0;            cursor: pointer;            display: block;            line-height: 35px;            overflow: hidden;            text-overflow: ellipsis;            color: #8d8c8c;            font-size: 14px;            border-radius: 3px;            border-left: 2px solid #fff;          &#125;          .toc-item:hover &#123;            color: #3f3f3f;            border-radius: 0px;            font-size: 15px;            background-color: #f0eeee;            border-left: 2px solid #8fc7d3;          &#125;          .active &#123;            color: #3f3f3f;            border-radius: 0px;            font-size: 15px;            background-color: #f0eeee;            border-left: 2px solid #8fc7d3;          &#125;       &#125;    &#125;  &#125;&#125;
+
+代码实现隐藏滚动条类似于上面的这段代码
+.hiddenMouse &#123; /*隐藏滚动条但不影响滚动效果*/          max-height: calc(100% - 30px);          overflow: hidden;          width: 285px;          .toc-list &#123;            width: 290px;            padding: 8px 0px 5px 10px;            max-height: 500px;            overflow: auto;        &#125;
+
+给这个盒子再套一层, 设置最大高度和overflow:hidden属性重点: 里面的这个盒子宽度必须略小于外面这个盒子的高度, 使滚动条能够超出父盒子的宽度限制, 达到隐藏效果
+获取dom节点遍历文章内容区域的所有子元素，找出标题标签（H1 到 H6），然后给这些标题添加唯一的 ID，并将标题信息（标题文本、层级、位置）存储在一个响应式数组中
+
+contentDom: 通过 ID #detail 获取到文章内容的容器 DOM 元素。这是假定你的文章内容 HTML 结构被包裹在这个 ID 为 detail 的元素内。
+
+childNodes: 获取 contentDom 下所有直接子节点（包括元素节点、文本节点等）。
+
+
+//更新目录列表 const tocArray = ref([])const makeToc = () =&gt; &#123;  nextTick(() =&gt; &#123;    const tocTags = [&quot;H1&quot;, &quot;H2&quot;, &quot;H3&quot;, &quot;H4&quot;, &quot;H5&quot;, &quot;H6&quot;]    //获取所有标签    const contentDom = document.querySelector(&#x27;#detail&#x27;)    const childNodes = contentDom.childNodes    let index = 0    //过滤非标题节点    childNodes.forEach((item) =&gt; &#123;      let tagName = item.tagName      // console.log(tagName)      if (tagName === undefined || !tocTags.includes(tagName.toUpperCase())) &#123;        return true //相当于continue      &#125;       index++      let id = &quot;toc&quot; + index //生成唯一ID, 如&quot;toc1&quot;      item.setAttribute(&quot;id&quot;, id) //修改属性      tocArray.value.push(&#123;        id: id,        title: item.innerText,        level: Number.parseInt(tagName.substring(1)),        offsetTop: item.offsetTop,      &#125;)    &#125;)  &#125;)&#125;
+
+跳转到相应的锚点//跳转到相应的锚点const activeChorId = ref(null)const gotoAnchor = (domId) =&gt; &#123;  activeChorId.value = domId  const dom = document.querySelector(&#x27;#&#x27;+domId)  dom.scrollIntoView(&#123;    behavior: &quot;smooth&quot;, //平滑滚动    block: &quot;start&quot;, //把目标标题滚动到浏览器窗口的最上方  &#125;)&#125;
+获取滚动条位置const getScrollTop = () =&gt; &#123;  let scrollTop =    document.documentElement.scrollTop ||    window.pageYOffset ||    document.body.scrollTop  return scrollTop&#125;
+
+同步当前滚动条的位置与目录中活跃的标题const listenerScroll = () =&gt; &#123;  let currentScrollTop = getScrollTop() //获取当前的位置  //.some() 方法会遍历数组中的每一个元素，并对每个元素执行传入的回调函数  //不会修改原数组  tocArray.value.some((item, index) =&gt; &#123;    if (index &lt; tocArray.value.length - 1 &amp;&amp;      currentScrollTop &gt;= tocArray.value[index].offsetTop &amp;&amp;      currentScrollTop &lt; tocArray.value[index + 1].offsetTop ||      index == tocArray.value.length - 1 &amp;&amp;       currentScrollTop &lt; tocArray.value[index].offsetTop    ) &#123;      activeChorId.value = item.id //同步样式状态      return true    &#125;  &#125;)&#125;
+
+.some
+
+它接收一个回调函数作为参数。
+
+这个回调函数会对数组中的每个元素执行一次测试。
+
+一旦找到第一个让回调函数返回 true（或一个真值）的元素，.some() 就会立即停止遍历，并返回 true。
+
+如果遍历完整个数组，所有的元素都未能通过测试（即回调函数对所有元素都返回了 false），则 .some() 返回 false。
+
+
+挂载与清空onMounted(() =&gt; &#123;  window.addEventListener(&quot;scroll&quot;, listenerScroll, false)&#125;)onUnmounted(() =&gt; &#123;  window.removeEventListener(&quot;scroll&quot;, listenerScroll, false)&#125;)
+
+
+
+
+
 
 
 ]]></content>
