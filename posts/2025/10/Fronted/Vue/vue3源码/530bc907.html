@@ -1,0 +1,1739 @@
+<!DOCTYPE html><html lang="zn-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Vue3源码 | 荥晋</title><meta name="keywords" content="vue源码"><meta name="author" content="匡思进"><meta name="copyright" content="匡思进"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Vue3源码"><meta name="application-name" content="Vue3源码"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="Vue3源码"><meta property="og:url" content="https://kkksj.cn/posts/2025/10/Fronted/Vue/vue3%E6%BA%90%E7%A0%81/530bc907.html"><meta property="og:site_name" content="荥晋"><meta property="og:description" content="手写vue源码"><meta property="og:locale" content="zn-CN"><meta property="og:image" content="https://kkksj.cn/img/6.jpg"><meta property="article:author" content="匡思进"><meta property="article:tag" content="blog"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://kkksj.cn/img/6.jpg"><meta name="description" content="手写vue源码"><link rel="shortcut icon" href="/img/images.jpg"><link rel="canonical" href="https://kkksj.cn/posts/2025/10/Fronted/Vue/vue3%E6%BA%90%E7%A0%81/530bc907.html"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 浆糊!","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"你好啊, 人类👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":2},
+  friends_vue_info: {"apiurl":null},
+  navMusic: true,
+  mainTone: {"mode":"api","api":"/img/images.jpg","cover_change":true},
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 匡思进","link":"链接: ","source":"来源: 荥晋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '荥晋',
+  title: 'Vue3源码',
+  postAI: '',
+  pageFillDescription: '框架, Vue 3 的模块化框架结构, 1. 响应式系统 (@vue/reactivity), 2. 运行时核心 (@vue/runtime-core), 3. 运行时渲染器 (@vue/runtime-dom), 4. 编译器 (@vue/compiler-core x2F @vue/compiler-dom), 5. 共享模块 (@vue/shared), 整体工作流程, Monorepo 管理项目, Reactivity — 响应式实现, reactivity, 1. 缓存机制 (reactiveMap), 2. 响应式标记 (ReactiveFlags), 3. 核心代理句柄 (mutableHandlers), 使用Reflect的好处, 4. 响应式工厂 (createReactiveObject), effect, 一、核心作用和结构, 二、 ReactiveEffect.run() 的执行流程 (依赖收集与清理), 三、 依赖的精确追踪机制（cleanup）, 1. 预清理 (proCleanEffect), 2. 收集 (trackEffect 中的逻辑), 3. 后清理 (postCleanEffect), 四、 依赖触发 (trigger 和 trackEffects), ref, ref (RefImpl) 实现：基本类型响应化, 核心结构：RefImpl, 依赖追踪, toRef 和 toRefs 实现：视图与数据的同步引用, 核心结构：ObjectRefImp (toRef 的返回), toRefs(object) 的作用, proxyRefs 实现：自动脱 Ref 逻辑, 核心结构：Proxy 陷阱, 关键点, Computed, Computed 的实现原理与核心流程总结, 1. 核心结构：ComputedRefImpl 类, 2. 懒惰求值与缓存（get value() 流程）, 3. 响应式触发（Dependency Change 流程）, watch 和 watchEffect, 核心结构与函数关系, 核心机制：doWatch, 1. 规范化侦听源 (getter 的创建), 2. 深度遍历与依赖收集 (traverse), 3. 创建更新任务 (job), 4. 清理机制 (onCleanup), 5. ReactiveEffect 的创建与执行, 6. 返回值, Runtime-core, 运行时（Runtime）核心流程梳理, 阶段一：初始化与渲染入口, 阶段二：核心 Patch (Diff) 逻辑, patch(n1 n2 container anchor), 阶段三：具体操作执行, A. 挂载 (Mount) 流程（n1 === null 时）：, B. 更新 (Patch) 流程（n1 !== null 时）：, 总结图示, 函数, 一、 虚拟节点 (VNode) 与创建, 1. createVnode.ts, 2. h.ts, 二、 渲染器 (Renderer) 与 Diff 算法, 1. renderer.ts, 2. patchKeyedChildren (Diff 核心算法), 3. seq.ts, 三、 组件化与调度, 1. component.ts, 2. renderer.ts (组件相关), 3. scheduler.ts, 4. apiLifecycle.ts  (生命周期钩子), 核心机制, 5.apiProvide.ts  (providex2Finject), 核心机制, provide(key value) (提供数据), inject(key defaultValue) (注入数据), Transition, 1. 核心架构, 2. 过渡实现机制 (Enter x2F 进入动画), 3. 离开实现机制 (Leave x2F 离开动画), 4. 关键实现点和优化,  异步组件定义器（defineAsyncComponent）, runtime-dom,  runtime-dom.js 是一个 Vue.js 运行时 (Runtime) 的核心部分代码它将 虚拟 DOM (Virtual DOM VNode) 概念与 浏览器 DOM 操作 结合起来实现了基本的渲染和打补丁功能。, 1. 跨平台抽象 (Renderer Abstraction), 2. 浏览器 DOM 实现 (Runtime-DOM Specifics), 3. VNode 核心数据结构与创建, 4. 关键打补丁逻辑 (Mounting amp Patching), 优化, PatchFlags优化思维导图思维导图源码框架的框架结构相比进行了彻底的重构使其更加模块化高性能和友好的核心不再是一个庞大的单体结构而是由一系列职责清晰的模块组成的这种设计被称为架构的模块化框架结构的框架主要由以下几个核心包组成它们协同工作构成了的运行时环境响应式系统核心作用这是最底层也是最核心的机制它负责跟踪状态的变化并触发视图更新技术基础使用实现主要提供了等函数用于创建和管理响应式状态优势它是完全独立的可以被用于任何环境中与解耦运行时核心核心作用包含创建管理和更新虚拟的所有逻辑它是平台无关的核心逻辑主要职责实现组件的生命周期组合式的基础实现调度器负责控制更新频率和算法等平台定制它提供了创建特定平台渲染器的运行时渲染器核心作用这是一个平台特定的渲染器专门用于浏览器环境职责它基于提供了将真正渲染到浏览器上的逻辑包括处理元素的创建属性的设置事件监听器的绑定等在应用中的作用当我们使用时内部使用的就是这个渲染器编译器核心作用负责将的模板编译成高效的渲染函数关键优化编译器在中引入了块树和静态提升等优化技术极大地提升了渲染函数的性能职责分工平台无关的模板解析和代码生成逻辑增加了处理特有指令如的逻辑共享模块核心作用存放框架中所有模块共用的工具函数和常量如类型检查对象操作函数等整体工作流程框架的工作流程可以概括为编译期或模板通过编译成渲染函数挂载期渲染函数被执行创建树然后将树转化为真实的元素并插入页面响应式更新期当模块监测到状态变化时它会通知执行更新操作通过高效的算法计算出最小的更新集合最后由精确地修改真实的这种模块化的设计使得的核心体积更小可维护性更强并且为将渲染到非环境如原生应用提供了天然的优势管理项目是管理项目代码的一个方式指在一个项目仓库中管理多个模块包源码采用方式进行管理将模块拆分到目录中作为一个个包管理这样职责划分更加明确一个仓库可维护多个模块方便版本管理和依赖管理响应式实现前端了解源码设计思想前端了解源码设计思想前端了解源码设计思想缓存机制用于记录我们的代理后的结果可以复用作用用于存储原始对象和其对应的实例用的原因使用而不是普通的关键在于它的弱引用特性如果原始对象不再被其他地方引用不会阻止垃圾回收机制回收该对象及其对应的这有效防止了内存泄漏缓存目的确保同一个原始对象不会被重复代理总是返回同一个实例响应式标记基本上唯一作用定义一个特殊的不常用的或字符串键用于标记一个对象是否已经是响应式代理实现方式通过的捕获器在访问这个特殊键时返回核心代理句柄当一个对象被代理后任何对它的属性访问都会经过这里的捕获器是实例找到属性让重新执行如果尝试读取上的属性捕获器会立即返回如果对一个原始对象读取这个属性它会返回或者如果原始对象恰好有这个属性则返回属性值但一般不会使用的好处确保正确的指向参数这是使用和的最主要原因在捕获器中使用的传统方式时如果对象上的属性是一个或函数那么这个函数内部的将指向原始目标对象而不是我们期望的代理对象这会破坏响应式如果内部又访问了目标对象上的其他属性这个访问操作会绕过无法触发响应式机制如依赖收集响应式工厂这是核心逻辑所在确保了响应式对象创建的规范性唯一性和复用性代码行目的详细解释非对象校验响应式只能代理对象包括数组非对象类型直接返回重复代理校验如果目标对象已经是通过访问特殊标记判断则直接返回它自身避免重复创建缓存查找检查当前原始对象是否在中已有对应的返回缓存如果找到缓存直接返回已存在的实例确保唯一性创建只有通过所有检查后才创建新的实例缓存新实例将原始对象和新存入供将来复用一核心作用和结构函数用于创建一个响应式副作用它是连接数据变化与重新执行某个函数的桥梁元素作用对应代码创建并执行一个副作用它接收一个函数即要执行的副作用并立即执行一次同时建立响应式关联副作用的封装类它存储了副作用函数调度器以及用于依赖追踪和清理的状态等全局变量用于临时存储当前正在运行的实例这是依赖收集的关键二的执行流程依赖收集与清理方法是的核心它控制着副作用函数的执行并在执行前后管理依赖的收集和清理步骤目的对应函数代码激活与缓存检查是否处于激活状态备份上一个并将当前设为依赖预清理在运行前重置依赖追踪状态为新的收集做准备执行运行用户传入的副作用函数在这个过程中如果访问了响应式数据就会触发拦截进而调用进行依赖收集依赖后清理在运行后清理上次遗留的本次执行中没有再次被访问到的旧依赖解决了条件分支的依赖残留恢复恢复上一个三依赖的精确追踪机制为了解决条件分支如导致的依赖冗余问题代码实现了一套精确的依赖清理机制核心在于实例上的三个属性和预清理属性变化目的重置为记录本次过程中实际收集到的依赖数量递增为本次生成一个唯一的用于标记在本次执行中被访问过的依赖收集中的逻辑在中通过检查和更新集合数组来建立和维护双向链接检查点目的关键代码去重与标记将当前和本次存入中如果已经在中且相同同一个中多次访问则跳过双向链接将存入数组中如果当前位置上存的不是本次的则说明依赖发生了变化需要先通过删除旧依赖再存入新依赖计数无论是否更换依赖只要成功收集了一个依赖就会递增后清理检查点目的关键代码比较长度比较上次收集的长度和本次实际收集的长度清理冗余遍历所有多余的旧依赖到调用将从这些中删除截断将数组的长度截断为本次实际收集的长度四依赖触发和元素作用在拦截器中被调用它通过和查找到对应的集合遍历存储了所有依赖该属性的并执行它们的函数在你的代码中被定义为即重新执行副作用这种设计确保了只有当响应式数据发生变化时才会执行那些依赖于该数据的副作用函数通过精确的依赖清理机制它避免了在条件分支等情况下产生不必要的无法自动删除的依赖残留实现基本类型响应化是将一个值包装成一个带有属性的引用对象从而使其具备响应式能力核心结构属性方法作用分析标识标记这是一个对象用于和其他内部判断原始值存储传入的原始值内部值存储可能被处理后的响应式值注意你的实现中使用了这实现了内部的深度响应即如果传入一个对象该对象会被包裹依赖集合用于存储依赖于这个值的集合依赖收集访问时调用进行依赖收集然后返回触发更新比较新值和旧值如果不同更新和然后调用触发所有相关的重新执行依赖追踪在时调用如果存在则调用将当前的与关联起来在时调用调用遍历并执行所有依赖和实现视图与数据的同步引用这两个函数的作用是将响应式对象的一个属性提取出来包装成一个引用对象以便在解构或传递时保持其响应性核心结构的返回是一个特殊的对象它没有自己的而是直接读写源对象的属性属性方法作用响应性原理源对象存储传入的响应式对象例如属性名存储要引用的键名例如代理读取直接返回当读取时实际上触发了源对象上的陷阱从而进行依赖收集代理写入直接设置当写入时触发了源对象上的陷阱从而触发更新的作用遍历传入对象通常是一个对象的所有可枚举属性对每一个属性都调用将其包装成一个实例返回一个包含所有这些实例的新对象用途允许我们解构响应式对象同时不丢失其属性的响应性在模板中仍然需要除非结合或实现自动脱逻辑主要用于在函数的返回值上目的是在模板中或解构后访问对象时可以省略核心结构陷阱陷阱行为分析自动脱获取属性值检查是否是如果是返回如果不是返回本身自动更新获取属性的旧值如果是则将新值赋值给保持引用不变只更新它的内部值如果不是则执行默认的行为修改对象上的属性关键点实现了的一个重要特性在函数的返回对象上使用展开运算符后模板中可以直接使用属性名而无需通过结合依赖收集和触发的机制和值封装和外部追踪的机制来实现了懒惰求值和结果缓存的实现原理与核心流程总结的设计使其既是其依赖数据的消费者当依赖变化时它知道自己需要更新又是外部的生产者当它的值被访问时它会被外部依赖核心结构类函数返回一个实例这个实例承载了懒惰求值和缓存的所有逻辑组件作用对应方法内部负责依赖追踪它运行用户传入的并收集中所依赖的所有响应式数据如缓存上一次计算的结果标志用于判断是否需要重新计算如果为脏则必须运行外部接口负责被动追踪它对外暴露接口以便被外部的依赖例子懒惰求值与缓存流程的核心价值在于它只有在被访问时才执行计算并且会缓存结果步骤代码位置描述检查脏值首次访问或依赖项变更后为如果为则直接返回上次缓存的跳过所有计算重新计算如果是脏值则执行内部清除旧依赖运行用户重新收集所有依赖依赖收集发生在中的返回值被存储在中更新缓存内部的被重置为外部依赖收集如果当前有外部正在运行即存在则将这个外部收集到的依赖中这样当变化时外部会重新运行返回结果返回计算并缓存后的结果响应式触发流程当计算属性所依赖的响应式数据例如发生变化时会触发以下步骤步骤代码位置描述触发依赖发生改变触发其对应的依赖集合标记为脏找到依赖的内部并执行将计算属性标记为脏强制下次访问时重新计算通知外部调用内部的即这会找到所有外部依赖的在步骤中收集的外部重新运行外部被通知需要更新调用其通常是从而触发视图更新总结内部负责监听依赖不执行用户回调只负责标记自己为脏外部负责读取并通过标志和方法实现了按需计算的高效机制和核心结构与函数关系调用其中回调函数存在调用其中为实现主要的侦听逻辑创建并运行核心机制函数是整个侦听系统的枢纽它的主要任务是规范化侦听源的创建可以侦听不同的数据源对象函数的第一步是将这些源统一包装成一个函数供内部执行来收集依赖侦听源类型对应依赖收集方式访问对象时会进入遍历访问时触发的依赖收集用户自定义的运行函数时访问函数内部的响应式数据深度遍历与依赖收集作用强制访问一个响应式对象的所有嵌套属性以实现深度侦听逻辑递归遍历对象的所有属性使用避免循环引用导致的无限递归通过和控制遍历的深度尽管在中选项只控制是进行深度还是浅层遍历在遍历过程中访问属性会触发的陷阱从而将当前的通过收集为该属性的依赖创建更新任务是数据变化时或首次执行时调用的核心更新逻辑有逻辑如果存在函数来自上一次回调则调用它进行清理例如取消异步请求调用重新执行重新收集依赖并获取新值调用用户回调函数将新值旧值和清理注册函数传入更新无逻辑直接调用目的是重新执行副作用函数本身即传入的函数清理机制作用允许用户在回调函数内部注册一个副作用清理函数机制将清理函数赋值给闭包中的变量在下一次执行时首先调用这对于处理异步操作的竞态条件非常重要的创建与执行创建将规范化后的作为副作用将作为调度器这意味着当依赖的数据变化时不会直接执行而是执行初始化执行直接调用立即执行回调调用这会执行一次来收集依赖和获取初始的但不执行用户回调调用执行副作用函数并收集依赖返回值返回一个函数该函数调用用于停止当前的响应式侦听好的我来为您详细梳理一下您的虚拟框架由和组成的整个渲染和更新流程这个流程的核心思想是将平台无关的逻辑算法和平台相关的操作分离运行时核心流程梳理整个运行时流程始于用户调用函数并结束于对真实的修改阶段一初始化与渲染入口这个阶段主要发生在中用于创建渲染器并暴露给用户平台操作定义在定义了所有与浏览器相关的操作如等这些操作是平台特有的创建渲染器在中的函数接收作为参数它返回一个包含核心逻辑的渲染器对象用户调用在用户调用从导入的函数这是整个流程的起点将树和目标容器传入初始调度在导出的函数内部检查旧是否存在调用核心函数阶段二核心逻辑这是的主要工作负责比对新旧并决定采取何种操作状态逻辑判断下一步操作初次挂载调用相同直接无需操作类型不一致销毁旧节点然后将置为转为初次挂载新节点处理类型根据元素使用语句调用调用调用阶段三具体操作执行挂载流程时在创建真实调用即处理属性遍历调用传入旧值为处理子节点如果为文本调用如果为数组调用插入调用即在递归遍历子节点数组对每个子节点调用继续挂载更新流程时在复用新旧指向同一个真实更新属性调用更新子节点调用在更新添加属性遍历调用移除属性遍历如果属性不在中调用传入新值为在或这是最复杂的阶段负责处理子节点数组的更新旧文本新数组清空旧文本然后挂载新数组旧数组新文本卸载旧数组设置新文本旧数组新数组著名的算法核心逻辑头尾比对最长递增子序列等发生在这里负责高效地对子节点进行移动新增和删除总结图示阶段函数模块描述关键操作初始化组装平台暴露渲染接口分发确定初次挂载还是更新判断类型是否一致元素更新复用真实真实操作在或内部调用浏览器子节点更新对子节点数组进行算法比对以最小化操作次数数组逻辑高效定位移动删除函数一虚拟节点与创建虚拟是描述真实结构的对象是连接声明式和命令式操作的桥梁核心功能创建对象结构标记为节点类型如组件对象或属性事件子节点文本数组或插槽用于算法的键对应的真实节点在渲染时关联形状标识用于快速判断的类型和子节点类型例如辅助功能和特殊类型的判断是否为判断两个是否可以复用和相同核心功能函数的别名用于创建重载处理根据参数个数和类型灵活地将参数解析为和最终调用个参数第二个参数可能是对象但非数组或数组或文本个及以上参数第三个参数或后续参数都视为二渲染器与算法渲染器实现了跨平台的操作和的挂载更新与卸载核心功能通过创建渲染器实现平台无关性关键方法算法入口对比新旧根据和调用不同的方法首次挂载元素创建设置属性递归挂载子节点更新元素复用调用和卸载对应的元素子节点更新逻辑处理四种核心情况新文本旧数组卸载旧数组设置新文本新数组旧数组调用进行新空数组旧文本清空旧文本如果新是数组则挂载新数组新文本旧文本直接更新文本内容核心算法功能对新旧数组进行高效比对和更新实现最小化操作流程头尾比对从头部和尾部同时向中间扫描处理相同并复用新增删除若新多则从到依次插入新增若旧多则从到依次卸载多余的旧乱序比对处理中间不相同的部分映射表建立新子节点的到索引的查找与复用删除遍历旧子节点通过查找新索引找不到则删除找到则复用并记录映射关系到数组中移动优化计算的最长递增子序列移动操作倒序遍历新子节点如果节点索引不在中则进行移动操作否则保持不动因为中的元素顺序是正确的核心功能实现最长递增子序列算法作用在算法中用于找到无需移动的元素从而指导执行最少的移动操作实现使用贪心算法二分查找来优化的查找过程三组件化与调度组件是逻辑复用的核心而调度器确保了响应式更新的效率核心功能组件实例的创建初始化和设置组件实例结构包含了组件的所有状态和上下文如等流程初始化响应式和非响应式处理插槽创建代理对象用于在组件内部通过访问和公共属性如执行获取返回值如果返回函数则作为函数如果返回对象则通过进行脱处理作为初始化执行函数并转换为响应式对象组件相关处理组件挂载创建组件实例设置组件创建组件更新更新通过判断是否需要更新若需要设置为新的并调用为组件创建副作用执行函数获取然后对进行将组件的更新函数放入队列实现异步批量更新核心功能异步任务调度器用于批量处理组件更新任务流程将传入的去重后放入数组确保只开启一个异步任务微任务使用开启一个微任务批量执行在微任务中清空队列并依次执行所有缓存的实现状态的异步批量更新生命周期钩子模块主要实现了组件的生命周期钩子函数允许用户在阶段注册回调函数以便在组件生命周期的特定时刻执行逻辑核心机制生命周期枚举定义了各个生命周期阶段的短名称常量注意文件中是应为这是一个高阶函数用于生成具体的生命周期钩子函数如它接收一个生命周期类型返回一个钩子注册函数该函数将用户提供的回调注册到当前组件实例上通过获取钩子注册逻辑钩子回调被存储在组件实例上的对应属性数组中实际存储的是一个封装函数这个封装函数的作用是在执行用户提供的之前通过确保当前的是在正确的组件实例上下文中执行的执行完毕后再通过清空以防止上下文污染导出的钩子函数执行工具导出了一个工具函数用于遍历并执行一个函数数组这是在渲染器中触发组件实例上注册的生命周期钩子时使用的模块实现了依赖注入机制允许父组件向其所有后代组件提供数据后代组件则可以注入这些数据实现跨级通信核心机制提供数据上下文检查确保是在组件的上下文中调用即存在继承机制组件实例上的属性存储了它提供的数据它首先继承自父组件的防止污染原型链继承只有在组件第一次调用时即当前实例的与父实例的相同时才会创建一个新的对象作为当前的这个新对象是通过创建的实现了原型继承这意味着子组件可以读取父组件提供的数据但子组件新增或覆盖数据时不会影响父组件的原型链上的数据数据存储将和存储到当前实例的对象上注入数据上下文检查确保在组件上下文中调用查找机制通过访问父组件的属性开始查找由于实现了原型链继承这个查找会沿着原型链向上即沿着父组件祖父组件查找直到找到第一个匹配的返回值如果父链的中找到了则返回对应的值否则返回传入的组件旨在为元素的进入和离开提供基于的过渡动画能力核心架构模块职责函数这是用户使用的组件入口它是一个封装器将用户传入的钩子和类名传递给核心实现组件这是真正的过渡组件实现它是一个抽象组件不会渲染自身但会将其唯一的子节点的属性设置为封装好的钩子从而让渲染器在挂载卸载时能够调用这些动画逻辑核心逻辑封装层负责接收用户定义的类名和钩子并将其转化为渲染器需要调用的等标准函数过渡实现机制进入动画进入过渡依赖于三步曲和双帧延迟来确保浏览器正确感知到样式变化从而触发过渡步骤钩子代码位置动作目的准备阶段调用用户添加类起点样式添加类过渡属性如应用起点样式和过渡时间准备就绪动画触发延迟一帧移除类添加类终点样式强制浏览器重绘使浏览器感知到到的样式变化触发过渡动画结束内部的函数移除类移除类移除监听器调用回调清理元素上的过渡类将元素恢复到正常状态离开实现机制离开动画离开过渡用于元素在被卸载前播放动画其核心是延迟卸载步骤钩子代码位置动作目的准备阶段添加类起点样式调用添加类过渡属性强制浏览器同步重排确保样式被应用动画触发延迟一帧移除类添加类终点样式触发到的过渡动画结束内部的函数移除和类移除监听器调用回调通知渲染器可以安全地从中移除元素了关键实现点和优化使用双重是为了确保浏览器在应用样式后至少绘制一帧再应用样式保证触发过渡强制重排在中使用或类似属性是为了在添加之前强制浏览器应用样式以确保动画的起始状态正确设置手动自动模式代码通过检查用户是否传入的回调函数来判断是进入自动过渡模式组件自动监听还是手动模式用户需手动调用清理确保在函数中通过移除了事件监听器避免内存泄漏与的协作渲染器必须识别属性并在时调用并将实际移除的操作放在中等待过渡组件调用异步组件定义器函数用于定义一个可以异步加载的组件它允许组件在需要时才进行加载和渲染从而实现代码分割和性能优化核心功能延迟加载接收一个函数该函数返回一个用于异步获取实际的组件定义状态管理该函数返回的组件内部管理着加载状态加载结果和错误状态并使用响应式引用来驱动视图更新生命周期控制通过钩子进行条件渲染根据内部状态在三种模式间切换渲染占位符加载中组件在加载期间显示错误组件加载失败或超时时显示已加载组件加载成功后显示实际组件可配置选项接收一个选项对象用于定制异步加载的行为和用户体验选项名称类型默认值用途功能说明必需实际加载组件的工厂函数必须返回一个加载过程中显示的组件示例中使用了加载失败或超时时显示的组件示例中使用了在显示之前等待的毫秒数示例中设置为加载组件的超时时间毫秒超过此时间未加载完成将触发错误示例中设置为是否支持组件如果存在错误处理回调函数错误处理与超时机制文件内部实现了专门的逻辑来处理加载过程中的错误和超时延迟显示加载组件使用延迟显示避免在网络极快时闪烁加载状态超时触发如果加载时间超过设定的时间将设置并抛出一个错误例如示例中的组件加载失败错误错误捕获返回的发生或超时触发都会将错误赋值给状态并最终导致渲染提供一系列的是一个运行时的核心部分代码它将虚拟概念与浏览器操作结合起来实现了基本的渲染和打补丁功能这段代码主要围绕如何将渲染成真实的元素这一核心目标展开采用了抽象化和模块化的设计思路跨平台抽象的核心设计之一是将渲染逻辑与宿主环境如浏览器或解耦这是创建渲染器的核心工厂函数它接收一个名为的对象这个对象包含了所有宿主环境特有的操作如等通过这种方式渲染逻辑可以在不知道它是操作浏览器还是其他环境的情况下工作浏览器实现将核心渲染器与浏览器环境连接起来这是一个包含所有原生操作的对象它封装了等方法是与浏览器直接交互的低级接口这是对元素属性打补丁的主入口函数它根据属性的不同分派到不同的专业处理函数实现属性分类处理处理分类以开头且第三个字符不是小写字母的属性即事件如其他属性这是用户调用的最终渲染函数它将和封装成然后传递给生成并调用渲染器的方法核心数据结构与创建创建虚拟节点的函数结构包含和最重要的属性一个位掩码用于标识的类型和子节点类型如等这在渲染和打补丁时用于快速判断结构提高性能用于创建的辅助函数它处理不同的参数数量个参数可能是个或更多参数会将第三个及之后的参数视为数组它主要负责将调用简化并转发给关键打补丁逻辑渲染器中的核心递归函数负责比较新旧并更新初始化挂载如果为即第一次挂载则调用执行元素首次挂载的逻辑使用创建真实元素遍历并使用应用属性根据处理子节点如果是文本子节点使用如果是数组子节点递归调用最后使用将创建的元素插入到容器中优化优化场景算法无法避免新旧虚拟中无用的比较通过标记动态部分可以跳过比对那些静态的不需要检查的部分原理编译器会在对象上添加一个属性这个属性就是通过位运算组合起来的标记告诉运行时只有属性是动态的只有属性是动态的只有它的子节点顺序可能发生了变化效果渲染器在打补丁时可以根据的值精准地只更新中发生变化的部分而不是像那样对所有属性进行递归比对从而极大地提升了渲染和更新速度',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-20 05:47:49',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/nihaokkjj" title="去我的github里面瞅瞅吧"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/cute.webp" alt="去我的github里面瞅瞅吧"/><span class="back-menu-item-text">去我的github里面瞅瞅吧</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">荥晋</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/img/wchat.jpg" target="_blank"><img class="post-qr-code-img" alt="微信" src="/img/wchat.jpg"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/zhifubao.jpg" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/img/zhifubao.jpg"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Vue/" style="font-size: 1.05rem;">Vue<sup>1</sup></a><a href="/tags/axios/" style="font-size: 1.05rem;">axios<sup>1</sup></a><a href="/tags/blog/" style="font-size: 1.05rem;">blog<sup>2</sup></a><a href="/tags/easybbs/" style="font-size: 1.05rem;">easybbs<sup>10</sup></a><a href="/tags/minvue/" style="font-size: 1.05rem;">minvue<sup>1</sup></a><a href="/tags/node/" style="font-size: 1.05rem;">node<sup>1</sup></a><a href="/tags/pinia/" style="font-size: 1.05rem;">pinia<sup>1</sup></a><a href="/tags/python/" style="font-size: 1.05rem;">python<sup>1</sup></a><a href="/tags/router/" style="font-size: 1.05rem;">router<sup>1</sup></a><a href="/tags/vue/" style="font-size: 1.05rem;">vue<sup>1</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.05rem;">前端<sup>1</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97/" style="font-size: 1.05rem;">前端三件套<sup>5</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 1.05rem;">前端学习路线<sup>1</sup></a><a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.05rem;">工具<sup>1</sup></a><a href="/tags/%E6%89%8B%E6%9C%BA%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/" style="font-size: 1.05rem;">手机设置代理<sup>1</sup></a><a href="/tags/%E6%B2%A1%E6%9C%89%E8%90%A5%E5%85%BB%E7%9A%84%E8%AF%9D/" style="font-size: 1.05rem;">没有营养的话<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">October 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">September 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">11</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/08/"><span class="card-archive-list-date">August 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">July 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">June 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/04/"><span class="card-archive-list-date">April 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">6</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url">前端开发</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/vue/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>vue</span></a></span></div></div><h1 class="post-title" itemprop="name headline">Vue3源码</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2025-10-01T00:00:00.000Z" title="发表于 2025-10-01 00:00:00">2025-10-01</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-11-20T05:47:49.619Z" title="更新于 2025-11-20 05:47:49">2025-11-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为四川"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>四川</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/6.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://kkksj.cn/posts/2025/10/Fronted/Vue/vue3%E6%BA%90%E7%A0%81/530bc907.html"><header><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url">前端开发</a><a href="/tags/vue/" tabindex="-1" itemprop="url">vue</a><h1 id="CrawlerTitle" itemprop="name headline">Vue3源码</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">匡思进</span><time itemprop="dateCreated datePublished" datetime="2025-10-01T00:00:00.000Z" title="发表于 2025-10-01 00:00:00">2025-10-01</time><time itemprop="dateCreated datePublished" datetime="2025-11-20T05:47:49.619Z" title="更新于 2025-11-20 05:47:49">2025-11-20</time></header><p>![思维导图](【Xmind思维导图】Vue源码 <a target="_blank" rel="noopener" href="https://app.xmind.cn/share/m95a8gBK?xid=RItKgcRT">https://app.xmind.cn/share/m95a8gBK?xid=RItKgcRT</a>)</p>
+<h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><p>Vue 3 的框架结构相比 Vue 2 进行了彻底的重构，使其更加模块化、高性能和 Tree-shaking 友好。</p>
+<p>Vue 3 的核心不再是一个庞大的单体结构，而是由一系列职责清晰的模块组成的，这种设计被称为 <strong>“Monorepo” 架构</strong>。</p>
+<hr>
+<h2 id="Vue-3-的模块化框架结构"><a href="#Vue-3-的模块化框架结构" class="headerlink" title="Vue 3 的模块化框架结构"></a>Vue 3 的模块化框架结构</h2><p>Vue 3 的框架主要由以下几个核心包组成，它们协同工作，构成了 Vue 的运行时环境：</p>
+<h3 id="1-响应式系统-vue-reactivity"><a href="#1-响应式系统-vue-reactivity" class="headerlink" title="1. 响应式系统 (@vue/reactivity)"></a>1. 响应式系统 (<code>@vue/reactivity</code>)</h3><ul>
+<li><p><strong>核心作用：</strong> 这是 Vue 3 最底层也是最核心的机制。它负责跟踪状态的变化并触发视图更新。</p>
+</li>
+<li><p><strong>技术基础：</strong> 使用 <strong>JavaScript Proxy</strong> 实现。</p>
+</li>
+<li><p><strong>主要 API：</strong> 提供了 <code>reactive</code>、<code>ref</code>、<code>readonly</code>、<code>computed</code>、<code>watch</code> 等函数，用于创建和管理响应式状态。</p>
+</li>
+<li><p><strong>优势：</strong> 它是完全独立的，可以被用于任何 JavaScript 环境中，与 DOM 解耦。</p>
+</li>
+</ul>
+<h3 id="2-运行时核心-vue-runtime-core"><a href="#2-运行时核心-vue-runtime-core" class="headerlink" title="2. 运行时核心 (@vue/runtime-core)"></a>2. 运行时核心 (<code>@vue/runtime-core</code>)</h3><ul>
+<li><p><strong>核心作用：</strong> 包含创建、管理和更新<strong>虚拟 DOM (VNode)</strong> 的所有逻辑。它是平台无关的 Vue 核心逻辑。</p>
+</li>
+<li><p><strong>主要职责：</strong> 实现组件的生命周期、组合式 API 的基础实现、调度器（负责控制更新频率）和 Diff 算法等。</p>
+</li>
+<li><p><strong>平台定制：</strong> 它提供了创建特定平台渲染器的 API。</p>
+</li>
+</ul>
+<h3 id="3-运行时渲染器-vue-runtime-dom"><a href="#3-运行时渲染器-vue-runtime-dom" class="headerlink" title="3. 运行时渲染器 (@vue/runtime-dom)"></a>3. 运行时渲染器 (<code>@vue/runtime-dom</code>)</h3><ul>
+<li><p><strong>核心作用：</strong> 这是一个<strong>平台特定的</strong>渲染器，专门用于<strong>浏览器 DOM 环境</strong>。</p>
+</li>
+<li><p><strong>职责：</strong> 它基于 <code>runtime-core</code>，提供了将 VNode 真正渲染到浏览器 DOM 上的逻辑，包括处理 DOM 元素的创建、属性的设置、事件监听器的绑定等。</p>
+</li>
+<li><p><strong>在 Vue 应用中的作用：</strong> 当我们使用 Vue.createApp() 时，内部使用的就是这个 runtime-dom 渲染器。</p>
+</li>
+</ul>
+<h3 id="4-编译器-vue-compiler-core-vue-compiler-dom"><a href="#4-编译器-vue-compiler-core-vue-compiler-dom" class="headerlink" title="4. 编译器 (@vue/compiler-core &#x2F; @vue/compiler-dom)"></a>4. 编译器 (<code>@vue/compiler-core</code> &#x2F; <code>@vue/compiler-dom</code>)</h3><ul>
+<li><p><strong>核心作用：</strong> 负责将 Vue 的**模板（Template）**编译成高效的 <strong>VNode 渲染函数</strong> (Render Function)。</p>
+</li>
+<li><p><strong>关键优化：</strong> 编译器在 Vue 3 中引入了**块树（Block Tree）<strong>和</strong>静态提升（Static Hoisting）**等优化技术，极大地提升了 VNode 渲染函数的性能。</p>
+</li>
+<li><p><strong>职责分工：</strong></p>
+<ul>
+<li><p><code>@vue/compiler-core</code>：平台无关的模板解析和代码生成逻辑。</p>
+</li>
+<li><p><code>@vue/compiler-dom</code>：增加了处理 DOM 特有指令（如 v-bind、v-on）的逻辑。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-共享模块-vue-shared"><a href="#5-共享模块-vue-shared" class="headerlink" title="5. 共享模块 (@vue/shared)"></a>5. 共享模块 (<code>@vue/shared</code>)</h3><ul>
+<li><strong>核心作用：</strong> 存放 Vue 框架中所有模块共用的工具函数和常量（如类型检查、对象操作函数等）。</li>
+</ul>
+<hr>
+<h2 id="整体工作流程"><a href="#整体工作流程" class="headerlink" title="整体工作流程"></a>整体工作流程</h2><p>Vue 3 框架的工作流程可以概括为：</p>
+<ol>
+<li><p><strong>编译期 (Build Time 或 Runtime):</strong> <strong>模板</strong> 通过 <strong><code>@vue/compiler-*</code></strong> 编译成 <strong>VNode 渲染函数</strong>。</p>
+</li>
+<li><p><strong>挂载期 (Mount):</strong> <strong>渲染函数</strong> 被执行，创建 <strong>VNode 树</strong>，然后 <strong><code>@vue/runtime-dom</code></strong> 将 VNode 树转化为真实的 <strong>DOM 元素</strong>并插入页面。</p>
+</li>
+<li><p><strong>响应式更新期 (Update):</strong> 当 <strong><code>@vue/reactivity</code></strong> 模块监测到状态变化时，它会通知 <strong><code>@vue/runtime-core</code></strong> 执行更新操作，通过高效的 <strong>Diff 算法</strong>计算出最小的更新集合，最后由 <strong><code>@vue/runtime-dom</code></strong> 精确地修改真实的 DOM。</p>
+</li>
+</ol>
+<p>这种模块化的设计使得 Vue 3 的核心体积更小，<strong>可维护性更强</strong>，并且为将 Vue 渲染到非 DOM 环境（如 Weex、原生应用）提供了天然的优势。</p>
+<h2 id="Monorepo-管理项目"><a href="#Monorepo-管理项目" class="headerlink" title="Monorepo 管理项目"></a>Monorepo 管理项目</h2><p>Monorepo 是管理项目代码的一个方式, 指在一个项目仓库中管理多个模块 &#x2F; 包. Vue3源码采用monorepo方式进行管理, <em>将模块拆分到package目录中. 作为一个个包管理</em>, 这样职责划分更加明确</p>
+<ul>
+<li>一个仓库可维护多个模块</li>
+<li>方便版本管理和依赖管理</li>
+</ul>
+<h1 id="Reactivity-—-响应式实现"><a href="#Reactivity-—-响应式实现" class="headerlink" title="Reactivity — 响应式实现"></a>Reactivity — 响应式实现</h1><p>![[前端了解&#x2F;vue源码&#x2F;_resources&#x2F;设计思想&#x2F;3a9a8fed4fa432ee61e5d6e53f9fb7df_MD5.png]]</p>
+<p>![[前端了解&#x2F;vue源码&#x2F;_resources&#x2F;设计思想&#x2F;3583abb2dc9d6f8d378bf565f20b900a_MD5.png]]</p>
+<p>![[前端了解&#x2F;vue源码&#x2F;_resources&#x2F;设计思想&#x2F;d88cbe6d4b85fbc2286e9b027c1465d6_MD5.png]]</p>
+<h2 id="reactivity"><a href="#reactivity" class="headerlink" title="reactivity"></a>reactivity</h2><h3 id="1-缓存机制-reactiveMap"><a href="#1-缓存机制-reactiveMap" class="headerlink" title="1. 缓存机制 (reactiveMap)"></a>1. 缓存机制 (<code>reactiveMap</code>)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">//用于记录我们的代理后的结果 , 可以复用</span><br><span class="hljs-keyword">const</span> reactiveMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakMap</span>()<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>作用：</strong> <code>reactiveMap</code> 用于存储 <strong>原始对象</strong>（<code>target</code>）和其对应的 <strong>Proxy 实例</strong>。</p>
+</li>
+<li><p><strong>用 WeakMap的原因</strong> 使用 WeakMap 而不是普通 <code>Map</code> 的关键在于它的<strong>弱引用</strong>特性。如果原始对象不再被其他地方引用，WeakMap 不会阻止垃圾回收（GC）机制回收该对象及其对应的 Proxy，这有效防止了内存泄漏。</p>
+</li>
+<li><p><strong>缓存目的：</strong> 确保<strong>同一个原始对象</strong>不会被重复代理，总是返回同一个 Proxy 实例。</p>
+</li>
+</ul>
+<h3 id="2-响应式标记-ReactiveFlags"><a href="#2-响应式标记-ReactiveFlags" class="headerlink" title="2. 响应式标记 (ReactiveFlags)"></a>2. 响应式标记 (<code>ReactiveFlags</code>)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">enum <span class="hljs-title class_">ReactiveFlags</span> &#123;<br>  <span class="hljs-variable constant_">IS_REACTIVE</span> = <span class="hljs-string">&#x27;__v_isReactive&#x27;</span>, <span class="hljs-comment">// 基本上唯一</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>作用：</strong> 定义一个特殊的、不常用的 Symbol 或字符串键 (<code>__v_isReactive</code>)，用于<strong>标记</strong>一个对象是否已经是响应式代理。</p>
+</li>
+<li><p><strong>实现方式：</strong> 通过 Proxy 的 <code>get</code> 捕获器，在访问这个特殊键时返回 <code>true</code>。</p>
+</li>
+</ul>
+<h3 id="3-核心代理句柄-mutableHandlers"><a href="#3-核心代理句柄-mutableHandlers" class="headerlink" title="3. 核心代理句柄 (mutableHandlers)"></a>3. 核心代理句柄 (<code>mutableHandlers</code>)</h3><p>当一个对象被代理后，任何对它的属性访问都会经过这里的 <code>get</code> 捕获器：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> <span class="hljs-attr">mutableHandlers</span>: <span class="hljs-title class_">ProxyHandler</span>&lt;any&gt; = &#123;<br>  <span class="hljs-title function_">get</span>(<span class="hljs-params">target, key, recevier</span>) &#123;<br>    <span class="hljs-keyword">if</span> (key === <span class="hljs-title class_">ReactiveFlags</span>.<span class="hljs-property">IS_REACTIVE</span>) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>    &#125;<br>     <span class="hljs-keyword">return</span> <span class="hljs-title class_">Reflect</span>.<span class="hljs-title function_">get</span>(target, key, recevier) <span class="hljs-comment">//recevier是proxy实例</span><br>  &#125;,<br>  <span class="hljs-title function_">set</span>(<span class="hljs-params">target, key, value, recevier</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>    <span class="hljs-comment">//找到属性, 让effect重新执行</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Reflect</span>.<span class="hljs-title function_">set</span>(target, key,value, recevier)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>如果</strong>尝试读取 Proxy 上的 <code>__v_isReactive</code> 属性，<code>get</code> 捕获器会立即返回 <strong><code>true</code></strong></li>
+<li><strong>如果</strong>对一个<strong>原始对象</strong>读取这个属性，它会返回 <strong><code>undefined</code></strong>（或者如果原始对象恰好有这个属性，则返回属性值，但一般不会）</li>
+</ul>
+<h4 id="使用Reflect的好处"><a href="#使用Reflect的好处" class="headerlink" title="使用Reflect的好处"></a>使用Reflect的好处</h4><p><em>确保正确的 this 指向 (Receiver 参数)</em></p>
+<p>这是使用 <code>Reflect.get()</code> 和 <code>Reflect.set()</code> 的<strong>最主要原因</strong>。</p>
+<p>在 <code>get</code> 捕获器中使用 <code>return target[key]</code> 的传统方式时，如果 <code>target</code> 对象上的属性是一个 getter 或 setter 函数，那么这个函数内部的 <code>this</code> 将指向<strong>原始目标对象 (target)</strong>，而不是我们期望的<strong>代理对象 (proxy)</strong>。</p>
+<p>这会破坏响应式：如果 getter&#x2F;setter 内部又访问了目标对象上的其他属性，这个访问操作会绕过 Proxy，无法触发响应式机制（如依赖收集）。</p>
+<h3 id="4-响应式工厂-createReactiveObject"><a href="#4-响应式工厂-createReactiveObject" class="headerlink" title="4. 响应式工厂 (createReactiveObject)"></a>4. 响应式工厂 (<code>createReactiveObject</code>)</h3><p>这是核心逻辑所在，确保了响应式对象创建的规范性、唯一性和复用性。</p>
+<table>
+<thead>
+<tr>
+<th>代码行</th>
+<th>目的</th>
+<th>详细解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>if (!isObject(target))</code></td>
+<td><strong>非对象校验</strong></td>
+<td>响应式只能代理对象（包括数组）。非对象类型直接返回。</td>
+</tr>
+<tr>
+<td><code>if(target[ReactiveFlags.IS_REACTIVE])</code></td>
+<td><strong>重复代理校验</strong></td>
+<td>如果目标对象已经是 Proxy（通过访问特殊标记判断），则直接返回它自身，<strong>避免重复创建 Proxy</strong>。</td>
+</tr>
+<tr>
+<td><code>const existProxy = reactiveMap.get(target)</code></td>
+<td><strong>缓存查找</strong></td>
+<td>检查当前<strong>原始对象</strong>是否在 <code>reactiveMap</code> 中已有对应的 Proxy。</td>
+</tr>
+<tr>
+<td><code>if(existProxy) &#123; return existProxy &#125;</code></td>
+<td><strong>返回缓存</strong></td>
+<td>如果找到缓存，直接返回已存在的 Proxy 实例，<strong>确保唯一性</strong>。</td>
+</tr>
+<tr>
+<td><code>const proxy = new Proxy(target, mutableHandlers)</code></td>
+<td><strong>创建 Proxy</strong></td>
+<td>只有通过所有检查后，才创建新的 Proxy 实例。</td>
+</tr>
+<tr>
+<td><code>reactiveMap.set(target, proxy)</code></td>
+<td><strong>缓存新实例</strong></td>
+<td>将 <strong>原始对象</strong> 和 <strong>新 Proxy</strong> 存入 <code>WeakMap</code>，供将来复用。</td>
+</tr>
+</tbody></table>
+<h2 id="effect"><a href="#effect" class="headerlink" title="effect"></a>effect</h2><h3 id="一、核心作用和结构"><a href="#一、核心作用和结构" class="headerlink" title="一、核心作用和结构"></a>一、核心作用和结构</h3><p><code>effect</code> 函数用于创建一个<strong>响应式副作用（Reactive Effect）</strong>，它是连接“数据变化”与“重新执行某个函数”的桥梁。</p>
+<table>
+<thead>
+<tr>
+<th>元素</th>
+<th>作用</th>
+<th>对应代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>effect(fn)</code></strong></td>
+<td>创建并执行一个副作用。它接收一个函数 <code>fn</code>（即要执行的副作用），并立即执行一次，同时建立响应式关联。</td>
+<td><code>export function effect(fn, options?)</code></td>
+</tr>
+<tr>
+<td><strong><code>ReactiveEffect</code></strong></td>
+<td>副作用的封装类。它存储了副作用函数 <code>fn</code>、调度器 <code>scheduler</code>，以及用于依赖追踪和清理的状态（<code>deps</code>、<code>_trackedId</code> 等）。</td>
+<td><code>class ReactiveEffect &#123; ... &#125;</code></td>
+</tr>
+<tr>
+<td><strong><code>activeEffect</code></strong></td>
+<td>全局变量，用于临时存储当前正在运行的 <code>ReactiveEffect</code> 实例。这是<strong>依赖收集</strong>的关键。</td>
+<td><code>export let activeEffect</code></td>
+</tr>
+</tbody></table>
+<h3 id="二、-ReactiveEffect-run-的执行流程-依赖收集与清理"><a href="#二、-ReactiveEffect-run-的执行流程-依赖收集与清理" class="headerlink" title="二、 ReactiveEffect.run() 的执行流程 (依赖收集与清理)"></a>二、 <code>ReactiveEffect.run()</code> 的执行流程 (依赖收集与清理)</h3><p><code>run()</code> 方法是 <code>ReactiveEffect</code> 的核心，它控制着副作用函数的执行，并在执行前后管理依赖的收集和清理。</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>目的</th>
+<th>对应函数&#x2F;代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1. 激活与缓存</strong></td>
+<td>检查是否处于激活状态。备份上一个 <code>activeEffect</code>，并将当前 <code>effect</code> 设为 <code>activeEffect</code>。</td>
+<td><code>activeEffect = this</code></td>
+</tr>
+<tr>
+<td><strong>2. 依赖预清理</strong></td>
+<td>在 <code>fn</code> 运行前，重置依赖追踪状态，为新的收集做准备。</td>
+<td><code>proCleanEffect(this)</code></td>
+</tr>
+<tr>
+<td><strong>3. 执行 <code>fn</code></strong></td>
+<td>运行用户传入的副作用函数。<strong>在这个过程中，如果访问了响应式数据，就会触发 <code>get</code> 拦截，进而调用 <code>track</code> 进行依赖收集。</strong></td>
+<td><code>return this.fn()</code></td>
+</tr>
+<tr>
+<td><strong>4. 依赖后清理</strong></td>
+<td>在 <code>fn</code> 运行后，清理上次遗留的、本次执行中没有再次被访问到的旧依赖（解决了 <code>if</code> 条件分支的依赖残留）。</td>
+<td><code>postCleanEffect(this)</code></td>
+</tr>
+<tr>
+<td><strong>5. 恢复</strong></td>
+<td>恢复上一个 <code>activeEffect</code>。</td>
+<td><code>activeEffect = lastEffect</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="三、-依赖的精确追踪机制（cleanup）"><a href="#三、-依赖的精确追踪机制（cleanup）" class="headerlink" title="三、 依赖的精确追踪机制（cleanup）"></a>三、 依赖的精确追踪机制（<code>cleanup</code>）</h3><p>为了解决条件分支（如 <code>if (state.flag)</code>）导致的依赖冗余问题，代码实现了一套精确的依赖清理机制，核心在于 <code>ReactiveEffect</code> 实例上的三个属性：<code>_trackedId</code>、<code>deps</code> 和 <code>_depsLength</code>。</p>
+<h4 id="1-预清理-proCleanEffect"><a href="#1-预清理-proCleanEffect" class="headerlink" title="1. 预清理 (proCleanEffect)"></a>1. 预清理 (<code>proCleanEffect</code>)</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>变化</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>_depsLength</code></td>
+<td>重置为 0</td>
+<td>记录本次 <code>run</code> 过程中实际收集到的依赖数量。</td>
+</tr>
+<tr>
+<td><code>_trackedId</code></td>
+<td>递增（<code>++</code>）</td>
+<td>为本次 <code>run</code> 生成一个唯一的 ID，用于标记在本次执行中被访问过的依赖。</td>
+</tr>
+</tbody></table>
+<h4 id="2-收集-trackEffect-中的逻辑"><a href="#2-收集-trackEffect-中的逻辑" class="headerlink" title="2. 收集 (trackEffect 中的逻辑)"></a>2. 收集 (<code>trackEffect</code> 中的逻辑)</h4><p>在 <code>trackEffect</code> 中，通过检查和更新 <code>dep</code> 集合、<code>effect.deps</code> 数组来建立和维护双向链接。</p>
+<table>
+<thead>
+<tr>
+<th>检查点</th>
+<th>目的</th>
+<th>关键代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>去重与标记</strong></td>
+<td>将当前 <code>effect</code> 和本次 <code>_trackedId</code> 存入 <code>dep</code> 中。如果 <code>effect</code> 已经在 <code>dep</code> 中，且 ID 相同（同一个 <code>run</code> 中多次访问），则跳过。</td>
+<td><code>if (dep.get(effect) !== effect._trackedId) &#123; dep.set(effect, effect._trackedId) &#125;</code></td>
+</tr>
+<tr>
+<td><strong>双向链接</strong></td>
+<td>将 <code>dep</code> 存入 <code>effect.deps</code> 数组中。如果当前位置 (<code>effect.deps[effect._depsLength]</code>) 上存的不是本次的 <code>dep</code>，则说明依赖发生了变化，需要先通过 <code>cleanDepEffect</code> 删除旧依赖，再存入新依赖。</td>
+<td><code>if (oldDep !== dep) &#123; ... cleanDepEffect(oldDep, effect) ... effect.deps[effect._depsLength++] = dep &#125;</code></td>
+</tr>
+<tr>
+<td><strong>计数</strong></td>
+<td>无论是否更换依赖，只要成功收集了一个依赖，<code>_depsLength</code> 就会递增。</td>
+<td><code>effect._depsLength++</code></td>
+</tr>
+</tbody></table>
+<h4 id="3-后清理-postCleanEffect"><a href="#3-后清理-postCleanEffect" class="headerlink" title="3. 后清理 (postCleanEffect)"></a>3. 后清理 (<code>postCleanEffect</code>)</h4><table>
+<thead>
+<tr>
+<th>检查点</th>
+<th>目的</th>
+<th>关键代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>比较长度</strong></td>
+<td>比较上次收集的长度 (<code>deps.length</code>) 和本次实际收集的长度 (<code>_depsLength</code>)。</td>
+<td><code>if (effect.deps.length &gt; effect._depsLength)</code></td>
+</tr>
+<tr>
+<td><strong>清理冗余</strong></td>
+<td>遍历所有多余的旧依赖（<code>deps[_depsLength]</code> 到 <code>deps[length - 1]</code>），调用 <code>cleanDepEffect</code> 将 <code>effect</code> 从这些 <code>dep</code> 中删除。</td>
+<td><code>for (let i = effect._depsLength; i &lt; effect.deps.length; ++i) &#123; cleanDepEffect(effect.deps[i], effect) &#125;</code></td>
+</tr>
+<tr>
+<td><strong>截断</strong></td>
+<td>将 <code>effect.deps</code> 数组的长度截断为本次实际收集的长度。</td>
+<td><code>effect.deps.length = effect._depsLength</code></td>
+</tr>
+</tbody></table>
+<h3 id="四、-依赖触发-trigger-和-trackEffects"><a href="#四、-依赖触发-trigger-和-trackEffects" class="headerlink" title="四、 依赖触发 (trigger 和 trackEffects)"></a>四、 依赖触发 (<code>trigger</code> 和 <code>trackEffects</code>)</h3><table>
+<thead>
+<tr>
+<th>元素</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>trigger(target, key, ...)</code></strong></td>
+<td>在 <code>set</code> 拦截器中被调用。它通过 <code>target</code> 和 <code>key</code> 查找到对应的 <code>dep</code> 集合。</td>
+</tr>
+<tr>
+<td><strong><code>trackEffects(dep)</code></strong></td>
+<td>遍历 <code>dep</code>（存储了所有依赖该属性的 <code>effect</code>），并执行它们的 <strong><code>scheduler</code></strong> 函数（在你的代码中，<code>scheduler</code> 被定义为 <code>() =&gt; _effect.run()</code>，即重新执行副作用）。</td>
+</tr>
+</tbody></table>
+<p>这种设计确保了只有当响应式数据发生变化时，才会执行那些<strong>依赖于该数据</strong>的副作用函数。通过精确的依赖清理机制，它避免了在条件分支等情况下产生不必要的、无法自动删除的依赖残留。</p>
+<h2 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h2><hr>
+<h3 id="ref-RefImpl-实现：基本类型响应化"><a href="#ref-RefImpl-实现：基本类型响应化" class="headerlink" title="ref (RefImpl) 实现：基本类型响应化"></a><code>ref</code> (RefImpl) 实现：基本类型响应化</h3><p><code>ref</code> 是将一个值包装成一个带有 <code>.value</code> 属性的引用对象（<code>RefImpl</code>），从而使其具备响应式能力。</p>
+<h3 id="核心结构：RefImpl"><a href="#核心结构：RefImpl" class="headerlink" title="核心结构：RefImpl"></a>核心结构：<code>RefImpl</code></h3><table>
+<thead>
+<tr>
+<th>属性&#x2F;方法</th>
+<th>作用</th>
+<th>分析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>__v_isRef</code></td>
+<td>标识</td>
+<td>标记这是一个 <code>ref</code> 对象，用于 <code>proxyRefs</code> 和其他内部判断。</td>
+</tr>
+<tr>
+<td><code>rawValue</code></td>
+<td>原始值</td>
+<td>存储传入的原始值。</td>
+</tr>
+<tr>
+<td><code>_value</code></td>
+<td>内部值</td>
+<td>存储可能被 <code>toReactive</code> 处理后的响应式值。<strong>注意：</strong> 你的实现中使用了 <code>this._value = toReactive(rawValue)</code>，这实现了 <strong>Ref 内部的深度响应</strong>（即如果 <code>ref</code> 传入一个对象，该对象会被 <code>reactive</code> 包裹）。</td>
+</tr>
+<tr>
+<td><code>dep</code></td>
+<td>依赖集合</td>
+<td>用于存储依赖于这个 <code>ref</code> 值的 <code>effect</code> 集合。</td>
+</tr>
+<tr>
+<td><code>get value()</code></td>
+<td>依赖收集</td>
+<td>访问时调用 <code>trackRefValue</code> 进行依赖收集，然后返回 <code>this._value</code>。</td>
+</tr>
+<tr>
+<td><code>set value(newValue)</code></td>
+<td>触发更新</td>
+<td>比较新值和旧值。如果不同，更新 <code>rawValue</code> 和 <code>_value</code>，然后调用 <code>triggerRefValue</code> 触发所有相关的 <code>effect</code> 重新执行。</td>
+</tr>
+</tbody></table>
+<h4 id="依赖追踪"><a href="#依赖追踪" class="headerlink" title="依赖追踪"></a>依赖追踪</h4><ul>
+<li><p><strong><code>trackRefValue(ref)</code></strong>：在 <code>get value()</code> 时调用。如果存在 <code>activeEffect</code>，则调用 <code>trackEffect</code> 将当前的 <code>activeEffect</code> 与 <code>ref.dep</code> 关联起来。</p>
+</li>
+<li><p><strong><code>triggerRefValue(ref)</code></strong>：在 <code>set value()</code> 时调用。调用 <code>triggerEffects(ref.dep)</code> 遍历并执行所有依赖。</p>
+</li>
+</ul>
+<hr>
+<h3 id="toRef-和-toRefs-实现：视图与数据的同步引用"><a href="#toRef-和-toRefs-实现：视图与数据的同步引用" class="headerlink" title="toRef 和 toRefs 实现：视图与数据的同步引用"></a><code>toRef</code> 和 <code>toRefs</code> 实现：视图与数据的同步引用</h3><p>这两个函数的作用是将响应式对象的一个属性提取出来，包装成一个<strong>引用对象</strong>，以便在解构或传递时保持其响应性。</p>
+<h4 id="核心结构：ObjectRefImp-toRef-的返回"><a href="#核心结构：ObjectRefImp-toRef-的返回" class="headerlink" title="核心结构：ObjectRefImp (toRef 的返回)"></a>核心结构：<code>ObjectRefImp</code> (<code>toRef</code> 的返回)</h4><p><code>ObjectRefImp</code> 是一个特殊的 Ref 对象，它<strong>没有自己的 <code>dep</code></strong>，而是直接读写源对象的属性。</p>
+<table>
+<thead>
+<tr>
+<th>属性&#x2F;方法</th>
+<th>作用</th>
+<th>响应性原理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>_object</code></td>
+<td>源对象</td>
+<td>存储传入的响应式对象（例如 <code>reactive(&#123;a: 1&#125;)</code>）。</td>
+</tr>
+<tr>
+<td><code>_key</code></td>
+<td>属性名</td>
+<td>存储要引用的键名（例如 <code>&#39;a&#39;</code>）。</td>
+</tr>
+<tr>
+<td><code>get value()</code></td>
+<td>代理读取</td>
+<td>直接返回 <code>this._object[this._key]</code>。<strong>当读取时，实际上触发了源对象上的 <code>get</code> 陷阱，从而进行依赖收集。</strong></td>
+</tr>
+<tr>
+<td><code>set value(newValue)</code></td>
+<td>代理写入</td>
+<td>直接设置 <code>this._object[this._key] = newValue</code>。<strong>当写入时，触发了源对象上的 <code>set</code> 陷阱，从而触发更新。</strong></td>
+</tr>
+</tbody></table>
+<h4 id="toRefs-object-的作用"><a href="#toRefs-object-的作用" class="headerlink" title="toRefs(object) 的作用"></a><code>toRefs(object)</code> 的作用</h4><ul>
+<li><p>遍历传入对象（通常是一个 <code>reactive</code> 对象）的所有可枚举属性。</p>
+</li>
+<li><p>对每一个属性都调用 <code>toRef</code>，将其包装成一个 <code>ObjectRefImp</code> 实例。</p>
+</li>
+<li><p>返回一个包含所有这些 <code>Ref</code> 实例的新对象。</p>
+</li>
+<li><p><strong>用途：</strong> 允许我们解构响应式对象，同时不丢失其属性的响应性（在模板中仍然需要 <code>.value</code>，除非结合 <code>setup</code> 或 <code>proxyRefs</code>）。</p>
+</li>
+</ul>
+<hr>
+<h3 id="proxyRefs-实现：自动脱-Ref-逻辑"><a href="#proxyRefs-实现：自动脱-Ref-逻辑" class="headerlink" title="proxyRefs 实现：自动脱 Ref 逻辑"></a><code>proxyRefs</code> 实现：自动脱 Ref 逻辑</h3><p><code>proxyRefs</code> 主要用于在 <code>setup</code> 函数的返回值上，目的是在模板中或解构后，访问 <code>ref</code> 对象时可以<strong>省略 <code>.value</code></strong>。</p>
+<h4 id="核心结构：Proxy-陷阱"><a href="#核心结构：Proxy-陷阱" class="headerlink" title="核心结构：Proxy 陷阱"></a>核心结构：<code>Proxy</code> 陷阱</h4><table>
+<thead>
+<tr>
+<th>陷阱</th>
+<th>行为</th>
+<th>分析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>get(target, key, receiver)</code></td>
+<td><strong>自动脱 Ref (Unwrap)</strong></td>
+<td>1. 获取属性值 <code>r</code>。2. 检查 <code>r</code> 是否是 <code>ref</code> (<code>r.__v_isRef</code>)。3. <strong>如果是 <code>ref</code></strong>，返回 <code>r.value</code>4. <strong>如果不是 <code>ref</code></strong>，返回 <code>r</code> 本身。</td>
+</tr>
+<tr>
+<td><code>set(target, key, value, receiver)</code></td>
+<td><strong>自动更新 Ref</strong></td>
+<td>1. 获取属性的旧值 <code>oldValue</code>。2. <strong>如果 <code>oldValue</code> 是 <code>ref</code></strong>，则将新值赋值给 <code>oldValue.value</code>（保持 <code>ref</code> 引用不变，只更新它的内部值）。3. <strong>如果 <code>oldValue</code> 不是 <code>ref</code></strong>，则执行默认的 <code>Reflect.set</code> 行为（修改对象上的属性）。</td>
+</tr>
+</tbody></table>
+<h4 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h4><p><code>proxyRefs</code> 实现了 Vue 3 Composition API 的一个重要特性：在 <code>setup</code> 函数的返回对象上使用展开运算符（<code>...toRefs(state)</code>）后，模板中可以直接使用属性名而无需 <code>.value</code>。</p>
+<hr>
+<h2 id="Computed"><a href="#Computed" class="headerlink" title="Computed"></a>Computed</h2><p>通过结合 <strong><code>ReactiveEffect</code></strong>（依赖收集和触发的机制）和 <strong><code>RefImpl</code></strong>（值封装和外部追踪的机制）来实现了 <strong>懒惰求值（Lazy Evaluation）</strong> 和 <strong>结果缓存（Caching）</strong>。</p>
+<hr>
+<h3 id="Computed-的实现原理与核心流程总结"><a href="#Computed-的实现原理与核心流程总结" class="headerlink" title="Computed 的实现原理与核心流程总结"></a>Computed 的实现原理与核心流程总结</h3><p><code>computed</code> 的设计使其既是其依赖数据的<strong>消费者</strong>（当依赖变化时，它知道自己需要更新），又是外部 <code>effect</code> 的<strong>生产者</strong>（当它的值被访问时，它会被外部 <code>effect</code> 依赖）。</p>
+<h4 id="1-核心结构：ComputedRefImpl-类"><a href="#1-核心结构：ComputedRefImpl-类" class="headerlink" title="1. 核心结构：ComputedRefImpl 类"></a>1. 核心结构：<code>ComputedRefImpl</code> 类</h4><p><code>computed</code> 函数返回一个 <code>ComputedRefImpl</code> 实例，这个实例承载了懒惰求值和缓存的所有逻辑。</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>作用</th>
+<th>对应方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>内部 Effect</strong></td>
+<td>负责<strong>依赖追踪</strong>（Tracking）。它运行用户传入的 <code>getter</code>，并收集 <code>getter</code> 中所依赖的所有响应式数据（如 <code>state.name</code>）。</td>
+<td><code>this.effect = new ReactiveEffect(...)</code></td>
+</tr>
+<tr>
+<td><strong><code>_value</code></strong></td>
+<td>缓存上一次计算的结果。</td>
+<td>N&#x2F;A</td>
+</tr>
+<tr>
+<td><strong><code>dirty</code> 标志</strong></td>
+<td>用于判断是否需要重新计算。如果为 <code>true</code>（脏），则必须运行 <code>getter</code>。</td>
+<td><code>this.effect.dirty</code> &#x2F; <code>this._dirtyLevel</code></td>
+</tr>
+<tr>
+<td><strong>外部 Ref 接口</strong></td>
+<td>负责<strong>被动追踪</strong>（Triggering）。它对外暴露 <code>.value</code> 接口，以便被外部的 <code>effect</code> 依赖。</td>
+<td><code>get value()</code> &#x2F; <code>set value(v)</code></td>
+</tr>
+<tr>
+<td>例子</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">const state = reactive(&#123;name: &#x27;p&#x27;&#125;)<br><br>    const aliasName = computed( &#123;<br>      get(oldValue) &#123;<br>        return &#x27;ok&#x27; + state.name<br>      &#125;,<br>    &#125;)<br><br>    effect(() =&gt; &#123;<br>      console.log(aliasName.value, &#x27;+&#x27;)<br>    &#125;)<br><br>    setTimeout(()=&gt; &#123;<br>      state.name = &#x27;000&#x27;<br>      aliasName.value = &#x27;----&#x27;<br>    &#125;, 3000)<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="2-懒惰求值与缓存（get-value-流程）"><a href="#2-懒惰求值与缓存（get-value-流程）" class="headerlink" title="2. 懒惰求值与缓存（get value() 流程）"></a>2. 懒惰求值与缓存（<code>get value()</code> 流程）</h4><p><code>computed</code> 的核心价值在于它只有在被访问时才执行计算，并且会缓存结果。</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>代码位置</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>A. 检查脏值 (Check Cache)</strong></td>
+<td><code>ComputedRefImpl.get value()</code></td>
+<td>首次访问或依赖项变更后，<code>this.effect.dirty</code> 为 <code>true</code>。如果 <code>dirty</code> 为 <code>false</code>，则直接返回上次缓存的 <code>_value</code>，跳过所有计算。</td>
+</tr>
+<tr>
+<td><strong>B. 重新计算 (Run Getter)</strong></td>
+<td><code>this._value = this.effect.run()</code></td>
+<td>如果是<strong>脏值</strong>，则执行内部 <code>effect.run()</code>： 1. 清除旧依赖 (<code>proCleanEffect</code>)。 2. 运行用户 <code>getter</code>，<strong>重新收集所有依赖</strong>（依赖收集发生在 <code>track</code> 中）。 3. <code>getter</code> 的返回值被存储在 <code>this._value</code> 中（更新缓存）。 4. 内部 <code>effect</code> 的 <code>_dirtyLevel</code> 被重置为 <code>0</code>（<code>NoDirty</code>）。</td>
+</tr>
+<tr>
+<td><strong>C. 外部依赖收集 (Track Consumer)</strong></td>
+<td><code>trackRefValue(this)</code></td>
+<td>如果当前有<strong>外部 <code>effect</code></strong> 正在运行（即 <code>activeEffect</code> 存在），则将这个<strong>外部 <code>effect</code></strong> 收集到 <code>aliasName</code> 的依赖中。这样，当 <code>aliasName</code> 变化时，外部 <code>effect</code> 会重新运行。</td>
+</tr>
+<tr>
+<td><strong>D. 返回结果</strong></td>
+<td><code>return this._value</code></td>
+<td>返回计算并缓存后的结果。</td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="3-响应式触发（Dependency-Change-流程）"><a href="#3-响应式触发（Dependency-Change-流程）" class="headerlink" title="3. 响应式触发（Dependency Change 流程）"></a>3. 响应式触发（Dependency Change 流程）</h4><p>当计算属性所依赖的响应式数据（例如 <code>state.name</code>）发生变化时，会触发以下步骤：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>代码位置</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>A. 触发依赖</strong></td>
+<td><code>trigger(target, key, ...)</code></td>
+<td><code>state.name</code> 发生改变，触发其对应的依赖（<code>dep</code>）集合。</td>
+</tr>
+<tr>
+<td><strong>B. 标记为脏</strong></td>
+<td><code>triggerEffects</code></td>
+<td>找到依赖 <code>state.name</code> 的 <strong>内部 <code>aliasName.effect</code></strong>，并执行： <code>effect2._dirtyLevel = 4 /* Dirty */</code>。<strong>（将计算属性标记为脏，强制下次访问时重新计算）</strong></td>
+</tr>
+<tr>
+<td><strong>C. 通知外部 Effect</strong></td>
+<td><code>effect2.scheduler()</code></td>
+<td>调用内部 <code>effect</code> 的 <code>scheduler</code>，即 <code>triggerRefValue(this)</code>。 这会找到所有<strong>外部依赖</strong> <code>aliasName</code> 的 <code>effect</code>（在步骤 2.C 中收集的）。</td>
+</tr>
+<tr>
+<td><strong>D. 外部 Effect 重新运行</strong></td>
+<td><code>triggerEffects</code> &#x2F; <code>effect.scheduler()</code></td>
+<td>外部 <code>effect</code> 被通知需要更新，调用其 <code>scheduler</code>（通常是 <code>effect.run()</code>），从而触发视图更新。</td>
+</tr>
+</tbody></table>
+<p><strong>总结：</strong> 内部 <code>effect</code> 负责监听依赖，不执行用户回调，只负责<strong>标记自己为脏</strong>；外部 <code>effect</code> 负责读取 <code>computed</code>，并通过 <code>dirty</code> 标志和 <code>run()</code> 方法实现了 <strong>按需计算</strong> 的高效机制。</p>
+<h2 id="watch-和-watchEffect"><a href="#watch-和-watchEffect" class="headerlink" title="watch 和 watchEffect"></a>watch 和 watchEffect</h2><h3 id="核心结构与函数关系"><a href="#核心结构与函数关系" class="headerlink" title="核心结构与函数关系"></a>核心结构与函数关系</h3><ol>
+<li><p><strong><code>watch</code></strong>：调用 <code>doWatch(source, cb, options)</code>，其中 <code>cb</code>（回调函数）存在。</p>
+</li>
+<li><p><strong><code>watchEffect</code></strong>：调用 <code>doWatch(source, null, options)</code>，其中 <code>cb</code> 为 <code>null</code>。</p>
+</li>
+<li><p><strong><code>doWatch</code></strong>：实现主要的侦听逻辑，创建并运行 <code>ReactiveEffect</code>。</p>
+</li>
+</ol>
+<hr>
+<h3 id="核心机制：doWatch"><a href="#核心机制：doWatch" class="headerlink" title="核心机制：doWatch"></a>核心机制：<code>doWatch</code></h3><p><code>doWatch</code> 函数是整个侦听系统的枢纽。它的主要任务是：</p>
+<h4 id="1-规范化侦听源-getter-的创建"><a href="#1-规范化侦听源-getter-的创建" class="headerlink" title="1. 规范化侦听源 (getter 的创建)"></a>1. 规范化侦听源 (<code>getter</code> 的创建)</h4><p><code>watch</code> 可以侦听不同的数据源（<code>ref</code>、<code>reactive</code> 对象、getter 函数），<code>doWatch</code> 的第一步是将这些源统一包装成一个 <strong><code>getter</code> 函数</strong>，供 <code>ReactiveEffect</code> 内部执行来收集依赖。</p>
+<table>
+<thead>
+<tr>
+<th>侦听源类型 (<code>source</code>)</th>
+<th>对应 <code>getter</code></th>
+<th>依赖收集方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>isReactive(source)</code></strong></td>
+<td><code>() =&gt; reactiveGetter(source)</code></td>
+<td>访问 <code>reactive</code> 对象时，会进入 <code>traverse</code> 遍历。</td>
+</tr>
+<tr>
+<td><strong><code>isRef(source)</code></strong></td>
+<td><code>() =&gt; source.value</code></td>
+<td>访问 <code>ref.value</code> 时，触发 <code>ref</code> 的依赖收集。</td>
+</tr>
+<tr>
+<td><strong><code>isFunction(source)</code></strong></td>
+<td><code>source</code> (用户自定义的 getter)</td>
+<td>运行函数时，访问函数内部的响应式数据。</td>
+</tr>
+</tbody></table>
+<h4 id="2-深度遍历与依赖收集-traverse"><a href="#2-深度遍历与依赖收集-traverse" class="headerlink" title="2. 深度遍历与依赖收集 (traverse)"></a>2. 深度遍历与依赖收集 (<code>traverse</code>)</h4><ul>
+<li><p><strong>作用:</strong> 强制访问一个响应式对象的所有嵌套属性，以实现 <strong>深度侦听</strong> (<code>deep: true</code>)。</p>
+</li>
+<li><p><strong>逻辑:</strong> 递归遍历对象的所有属性。</p>
+<ul>
+<li><p>使用 <code>seen</code> (Set) 避免循环引用导致的无限递归。</p>
+</li>
+<li><p>通过 <code>depth</code> 和 <code>currentDepth</code> 控制遍历的深度（尽管在 <code>doWatch</code> 中，<code>deep</code> 选项只控制是进行“深度” (<code>undefined</code>) 还是“浅层” (<code>1</code>) 遍历）。</p>
+</li>
+<li><p>在遍历过程中访问属性 (<code>source[key]</code>) 会触发 <code>Proxy</code> 的 <code>get</code> 陷阱，从而将当前的 <code>effect</code> (通过 <code>activeEffect</code>) 收集为该属性的依赖。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-创建更新任务-job"><a href="#3-创建更新任务-job" class="headerlink" title="3. 创建更新任务 (job)"></a>3. 创建更新任务 (<code>job</code>)</h4><p><code>job</code> 是数据变化时（或首次执行时）调用的核心更新逻辑。</p>
+<ul>
+<li><p><strong><code>watch</code> (有 <code>cb</code>) 逻辑:</strong></p>
+<ol>
+<li><p>如果存在 <strong><code>clean</code></strong> 函数（来自上一次回调），则调用它进行清理（例如取消异步请求）。</p>
+</li>
+<li><p>调用 <code>newValue = effect.run()</code> 重新执行 getter，<strong>重新收集依赖</strong>，并获取新值。</p>
+</li>
+<li><p>调用用户回调函数 <code>cb(newValue, oldValue, onCleanup)</code>，将新值、旧值和清理注册函数 <code>onCleanup</code> 传入。</p>
+</li>
+<li><p>更新 <code>oldValue = newValue</code>。</p>
+</li>
+</ol>
+</li>
+<li><p><strong><code>watchEffect</code> (无 <code>cb</code>) 逻辑:</strong></p>
+<ol>
+<li>直接调用 <code>effect.run()</code>，目的是<strong>重新执行副作用函数本身</strong>（即 <code>watchEffect</code> 传入的函数）。</li>
+</ol>
+</li>
+</ul>
+<h4 id="4-清理机制-onCleanup"><a href="#4-清理机制-onCleanup" class="headerlink" title="4. 清理机制 (onCleanup)"></a>4. 清理机制 (<code>onCleanup</code>)</h4><ul>
+<li><p><strong>作用:</strong> 允许用户在回调函数内部注册一个副作用清理函数。</p>
+</li>
+<li><p><strong>机制:</strong></p>
+<ul>
+<li><p><code>onCleanup(fn)</code> 将清理函数 <code>fn</code> 赋值给闭包中的 <code>clean</code> 变量。</p>
+</li>
+<li><p>在下一次 <code>job</code> 执行时，首先调用 <code>clean()</code>。这对于处理异步操作的竞态条件非常重要。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-ReactiveEffect-的创建与执行"><a href="#5-ReactiveEffect-的创建与执行" class="headerlink" title="5. ReactiveEffect 的创建与执行"></a>5. <code>ReactiveEffect</code> 的创建与执行</h4><ul>
+<li><p><strong>创建:</strong> <code>const effect = new ReactiveEffect(getter, job)</code></p>
+<ul>
+<li><p>将规范化后的 <code>getter</code> 作为 <code>fn</code>（副作用）。</p>
+</li>
+<li><p>将 <code>job</code> 作为 <code>scheduler</code>（调度器）。这意味着当依赖的数据变化时，不会直接执行 <code>getter</code>，而是执行 <code>job</code>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>初始化执行:</strong></p>
+<ul>
+<li><p><strong><code>watch</code> (<code>immediate: true</code>)</strong>：直接调用 <code>job()</code>，立即执行回调。</p>
+</li>
+<li><p><strong><code>watch</code> (<code>immediate: false</code>)</strong>：调用 <code>oldValue = effect.run()</code>。这会执行一次 <code>getter</code> 来收集依赖和获取初始的 <code>oldValue</code>，但不执行用户回调。</p>
+</li>
+<li><p><strong><code>watchEffect</code></strong>：调用 <code>effect.run()</code>，执行副作用函数并收集依赖。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-返回值"><a href="#6-返回值" class="headerlink" title="6. 返回值"></a>6. 返回值</h4><ul>
+<li><code>doWatch</code> 返回一个 <code>unwatch</code> 函数，该函数调用 <code>effect.stop()</code>，用于停止当前的响应式侦听。</li>
+</ul>
+<p>好的，我来为您详细梳理一下您的虚拟 DOM 框架（由 <code>runtime-core.js</code> 和 <code>runtime-dom.js</code> 组成）的整个渲染和更新流程。</p>
+<p>这个流程的核心思想是：<strong>将平台无关的逻辑（Diff 算法）和平台相关的 DOM 操作（Web API）分离。</strong></p>
+<hr>
+<h1 id="Runtime-core"><a href="#Runtime-core" class="headerlink" title="Runtime-core"></a>Runtime-core</h1><h3 id="运行时（Runtime）核心流程梳理"><a href="#运行时（Runtime）核心流程梳理" class="headerlink" title="运行时（Runtime）核心流程梳理"></a>运行时（Runtime）核心流程梳理</h3><p>整个运行时流程始于用户调用 <strong><code>render</code></strong> 函数，并结束于对 <strong>真实 DOM</strong> 的修改。</p>
+<h3 id="阶段一：初始化与渲染入口"><a href="#阶段一：初始化与渲染入口" class="headerlink" title="阶段一：初始化与渲染入口"></a>阶段一：初始化与渲染入口</h3><p>这个阶段主要发生在 <strong><code>runtime-dom.js</code></strong> 中，用于创建渲染器并暴露给用户。</p>
+<ol>
+<li><p><strong>平台操作 API (<code>nodeOps</code> &#x2F; <code>renderOptions</code>) 定义 (在 <code>runtime-dom.js</code>)：</strong></p>
+<ul>
+<li><p>定义了所有与浏览器 DOM 相关的操作，如 <code>insert</code>、<code>remove</code>、<code>createElement</code>、<code>patchProp</code> 等。</p>
+</li>
+<li><p>这些操作是 <strong>平台特有</strong> 的。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>创建渲染器 (<code>createRenderer</code>) (在 <code>runtime-core.js</code>)：</strong></p>
+<ul>
+<li><p><code>runtime-core.js</code> 中的 <code>createRenderer(renderOptions)</code> 函数接收 <code>nodeOps</code> 作为参数。</p>
+</li>
+<li><p>它返回一个包含核心 <code>render</code> 逻辑的渲染器对象。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>用户调用 <code>render</code> (在 <code>index.html</code>)：</strong></p>
+<ul>
+<li><p>用户调用从 <code>runtime-dom.js</code> 导入的 <code>render(vnode, container)</code> 函数。</p>
+</li>
+<li><p>这是整个流程的起点，将 VNode 树和目标容器传入。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>初始调度 (在 <code>runtime-dom.js</code> 导出的 <code>render</code> 函数内部)：</strong></p>
+<ul>
+<li><p>检查 <code>container._vnode</code>（旧 VNode）是否存在。</p>
+</li>
+<li><p>调用 <strong>核心 <code>patch</code> 函数</strong>：<code>patch(container._vnode || null, vnode, container)</code>。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="阶段二：核心-Patch-Diff-逻辑"><a href="#阶段二：核心-Patch-Diff-逻辑" class="headerlink" title="阶段二：核心 Patch (Diff) 逻辑"></a>阶段二：核心 Patch (Diff) 逻辑</h3><p>这是 <strong><code>runtime-core.js</code></strong> 的主要工作，负责比对新旧 VNode 并决定采取何种操作。</p>
+<h4 id="patch-n1-n2-container-anchor"><a href="#patch-n1-n2-container-anchor" class="headerlink" title="patch(n1, n2, container, anchor)"></a><code>patch(n1, n2, container, anchor)</code></h4><table>
+<thead>
+<tr>
+<th><strong>VNode 状态</strong></th>
+<th><strong>逻辑判断</strong></th>
+<th><strong>下一步操作</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>初次挂载</strong></td>
+<td><code>n1 === null</code></td>
+<td>调用 <code>mountElement(n2, container)</code>。</td>
+</tr>
+<tr>
+<td><strong>VNode 相同</strong></td>
+<td><code>n1 === n2</code></td>
+<td>直接 <code>return</code> (无需操作)。</td>
+</tr>
+<tr>
+<td><strong>VNode 类型不一致</strong></td>
+<td><code>n1 &amp;&amp; !isSameVnode(n1, n2)</code></td>
+<td>销毁旧节点 <code>unmount(n1)</code>，然后将 <code>n1</code> 置为 <code>null</code>，转为初次挂载新节点。</td>
+</tr>
+<tr>
+<td><strong>处理 VNode 类型</strong></td>
+<td>根据 <code>n2.type</code> (<code>Text</code>, <code>Fragment</code>, 元素) 使用 <code>switch</code> 语句：</td>
+<td></td>
+</tr>
+<tr>
+<td>1. Element</td>
+<td>调用 <code>processElement(n1, n2, container)</code>。</td>
+<td></td>
+</tr>
+<tr>
+<td>2. Text</td>
+<td>调用 <code>processText(n1, n2, container)</code>。</td>
+<td></td>
+</tr>
+<tr>
+<td>3. Fragment</td>
+<td>调用 <code>processFragment(n1, n2, container)</code>。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="阶段三：具体操作执行"><a href="#阶段三：具体操作执行" class="headerlink" title="阶段三：具体操作执行"></a>阶段三：具体操作执行</h3><h4 id="A-挂载-Mount-流程（n1-null-时）："><a href="#A-挂载-Mount-流程（n1-null-时）：" class="headerlink" title="A. 挂载 (Mount) 流程（n1 === null 时）："></a>A. 挂载 (Mount) 流程（<code>n1 === null</code> 时）：</h4><ol>
+<li><p><strong><code>mountElement(vnode, container)</code> (在 <code>runtime-core.js</code>)：</strong></p>
+<ul>
+<li><p><strong>创建真实 DOM：</strong> 调用 <code>hostCreateElement(vnode.type)</code> (即 <code>document.createElement</code>)。</p>
+</li>
+<li><p><strong>处理属性：</strong> 遍历 <code>vnode.props</code>，调用 <code>hostPatchProp(el, key, null, props[key])</code> (传入旧值为 <code>null</code>)。</p>
+</li>
+<li><p><strong>处理子节点 (<code>children</code>)：</strong></p>
+<ul>
+<li><p>如果 <code>shapeFlags</code> 为 <code>TEXT_CHILDREN</code> (文本)，调用 <code>hostSetElementText(el, vnode.children)</code>。</p>
+</li>
+<li><p>如果 <code>shapeFlags</code> 为 <code>ARRAY_CHILDREN</code> (数组)，调用 <code>mountChildren(vnode.children, el)</code>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>插入 DOM：</strong> 调用 <code>hostInsert(el, container)</code> (即 <code>container.insertBefore</code>)。</p>
+</li>
+</ul>
+</li>
+<li><p><strong><code>mountChildren(children, container)</code> (在 <code>runtime-core.js</code>)：</strong></p>
+<ul>
+<li>递归遍历子节点数组，对每个子节点调用 <code>patch(null, child, container)</code>，继续挂载。</li>
+</ul>
+</li>
+</ol>
+<h4 id="B-更新-Patch-流程（n1-null-时）："><a href="#B-更新-Patch-流程（n1-null-时）：" class="headerlink" title="B. 更新 (Patch) 流程（n1 !== null 时）："></a>B. 更新 (Patch) 流程（<code>n1 !== null</code> 时）：</h4><ol>
+<li><p><strong><code>patchElement(n1, n2, container)</code> (在 <code>runtime-dom.js</code>)：</strong></p>
+<ul>
+<li><p><strong>复用 DOM：</strong> <code>n2.el = n1.el</code>，新旧 VNode 指向同一个真实 DOM。</p>
+</li>
+<li><p><strong>更新属性：</strong> 调用 <code>patchProps(n1.props, n2.props, el)</code>。</p>
+</li>
+<li><p><strong>更新子节点：</strong> 调用 <code>patchChildren(n1, n2, el)</code>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong><code>patchProps(oldProps, newProps, el)</code> (在 <code>runtime-dom.js</code>)：</strong></p>
+<ul>
+<li><p><strong>更新&#x2F;添加属性：</strong> 遍历 <code>newProps</code>，调用 <code>patchProp(el, key, oldProps[key], newProps[key])</code>。</p>
+</li>
+<li><p><strong>移除属性：</strong> 遍历 <code>oldProps</code>，如果属性不在 <code>newProps</code> 中，调用 <code>patchProp(el, key, oldProps[key], null)</code> (传入新值为 <code>null</code>)。</p>
+</li>
+</ul>
+</li>
+<li><p><strong><code>patchChildren(n1, n2, container)</code> (在 <code>runtime-core.js</code> 或 <code>runtime-dom.js</code>)：</strong></p>
+<ul>
+<li><p>这是最复杂的阶段，负责处理子节点数组的更新。</p>
+</li>
+<li><p><strong>旧文本 vs 新数组：</strong> 清空旧文本，然后挂载新数组。</p>
+</li>
+<li><p><strong>旧数组 vs 新文本：</strong> 卸载旧数组，设置新文本。</p>
+</li>
+<li><p><strong>旧数组 vs 新数组：</strong> 著名的 <strong>Diff 算法</strong> 核心逻辑（头尾比对、最长递增子序列等）发生在这里，负责高效地对子节点进行移动、新增和删除。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="总结图示"><a href="#总结图示" class="headerlink" title="总结图示"></a>总结图示</h3><table>
+<thead>
+<tr>
+<th><strong>阶段</strong></th>
+<th><strong>函数&#x2F;模块</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>关键操作</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>初始化</strong></td>
+<td><code>createRenderer</code> &#x2F; <code>render</code></td>
+<td>组装平台 API，暴露渲染接口。</td>
+<td><code>patch(n1, n2, container)</code></td>
+</tr>
+<tr>
+<td><strong>Diff 分发</strong></td>
+<td><code>patch</code></td>
+<td>确定初次挂载还是更新；判断 VNode 类型是否一致。</td>
+<td><code>mountElement</code> &#x2F; <code>patchElement</code> &#x2F; <code>unmount</code></td>
+</tr>
+<tr>
+<td><strong>元素更新</strong></td>
+<td><code>patchElement</code></td>
+<td>复用真实 DOM (<code>el</code>)。</td>
+<td><code>patchProps</code> &#x2F; <code>patchChildren</code></td>
+</tr>
+<tr>
+<td><strong>真实 DOM 操作</strong></td>
+<td><code>host...</code> &#x2F; <code>nodeOps</code></td>
+<td>在 <code>mountElement</code> 或 <code>patchProps</code> 内部调用浏览器 API。</td>
+<td><code>createElement</code> &#x2F; <code>setAttribute</code> &#x2F; <code>insertBefore</code></td>
+</tr>
+<tr>
+<td><strong>子节点更新</strong></td>
+<td><code>patchChildren</code></td>
+<td>对子节点数组进行 Diff 算法比对，以最小化操作次数。</td>
+<td>数组 Diff 逻辑 (高效定位、移动、删除)</td>
+</tr>
+</tbody></table>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><hr>
+<h4 id="一、-虚拟节点-VNode-与创建"><a href="#一、-虚拟节点-VNode-与创建" class="headerlink" title="一、 虚拟节点 (VNode) 与创建"></a>一、 虚拟节点 (VNode) 与创建</h4><p>虚拟 DOM（VNode）是描述真实 DOM 结构的 JavaScript 对象，是连接声明式 API 和命令式 DOM 操作的桥梁。</p>
+<h5 id="1-createVnode-ts"><a href="#1-createVnode-ts" class="headerlink" title="1. createVnode.ts"></a>1. <code>createVnode.ts</code></h5><ul>
+<li><p><strong>核心功能</strong>：创建 VNode 对象。</p>
+</li>
+<li><p><strong>VNode 结构</strong>：</p>
+<ul>
+<li><p><code>__v_isVnode: true</code>：标记为 VNode。</p>
+</li>
+<li><p><code>type</code>：节点类型（如 <code>&#39;div&#39;</code>、组件对象、<code>Text</code> 或 <code>Fragment</code> Symbol）。</p>
+</li>
+<li><p><code>props</code>：属性&#x2F;事件。</p>
+</li>
+<li><p><code>children</code>：子节点（文本、数组或插槽）。</p>
+</li>
+<li><p><code>key</code>：用于 Diff 算法的键。</p>
+</li>
+<li><p><code>el</code>：对应的真实 DOM 节点（在渲染时关联）。</p>
+</li>
+<li><p><code>shapeFlag</code>：<strong>形状标识</strong>，用于快速判断 VNode 的类型和子节点类型（例如 <code>ELEMENT</code>、<code>STATEFUL_COMPONENT</code>、<code>ARRAY_CHILDREN</code>、<code>TEXT_CHILDREN</code>、<code>SLOTS_CHILDREN</code>）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>辅助功能</strong>：</p>
+<ul>
+<li><p><code>Text</code> (<code>Symbol(&#39;Text&#39;)</code>) 和 <code>Fragment</code> (<code>Symbol(&quot;Fragment&quot;)</code>)：特殊类型的 VNode。</p>
+</li>
+<li><p><code>isVnode(value)</code>：判断是否为 VNode。</p>
+</li>
+<li><p><code>isSameVnode(n1, n2)</code>：判断两个 VNode 是否可以复用（<code>type</code> 和 <code>key</code> 相同）。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-h-ts"><a href="#2-h-ts" class="headerlink" title="2. h.ts"></a>2. <code>h.ts</code></h5><ul>
+<li><p><strong>核心功能</strong>：<code>h</code> 函数（<code>createElement</code> 的别名），用于创建 VNode。</p>
+</li>
+<li><p><strong>重载处理</strong>：根据参数个数和类型，灵活地将参数解析为 <code>type</code>、<code>props</code> 和 <code>children</code>，最终调用 <code>createVnode</code>。</p>
+<ul>
+<li><p><strong>2个参数</strong>：第二个参数可能是 <code>props</code>（对象但非数组）或 <code>children</code>（VNode、数组或文本）。</p>
+</li>
+<li><p><strong>3个及以上参数</strong>：第三个参数或后续参数都视为 <code>children</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="二、-渲染器-Renderer-与-Diff-算法"><a href="#二、-渲染器-Renderer-与-Diff-算法" class="headerlink" title="二、 渲染器 (Renderer) 与 Diff 算法"></a>二、 渲染器 (Renderer) 与 Diff 算法</h4><p>渲染器实现了跨平台的 DOM 操作和 VNode 的挂载、更新与卸载。</p>
+<h5 id="1-renderer-ts"><a href="#1-renderer-ts" class="headerlink" title="1. renderer.ts"></a>1. <code>renderer.ts</code></h5><ul>
+<li><p><strong>核心功能</strong>：通过 <code>createRenderer(renderOptions)</code> 创建渲染器，实现平台无关性。</p>
+</li>
+<li><p><strong>关键方法</strong>：</p>
+<ul>
+<li><p><code>patch(n1, n2, container, anchor)</code>：Diff 算法入口，对比新旧 VNode，根据 VNode <code>type</code> 和 <code>shapeFlag</code> 调用不同的 <code>process</code> 方法。</p>
+</li>
+<li><p><code>mountElement</code>：首次挂载元素 VNode，创建 DOM、设置属性、递归挂载子节点。</p>
+</li>
+<li><p><code>patchElement</code>：更新元素 VNode，复用 DOM (<code>n2.el = n1.el</code>)，调用 <code>patchProps</code> 和 <code>patchChildren</code>。</p>
+</li>
+<li><p><code>unmount(vnode)</code>：卸载 VNode 对应的 DOM 元素。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>子节点更新 (<code>patchChildren</code>) 逻辑</strong>：处理四种核心情况：</p>
+<ol>
+<li><p><strong>新文本 vs 旧数组</strong>：卸载旧数组，设置新文本。</p>
+</li>
+<li><p><strong>新数组 vs 旧数组</strong>：调用 <code>patchKeyedChildren</code> 进行 Diff。</p>
+</li>
+<li><p><strong>新空&#x2F;数组 vs 旧文本</strong>：清空旧文本，如果新是数组则挂载新数组。</p>
+</li>
+<li><p><strong>新文本 vs 旧文本</strong>：直接更新文本内容。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="2-patchKeyedChildren-Diff-核心算法"><a href="#2-patchKeyedChildren-Diff-核心算法" class="headerlink" title="2. patchKeyedChildren (Diff 核心算法)"></a>2. <code>patchKeyedChildren</code> (Diff 核心算法)</h5><ul>
+<li><p><strong>功能</strong>：对新旧 VNode 数组（<code>c1</code>, <code>c2</code>）进行高效比对和更新，实现<strong>最小化 DOM 操作</strong>。</p>
+</li>
+<li><p><strong>流程</strong>：</p>
+<ol>
+<li><p><strong>头尾比对</strong>：从头部 (<code>i</code>) 和尾部 (<code>e1</code>, <code>e2</code>) 同时向中间扫描，处理相同 VNode 并复用 (<code>patch</code>)。</p>
+</li>
+<li><p><strong>新增&#x2F;删除</strong>：</p>
+<ul>
+<li><p>若 <code>i &gt; e1</code>（新多），则从 <code>i</code> 到 <code>e2</code> 依次<strong>插入</strong>新增 VNode。</p>
+</li>
+<li><p>若 <code>i &gt; e2</code>（旧多），则从 <code>i</code> 到 <code>e1</code> 依次<strong>卸载</strong>多余的旧 VNode。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>乱序比对</strong>：处理中间不相同的部分。</p>
+<ul>
+<li><p><strong>映射表</strong>：建立新子节点的 <code>key</code> 到索引的 <code>Map</code> (<code>keyToNewIndexMap</code>)。</p>
+</li>
+<li><p><strong>查找与复用&#x2F;删除</strong>：遍历旧子节点，通过 <code>key</code> 查找新索引。找不到则删除 (<code>unmount</code>)；找到则复用 (<code>patch</code>) 并记录映射关系到 <code>newIndexToOldIndex</code> 数组中。</p>
+</li>
+<li><p><strong>移动优化</strong>：计算 <code>newIndexToOldIndex</code> 的<strong>最长递增子序列 (LIS)</strong> (<code>getSquence</code>)。</p>
+</li>
+<li><p><strong>移动操作</strong>：倒序遍历新子节点，如果节点索引<strong>不在</strong> LIS 中，则进行 <code>hostInsert</code> 移动操作；否则，保持不动（因为 LIS 中的元素顺序是正确的）。</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="3-seq-ts"><a href="#3-seq-ts" class="headerlink" title="3. seq.ts"></a>3. <code>seq.ts</code></h5><ul>
+<li><p><strong>核心功能</strong>：实现<strong>最长递增子序列 (LIS)</strong> 算法。</p>
+</li>
+<li><p><strong>作用</strong>：在 Diff 算法中，用于找到<strong>无需移动</strong>的元素，从而指导 <code>patchKeyedChildren</code> 执行最少的 DOM 移动操作。</p>
+</li>
+<li><p><strong>实现</strong>：使用<strong>贪心算法</strong> + <strong>二分查找</strong>来优化 LIS 的查找过程。</p>
+</li>
+</ul>
+<hr>
+<h4 id="三、-组件化与调度"><a href="#三、-组件化与调度" class="headerlink" title="三、 组件化与调度"></a>三、 组件化与调度</h4><p>组件是逻辑复用的核心，而调度器确保了响应式更新的效率。</p>
+<h5 id="1-component-ts"><a href="#1-component-ts" class="headerlink" title="1. component.ts"></a>1. <code>component.ts</code></h5><ul>
+<li><p><strong>核心功能</strong>：组件实例 (<code>instance</code>) 的创建、初始化 (<code>props</code>, <code>slots</code>) 和设置。</p>
+</li>
+<li><p><strong>组件实例结构 (<code>instance</code>)</strong>：包含了组件的所有状态和上下文，如 <code>vnode</code>、<code>props</code>、<code>data</code>、<code>subTree</code>、<code>setupState</code>、<code>proxy</code> 等。</p>
+</li>
+<li><p><strong><code>setupComponent</code> 流程</strong>：</p>
+<ol>
+<li><p><code>initProps</code>：初始化 <code>props</code>（响应式）和 <code>attrs</code>（非响应式）。</p>
+</li>
+<li><p><code>initSlots</code>：处理插槽 <code>children</code>。</p>
+</li>
+<li><p><code>instance.proxy</code>：创建代理对象 (<code>Proxy</code>)，用于在组件内部通过 <code>this</code> 访问 <code>data</code>、<code>props</code>、<code>setupState</code> 和公共属性（如 <code>$attrs</code>、<code>$slots</code>）。</p>
+</li>
+<li><p><strong>执行 <code>setup()</code></strong>：获取 <code>setup</code> 返回值。如果返回函数，则作为 <code>render</code> 函数；如果返回对象，则通过 <code>proxyRefs</code> 进行脱 <code>ref</code> 处理，作为 <code>setupState</code>。</p>
+</li>
+<li><p><strong>初始化 <code>data()</code></strong>：执行 <code>data</code> 函数并转换为响应式对象 (<code>reactive</code>)。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="2-renderer-ts-组件相关"><a href="#2-renderer-ts-组件相关" class="headerlink" title="2. renderer.ts (组件相关)"></a>2. <code>renderer.ts</code> (组件相关)</h5><ul>
+<li><p><strong><code>processComponent</code></strong>：处理组件 VNode。</p>
+<ul>
+<li><p><strong>挂载 (<code>mountComponent</code>)</strong>：创建组件实例 (<code>createComponentInstance</code>) -&gt; 设置组件 (<code>setupComponent</code>) -&gt; 创建组件更新 <code>effect</code> (<code>setupRenderEffect</code>)。</p>
+</li>
+<li><p><strong>更新 (<code>updateComponent</code>)</strong>：通过 <code>shouldComponentUpdate</code> 判断是否需要更新。若需要，设置 <code>instance.next</code> 为新的 VNode，并调用 <code>instance.update()</code>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong><code>setupRenderEffect</code></strong>：为组件创建副作用 (<code>ReactiveEffect</code>)。</p>
+<ul>
+<li><p><code>componentUpdateFn</code>：执行 <code>render</code> 函数获取 <code>subTree</code>，然后对 <code>subTree</code> 进行 <code>patch</code>。</p>
+</li>
+<li><p><code>scheduler</code>：将组件的更新函数 (<code>update</code>) 放入队列 (<code>queueJob</code>)，实现<strong>异步批量更新</strong>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-scheduler-ts"><a href="#3-scheduler-ts" class="headerlink" title="3. scheduler.ts"></a>3. <code>scheduler.ts</code></h5><ul>
+<li><p><strong>核心功能</strong>：异步任务调度器，用于批量处理组件更新任务 (<code>job</code>)。</p>
+</li>
+<li><p><strong>流程</strong>：</p>
+<ol>
+<li><p><code>queueJob(job)</code>：将传入的 <code>job</code> <strong>去重</strong>后放入 <code>queue</code> 数组。</p>
+</li>
+<li><p><code>isFlushing</code>：确保只开启一个异步任务。</p>
+</li>
+<li><p><strong>微任务</strong>：使用 <code>Promise.resolve().then()</code> 开启一个微任务。</p>
+</li>
+<li><p><strong>批量执行</strong>：在微任务中，清空队列并依次执行所有缓存的 <code>job</code>，实现<strong>状态的异步批量更新</strong>。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="4-apiLifecycle-ts-生命周期钩子"><a href="#4-apiLifecycle-ts-生命周期钩子" class="headerlink" title="4. apiLifecycle.ts  (生命周期钩子)"></a>4. <code>apiLifecycle.ts</code>  (生命周期钩子)</h5><p><code>apiLifecycle.ts</code> 模块主要实现了 Vue 组件的<strong>生命周期钩子函数</strong>，允许用户在 <code>setup</code> 阶段注册回调函数，以便在组件生命周期的特定时刻执行逻辑。</p>
+<h5 id="核心机制"><a href="#核心机制" class="headerlink" title="核心机制"></a>核心机制</h5><ol>
+<li><p><strong>生命周期枚举 (<code>LifeCycle</code>):</strong> 定义了各个生命周期阶段的短名称常量：</p>
+<ul>
+<li><p><code>BEFORE_MOUNT</code> (<code>&quot;bm&quot;</code>)</p>
+</li>
+<li><p><code>MOUNTED</code> (<code>&quot;m&quot;</code>)</p>
+</li>
+<li><p><code>BEFORE_UPDAATE</code> (<code>&quot;bu&quot;</code>) (注意：文件中是 <code>BEFORE_UPDAATE</code>，应为 <code>BEFORE_UPDATE</code>)</p>
+</li>
+<li><p><code>UPDATED</code> (<code>&quot;u&quot;</code>)</p>
+</li>
+</ul>
+</li>
+<li><p><strong><code>createHook(type)</code>:</strong> 这是一个高阶函数，用于生成具体的生命周期钩子函数（如 <code>onMounted</code>）。</p>
+<ul>
+<li><p>它接收一个生命周期类型 (<code>type</code>)。</p>
+</li>
+<li><p>返回一个钩子注册函数，该函数将用户提供的回调 <code>hook</code> 注册到<strong>当前组件实例</strong>上（通过 <code>currentInstance</code> 获取）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>钩子注册逻辑:</strong></p>
+<ul>
+<li><p>钩子回调被存储在组件实例 (<code>target</code>) 上的对应属性 (<code>target[type]</code>) 数组中。</p>
+</li>
+<li><p>实际存储的是一个<strong>封装函数</strong> (<code>wrapHook</code>)，这个封装函数的作用是：在执行用户提供的 <code>hook</code> 之前，通过 <code>setCurrentInstance(target)</code> 确保当前的 <code>hook</code> 是在正确的组件实例上下文中执行的，执行完毕后再通过 <code>unsetCurrentInstance()</code> 清空，以防止上下文污染。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>导出的钩子函数:</strong></p>
+<ul>
+<li><p><code>onBeforeMount</code></p>
+</li>
+<li><p><code>onMounted</code></p>
+</li>
+<li><p><code>onBeforeUpdate</code></p>
+</li>
+<li><p><code>onUpdated</code></p>
+</li>
+</ul>
+</li>
+<li><p><strong>执行工具 (<code>invokeArray</code>):</strong></p>
+<ul>
+<li>导出了一个工具函数 <code>invokeArray(fns)</code>，用于遍历并执行一个函数数组，这是在渲染器中触发组件实例上注册的生命周期钩子时使用的。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h5 id="5-apiProvide-ts-provide-inject"><a href="#5-apiProvide-ts-provide-inject" class="headerlink" title="5.apiProvide.ts  (provide&#x2F;inject)"></a>5.<code>apiProvide.ts</code>  (<code>provide</code>&#x2F;<code>inject</code>)</h5><p><code>apiProvide.ts</code> 模块实现了依赖注入机制，允许父组件向其所有后代组件提供（<code>provide</code>）数据，后代组件则可以注入（<code>inject</code>）这些数据，实现跨级通信。</p>
+<h6 id="核心机制-1"><a href="#核心机制-1" class="headerlink" title="核心机制"></a>核心机制</h6><h6 id="provide-key-value-提供数据"><a href="#provide-key-value-提供数据" class="headerlink" title="provide(key, value) (提供数据)"></a><code>provide(key, value)</code> (提供数据)</h6><ol>
+<li><p><strong>上下文检查:</strong> 确保 <code>provide</code> 是在组件的 <code>setup</code> 上下文中调用（即 <code>currentInstance</code> 存在）。</p>
+</li>
+<li><p><strong>继承机制:</strong></p>
+<ul>
+<li><p>组件实例 (<code>currentInstance</code>) 上的 <code>provides</code> 属性存储了它提供的数据。</p>
+</li>
+<li><p>它首先继承自父组件的 <code>provides</code> (<code>currentInstance.parent?.provides</code>)。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>防止污染（原型链继承）:</strong></p>
+<ul>
+<li><p>只有在组件<strong>第一次</strong>调用 <code>provide</code> 时（即当前实例的 <code>provides</code> 与父实例的 <code>provides</code> 相同时），才会创建一个新的对象作为当前的 <code>provides</code>。</p>
+</li>
+<li><p>这个新对象是通过 <code>Object.create(parentProvide)</code> 创建的，实现了<strong>原型继承</strong>。这意味着子组件可以读取父组件提供的数据，但子组件新增或覆盖数据时，不会影响父组件的原型链上的数据。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>数据存储:</strong> 将 <code>key</code> 和 <code>value</code> 存储到当前实例的 <code>provides</code> 对象上。</p>
+</li>
+</ol>
+<h6 id="inject-key-defaultValue-注入数据"><a href="#inject-key-defaultValue-注入数据" class="headerlink" title="inject(key, defaultValue) (注入数据)"></a><code>inject(key, defaultValue)</code> (注入数据)</h6><ol>
+<li><p><strong>上下文检查:</strong> 确保在组件上下文中调用。</p>
+</li>
+<li><p><strong>查找机制:</strong></p>
+<ul>
+<li><p>通过访问<strong>父组件</strong>的 <code>provides</code> 属性 (<code>currentInstance.parent?.provides</code>) 开始查找。</p>
+</li>
+<li><p>由于 <code>provide</code> 实现了原型链继承，这个查找会沿着原型链向上（即沿着父组件、祖父组件…）查找，直到找到第一个匹配的 <code>key</code>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>返回值:</strong></p>
+<ul>
+<li><p>如果父链的 <code>provides</code> 中找到了 <code>key</code>，则返回对应的值。</p>
+</li>
+<li><p>否则，返回传入的 <code>defaultValue</code>。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="Transition"><a href="#Transition" class="headerlink" title="Transition"></a>Transition</h5><p><code>Transition</code> 组件旨在为元素的<strong>进入 (Enter)</strong> 和<strong>离开 (Leave)</strong> 提供基于 CSS 的过渡动画能力。</p>
+<h6 id="1-核心架构"><a href="#1-核心架构" class="headerlink" title="1. 核心架构"></a>1. 核心架构</h6><table>
+<thead>
+<tr>
+<th><strong>模块</strong></th>
+<th><strong>职责</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>Transition</code> 函数</strong></td>
+<td>这是用户使用的组件入口。它是一个<strong>封装器</strong>，将用户传入的 <code>props</code> (钩子和类名) 传递给核心实现组件。</td>
+</tr>
+<tr>
+<td><strong><code>BaseTranstionImple</code></strong></td>
+<td>这是<strong>真正的过渡组件实现</strong>。它是一个抽象组件，不会渲染自身，但会将其唯一的子节点的 <code>vnode.transition</code> 属性设置为封装好的钩子，从而让渲染器 (Renderer) 在挂载&#x2F;卸载时能够调用这些动画逻辑。</td>
+</tr>
+<tr>
+<td><strong><code>resolveTranstionProps</code></strong></td>
+<td><strong>核心逻辑封装层。</strong> 负责接收用户定义的类名和钩子，并将其转化为渲染器需要调用的 <code>onBeforeEnter</code>、<code>onEnter</code>、<code>onLeave</code> 等标准函数。</td>
+</tr>
+</tbody></table>
+<h6 id="2-过渡实现机制-Enter-进入动画"><a href="#2-过渡实现机制-Enter-进入动画" class="headerlink" title="2. 过渡实现机制 (Enter &#x2F; 进入动画)"></a>2. 过渡实现机制 (Enter &#x2F; 进入动画)</h6><p>进入过渡依赖于 <strong>三步曲</strong> 和 <strong>双帧延迟 (<code>nextFram</code>)</strong> 来确保浏览器正确感知到样式变化，从而触发 CSS 过渡。</p>
+<table>
+<thead>
+<tr>
+<th><strong>步骤</strong></th>
+<th><strong>钩子&#x2F;代码位置</strong></th>
+<th><strong>动作</strong></th>
+<th><strong>目的</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1. 准备阶段</strong></td>
+<td><code>onBeforeEnter(el)</code></td>
+<td>1. 调用用户 <code>onBeforeEnter</code>。 2. 添加 <code>*-enter-from</code> 类 (起点样式)。 3. 添加 <code>*-enter-active</code> 类 (过渡属性，如 <code>transition: opacity 3s</code>)。</td>
+<td>应用起点样式和过渡时间，准备就绪。</td>
+</tr>
+<tr>
+<td><strong>2. 动画触发</strong></td>
+<td><code>onEnter(el, done)</code> &#x2F; <code>nextFram</code></td>
+<td>1. <strong>延迟一帧 (<code>nextFram</code>)</strong>。 2. 移除 <code>*-enter-from</code> 类。 3. 添加 <code>*-enter-to</code> 类 (终点样式)。</td>
+<td><strong>强制浏览器重绘</strong>，使浏览器感知到 <code>from</code> 到 <code>to</code> 的样式变化，触发 CSS 过渡。</td>
+</tr>
+<tr>
+<td><strong>3. 动画结束</strong></td>
+<td><code>onEnter</code> 内部的 <code>resolve</code> 函数</td>
+<td>1. 移除 <code>*-enter-to</code> 类。 2. 移除 <code>*-enter-active</code> 类。 3. <strong>移除 <code>transitionend</code> 监听器</strong>。 4. 调用 <code>done()</code> 回调。</td>
+<td>清理 DOM 元素上的过渡类，将元素恢复到正常状态。</td>
+</tr>
+</tbody></table>
+<h6 id="3-离开实现机制-Leave-离开动画"><a href="#3-离开实现机制-Leave-离开动画" class="headerlink" title="3. 离开实现机制 (Leave &#x2F; 离开动画)"></a>3. 离开实现机制 (Leave &#x2F; 离开动画)</h6><p>离开过渡用于元素在被卸载前播放动画，其核心是<strong>延迟卸载</strong>。</p>
+<table>
+<thead>
+<tr>
+<th><strong>步骤</strong></th>
+<th><strong>钩子&#x2F;代码位置</strong></th>
+<th><strong>动作</strong></th>
+<th><strong>目的</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1. 准备阶段</strong></td>
+<td><code>onLeave(el, done)</code></td>
+<td>1. 添加 <code>*-leave-from</code> 类 (起点样式)。 2. 调用 <code>document.body.offsetHeight</code>。 3. 添加 <code>*-leave-active</code> 类 (过渡属性)。</td>
+<td><strong>强制浏览器同步重排</strong>，确保 <code>from</code> 样式被应用。</td>
+</tr>
+<tr>
+<td><strong>2. 动画触发</strong></td>
+<td><code>onLeave(el, done)</code> &#x2F; <code>nextFram</code></td>
+<td>1. <strong>延迟一帧 (<code>nextFram</code>)</strong>。 2. 移除 <code>*-leave-from</code> 类。 3. 添加 <code>*-leave-to</code> 类 (终点样式)。</td>
+<td>触发 <code>from</code> 到 <code>to</code> 的 CSS 过渡。</td>
+</tr>
+<tr>
+<td><strong>3. 动画结束</strong></td>
+<td><code>onLeave</code> 内部的 <code>resolve</code> 函数</td>
+<td>1. 移除 <code>*-leave-active</code> 和 <code>*-leave-to</code> 类。 2. <strong>移除 <code>transitionend</code> 监听器</strong>。 3. 调用 <code>done()</code> 回调 (<code>performRemove</code> )。</td>
+<td><strong>通知渲染器可以安全地从 DOM 中移除元素了。</strong></td>
+</tr>
+</tbody></table>
+<h6 id="4-关键实现点和优化"><a href="#4-关键实现点和优化" class="headerlink" title="4. 关键实现点和优化"></a>4. 关键实现点和优化</h6><ul>
+<li><p><strong><code>nextFram</code>：</strong> 使用双重 <code>requestAnimationFrame</code> 是为了确保浏览器在应用 <code>*-from</code> 样式后至少绘制一帧，再应用 <code>*-to</code> 样式，保证触发过渡。</p>
+</li>
+<li><p><strong>强制重排：</strong> 在 <code>onLeave</code> 中使用 <code>document.body.offsetHeight</code> (或类似属性) 是为了在添加 <code>*-leave-active</code> 之前，强制浏览器应用 <code>*-leave-from</code> 样式，以确保动画的起始状态正确设置。</p>
+</li>
+<li><p><strong>手动&#x2F;自动模式：</strong> 代码通过检查用户是否传入 <code>onEnter</code>&#x2F;<code>onLeave</code> 的回调函数 (<code>done</code>) 来判断是进入自动过渡模式（组件自动监听 <code>transitionend</code>）还是手动模式（用户需手动调用 <code>resolve</code>）。</p>
+</li>
+<li><p><strong><code>transitionend</code> 清理：</strong> 确保在 <code>resolve</code> 函数中，通过 <code>el.removeEventListener(&quot;transitionend&quot;, resolve)</code> 移除了事件监听器，避免内存泄漏。</p>
+</li>
+<li><p><strong>与 Renderer 的协作：</strong> 渲染器 (<code>renderer.ts</code>) 必须识别 <code>vnode.transition</code> 属性，并在 <code>unmount</code> 时调用 <code>transition.leave(el, performRemove)</code>，并将实际移除 DOM 的操作放在 <code>performRemove</code> 中，等待过渡组件调用 <code>done()</code>。</p>
+</li>
+</ul>
+<h6 id="异步组件定义器（defineAsyncComponent）"><a href="#异步组件定义器（defineAsyncComponent）" class="headerlink" title="### 异步组件定义器（defineAsyncComponent）"></a>### 异步组件定义器（<code>defineAsyncComponent</code>）</h6><p><code>defineAsyncComponent</code> 函数用于定义一个可以<strong>异步加载</strong>的组件，它允许组件在需要时才进行加载和渲染，从而实现代码分割（Code Splitting）和性能优化。</p>
+<ol>
+<li>核心功能</li>
+</ol>
+<ul>
+<li><p><strong>延迟加载（Lazy Loading）</strong>：接收一个 <code>loader</code> 函数，该函数返回一个 Promise，用于异步获取实际的组件定义。</p>
+</li>
+<li><p><strong>状态管理</strong>：该函数返回的组件（<code>AsyncComponentImpl</code>）内部管理着加载状态 (<code>loading</code>)、加载结果 (<code>loaded</code>) 和错误状态 (<code>error</code>)，并使用响应式引用（<code>ref</code>）来驱动视图更新。</p>
+</li>
+<li><p><strong>生命周期控制</strong>：通过 <code>setup</code> 钩子进行条件渲染，根据内部状态在三种模式间切换渲染：</p>
+<ul>
+<li><p><strong>占位符&#x2F;加载中组件</strong>：在加载期间显示。</p>
+</li>
+<li><p><strong>错误组件</strong>：加载失败或超时时显示。</p>
+</li>
+<li><p><strong>已加载组件</strong>：加载成功后显示实际组件。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>可配置选项 (Options)</li>
+</ol>
+<p><code>defineAsyncComponent</code> 接收一个选项对象，用于定制异步加载的行为和用户体验：</p>
+<table>
+<thead>
+<tr>
+<th><strong>选项名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>默认值&#x2F;用途</strong></th>
+<th><strong>功能说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>loader</code></strong></td>
+<td><code>Function</code></td>
+<td>必需</td>
+<td>实际加载组件的工厂函数，必须返回一个 Promise。</td>
+</tr>
+<tr>
+<td><strong><code>loadingComponent</code></strong></td>
+<td><code>Component</code></td>
+<td><code>null</code></td>
+<td>加载过程中显示的组件。 (示例中使用了 <code>&#123; template: &#39;&lt;h1&gt;Loading...&lt;/h1&gt;&#39; &#125;</code>)</td>
+</tr>
+<tr>
+<td><strong><code>errorComponent</code></strong></td>
+<td><code>Component</code></td>
+<td><code>null</code></td>
+<td>加载失败或超时时显示的组件。 (示例中使用了 <code>&#123; template: &#39;&lt;h1&gt;Error!&lt;/h1&gt;&#39; &#125;</code>)</td>
+</tr>
+<tr>
+<td><strong><code>delay</code></strong></td>
+<td><code>number</code></td>
+<td>200ms</td>
+<td>在显示 <code>loadingComponent</code> 之前等待的毫秒数。 (示例中设置为 <code>0</code>)</td>
+</tr>
+<tr>
+<td><strong><code>timeout</code></strong></td>
+<td><code>number</code></td>
+<td>30000ms</td>
+<td>加载组件的超时时间（毫秒）。超过此时间未加载完成将触发错误。 (示例中设置为 <code>3500</code>ms)</td>
+</tr>
+<tr>
+<td><strong><code>suspensible</code></strong></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>是否支持 Suspense 组件 (如果存在)。</td>
+</tr>
+<tr>
+<td><strong><code>onError</code></strong></td>
+<td><code>Function</code></td>
+<td><code>null</code></td>
+<td>错误处理回调函数。</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li>错误处理与超时机制</li>
+</ol>
+<p>文件内部实现了专门的逻辑来处理加载过程中的错误和超时：</p>
+<ul>
+<li><p><strong>延迟显示加载组件</strong>：使用 <code>delayTimer</code> 延迟显示 <code>loadingComponent</code>，避免在网络极快时闪烁加载状态。</p>
+</li>
+<li><p><strong>超时触发</strong>：如果加载时间超过 <code>timeout</code> 设定的时间，将设置 <code>error.value = true</code>，并抛出一个错误（例如示例中的 <code>&quot;组件加载失败&quot;</code> 错误）。</p>
+</li>
+<li><p><strong>错误捕获</strong>：<code>loader</code> 返回的 Promise 发生 <code>reject</code> 或超时触发，都会将错误赋值给 <code>error</code> 状态，并最终导致渲染 <code>errorComponent</code>。</p>
+</li>
+</ul>
+<h1 id="runtime-dom"><a href="#runtime-dom" class="headerlink" title="runtime-dom"></a>runtime-dom</h1><p>提供一系列的domapi, </p>
+<h2 id="runtime-dom-js-是一个-Vue-js-运行时-Runtime-的核心部分代码，它将-虚拟-DOM-Virtual-DOM-VNode-概念与-浏览器-DOM-操作-结合起来，实现了基本的渲染和打补丁功能。"><a href="#runtime-dom-js-是一个-Vue-js-运行时-Runtime-的核心部分代码，它将-虚拟-DOM-Virtual-DOM-VNode-概念与-浏览器-DOM-操作-结合起来，实现了基本的渲染和打补丁功能。" class="headerlink" title=" runtime-dom.js 是一个 Vue.js 运行时 (Runtime) 的核心部分代码，它将 虚拟 DOM (Virtual DOM, VNode) 概念与 浏览器 DOM 操作 结合起来，实现了基本的渲染和打补丁功能。"></a> <code>runtime-dom.js</code> 是一个 <strong>Vue.js 运行时 (Runtime)</strong> 的核心部分代码，它将 <strong>虚拟 DOM (Virtual DOM, VNode)</strong> 概念与 <strong>浏览器 DOM 操作</strong> 结合起来，实现了基本的渲染和打补丁功能。</h2><p>这段代码主要围绕 <strong>“如何将 VNode 渲染成真实的 DOM 元素”</strong> 这一核心目标展开，采用了 <strong>抽象化</strong> 和 <strong>模块化</strong> 的设计思路。</p>
+<h3 id="1-跨平台抽象-Renderer-Abstraction"><a href="#1-跨平台抽象-Renderer-Abstraction" class="headerlink" title="1. 跨平台抽象 (Renderer Abstraction)"></a>1. 跨平台抽象 (Renderer Abstraction)</h3><p>Vue 的核心设计之一是将渲染逻辑与宿主环境（Host Environment，如浏览器 DOM、Canvas 或 Native）解耦。</p>
+<ul>
+<li><p><strong><code>createRenderer(renderOptions)</code> (packages&#x2F;runtime-core&#x2F;src&#x2F;renderer.ts):</strong></p>
+<ul>
+<li><p>这是创建渲染器的 <strong>核心工厂函数</strong>。</p>
+</li>
+<li><p>它接收一个名为 <code>renderOptions</code> 的对象。</p>
+</li>
+<li><p>这个对象包含了所有<strong>宿主环境特有的操作</strong>（如 <code>hostInsert</code>、<code>hostCreateElement</code>、<code>hostPatchProp</code> 等）。</p>
+</li>
+<li><p>通过这种方式，渲染逻辑 (<code>patch</code>、<code>mountElement</code>) 可以在不知道它是操作浏览器 DOM 还是其他环境的情况下工作。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-浏览器-DOM-实现-Runtime-DOM-Specifics"><a href="#2-浏览器-DOM-实现-Runtime-DOM-Specifics" class="headerlink" title="2. 浏览器 DOM 实现 (Runtime-DOM Specifics)"></a>2. 浏览器 DOM 实现 (Runtime-DOM Specifics)</h3><p><code>packages/runtime-dom/src/index.ts</code> 将核心渲染器与浏览器环境连接起来。</p>
+<ul>
+<li><p><strong><code>nodeOps</code> (packages&#x2F;runtime-dom&#x2F;src&#x2F;nodeOps.ts):</strong></p>
+<ul>
+<li><p>这是一个包含所有 <strong>原生 DOM 操作</strong> 的对象。</p>
+</li>
+<li><p>它封装了 <code>parentNode.insertBefore</code>、<code>el.removeChild</code>、<code>document.createElement</code> 等方法，是与浏览器 API <strong>直接交互的低级接口</strong>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong><code>patchProp</code> (packages&#x2F;runtime-dom&#x2F;src&#x2F;patchProp.ts):</strong></p>
+<ul>
+<li><p>这是对元素 <strong>属性打补丁 (Patch)</strong> 的<strong>主入口</strong>函数。</p>
+</li>
+<li><p>它根据属性 <code>key</code> 的不同，分派到不同的专业处理函数，实现 <strong>属性分类处理</strong>。</p>
+</li>
+<li><p><strong>处理分类：</strong></p>
+<ul>
+<li><p><code>class </code>:<code>patchClass</code></p>
+</li>
+<li><p><code>style</code>:<code>patchStyle</code></p>
+</li>
+<li><p>以 <code>on</code> 开头且第三个字符不是小写字母的属性（即事件，如 <code>onClick</code>）, <code>patchEvent</code></p>
+</li>
+<li><p>其他属性 <code>patchAttr</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>render</code> (packages&#x2F;runtime-dom&#x2F;src&#x2F;index.ts):</strong></p>
+<ul>
+<li><p>这是用户调用的 <strong>最终渲染函数</strong>。</p>
+</li>
+<li><p>它将 <code>patchProp</code> 和 <code>nodeOps</code> 封装成 <code>renderOptions</code>，然后传递给 <code>createRenderer</code>，生成并调用渲染器的 <code>render</code> 方法。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-VNode-核心数据结构与创建"><a href="#3-VNode-核心数据结构与创建" class="headerlink" title="3. VNode 核心数据结构与创建"></a>3. VNode 核心数据结构与创建</h3><ul>
+<li><p><strong><code>createVnode</code> (packages&#x2F;runtime-core&#x2F;src&#x2F;createVnode.ts):</strong></p>
+<ul>
+<li><p>创建 <strong>虚拟节点 (VNode)</strong> 的函数。</p>
+</li>
+<li><p><strong>VNode 结构：</strong> 包含 <code>type</code>、<code>props</code>、<code>children</code>、<code>key</code>、<code>el</code> 和最重要的 <strong><code>shapeFlag</code></strong> 属性。</p>
+</li>
+<li><p><strong><code>shapeFlag</code>：</strong> 一个位掩码（bitmask），用于 <strong>标识 VNode 的类型和子节点类型</strong>（如 <code>ELEMENT</code>、<code>TEXT_CHILDREN</code>、<code>ARRAY_CHILDREN</code> 等）。这在渲染和打补丁时用于快速判断 VNode 结构，提高性能。</p>
+</li>
+</ul>
+</li>
+<li><p><strong><code>h</code> (packages&#x2F;runtime-core&#x2F;src&#x2F;h.ts):</strong></p>
+<ul>
+<li><p>用于创建 VNode 的<strong>辅助函数</strong> (Hyperscript)。</p>
+</li>
+<li><p>它处理不同的参数数量（<code>arguments.length</code>）：</p>
+<ul>
+<li><p>2 个参数：可能是 <code>(type, propsOrChildren)</code>。</p>
+</li>
+<li><p>3 个或更多参数：<code>h</code> 会将第三个及之后的参数视为 <strong>children 数组</strong>。</p>
+</li>
+</ul>
+</li>
+<li><p>它主要负责将调用简化，并转发给 <code>createVnode</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-关键打补丁逻辑-Mounting-Patching"><a href="#4-关键打补丁逻辑-Mounting-Patching" class="headerlink" title="4. 关键打补丁逻辑 (Mounting &amp; Patching)"></a>4. 关键打补丁逻辑 (Mounting &amp; Patching)</h3><ul>
+<li><p><strong><code>patch</code> (packages&#x2F;runtime-core&#x2F;src&#x2F;renderer.ts):</strong></p>
+<ul>
+<li><p>渲染器中的 <strong>核心递归函数</strong>，负责比较新旧 VNode (n1, n2) 并更新 DOM。</p>
+</li>
+<li><p><strong>初始化挂载：</strong> 如果 <code>n1</code> 为 <code>null</code>（即第一次挂载），则调用 <code>mountElement</code>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong><code>mountElement</code> (packages&#x2F;runtime-core&#x2F;src&#x2F;renderer.ts):</strong></p>
+<ul>
+<li><p>执行 <strong>元素首次挂载</strong> 的逻辑。</p>
+</li>
+<li><p>使用 <code>hostCreateElement</code> 创建真实 DOM 元素。</p>
+</li>
+<li><p>遍历 <code>props</code> 并使用 <code>hostPatchProp</code> 应用属性。</p>
+</li>
+<li><p>根据 <code>shapeFlag</code> 处理子节点：如果是文本子节点 (<code>TEXT_CHILDREN</code>)，使用 <code>hostSetElementText</code>；如果是数组子节点 (<code>ARRAY_CHILDREN</code>)，递归调用 <code>mountChildren</code>。</p>
+</li>
+<li><p>最后，使用 <code>hostInsert</code> 将创建的 DOM 元素插入到容器中。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><h2 id="PatchFlags优化"><a href="#PatchFlags优化" class="headerlink" title="PatchFlags优化"></a>PatchFlags优化</h2><p>场景<br>Diff 算法无法避免新旧虚拟 DOM 中无用的比较, 通过 patchFlags标记Vnode动态部分, 可以跳过比对 那些 <em>静态的, 不需要检查的部分</em></p>
+<ul>
+<li><p><strong>原理</strong>：编译器会在 VNode 对象上添加一个 <code>patchFlag</code> 属性，这个属性就是通过位运算组合起来的标记，告诉运行时：</p>
+<ul>
+<li><p><strong>只有</strong> <code>class</code> 属性是动态的。</p>
+</li>
+<li><p><strong>只有</strong> <code>style</code> 属性是动态的。</p>
+</li>
+<li><p><strong>只有</strong>它的子节点顺序可能发生了变化。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>效果</strong>：渲染器（<code>renderer.ts</code>）在打补丁时，可以根据 <code>patchFlag</code> 的值，<strong>精准地</strong>只更新 VNode 中发生变化的部分(<code>dynamicChildren</code>)，而不是像 Vue 2 那样对所有属性进行递归比对，从而极大地提升了渲染和更新速度。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/cute.webp" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/cute.webp" title="头像" alt="头像"></a><div class="post-copyright__author_name">匡思进</div><div class="post-copyright__author_desc">荥晋的博客</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://kkksj.cn/posts/2025/10/Fronted/Vue/vue3%E6%BA%90%E7%A0%81/530bc907.html">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://kkksj.cn/posts/2025/10/Fronted/Vue/vue3%E6%BA%90%E7%A0%81/530bc907.html')">Vue3源码</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="/img/wchat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/wchat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/zhifubao.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/zhifubao.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://kkksj.cn/posts/2025/10/Fronted/Vue/vue3%E6%BA%90%E7%A0%81/530bc907.html"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=Vue3源码&amp;url=https://kkksj.cn/posts/2025/10/Fronted/Vue/vue3%E6%BA%90%E7%A0%81/530bc907.html&amp;pic=/img/6.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://kkksj.cn" target="_blank">荥晋</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/vue/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>vue<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="/img/2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%B8%96%E5%AD%90%E7%9B%AE%E5%BD%95/523b6342.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">帖子目录</div></div></a></div><div class="next-post pull-right"><a href="/posts/2025/10/Fronted/Vue/axios%E6%BA%90%E7%A0%81/84f7b2d2.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">axios源码</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/images.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://twikoo-magic.oss-cn-hangzhou.aliyuncs.com/Genshin/18.jpg" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、开发</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">匡思进</h1><div class="author-info__desc">荥晋的博客</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/nihaokkjj" target="_blank" title="Github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-GitHub"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/1276825147" target="_blank" title="BiliBili"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-BILIBILI"></use></svg></a></div></div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6"><span class="toc-number">1.</span> <span class="toc-text">框架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-3-%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">Vue 3 的模块化框架结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F-vue-reactivity"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 响应式系统 (@vue&#x2F;reactivity)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%A0%B8%E5%BF%83-vue-runtime-core"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 运行时核心 (@vue&#x2F;runtime-core)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%B8%B2%E6%9F%93%E5%99%A8-vue-runtime-dom"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 运行时渲染器 (@vue&#x2F;runtime-dom)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%BC%96%E8%AF%91%E5%99%A8-vue-compiler-core-vue-compiler-dom"><span class="toc-number">1.1.4.</span> <span class="toc-text">4. 编译器 (@vue&#x2F;compiler-core &#x2F; @vue&#x2F;compiler-dom)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9D%97-vue-shared"><span class="toc-number">1.1.5.</span> <span class="toc-text">5. 共享模块 (@vue&#x2F;shared)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">整体工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Monorepo-%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.3.</span> <span class="toc-text">Monorepo 管理项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reactivity-%E2%80%94-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">Reactivity — 响应式实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#reactivity"><span class="toc-number">2.1.</span> <span class="toc-text">reactivity</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6-reactiveMap"><span class="toc-number">2.1.1.</span> <span class="toc-text">1. 缓存机制 (reactiveMap)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%93%8D%E5%BA%94%E5%BC%8F%E6%A0%87%E8%AE%B0-ReactiveFlags"><span class="toc-number">2.1.2.</span> <span class="toc-text">2. 响应式标记 (ReactiveFlags)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%90%86%E5%8F%A5%E6%9F%84-mutableHandlers"><span class="toc-number">2.1.3.</span> <span class="toc-text">3. 核心代理句柄 (mutableHandlers)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Reflect%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">2.1.3.1.</span> <span class="toc-text">使用Reflect的好处</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B7%A5%E5%8E%82-createReactiveObject"><span class="toc-number">2.1.4.</span> <span class="toc-text">4. 响应式工厂 (createReactiveObject)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#effect"><span class="toc-number">2.2.</span> <span class="toc-text">effect</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A0%B8%E5%BF%83%E4%BD%9C%E7%94%A8%E5%92%8C%E7%BB%93%E6%9E%84"><span class="toc-number">2.2.1.</span> <span class="toc-text">一、核心作用和结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-ReactiveEffect-run-%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B-%E4%BE%9D%E8%B5%96%E6%94%B6%E9%9B%86%E4%B8%8E%E6%B8%85%E7%90%86"><span class="toc-number">2.2.2.</span> <span class="toc-text">二、 ReactiveEffect.run() 的执行流程 (依赖收集与清理)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E4%BE%9D%E8%B5%96%E7%9A%84%E7%B2%BE%E7%A1%AE%E8%BF%BD%E8%B8%AA%E6%9C%BA%E5%88%B6%EF%BC%88cleanup%EF%BC%89"><span class="toc-number">2.2.3.</span> <span class="toc-text">三、 依赖的精确追踪机制（cleanup）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%84%E6%B8%85%E7%90%86-proCleanEffect"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">1. 预清理 (proCleanEffect)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%94%B6%E9%9B%86-trackEffect-%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">2. 收集 (trackEffect 中的逻辑)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%90%8E%E6%B8%85%E7%90%86-postCleanEffect"><span class="toc-number">2.2.3.3.</span> <span class="toc-text">3. 后清理 (postCleanEffect)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E4%BE%9D%E8%B5%96%E8%A7%A6%E5%8F%91-trigger-%E5%92%8C-trackEffects"><span class="toc-number">2.2.4.</span> <span class="toc-text">四、 依赖触发 (trigger 和 trackEffects)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ref"><span class="toc-number">2.3.</span> <span class="toc-text">ref</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ref-RefImpl-%E5%AE%9E%E7%8E%B0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%93%8D%E5%BA%94%E5%8C%96"><span class="toc-number">2.3.1.</span> <span class="toc-text">ref (RefImpl) 实现：基本类型响应化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%BB%93%E6%9E%84%EF%BC%9ARefImpl"><span class="toc-number">2.3.2.</span> <span class="toc-text">核心结构：RefImpl</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E8%BF%BD%E8%B8%AA"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">依赖追踪</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#toRef-%E5%92%8C-toRefs-%E5%AE%9E%E7%8E%B0%EF%BC%9A%E8%A7%86%E5%9B%BE%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%9A%84%E5%90%8C%E6%AD%A5%E5%BC%95%E7%94%A8"><span class="toc-number">2.3.3.</span> <span class="toc-text">toRef 和 toRefs 实现：视图与数据的同步引用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%BB%93%E6%9E%84%EF%BC%9AObjectRefImp-toRef-%E7%9A%84%E8%BF%94%E5%9B%9E"><span class="toc-number">2.3.3.1.</span> <span class="toc-text">核心结构：ObjectRefImp (toRef 的返回)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#toRefs-object-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.3.3.2.</span> <span class="toc-text">toRefs(object) 的作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#proxyRefs-%E5%AE%9E%E7%8E%B0%EF%BC%9A%E8%87%AA%E5%8A%A8%E8%84%B1-Ref-%E9%80%BB%E8%BE%91"><span class="toc-number">2.3.4.</span> <span class="toc-text">proxyRefs 实现：自动脱 Ref 逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%BB%93%E6%9E%84%EF%BC%9AProxy-%E9%99%B7%E9%98%B1"><span class="toc-number">2.3.4.1.</span> <span class="toc-text">核心结构：Proxy 陷阱</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%82%B9"><span class="toc-number">2.3.4.2.</span> <span class="toc-text">关键点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Computed"><span class="toc-number">2.4.</span> <span class="toc-text">Computed</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Computed-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B%E6%80%BB%E7%BB%93"><span class="toc-number">2.4.1.</span> <span class="toc-text">Computed 的实现原理与核心流程总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A0%B8%E5%BF%83%E7%BB%93%E6%9E%84%EF%BC%9AComputedRefImpl-%E7%B1%BB"><span class="toc-number">2.4.1.1.</span> <span class="toc-text">1. 核心结构：ComputedRefImpl 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%87%92%E6%83%B0%E6%B1%82%E5%80%BC%E4%B8%8E%E7%BC%93%E5%AD%98%EF%BC%88get-value-%E6%B5%81%E7%A8%8B%EF%BC%89"><span class="toc-number">2.4.1.2.</span> <span class="toc-text">2. 懒惰求值与缓存（get value() 流程）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%93%8D%E5%BA%94%E5%BC%8F%E8%A7%A6%E5%8F%91%EF%BC%88Dependency-Change-%E6%B5%81%E7%A8%8B%EF%BC%89"><span class="toc-number">2.4.1.3.</span> <span class="toc-text">3. 响应式触发（Dependency Change 流程）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#watch-%E5%92%8C-watchEffect"><span class="toc-number">2.5.</span> <span class="toc-text">watch 和 watchEffect</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0%E5%85%B3%E7%B3%BB"><span class="toc-number">2.5.1.</span> <span class="toc-text">核心结构与函数关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6%EF%BC%9AdoWatch"><span class="toc-number">2.5.2.</span> <span class="toc-text">核心机制：doWatch</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%A7%84%E8%8C%83%E5%8C%96%E4%BE%A6%E5%90%AC%E6%BA%90-getter-%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">2.5.2.1.</span> <span class="toc-text">1. 规范化侦听源 (getter 的创建)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%B7%B1%E5%BA%A6%E9%81%8D%E5%8E%86%E4%B8%8E%E4%BE%9D%E8%B5%96%E6%94%B6%E9%9B%86-traverse"><span class="toc-number">2.5.2.2.</span> <span class="toc-text">2. 深度遍历与依赖收集 (traverse)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E6%9B%B4%E6%96%B0%E4%BB%BB%E5%8A%A1-job"><span class="toc-number">2.5.2.3.</span> <span class="toc-text">3. 创建更新任务 (job)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%B8%85%E7%90%86%E6%9C%BA%E5%88%B6-onCleanup"><span class="toc-number">2.5.2.4.</span> <span class="toc-text">4. 清理机制 (onCleanup)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-ReactiveEffect-%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E6%89%A7%E8%A1%8C"><span class="toc-number">2.5.2.5.</span> <span class="toc-text">5. ReactiveEffect 的创建与执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">2.5.2.6.</span> <span class="toc-text">6. 返回值</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Runtime-core"><span class="toc-number">3.</span> <span class="toc-text">Runtime-core</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%EF%BC%88Runtime%EF%BC%89%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86"><span class="toc-number">3.0.1.</span> <span class="toc-text">运行时（Runtime）核心流程梳理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%9A%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E6%B8%B2%E6%9F%93%E5%85%A5%E5%8F%A3"><span class="toc-number">3.0.2.</span> <span class="toc-text">阶段一：初始化与渲染入口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%BA%8C%EF%BC%9A%E6%A0%B8%E5%BF%83-Patch-Diff-%E9%80%BB%E8%BE%91"><span class="toc-number">3.0.3.</span> <span class="toc-text">阶段二：核心 Patch (Diff) 逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#patch-n1-n2-container-anchor"><span class="toc-number">3.0.3.1.</span> <span class="toc-text">patch(n1, n2, container, anchor)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%89%EF%BC%9A%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C%E6%89%A7%E8%A1%8C"><span class="toc-number">3.0.4.</span> <span class="toc-text">阶段三：具体操作执行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%8C%82%E8%BD%BD-Mount-%E6%B5%81%E7%A8%8B%EF%BC%88n1-null-%E6%97%B6%EF%BC%89%EF%BC%9A"><span class="toc-number">3.0.4.1.</span> <span class="toc-text">A. 挂载 (Mount) 流程（n1 &#x3D;&#x3D;&#x3D; null 时）：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-%E6%9B%B4%E6%96%B0-Patch-%E6%B5%81%E7%A8%8B%EF%BC%88n1-null-%E6%97%B6%EF%BC%89%EF%BC%9A"><span class="toc-number">3.0.4.2.</span> <span class="toc-text">B. 更新 (Patch) 流程（n1 !&#x3D;&#x3D; null 时）：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%9B%BE%E7%A4%BA"><span class="toc-number">3.0.5.</span> <span class="toc-text">总结图示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">3.0.6.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E8%99%9A%E6%8B%9F%E8%8A%82%E7%82%B9-VNode-%E4%B8%8E%E5%88%9B%E5%BB%BA"><span class="toc-number">3.0.6.1.</span> <span class="toc-text">一、 虚拟节点 (VNode) 与创建</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-createVnode-ts"><span class="toc-number">3.0.6.1.1.</span> <span class="toc-text">1. createVnode.ts</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-h-ts"><span class="toc-number">3.0.6.1.2.</span> <span class="toc-text">2. h.ts</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E6%B8%B2%E6%9F%93%E5%99%A8-Renderer-%E4%B8%8E-Diff-%E7%AE%97%E6%B3%95"><span class="toc-number">3.0.6.2.</span> <span class="toc-text">二、 渲染器 (Renderer) 与 Diff 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-renderer-ts"><span class="toc-number">3.0.6.2.1.</span> <span class="toc-text">1. renderer.ts</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-patchKeyedChildren-Diff-%E6%A0%B8%E5%BF%83%E7%AE%97%E6%B3%95"><span class="toc-number">3.0.6.2.2.</span> <span class="toc-text">2. patchKeyedChildren (Diff 核心算法)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-seq-ts"><span class="toc-number">3.0.6.2.3.</span> <span class="toc-text">3. seq.ts</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E7%BB%84%E4%BB%B6%E5%8C%96%E4%B8%8E%E8%B0%83%E5%BA%A6"><span class="toc-number">3.0.6.3.</span> <span class="toc-text">三、 组件化与调度</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-component-ts"><span class="toc-number">3.0.6.3.1.</span> <span class="toc-text">1. component.ts</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-renderer-ts-%E7%BB%84%E4%BB%B6%E7%9B%B8%E5%85%B3"><span class="toc-number">3.0.6.3.2.</span> <span class="toc-text">2. renderer.ts (组件相关)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-scheduler-ts"><span class="toc-number">3.0.6.3.3.</span> <span class="toc-text">3. scheduler.ts</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-apiLifecycle-ts-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90"><span class="toc-number">3.0.6.3.4.</span> <span class="toc-text">4. apiLifecycle.ts  (生命周期钩子)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6"><span class="toc-number">3.0.6.3.5.</span> <span class="toc-text">核心机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-apiProvide-ts-provide-inject"><span class="toc-number">3.0.6.3.6.</span> <span class="toc-text">5.apiProvide.ts  (provide&#x2F;inject)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6-1"><span class="toc-number">3.0.6.3.6.1.</span> <span class="toc-text">核心机制</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#provide-key-value-%E6%8F%90%E4%BE%9B%E6%95%B0%E6%8D%AE"><span class="toc-number">3.0.6.3.6.2.</span> <span class="toc-text">provide(key, value) (提供数据)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#inject-key-defaultValue-%E6%B3%A8%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">3.0.6.3.6.3.</span> <span class="toc-text">inject(key, defaultValue) (注入数据)</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Transition"><span class="toc-number">3.0.6.3.7.</span> <span class="toc-text">Transition</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84"><span class="toc-number">3.0.6.3.7.1.</span> <span class="toc-text">1. 核心架构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E8%BF%87%E6%B8%A1%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6-Enter-%E8%BF%9B%E5%85%A5%E5%8A%A8%E7%94%BB"><span class="toc-number">3.0.6.3.7.2.</span> <span class="toc-text">2. 过渡实现机制 (Enter &#x2F; 进入动画)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E7%A6%BB%E5%BC%80%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6-Leave-%E7%A6%BB%E5%BC%80%E5%8A%A8%E7%94%BB"><span class="toc-number">3.0.6.3.7.3.</span> <span class="toc-text">3. 离开实现机制 (Leave &#x2F; 离开动画)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-%E5%85%B3%E9%94%AE%E5%AE%9E%E7%8E%B0%E7%82%B9%E5%92%8C%E4%BC%98%E5%8C%96"><span class="toc-number">3.0.6.3.7.4.</span> <span class="toc-text">4. 关键实现点和优化</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6%E5%AE%9A%E4%B9%89%E5%99%A8%EF%BC%88defineAsyncComponent%EF%BC%89"><span class="toc-number">3.0.6.3.7.5.</span> <span class="toc-text">### 异步组件定义器（defineAsyncComponent）</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#runtime-dom"><span class="toc-number">4.</span> <span class="toc-text">runtime-dom</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#runtime-dom-js-%E6%98%AF%E4%B8%80%E4%B8%AA-Vue-js-%E8%BF%90%E8%A1%8C%E6%97%B6-Runtime-%E7%9A%84%E6%A0%B8%E5%BF%83%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%AE%83%E5%B0%86-%E8%99%9A%E6%8B%9F-DOM-Virtual-DOM-VNode-%E6%A6%82%E5%BF%B5%E4%B8%8E-%E6%B5%8F%E8%A7%88%E5%99%A8-DOM-%E6%93%8D%E4%BD%9C-%E7%BB%93%E5%90%88%E8%B5%B7%E6%9D%A5%EF%BC%8C%E5%AE%9E%E7%8E%B0%E4%BA%86%E5%9F%BA%E6%9C%AC%E7%9A%84%E6%B8%B2%E6%9F%93%E5%92%8C%E6%89%93%E8%A1%A5%E4%B8%81%E5%8A%9F%E8%83%BD%E3%80%82"><span class="toc-number">4.1.</span> <span class="toc-text"> runtime-dom.js 是一个 Vue.js 运行时 (Runtime) 的核心部分代码，它将 虚拟 DOM (Virtual DOM, VNode) 概念与 浏览器 DOM 操作 结合起来，实现了基本的渲染和打补丁功能。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8A%BD%E8%B1%A1-Renderer-Abstraction"><span class="toc-number">4.1.1.</span> <span class="toc-text">1. 跨平台抽象 (Renderer Abstraction)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B5%8F%E8%A7%88%E5%99%A8-DOM-%E5%AE%9E%E7%8E%B0-Runtime-DOM-Specifics"><span class="toc-number">4.1.2.</span> <span class="toc-text">2. 浏览器 DOM 实现 (Runtime-DOM Specifics)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-VNode-%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%9B%E5%BB%BA"><span class="toc-number">4.1.3.</span> <span class="toc-text">3. VNode 核心数据结构与创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%85%B3%E9%94%AE%E6%89%93%E8%A1%A5%E4%B8%81%E9%80%BB%E8%BE%91-Mounting-Patching"><span class="toc-number">4.1.4.</span> <span class="toc-text">4. 关键打补丁逻辑 (Mounting &amp; Patching)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%98%E5%8C%96"><span class="toc-number">5.</span> <span class="toc-text">优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PatchFlags%E4%BC%98%E5%8C%96"><span class="toc-number">5.1.</span> <span class="toc-text">PatchFlags优化</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/10/%E7%94%9F%E6%B4%BB%E5%B0%8F%E6%8A%80%E5%B7%A7/B%E7%AB%99%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD/defcbb89.html" title="B站视频下载"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站视频下载"/></a><div class="content"><a class="title" href="/posts/2025/10/%E7%94%9F%E6%B4%BB%E5%B0%8F%E6%8A%80%E5%B7%A7/B%E7%AB%99%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD/defcbb89.html" title="B站视频下载">B站视频下载</a><time datetime="2025-10-06T00:00:00.000Z" title="发表于 2025-10-06 00:00:00">2025-10-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/10/Fronted/Vue/axios%E6%BA%90%E7%A0%81/84f7b2d2.html" title="axios源码"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="axios源码"/></a><div class="content"><a class="title" href="/posts/2025/10/Fronted/Vue/axios%E6%BA%90%E7%A0%81/84f7b2d2.html" title="axios源码">axios源码</a><time datetime="2025-10-01T00:00:00.000Z" title="发表于 2025-10-01 00:00:00">2025-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/10/Fronted/Vue/vue3%E6%BA%90%E7%A0%81/530bc907.html" title="Vue3源码"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue3源码"/></a><div class="content"><a class="title" href="/posts/2025/10/Fronted/Vue/vue3%E6%BA%90%E7%A0%81/530bc907.html" title="Vue3源码">Vue3源码</a><time datetime="2025-10-01T00:00:00.000Z" title="发表于 2025-10-01 00:00:00">2025-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%B8%96%E5%AD%90%E7%9B%AE%E5%BD%95/523b6342.html" title="帖子目录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="帖子目录"/></a><div class="content"><a class="title" href="/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%B8%96%E5%AD%90%E7%9B%AE%E5%BD%95/523b6342.html" title="帖子目录">帖子目录</a><time datetime="2025-09-27T00:00:00.000Z" title="发表于 2025-09-27 00:00:00">2025-09-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%A6%82%E4%BD%95%E4%B8%8A%E4%BC%A0%E5%B9%B6%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87,%20%20%E9%99%84%E4%BB%B6/e00c858c.html" title="上传文件"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="上传文件"/></a><div class="content"><a class="title" href="/posts/2025/09/Fronted/%E9%A1%B9%E7%9B%AE/easybbs/%E5%A6%82%E4%BD%95%E4%B8%8A%E4%BC%A0%E5%B9%B6%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87,%20%20%E9%99%84%E4%BB%B6/e00c858c.html" title="上传文件">上传文件</a><time datetime="2025-09-23T00:00:00.000Z" title="发表于 2025-09-23 00:00:00">2025-09-23</time></div></div></div></div></div></div></div></main><footer id="footer" style="/img/6.jpg"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2025 By <a class="footer-bar-link" href="/" title="匡思进" target="_blank">匡思进</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#footer-type-tips", {
+      strings: ["Welcom to my blog","Are you ready"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("footer-type-tips").innerHTML = 'Welcom to my blog'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">7</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/nihaokkjj" title="去我的github里面瞅瞅吧"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/cute.webp" alt="去我的github里面瞅瞅吧"/><span class="back-menu-item-text">去我的github里面瞅瞅吧</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Vue/" style="font-size: 0.88rem;">Vue<sup>1</sup></a><a href="/tags/axios/" style="font-size: 0.88rem;">axios<sup>1</sup></a><a href="/tags/blog/" style="font-size: 0.88rem;">blog<sup>2</sup></a><a href="/tags/easybbs/" style="font-size: 0.88rem;">easybbs<sup>10</sup></a><a href="/tags/minvue/" style="font-size: 0.88rem;">minvue<sup>1</sup></a><a href="/tags/node/" style="font-size: 0.88rem;">node<sup>1</sup></a><a href="/tags/pinia/" style="font-size: 0.88rem;">pinia<sup>1</sup></a><a href="/tags/python/" style="font-size: 0.88rem;">python<sup>1</sup></a><a href="/tags/router/" style="font-size: 0.88rem;">router<sup>1</sup></a><a href="/tags/vue/" style="font-size: 0.88rem;">vue<sup>1</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.88rem; font-weight: 500; color: var(--anzhiyu-lighttext)">前端<sup>1</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97/" style="font-size: 0.88rem;">前端三件套<sup>5</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 0.88rem;">前端学习路线<sup>1</sup></a><a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 0.88rem;">工具<sup>1</sup></a><a href="/tags/%E6%89%8B%E6%9C%BA%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/" style="font-size: 0.88rem;">手机设置代理<sup>1</sup></a><a href="/tags/%E6%B2%A1%E6%9C%89%E8%90%A5%E5%85%BB%E7%9A%84%E8%AF%9D/" style="font-size: 0.88rem;">没有营养的话<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="7593082970" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://i.y.qq.com/n2/m/share/details/taoge.html?id=7593082970&amp;hosteuin=&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("07/0111/2025 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2025 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 匡思进 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script async src="https://at.alicdn.com/t/c/font_4976895_bnl7971qvi.js?spm=a313x.manage_type_myprojects.i1.10.73873a816pIoEr&amp;file=font_4976895_bnl7971qvi.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
